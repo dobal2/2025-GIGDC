@@ -130,7 +130,6 @@ GameObject:
   - component: {fileID: 102500583}
   - component: {fileID: 102500582}
   - component: {fileID: 102500581}
-  - component: {fileID: 102500584}
   m_Layer: 0
   m_Name: RainParicleSystem
   m_TagString: Untagged
@@ -404,8 +403,8 @@ ParticleSystem:
     startColor:
       serializedVersion: 2
       minMaxState: 2
-      minColor: {r: 0.5990566, g: 0.5990566, b: 0.5990566, a: 1}
-      maxColor: {r: 0.6698113, g: 0.6698113, b: 0.6698113, a: 0}
+      minColor: {r: 1, g: 1, b: 1, a: 1}
+      maxColor: {r: 1, g: 1, b: 1, a: 0}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -4954,18 +4953,6 @@ Transform:
   - {fileID: 723896261}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!114 &102500584
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 102500580}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d90192f7560adf43a57d9855048f651, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &723896259
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5036,7 +5023,7 @@ PrefabInstance:
       objectReference: {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 6783473444192440212, guid: 7e6953981b1a375468b666803d6389f9, type: 3}
       propertyPath: m_Name
-      value: RainDeathParticle
+      value: SplashParticle
       objectReference: {fileID: 0}
     - target: {fileID: 7983686872494488779, guid: 7e6953981b1a375468b666803d6389f9, type: 3}
       propertyPath: looping
@@ -5079,6 +5066,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7983686872494488779, guid: 7e6953981b1a375468b666803d6389f9, type: 3}
+      propertyPath: InitialModule.gravitySource
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7983686872494488779, guid: 7e6953981b1a375468b666803d6389f9, type: 3}
       propertyPath: ShapeModule.radiusThickness
       value: 0.1
       objectReference: {fileID: 0}
@@ -5097,6 +5088,30 @@ PrefabInstance:
     - target: {fileID: 7983686872494488779, guid: 7e6953981b1a375468b666803d6389f9, type: 3}
       propertyPath: InitialModule.startSpeed.minScalar
       value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 7983686872494488779, guid: 7e6953981b1a375468b666803d6389f9, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7983686872494488779, guid: 7e6953981b1a375468b666803d6389f9, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7983686872494488779, guid: 7e6953981b1a375468b666803d6389f9, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7983686872494488779, guid: 7e6953981b1a375468b666803d6389f9, type: 3}
+      propertyPath: InitialModule.startColor.minColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7983686872494488779, guid: 7e6953981b1a375468b666803d6389f9, type: 3}
+      propertyPath: InitialModule.startColor.minColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7983686872494488779, guid: 7e6953981b1a375468b666803d6389f9, type: 3}
+      propertyPath: InitialModule.startColor.minColor.r
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
