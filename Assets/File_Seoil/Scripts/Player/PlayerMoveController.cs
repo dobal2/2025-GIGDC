@@ -36,6 +36,17 @@ public class PlayerMoveController : MonoBehaviour
         SyncMoveState();
     }
 
+    public void OnJumpKeyDown()
+    {
+
+    }
+
+    public void OnJumpKeyUp()
+    {
+
+    }
+
+
     private void SyncMoveState()
     {
         if(horizontalMoveState > 0)

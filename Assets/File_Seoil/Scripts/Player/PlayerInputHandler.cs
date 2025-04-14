@@ -24,13 +24,15 @@ public class PlayerInputHandler : MonoBehaviour
         keyDownActions = new Dictionary<KeyCode, Action>
         {
             {keyData.Player.LeftMoveKey, moveController.OnMoveLeftKeyDown},
-            {keyData.Player.RightMoveKey, moveController.OnMoveRightKeyDown}
+            {keyData.Player.RightMoveKey, moveController.OnMoveRightKeyDown},
+            {keyData.Player.JumpKey, moveController.OnJumpKeyDown},
         };
 
         keyUpActions = new Dictionary<KeyCode, Action>
         {
             {keyData.Player.LeftMoveKey, moveController.OnMoveLeftKeyUp},
-            {keyData.Player.RightMoveKey, moveController.OnMoveRightKeyUp}
+            {keyData.Player.RightMoveKey, moveController.OnMoveRightKeyUp},
+            {keyData.Player.JumpKey, moveController.OnJumpKeyUp},
         };
     }
 
