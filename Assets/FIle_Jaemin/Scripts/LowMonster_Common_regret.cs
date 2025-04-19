@@ -5,14 +5,15 @@ using UnityEngine;
 
 public class LowMonster_Common_regret : LowMonster
 {
-    public GameObject player;
+    [SerializeField] private Transform player;
+    [SerializeField] private  LayerMask groundLayer;
+    [SerializeField] private  LayerMask wallLayer;
+    [SerializeField] private  Transform attackCheck;
+    [SerializeField] private  float attackRadius;
+    
     private Animator anim;
     private Rigidbody2D rigid;
-    public int nextMove;
-    public LayerMask groundLayer;
-    public LayerMask wallLayer;
-    public Transform attackCheck;
-    public float attackRadius;
+    private int nextMove;
     private bool facingRight = true;
     private bool canAttack = true;
     private bool canMove = true;
@@ -29,7 +30,7 @@ public class LowMonster_Common_regret : LowMonster
     {
         Move();
 
-        float distance = Vector2.Distance(player.transform.position, transform.position);
+        float distance = Vector2.Distance(player.position, transform.position);
         
         if (Mathf.Abs(distance) <= 3f)
         {
@@ -146,10 +147,8 @@ public class LowMonster_Common_regret : LowMonster
     
     void Flip()
     {
-        // Switch the way the player is labelled as facing.
         facingRight = !facingRight;
-
-        // Multiply the player's x local scale by -1.
+        
         Vector3 theScale = transform.localScale;
         theScale.x *= -1;
         transform.localScale = theScale;
