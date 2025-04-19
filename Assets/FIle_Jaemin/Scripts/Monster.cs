@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class LowMonster : MonoBehaviour
+public abstract class Monster : MonoBehaviour
 {
     [SerializeField] protected float maxHp;
     [SerializeField] protected float hp;

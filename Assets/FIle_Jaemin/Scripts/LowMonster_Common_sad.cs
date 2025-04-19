@@ -2,7 +2,7 @@
   using System.Collections;
   using UnityEngine;
 
-public class LowMonster_Common_sad : LowMonster
+public class LowMonster_Common_sad : Monster
 {
     [SerializeField] private GameObject projectilePrefab;
     [SerializeField] private Transform player;
