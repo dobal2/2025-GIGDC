@@ -1,15 +1,18 @@
-
 using System.Collections;
 using UnityEngine;
 
-
-public class LowMonster_Common_regret : Monster
+public class LowMonster_Rare_interest : Monster
 {
     [SerializeField] private Transform player;
-    [SerializeField] private LayerMask groundLayer;
-    [SerializeField] private LayerMask wallLayer;
-    [SerializeField] private Transform attackCheck;
-    [SerializeField] private float attackRadius;
+    [SerializeField] private  LayerMask groundLayer;
+    [SerializeField] private  LayerMask wallLayer;
+    [SerializeField] private  Transform attackCheck;
+    [SerializeField] private  float attackRadius;
+    [SerializeField] private  float playernoticeDistance;
+    [SerializeField] private float skilledSpeed;
+    [SerializeField] private bool isSkilled;
+    
+    
     
     private Animator anim;
     private Rigidbody2D rigid;
@@ -30,19 +33,23 @@ public class LowMonster_Common_regret : Monster
     {
         Move();
 
-        float distance = Vector2.Distance(player.position, transform.position);
-        
-        if (Mathf.Abs(distance) <= 3f)
+        if (isSkilled && canAttack)
         {
-            canMove = false;
-            if (canAttack)
-            {
-                Attack();
-            }
+            Attack();
         }
-        else
+
+        float distance = Vector2.Distance(player.position, transform.position);
+
+        if (distance <= playernoticeDistance)
         {
-            canMove = true;
+            if (!isSkilled)
+            {
+                isSkilled = true;
+            }
+            else
+            {
+                isSkilled = false;
+            }
         }
         
         if (nextMove == -1)
@@ -60,6 +67,7 @@ public class LowMonster_Common_regret : Monster
             }
         }   
     }
+    
 
     private void SetRandomMoveDirection()
     {
@@ -71,17 +79,20 @@ public class LowMonster_Common_regret : Monster
         
         
     }
-
-    void Update()
-    {
-        
-    }
-
+    
     protected override void Move()
     {
         if (canMove)
         {
-            rigid.linearVelocity = new Vector2(speed * nextMove, rigid.linearVelocity.y);
+            if (isSkilled)
+            {
+                rigid.linearVelocity = new Vector2(skilledSpeed * nextMove, rigid.linearVelocity.y);    
+            }
+            else
+            {
+                rigid.linearVelocity = new Vector2(speed * nextMove, rigid.linearVelocity.y);
+            }
+            
         }
 
         GroundDetector();
