@@ -10,7 +10,7 @@ public class BrushCircleEffect : MonoBehaviour, IPointerEnterHandler, IPointerEx
     public Sprite[] brushSprites;
 
     [Header("¼Óµµ")]
-    public float totalDuration = 0.3f;
+    public float totalDuration = 0.15f;
 
     Coroutine drawCoroutine;
 
