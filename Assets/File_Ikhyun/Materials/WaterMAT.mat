@@ -62,7 +62,7 @@ Material:
     - _DistortionOffsetSpeed: 1
     - _DistortionScale: 20
     - _DistortionStrength: 0.0025
-    - _LineLength: 0.985
+    - _LineLength: 0.986
     - _WaveCount: 0.7
     - _WaveFlowDirection: 1
     - _WaveSize: 0.129
@@ -74,5 +74,6 @@ Material:
     - _CausticsTiling: {r: 0.5, g: 1.5, b: 0, a: 0}
     - _DistortionDir: {r: 0.05, g: 0, b: 0, a: 0}
     - _LineColor: {r: 0.5235849, g: 0.9643498, b: 1, a: 1}
+    - _Resolution: {r: 256, g: 256, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
