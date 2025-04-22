@@ -27,6 +27,7 @@ public class LowMonster_Rare_interest : Monster
         anim = GetComponent<Animator>();
         rigid = GetComponent<Rigidbody2D>();
         SetRandomMoveDirection();
+        player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     private void FixedUpdate()

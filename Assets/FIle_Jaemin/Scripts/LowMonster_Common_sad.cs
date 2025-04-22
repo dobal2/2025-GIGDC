@@ -10,6 +10,11 @@ public class LowMonster_Common_sad : Monster
     
     private bool canAttack = true;
 
+    private void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+    }
+
     private void FixedUpdate()
     {
         if (canAttack)

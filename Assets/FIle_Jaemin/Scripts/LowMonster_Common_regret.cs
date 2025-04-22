@@ -24,6 +24,7 @@ public class LowMonster_Common_regret : Monster
         anim = GetComponent<Animator>();
         rigid = GetComponent<Rigidbody2D>();
         SetRandomMoveDirection();
+        player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     private void FixedUpdate()
