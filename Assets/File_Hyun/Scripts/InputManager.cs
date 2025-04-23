@@ -52,7 +52,15 @@ public class InputManager : MonoBehaviour
             if (btn != null) btn.onClick.Invoke();
 
             controller.onClick?.Invoke();
-            TryMove(controller.nextOnClick);
+
+            if (controller.nextOnClick != null && controller.nextOnClick.activeInHierarchy)
+            {
+                EventSystem.current.SetSelectedGameObject(controller.nextOnClick);
+            }
+            else
+            {
+                EventSystem.current.SetSelectedGameObject(null);
+            }
         }
     }
 

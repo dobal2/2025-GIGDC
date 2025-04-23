@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
-using System.Collections;
 
 public class UIButtonController : MonoBehaviour, ISelectHandler, IDeselectHandler, IPointerEnterHandler, IPointerClickHandler
 {
@@ -64,16 +63,9 @@ public class UIButtonController : MonoBehaviour, ISelectHandler, IDeselectHandle
     public void OnPointerClick(PointerEventData eventData)
     {
         onClick?.Invoke();
-
         if (nextOnClick != null && nextOnClick.activeInHierarchy)
         {
-            StartCoroutine(ForceMoveNextFrame(nextOnClick));
+            EventSystem.current.SetSelectedGameObject(nextOnClick);
         }
-    }
-
-    private IEnumerator ForceMoveNextFrame(GameObject target)
-    {
-        yield return null;
-        EventSystem.current.SetSelectedGameObject(target);
     }
 }
