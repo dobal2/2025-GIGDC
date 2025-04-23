@@ -6,7 +6,9 @@ using UnityEngine.EventSystems;
 [RequireComponent(typeof(Button))]
 public class UIButtonController : MonoBehaviour, ISelectHandler, IDeselectHandler, IPointerEnterHandler, IPointerClickHandler
 {
-    [Header("버튼 설정")]
+    public KeyData keyData;
+
+    [Header("시작 버튼 설정")]
     public bool isDefaultSelected = false;
 
     [Header("이웃 버튼")]
@@ -50,12 +52,12 @@ public class UIButtonController : MonoBehaviour, ISelectHandler, IDeselectHandle
         if (selected == null || selected != this.gameObject) return;
 
 
-        if (Input.GetKeyDown(KeyCode.UpArrow)) TryMoveTo(upButton);
-        if (Input.GetKeyDown(KeyCode.DownArrow)) TryMoveTo(downButton);
-        if (Input.GetKeyDown(KeyCode.LeftArrow)) TryMoveTo(leftButton);
-        if (Input.GetKeyDown(KeyCode.RightArrow)) TryMoveTo(rightButton);
+        if (Input.GetKeyDown(keyData.Player.UpKey)) TryMoveTo(upButton);
+        if (Input.GetKeyDown(keyData.Player.DownKey)) TryMoveTo(downButton);
+        if (Input.GetKeyDown(keyData.Player.LeftKey)) TryMoveTo(leftButton);
+        if (Input.GetKeyDown(keyData.Player.RightKey)) TryMoveTo(rightButton);
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(keyData.Player.SelectKey))
         {
             TryMoveTo(nextOnClick);
             button.onClick.Invoke();
@@ -78,7 +80,7 @@ public class UIButtonController : MonoBehaviour, ISelectHandler, IDeselectHandle
 
     public void OnDeselect(BaseEventData eventData)
     {
-        StopSelectEffect();
+        StopHoverEffect();
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -97,8 +99,11 @@ public class UIButtonController : MonoBehaviour, ISelectHandler, IDeselectHandle
         PlayClickEffect();
     }
 
-    void PlayHoverEffect() => SetTextColor(selectedColor);
-    void StopSelectEffect() => SetTextColor(normalColor);
+    void PlayHoverEffect() //호버이펙트
+    {
+        SetTextColor(selectedColor);
+    }
+
     void PlayClickEffect()
     {
         if (targetText == null) return;
@@ -106,7 +111,12 @@ public class UIButtonController : MonoBehaviour, ISelectHandler, IDeselectHandle
         StartCoroutine(ClickFlash());
     }
 
-    System.Collections.IEnumerator ClickFlash()
+    void StopHoverEffect()
+    {
+        SetTextColor(normalColor);
+    }
+
+    System.Collections.IEnumerator ClickFlash() //클릭이펙트
     {
         SetTextColor(clickColor);
         yield return new WaitForSeconds(0.15f);

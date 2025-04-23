@@ -241,11 +241,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 448a9dd57d673a44680deccd661b8f59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  keyData: {fileID: 11400000, guid: eef92708e559636479c30d47676bef1e, type: 2}
   isDefaultSelected: 0
   upButton: {fileID: 0}
   downButton: {fileID: 0}
   leftButton: {fileID: 0}
   rightButton: {fileID: 0}
+  nextOnClick: {fileID: 0}
   targetText: {fileID: 1112118134185265081}
   normalColor: {r: 0, g: 0, b: 0, a: 1}
   selectedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}

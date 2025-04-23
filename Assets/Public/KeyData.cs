@@ -28,7 +28,7 @@ public class KeyData : ScriptableObject
         [Header("UI")]
         public KeyCode UpKey;
         public KeyCode DownKey;
-        public KeyCode LeftUpKey;
+        public KeyCode LeftKey;
         public KeyCode RightKey;
         public KeyCode SelectKey;
     }
