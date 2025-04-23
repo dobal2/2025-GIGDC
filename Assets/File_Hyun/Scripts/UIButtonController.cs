@@ -1,38 +1,26 @@
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using System.Collections;
 
-[RequireComponent(typeof(Button))]
 public class UIButtonController : MonoBehaviour, ISelectHandler, IDeselectHandler, IPointerEnterHandler, IPointerClickHandler
 {
-    public KeyData keyData;
-
-    [Header("시작 버튼 설정")]
+    [Header("초기 선택 여부")]
     public bool isDefaultSelected = false;
 
-    [Header("이웃 버튼")]
+    [Header("이웃 버튼 수동 지정")]
     public GameObject upButton;
     public GameObject downButton;
     public GameObject leftButton;
     public GameObject rightButton;
 
-    [Header("클릭 후 다음 선택 버튼")]
+    [Header("클릭 후 선택될 버튼")]
     public GameObject nextOnClick;
 
-    [Header("이벤트 연결")]
+    [Header("이벤트")]
     public UnityEvent onSelect;
     public UnityEvent onDeselect;
     public UnityEvent onClick;
-
-    private Button button;
-    private static GameObject lastSelectedButton;
-
-    void Awake()
-    {
-        button = GetComponent<Button>();
-    }
 
     void Start()
     {
@@ -40,61 +28,21 @@ public class UIButtonController : MonoBehaviour, ISelectHandler, IDeselectHandle
         {
             EventSystem.current.SetSelectedGameObject(this.gameObject);
         }
-
-        // 기본 선택된 버튼이 자신이라면 저장
-        if (EventSystem.current.currentSelectedGameObject == this.gameObject)
-        {
-            lastSelectedButton = this.gameObject;
-        }
     }
 
-    void Update()
+    // 현재 선택된 방향에 해당하는 이웃 버튼 반환
+    public GameObject GetNeighbor(Vector2 direction)
     {
-        GameObject selected = EventSystem.current.currentSelectedGameObject;
-
-        // 선택된 버튼이 없고, 키 입력이 발생한 경우 → 마지막 버튼으로 복원
-        if (selected == null && (
-            Input.GetKeyDown(keyData.Player.UpKey) ||
-            Input.GetKeyDown(keyData.Player.DownKey) ||
-            Input.GetKeyDown(keyData.Player.LeftKey) ||
-            Input.GetKeyDown(keyData.Player.RightKey) ||
-            Input.GetKeyDown(keyData.Player.SelectKey)))
-        {
-            if (lastSelectedButton != null)
-            {
-                EventSystem.current.SetSelectedGameObject(lastSelectedButton);
-                return;
-            }
-        }
-
-        if (selected == null || selected != this.gameObject) return;
-
-        if (Input.GetKeyDown(keyData.Player.UpKey)) TryMoveTo(upButton);
-        if (Input.GetKeyDown(keyData.Player.DownKey)) TryMoveTo(downButton);
-        if (Input.GetKeyDown(keyData.Player.LeftKey)) TryMoveTo(leftButton);
-        if (Input.GetKeyDown(keyData.Player.RightKey)) TryMoveTo(rightButton);
-
-        if (Input.GetKeyDown(keyData.Player.SelectKey))
-        {
-            button.onClick.Invoke();
-            onClick?.Invoke();
-            TryMoveTo(nextOnClick);
-        }
-    }
-
-    void TryMoveTo(GameObject target)
-    {
-        if (target != null && target.activeInHierarchy)
-        {
-            EventSystem.current.SetSelectedGameObject(target);
-            lastSelectedButton = target;
-        }
+        if (direction == Vector2.up) return upButton;
+        if (direction == Vector2.down) return downButton;
+        if (direction == Vector2.left) return leftButton;
+        if (direction == Vector2.right) return rightButton;
+        return null;
     }
 
     public void OnSelect(BaseEventData eventData)
     {
         onSelect?.Invoke();
-        lastSelectedButton = this.gameObject;
     }
 
     public void OnDeselect(BaseEventData eventData)
@@ -116,6 +64,16 @@ public class UIButtonController : MonoBehaviour, ISelectHandler, IDeselectHandle
     public void OnPointerClick(PointerEventData eventData)
     {
         onClick?.Invoke();
-        TryMoveTo(nextOnClick);
+
+        if (nextOnClick != null && nextOnClick.activeInHierarchy)
+        {
+            StartCoroutine(ForceMoveNextFrame(nextOnClick));
+        }
+    }
+
+    private IEnumerator ForceMoveNextFrame(GameObject target)
+    {
+        yield return null;
+        EventSystem.current.SetSelectedGameObject(target);
     }
 }
