@@ -24,3 +24,8 @@ MonoBehaviour:
     ItemSelectionRightKey: 275
     OnItemSelectionKey: 273
     OffItemSelectionKey: 274
+    UpKey: 273
+    DownKey: 274
+    LeftUpKey: 276
+    RightKey: 275
+    SelectKey: 32

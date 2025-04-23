@@ -1,49 +1,88 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(Button))]
 public class UIButtonController : MonoBehaviour, ISelectHandler, IDeselectHandler, IPointerEnterHandler, IPointerClickHandler
 {
     [Header("버튼 설정")]
-    public int buttonLayer = 0; // 버튼 계층
-    public bool isDefaultSelected = false; // 시작 시 자동 선택 여부
+    public bool isDefaultSelected = false;
+
+    [Header("이웃 버튼")]
+    public GameObject upButton;
+    public GameObject downButton;
+    public GameObject leftButton;
+    public GameObject rightButton;
+
+    [Header("클릭 후 다음 선택 버튼")]
+    public GameObject nextOnClick;
+
+
+    [Header("텍스트 색상 효과")]
+    public Text targetText;
+    public Color normalColor = Color.black;
+    public Color selectedColor = Color.yellow;
+    public Color clickColor = Color.cyan;
 
     private Button button;
 
     void Awake()
     {
         button = GetComponent<Button>();
+        if (targetText == null)
+        {
+            targetText = GetComponentInChildren<Text>();
+        }
     }
 
     void Start()
     {
-        // 시작 버튼으로 지정된 경우 선택 처리
         if (isDefaultSelected)
         {
             EventSystem.current.SetSelectedGameObject(this.gameObject);
         }
     }
 
-    // 방향키 또는 마우스로 선택되었을 때
+    void Update()
+    {
+        GameObject selected = EventSystem.current.currentSelectedGameObject;
+        if (selected == null || selected != this.gameObject) return;
+
+
+        if (Input.GetKeyDown(KeyCode.UpArrow)) TryMoveTo(upButton);
+        if (Input.GetKeyDown(KeyCode.DownArrow)) TryMoveTo(downButton);
+        if (Input.GetKeyDown(KeyCode.LeftArrow)) TryMoveTo(leftButton);
+        if (Input.GetKeyDown(KeyCode.RightArrow)) TryMoveTo(rightButton);
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            TryMoveTo(nextOnClick);
+            button.onClick.Invoke();
+            TryMoveTo(nextOnClick);
+        }
+    }
+
+    void TryMoveTo(GameObject target)
+    {
+        if (target != null && target.activeInHierarchy)
+        {
+            EventSystem.current.SetSelectedGameObject(target);
+        }
+    }
+
     public void OnSelect(BaseEventData eventData)
     {
-        Debug.Log($"[UIButton] 선택됨: {gameObject.name}");
-        PlaySelectEffect();
+        PlayHoverEffect();
     }
 
     public void OnDeselect(BaseEventData eventData)
     {
-        Debug.Log($"[UIButton] 선택 해제: {gameObject.name}");
         StopSelectEffect();
     }
 
-    // 마우스가 버튼 위에 올라왔을 때
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Debug.Log($"[UIButton] 마우스 호버: {gameObject.name}");
-
-        // 마우스를 우선시하여 현재 선택을 교체
         if (EventSystem.current.currentSelectedGameObject != gameObject)
         {
             EventSystem.current.SetSelectedGameObject(null);
@@ -53,16 +92,29 @@ public class UIButtonController : MonoBehaviour, ISelectHandler, IDeselectHandle
         PlayHoverEffect();
     }
 
-    // 마우스로 클릭했을 때
     public void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log($"[UIButton] 클릭됨: {gameObject.name}");
         PlayClickEffect();
     }
 
-    // 이펙트 훅 (외부 이펙트 매니저가 연동 예정)
-    void PlaySelectEffect() => Debug.Log("선택 이펙트 실행 예정");
-    void StopSelectEffect() => Debug.Log("선택 해제 이펙트 종료 예정");
-    void PlayHoverEffect() => Debug.Log("호버 이펙트 실행 예정");
-    void PlayClickEffect() => Debug.Log("클릭 이펙트 실행 예정");
+    void PlayHoverEffect() => SetTextColor(selectedColor);
+    void StopSelectEffect() => SetTextColor(normalColor);
+    void PlayClickEffect()
+    {
+        if (targetText == null) return;
+        StopAllCoroutines();
+        StartCoroutine(ClickFlash());
+    }
+
+    System.Collections.IEnumerator ClickFlash()
+    {
+        SetTextColor(clickColor);
+        yield return new WaitForSeconds(0.15f);
+        SetTextColor(selectedColor);
+    }
+
+    void SetTextColor(Color color)
+    {
+        if (targetText != null) targetText.color = color;
+    }
 }
