@@ -1,7 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using System.Collections;
 
 [RequireComponent(typeof(Button))]
 public class UIButtonController : MonoBehaviour, ISelectHandler, IDeselectHandler, IPointerEnterHandler, IPointerClickHandler
@@ -20,37 +21,55 @@ public class UIButtonController : MonoBehaviour, ISelectHandler, IDeselectHandle
     [Header("클릭 후 다음 선택 버튼")]
     public GameObject nextOnClick;
 
-
-    [Header("텍스트 색상 효과")]
-    public Text targetText;
-    public Color normalColor = Color.black;
-    public Color selectedColor = Color.yellow;
-    public Color clickColor = Color.cyan;
+    [Header("이벤트 연결")]
+    public UnityEvent onSelect;
+    public UnityEvent onDeselect;
+    public UnityEvent onClick;
 
     private Button button;
+    private static GameObject lastSelectedButton;
 
     void Awake()
     {
         button = GetComponent<Button>();
-        if (targetText == null)
-        {
-            targetText = GetComponentInChildren<Text>();
-        }
     }
 
     void Start()
     {
+        button.navigation = new Navigation { mode = Navigation.Mode.None };
+
         if (isDefaultSelected)
         {
             EventSystem.current.SetSelectedGameObject(this.gameObject);
+        }
+
+        // 기본 선택된 버튼이 자신이라면 저장
+        if (EventSystem.current.currentSelectedGameObject == this.gameObject)
+        {
+            lastSelectedButton = this.gameObject;
         }
     }
 
     void Update()
     {
         GameObject selected = EventSystem.current.currentSelectedGameObject;
-        if (selected == null || selected != this.gameObject) return;
 
+        // 선택된 버튼이 없고, 키 입력이 발생한 경우 → 마지막 버튼으로 복원
+        if (selected == null && (
+            Input.GetKeyDown(keyData.Player.UpKey) ||
+            Input.GetKeyDown(keyData.Player.DownKey) ||
+            Input.GetKeyDown(keyData.Player.LeftKey) ||
+            Input.GetKeyDown(keyData.Player.RightKey) ||
+            Input.GetKeyDown(keyData.Player.SelectKey)))
+        {
+            if (lastSelectedButton != null)
+            {
+                EventSystem.current.SetSelectedGameObject(lastSelectedButton);
+                return;
+            }
+        }
+
+        if (selected == null || selected != this.gameObject) return;
 
         if (Input.GetKeyDown(keyData.Player.UpKey)) TryMoveTo(upButton);
         if (Input.GetKeyDown(keyData.Player.DownKey)) TryMoveTo(downButton);
@@ -59,8 +78,8 @@ public class UIButtonController : MonoBehaviour, ISelectHandler, IDeselectHandle
 
         if (Input.GetKeyDown(keyData.Player.SelectKey))
         {
-            TryMoveTo(nextOnClick);
             button.onClick.Invoke();
+            onClick?.Invoke();
             TryMoveTo(nextOnClick);
         }
     }
@@ -70,17 +89,19 @@ public class UIButtonController : MonoBehaviour, ISelectHandler, IDeselectHandle
         if (target != null && target.activeInHierarchy)
         {
             EventSystem.current.SetSelectedGameObject(target);
+            lastSelectedButton = target;
         }
     }
 
     public void OnSelect(BaseEventData eventData)
     {
-        PlayHoverEffect();
+        onSelect?.Invoke();
+        lastSelectedButton = this.gameObject;
     }
 
     public void OnDeselect(BaseEventData eventData)
     {
-        StopHoverEffect();
+        onDeselect?.Invoke();
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -91,40 +112,12 @@ public class UIButtonController : MonoBehaviour, ISelectHandler, IDeselectHandle
             EventSystem.current.SetSelectedGameObject(this.gameObject);
         }
 
-        PlayHoverEffect();
+        onSelect?.Invoke();
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        PlayClickEffect();
-    }
-
-    void PlayHoverEffect() //호버이펙트
-    {
-        SetTextColor(selectedColor);
-    }
-
-    void PlayClickEffect()
-    {
-        if (targetText == null) return;
-        StopAllCoroutines();
-        StartCoroutine(ClickFlash());
-    }
-
-    void StopHoverEffect()
-    {
-        SetTextColor(normalColor);
-    }
-
-    System.Collections.IEnumerator ClickFlash() //클릭이펙트
-    {
-        SetTextColor(clickColor);
-        yield return new WaitForSeconds(0.15f);
-        SetTextColor(selectedColor);
-    }
-
-    void SetTextColor(Color color)
-    {
-        if (targetText != null) targetText.color = color;
+        onClick?.Invoke();
+        TryMoveTo(nextOnClick);
     }
 }

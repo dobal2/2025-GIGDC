@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 5128029603793743941}
   - component: {fileID: 8514263542083926473}
   - component: {fileID: 2320842799755233177}
+  - component: {fileID: 8664367770179030054}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -248,6 +249,63 @@ MonoBehaviour:
   leftButton: {fileID: 0}
   rightButton: {fileID: 0}
   nextOnClick: {fileID: 0}
+  onSelect:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8664367770179030054}
+        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
+        m_MethodName: PlaySelectEffect
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onDeselect:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8664367770179030054}
+        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
+        m_MethodName: StopSelectEffect
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8664367770179030054}
+        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
+        m_MethodName: PlayClickEffect
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &8664367770179030054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8693090717357717119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1f27e8a9470beb4cb9da06e2694495b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   targetText: {fileID: 1112118134185265081}
   normalColor: {r: 0, g: 0, b: 0, a: 1}
   selectedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
