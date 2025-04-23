@@ -36,8 +36,6 @@ public class UIButtonController : MonoBehaviour, ISelectHandler, IDeselectHandle
 
     void Start()
     {
-        button.navigation = new Navigation { mode = Navigation.Mode.None };
-
         if (isDefaultSelected)
         {
             EventSystem.current.SetSelectedGameObject(this.gameObject);
