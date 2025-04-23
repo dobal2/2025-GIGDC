@@ -24,5 +24,12 @@ public class KeyData : ScriptableObject
         public KeyCode ItemSelectionRightKey;
         public KeyCode OnItemSelectionKey;
         public KeyCode OffItemSelectionKey;
+
+        [Header("UI")]
+        public KeyCode UpKey;
+        public KeyCode DownKey;
+        public KeyCode LeftUpKey;
+        public KeyCode RightKey;
+        public KeyCode SelectKey;
     }
 }
