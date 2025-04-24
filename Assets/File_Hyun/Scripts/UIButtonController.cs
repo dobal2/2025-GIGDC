@@ -7,7 +7,7 @@ public class UIButtonController : MonoBehaviour, ISelectHandler, IDeselectHandle
     [Header("초기 선택 여부")]
     public bool isDefaultSelected = false;
 
-    [Header("이웃 버튼 수동 지정")]
+    [Header("이웃 버튼 지정")]
     public GameObject upButton;
     public GameObject downButton;
     public GameObject leftButton;
@@ -16,7 +16,7 @@ public class UIButtonController : MonoBehaviour, ISelectHandler, IDeselectHandle
     [Header("클릭 후 선택될 버튼")]
     public GameObject nextOnClick;
 
-    [Header("이벤트")]
+    [Header("이펙트")]
     public UnityEvent onSelect;
     public UnityEvent onDeselect;
     public UnityEvent onClick;
@@ -66,6 +66,10 @@ public class UIButtonController : MonoBehaviour, ISelectHandler, IDeselectHandle
         if (nextOnClick != null && nextOnClick.activeInHierarchy)
         {
             EventSystem.current.SetSelectedGameObject(nextOnClick);
+        }
+        else
+        {
+            EventSystem.current.SetSelectedGameObject(null);
         }
     }
 }

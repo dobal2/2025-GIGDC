@@ -1,21 +1,26 @@
 using UnityEngine;
-using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class SettingsManager : MonoBehaviour
 {
-    public Slider volumeSlider;
-    public Text volumeLabel;
+    public Slider bgmSlider;
+    public Slider vfxSlider;
+    public Text bgmLabel;
+    public Text vfxLabel;
 
     void Start()
     {
-        float savedVolume = PlayerPrefs.GetFloat("MasterVolume", 1f);
-        volumeSlider.value = savedVolume;
+        float savedBGM = PlayerPrefs.GetFloat("BGMVolume", 1f);
+        float savedVFX = PlayerPrefs.GetFloat("VFXVolume", 1f);
 
-        AudioListener.volume = savedVolume;
-        SetVolume(1);
+        bgmSlider.value = savedBGM;
+        vfxSlider.value = savedVFX;
 
-        volumeSlider.onValueChanged.AddListener(SetVolume);
+        SetBGMVolume(savedBGM);
+        SetVFXVolume(savedVFX);
+
+        bgmSlider.onValueChanged.AddListener(SetBGMVolume);
+        vfxSlider.onValueChanged.AddListener(SetVFXVolume);
     }
 
     void Update()
@@ -31,11 +36,19 @@ public class SettingsManager : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public void SetVolume(float value)
+    public void SetBGMVolume(float value)
     {
-        AudioListener.volume = value;
-        PlayerPrefs.SetFloat("MasterVolume", value);
+        AudioManager.Instance.SetBGMVolume(value);
+        PlayerPrefs.SetFloat("BGMVolume", value);
         int percent = Mathf.RoundToInt(value * 100);
-        volumeLabel.text = $"À½·®: {percent}%";
+        bgmLabel.text = $"BGM : {percent}%";
+    }
+
+    public void SetVFXVolume(float value)
+    {
+        AudioManager.Instance.SetVFXVolume(value);
+        PlayerPrefs.SetFloat("VFXVolume", value);
+        int percent = Mathf.RoundToInt(value * 100);
+        vfxLabel.text = $"SFX : {percent}%";
     }
 }
