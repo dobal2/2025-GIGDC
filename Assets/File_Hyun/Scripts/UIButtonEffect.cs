@@ -31,14 +31,7 @@ public class UIButtonEffect : MonoBehaviour
         if (!isActiveAndEnabled) return;
 
         StopAllCoroutines();
-        StartCoroutine(ClickFlash());
-    }
-
-    System.Collections.IEnumerator ClickFlash()
-    {
         SetTextColor(clickColor);
-        yield return new WaitForSeconds(0.15f);
-        SetTextColor(normalColor);
     }
 
     private void OnDisable()

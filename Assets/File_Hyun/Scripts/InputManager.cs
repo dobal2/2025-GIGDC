@@ -11,6 +11,8 @@ public class InputManager : MonoBehaviour
 
     public KeyData keyData;
 
+    public GameObject lastSelectedButton;
+
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -36,6 +38,17 @@ public class InputManager : MonoBehaviour
     void HandleUIInput()
     {
         GameObject selected = EventSystem.current.currentSelectedGameObject;
+
+        if (selected == null && AnyUIKeyPressed())
+        {
+            if (lastSelectedButton != null && lastSelectedButton.activeInHierarchy)
+            {
+                Debug.Log("UI 포커스 복구");
+                EventSystem.current.SetSelectedGameObject(lastSelectedButton);
+                return;
+            }
+        }
+
         if (selected == null) return;
 
         var controller = selected.GetComponent<UIButtonController>();
@@ -57,10 +70,6 @@ public class InputManager : MonoBehaviour
             {
                 EventSystem.current.SetSelectedGameObject(controller.nextOnClick);
             }
-            else
-            {
-                EventSystem.current.SetSelectedGameObject(null);
-            }
         }
     }
 
@@ -70,6 +79,15 @@ public class InputManager : MonoBehaviour
         {
             EventSystem.current.SetSelectedGameObject(target);
         }
+    }
+
+    bool AnyUIKeyPressed()
+    {
+        return Input.GetKeyDown(keyData.Ui.UpKey) ||
+               Input.GetKeyDown(keyData.Ui.DownKey) ||
+               Input.GetKeyDown(keyData.Ui.LeftKey) ||
+               Input.GetKeyDown(keyData.Ui.RightKey) ||
+               Input.GetKeyDown(keyData.Ui.SelectKey);
     }
     #endregion
 }

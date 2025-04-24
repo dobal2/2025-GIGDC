@@ -1,71 +1,85 @@
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
+using System;
+using System.Collections;
+using UnityEngine.EventSystems;
 
 public class KeyBindButton : MonoBehaviour
 {
-    public enum KeyType { Left, Right, Jump, Attack }
+    [Header("키 데이터")]
+    public KeyData keyData;
+
+    public enum KeyType { Player, UI }
+    [Header("키 타입")]
     public KeyType keyType;
 
-    public Text displayText;
-    public Button button;
+    [Header("대상 키 이름")]
+    public string fieldName;
 
-    private bool waitingForKey = false;
-    private KeyData activeKeyData;
+    [Header("키 레이블")]
+    public Text labelText;
+    public Text keyText;
+    public Button rebindButton;
 
-    public void Initialize(KeyData keyData)
+    private Func<KeyCode> getKey;
+    private Action<KeyCode> setKey;
+
+    void Start()
     {
-        activeKeyData = keyData;
-        UpdateDisplay();
-        button.onClick.AddListener(StartBinding);
-    }
+        SetupBinding();
+        keyText.text = getKey().ToString();
 
-    void StartBinding()
-    {
-        waitingForKey = true;
-        displayText.text = "눌러주세요...";
-    }
-
-    void Update()
-    {
-        if (!waitingForKey) return;
-
-        foreach (KeyCode code in System.Enum.GetValues(typeof(KeyCode)))
+        rebindButton.onClick.AddListener(() =>
         {
-            if (Input.GetKeyDown(code))
+            StartCoroutine(WaitForKey());
+        });
+    }
+
+    void SetupBinding()
+    {
+        object container = keyType == KeyType.Player ? (object)keyData.Player : keyData.Ui;
+        var field = container.GetType().GetField(fieldName);
+        if (field == null || field.FieldType != typeof(KeyCode))
+        {
+            Debug.LogError($"KeyBindButton: '{fieldName}' is not a valid KeyCode field.");
+            return;
+        }
+
+        getKey = () => (KeyCode)field.GetValue(container);
+        setKey = (key) =>
+        {
+            field.SetValue(container, key);
+            keyText.text = key.ToString();
+        };
+    }
+
+    IEnumerator WaitForKey()
+    {
+        keyText.text = "키 입력";
+        EventSystem.current.SetSelectedGameObject(null);
+        rebindButton.interactable = false;
+        yield return null;
+
+        bool keyCaptured = false;
+        while (!keyCaptured)
+        {
+            yield return null;
+
+            foreach (KeyCode key in Enum.GetValues(typeof(KeyCode)))
             {
-                AssignKey(code);
-                break;
+                if (Input.GetKeyDown(key))
+                {
+                    Debug.Log($"감지된 키: {key}");
+                    setKey.Invoke(key);
+                    keyCaptured = true;
+                    break;
+                }
             }
         }
-    }
 
-    void AssignKey(KeyCode newKey)
-    {
-        waitingForKey = false;
+        Debug.Log("입력 종료");
 
-        switch (keyType)
-        {
-            case KeyType.Left: activeKeyData.Player.LeftMoveKey = newKey; break;
-            case KeyType.Right: activeKeyData.Player.RightMoveKey = newKey; break;
-            case KeyType.Jump: activeKeyData.Player.JumpKey = newKey; break;
-            case KeyType.Attack: activeKeyData.Player.AttackKey = newKey; break;
-        }
-
-        UpdateDisplay();
-    }
-
-    void UpdateDisplay()
-    {
-        KeyCode currentKey = KeyCode.None;
-        switch (keyType)
-        {
-            case KeyType.Left: currentKey = activeKeyData.Player.LeftMoveKey; break;
-            case KeyType.Right: currentKey = activeKeyData.Player.RightMoveKey; break;
-            case KeyType.Jump: currentKey = activeKeyData.Player.JumpKey; break;
-            case KeyType.Attack: currentKey = activeKeyData.Player.AttackKey; break;
-        }
-
-        displayText.text = currentKey.ToString();
+        yield return new WaitUntil(() => Input.GetMouseButtonUp(0));
+        rebindButton.interactable = true;
     }
 }

@@ -23,14 +23,6 @@ public class SettingsManager : MonoBehaviour
         vfxSlider.onValueChanged.AddListener(SetVFXVolume);
     }
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape) && gameObject.activeSelf)
-        {
-            CloseSettings();
-        }
-    }
-
     public void CloseSettings()
     {
         gameObject.SetActive(false);

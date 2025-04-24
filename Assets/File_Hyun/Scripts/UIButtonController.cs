@@ -41,6 +41,7 @@ public class UIButtonController : MonoBehaviour, ISelectHandler, IDeselectHandle
 
     public void OnSelect(BaseEventData eventData)
     {
+        InputManager.Instance.lastSelectedButton = this.gameObject;
         onSelect?.Invoke();
     }
 
@@ -66,10 +67,6 @@ public class UIButtonController : MonoBehaviour, ISelectHandler, IDeselectHandle
         if (nextOnClick != null && nextOnClick.activeInHierarchy)
         {
             EventSystem.current.SetSelectedGameObject(nextOnClick);
-        }
-        else
-        {
-            EventSystem.current.SetSelectedGameObject(null);
         }
     }
 }
