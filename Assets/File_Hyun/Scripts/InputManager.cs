@@ -41,12 +41,12 @@ public class InputManager : MonoBehaviour
         var controller = selected.GetComponent<UIButtonController>();
         if (controller == null) return;
 
-        if (Input.GetKeyDown(keyData.Player.UpKey)) TryMove(controller.upButton);
-        else if (Input.GetKeyDown(keyData.Player.DownKey)) TryMove(controller.downButton);
-        else if (Input.GetKeyDown(keyData.Player.LeftKey)) TryMove(controller.leftButton);
-        else if (Input.GetKeyDown(keyData.Player.RightKey)) TryMove(controller.rightButton);
+        if (Input.GetKeyDown(keyData.Ui.UpKey)) TryMove(controller.upButton);
+        else if (Input.GetKeyDown(keyData.Ui.DownKey)) TryMove(controller.downButton);
+        else if (Input.GetKeyDown(keyData.Ui.LeftKey)) TryMove(controller.leftButton);
+        else if (Input.GetKeyDown(keyData.Ui.RightKey)) TryMove(controller.rightButton);
 
-        if (Input.GetKeyDown(keyData.Player.SelectKey))
+        if (Input.GetKeyDown(keyData.Ui.SelectKey))
         {
             var btn = selected.GetComponent<Button>();
             if (btn != null) btn.onClick.Invoke();

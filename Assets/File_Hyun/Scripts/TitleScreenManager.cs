@@ -8,7 +8,6 @@ public class TitleScreenManager : MonoBehaviour
     public void StartGame()
     {
         //SceneManager.LoadScene("");
-
     }
 
     public void OpenSettings()

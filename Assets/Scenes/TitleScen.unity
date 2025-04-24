@@ -2214,7 +2214,7 @@ PrefabInstance:
     - target: {fileID: 2320842799755233177, guid: 74fb7ef8817bb1146a2cb08d5a0e815f, type: 3}
       propertyPath: upButton
       value: 
-      objectReference: {fileID: 2002117619}
+      objectReference: {fileID: 860564843}
     - target: {fileID: 2320842799755233177, guid: 74fb7ef8817bb1146a2cb08d5a0e815f, type: 3}
       propertyPath: leftButton
       value: 

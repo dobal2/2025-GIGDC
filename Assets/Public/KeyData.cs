@@ -4,6 +4,7 @@ using UnityEngine;
 public class KeyData : ScriptableObject
 {
     public PlayerData Player;
+    public UI Ui;
 
     [System.Serializable]
     public class PlayerData
@@ -24,7 +25,11 @@ public class KeyData : ScriptableObject
         public KeyCode ItemSelectionRightKey;
         public KeyCode OnItemSelectionKey;
         public KeyCode OffItemSelectionKey;
+    }
 
+    [System.Serializable]
+    public class UI
+    {
         [Header("UI")]
         public KeyCode UpKey;
         public KeyCode DownKey;

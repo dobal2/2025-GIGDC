@@ -78,9 +78,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '
-
-'
+  m_Text: "\uC559 \uAE30\uBAA8\uB760\n"
 --- !u!1 &8693090717357717119
 GameObject:
   m_ObjectHideFlags: 0
@@ -229,7 +227,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cce3e3115d10d294895c3ed4ae546472, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ShowLog: 1
+  ShowLog: 0
 --- !u!114 &2320842799755233177
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -242,7 +240,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 448a9dd57d673a44680deccd661b8f59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keyData: {fileID: 11400000, guid: eef92708e559636479c30d47676bef1e, type: 2}
   isDefaultSelected: 0
   upButton: {fileID: 0}
   downButton: {fileID: 0}
