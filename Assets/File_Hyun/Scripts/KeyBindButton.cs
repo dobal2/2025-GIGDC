@@ -35,8 +35,20 @@ public class KeyBindButton : MonoBehaviour
         });
     }
 
+    void OnEnable()
+    {
+        KeyBindingResetter.OnReset += UpdateKeyText;
+    }
+
+    void OnDisable()
+    {
+        KeyBindingResetter.OnReset -= UpdateKeyText;
+    }
+
     void SetupBinding()
     {
+        StopCoroutine(WaitForKey());
+
         object container = keyType == KeyType.Player ? (object)keyData.Player : keyData.Ui;
         var field = container.GetType().GetField(fieldName);
         if (field == null || field.FieldType != typeof(KeyCode))
@@ -49,8 +61,19 @@ public class KeyBindButton : MonoBehaviour
         setKey = (key) =>
         {
             field.SetValue(container, key);
-            keyText.text = key.ToString();
+            UpdateKeyText();
         };
+    }
+
+    public void UpdateKeyText()
+    {
+        if (keyText == null || getKey == null)
+        {
+            keyText.text = "???";
+            return;
+        }
+
+        keyText.text = getKey().ToString();
     }
 
     IEnumerator WaitForKey()
