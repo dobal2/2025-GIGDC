@@ -7,7 +7,7 @@ public class TitleScreenManager : MonoBehaviour
 
     void Start()
     {
-        //SaveKey.Instance.LoadKeyBindings();
+        SaveKey.Instance.LoadKeyBindings();
     }
 
     public void StartGame()
