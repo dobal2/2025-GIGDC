@@ -5,6 +5,11 @@ public class TitleScreenManager : MonoBehaviour
 {
     public GameObject settingsPanel;
 
+    void Start()
+    {
+        //SaveKey.Instance.LoadKeyBindings();
+    }
+
     public void StartGame()
     {
         //SceneManager.LoadScene("");
