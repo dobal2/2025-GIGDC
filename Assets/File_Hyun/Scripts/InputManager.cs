@@ -90,4 +90,8 @@ public class InputManager : MonoBehaviour
                Input.GetKeyDown(keyData.Ui.SelectKey);
     }
     #endregion
+
+    #region 인게임 입력 처리
+
+    #endregion
 }
