@@ -5,26 +5,20 @@ using UnityEngine;
 
 public class LowMonster_Common_regret : Monster
 {
-    [SerializeField] private Transform player;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private LayerMask wallLayer;
     [SerializeField] private Transform attackCheck;
     [SerializeField] private float attackRadius;
     
-    private Animator anim;
     private Rigidbody2D rigid;
     private int nextMove;
-    private bool facingRight = true;
-    private bool canAttack = true;
     private bool canMove = true;
     
     
-    void Start()
+    protected override void Start()
     {
-        anim = GetComponent<Animator>();
         rigid = GetComponent<Rigidbody2D>();
         SetRandomMoveDirection();
-        player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     private void FixedUpdate()
@@ -78,7 +72,7 @@ public class LowMonster_Common_regret : Monster
         
     }
 
-    protected override void Move()
+    private void Move()
     {
         if (canMove)
         {
@@ -118,8 +112,6 @@ public class LowMonster_Common_regret : Monster
 
     }
     
-    
-
     protected override void Attack()
     {
         Collider2D[] collidersEnemies = Physics2D.OverlapCircleAll(attackCheck.position, attackRadius);
@@ -133,28 +125,11 @@ public class LowMonster_Common_regret : Monster
         }
         StartCoroutine(WaitToAttack(attackCoolDown));    
     }
-    
-    IEnumerator WaitToAttack(float time)
-    {
-        canAttack = false;
-        yield return new WaitForSeconds(time);
-        canAttack = true;
-    }
 
     protected override void Die()
     {
         gameObject.SetActive(false);
     }
-    
-    void Flip()
-    {
-        facingRight = !facingRight;
-        
-        Vector3 theScale = transform.localScale;
-        theScale.x *= -1;
-        transform.localScale = theScale;
-    }
-
     private void OnDrawGizmosSelected()
     {
         if (attackCheck != null)

@@ -3,31 +3,23 @@ using UnityEngine;
 
 public class LowMonster_Rare_interest : Monster
 {
-    [SerializeField] private Transform player;
     [SerializeField] private  LayerMask groundLayer;
     [SerializeField] private  LayerMask wallLayer;
     [SerializeField] private  Transform attackCheck;
     [SerializeField] private  float attackRadius;
-    [SerializeField] private  float playernoticeDistance;
+    [SerializeField] private  float playerNoticeDistance;
     [SerializeField] private float skilledSpeed;
     [SerializeField] private bool isSkilled;
     
-    
-    
-    private Animator anim;
     private Rigidbody2D rigid;
     private int nextMove;
-    private bool facingRight = true;
-    private bool canAttack = true;
     private bool canMove = true;
     
     
-    void Start()
+    protected override void Start()
     {
-        anim = GetComponent<Animator>();
         rigid = GetComponent<Rigidbody2D>();
         SetRandomMoveDirection();
-        player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     private void FixedUpdate()
@@ -41,7 +33,7 @@ public class LowMonster_Rare_interest : Monster
 
         float distance = Vector2.Distance(player.position, transform.position);
 
-        if (distance <= playernoticeDistance)
+        if (distance <= playerNoticeDistance)
         {
             if (!isSkilled)
             {
@@ -81,7 +73,7 @@ public class LowMonster_Rare_interest : Monster
         
     }
     
-    protected override void Move()
+    private void Move()
     {
         if (canMove)
         {
@@ -138,18 +130,10 @@ public class LowMonster_Rare_interest : Monster
         {
             if (collidersEnemies[i].gameObject.tag == "Player")
             {
-                Debug.Log("Attack");
                 collidersEnemies[i].GetComponent<PlayerHealth>().TakeDamage(damage);
             }
         }
         StartCoroutine(WaitToAttack(attackCoolDown));    
-    }
-    
-    IEnumerator WaitToAttack(float time)
-    {
-        canAttack = false;
-        yield return new WaitForSeconds(time);
-        canAttack = true;
     }
 
     protected override void Die()
@@ -157,14 +141,6 @@ public class LowMonster_Rare_interest : Monster
         gameObject.SetActive(false);
     }
     
-    void Flip()
-    {
-        facingRight = !facingRight;
-        
-        Vector3 theScale = transform.localScale;
-        theScale.x *= -1;
-        transform.localScale = theScale;
-    }
 
     private void OnDrawGizmosSelected()
     {
