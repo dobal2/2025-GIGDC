@@ -1,10 +1,17 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class LowMonster_Rare_lethargy : Monster
 {
     public float attackRadius;
-    
+
+
+    protected override void Start()
+    {
+        base.Start();
+    }
+
     protected override void Attack()
     {
         StartCoroutine(Explosion(attackCoolDown));

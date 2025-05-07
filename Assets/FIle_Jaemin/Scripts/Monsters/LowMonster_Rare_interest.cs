@@ -11,13 +11,13 @@ public class LowMonster_Rare_interest : Monster
     [SerializeField] private float skilledSpeed;
     [SerializeField] private bool isSkilled;
     
-    private Rigidbody2D rigid;
     private int nextMove;
     private bool canMove = true;
     
     
     protected override void Start()
     {
+        base.Start();
         rigid = GetComponent<Rigidbody2D>();
         SetRandomMoveDirection();
     }

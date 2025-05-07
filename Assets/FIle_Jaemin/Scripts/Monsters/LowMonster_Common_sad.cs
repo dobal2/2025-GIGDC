@@ -9,6 +9,7 @@ public class LowMonster_Common_sad : Monster
 
     protected override void Start()
     {
+        base.Start();
         if(projectilePrefab == null)
             Debug.LogError("No projectile prefab assigned");
     }

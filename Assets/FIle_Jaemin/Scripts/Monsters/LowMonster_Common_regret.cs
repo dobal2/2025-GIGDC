@@ -1,5 +1,3 @@
-
-using System.Collections;
 using UnityEngine;
 
 
@@ -9,15 +7,15 @@ public class LowMonster_Common_regret : Monster
     [SerializeField] private LayerMask wallLayer;
     [SerializeField] private Transform attackCheck;
     [SerializeField] private float attackRadius;
+    [SerializeField] private float stopDistance;
     
-    private Rigidbody2D rigid;
     private int nextMove;
-    private bool canMove = true;
+    public bool canMove = true;
     
     
     protected override void Start()
     {
-        rigid = GetComponent<Rigidbody2D>();
+        base.Start();
         SetRandomMoveDirection();
     }
 
@@ -27,9 +25,21 @@ public class LowMonster_Common_regret : Monster
 
         float distance = Vector2.Distance(player.position, transform.position);
         
-        if (Mathf.Abs(distance) <= 3f)
+        if (Mathf.Abs(distance) <= stopDistance)
         {
             canMove = false;
+            
+            if (player.transform.position.x > transform.position.x && !facingRight)
+            {
+                Flip();
+                nextMove = 1;
+            }
+            else if(player.transform.position.x < transform.position.x && facingRight)
+            {
+                Flip();
+                nextMove = -1;
+            }
+            
             if (canAttack)
             {
                 Attack();
@@ -76,7 +86,13 @@ public class LowMonster_Common_regret : Monster
     {
         if (canMove)
         {
+            Debug.Log("Move");
             rigid.linearVelocity = new Vector2(speed * nextMove, rigid.linearVelocity.y);
+            anim.SetBool("isWalking",true);
+        }
+        else
+        {
+            anim.SetBool("isWalking",false);
         }
 
         GroundDetector();
@@ -114,6 +130,7 @@ public class LowMonster_Common_regret : Monster
     
     protected override void Attack()
     {
+        anim.SetTrigger("Attack");
         Collider2D[] collidersEnemies = Physics2D.OverlapCircleAll(attackCheck.position, attackRadius);
         for (int i = 0; i < collidersEnemies.Length; i++)
         {

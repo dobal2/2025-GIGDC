@@ -12,13 +12,24 @@ public abstract class Monster : MonoBehaviour
     [SerializeField] protected float attackCoolDown;
 
     [SerializeField] protected Transform player;
-    private Animator anim;
-    protected bool facingRight = true;
+    protected Rigidbody2D rigid;
+    protected Animator anim;
+    public bool facingRight = false;
     protected bool canAttack = true;
 
     protected virtual void Start()
     {
+        rigid = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        if (anim != null)
+        {
+            Debug.Log("Anim not null");   
+        }
+        else
+        {
+            Debug.Log("Anim null");
+        }
+            
         if(player == null)
             player = GameObject.FindGameObjectWithTag("Player")?.transform;
     }

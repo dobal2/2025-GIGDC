@@ -8,13 +8,9 @@ public class LowMonster_Rare_hate : Monster
 
     private int nextMove;
 
-    private Rigidbody2D playerRb;
-
     protected override void Start()
     {
-        playerRb = player.GetComponent<Rigidbody2D>();
-        if(playerRb == null)
-            Debug.LogError("Player has no Rigidbody");
+        base.Start();
     }
 
     private void Update()
@@ -43,7 +39,7 @@ public class LowMonster_Rare_hate : Monster
 
     private void ApplyWindEffect()
     {
-        if (playerRb != null)
+        if (rigid != null)
         {
             Vector2 windDirection = Vector2.zero;
             
@@ -51,8 +47,8 @@ public class LowMonster_Rare_hate : Monster
                 windDirection = Vector2.left;
             else
                 windDirection = Vector2.right;
-            playerRb.linearVelocity = Vector2.zero;
-            playerRb.AddForce(windDirection.normalized * windForce,ForceMode2D.Impulse);
+            rigid .linearVelocity = Vector2.zero;
+            rigid .AddForce(windDirection.normalized * windForce,ForceMode2D.Impulse);
         }
     }
 

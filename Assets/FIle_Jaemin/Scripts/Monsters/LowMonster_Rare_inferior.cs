@@ -12,6 +12,7 @@ public class LowMonster_Rare_inferior : Monster
 
     protected override void Start()
     {
+        base.Start();
         if(attackGameObject == null)
             Debug.LogError("No attackGameObject prefab assigned");
             
