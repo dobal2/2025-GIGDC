@@ -5,15 +5,9 @@ public class LowMonster_Rare_lethargy : Monster
 {
     public float attackRadius;
     
-
-    protected override void Move()
-    {
-        
-    }
-
     protected override void Attack()
     {
-        
+        StartCoroutine(Explosion(attackCoolDown));
     }
 
     IEnumerator Explosion(float delayTime)
@@ -34,7 +28,7 @@ public class LowMonster_Rare_lethargy : Monster
 
     protected override void Die()
     {
-        Explosion(attackCoolDown);
+        Attack();
     }
     
     private void OnDrawGizmosSelected()

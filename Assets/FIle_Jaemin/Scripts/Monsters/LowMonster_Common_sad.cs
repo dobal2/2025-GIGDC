@@ -5,14 +5,12 @@
 public class LowMonster_Common_sad : Monster
 {
     [SerializeField] private GameObject projectilePrefab;
-    [SerializeField] private Transform player;
     [SerializeField] private float bulletSpeed;
-    
-    private bool canAttack = true;
 
-    private void Start()
+    protected override void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        if(projectilePrefab == null)
+            Debug.LogError("No projectile prefab assigned");
     }
 
     private void FixedUpdate()
@@ -22,12 +20,6 @@ public class LowMonster_Common_sad : Monster
             Attack();
         }
     }
-
-    protected override void Move()
-    {
-        throw new System.NotImplementedException();
-    }
-
     protected override void Attack()
     {
         Vector2 dir = (player.position - transform.position).normalized;
@@ -38,17 +30,8 @@ public class LowMonster_Common_sad : Monster
         bullet.GetComponent<Rigidbody2D>().linearVelocity = dir * bulletSpeed;
         
         StartCoroutine(WaitToAttack(attackCoolDown));    
-        
-        
     }
     
-    IEnumerator WaitToAttack(float time)
-    {
-        canAttack = false;
-        yield return new WaitForSeconds(time);
-        canAttack = true;
-    }
-
     protected override void Die()
     {
         gameObject.SetActive(false);

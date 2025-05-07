@@ -1,20 +1,20 @@
 using System;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class LowMonster_Rare_inferior : Monster
 {
     [SerializeField] private GameObject attackGameObject;
-
     [SerializeField] private float attackScaleTime = 0.2f;
     [SerializeField] private float maxScale = 2f;
-    private bool canAttack = true;
     private bool didVerticalAttack;
 
-
-    protected override void Move()
+    protected override void Start()
     {
-        
+        if(attackGameObject == null)
+            Debug.LogError("No attackGameObject prefab assigned");
+            
     }
 
     protected override void Attack()
@@ -40,7 +40,6 @@ public class LowMonster_Rare_inferior : Monster
     {
         if (canAttack)
         {
-            Debug.Log("Attack");
             Attack();
             StartCoroutine(WaitToAttack(attackCoolDown));
         }
@@ -78,14 +77,6 @@ public class LowMonster_Rare_inferior : Monster
         
         
     }
-    
-    IEnumerator WaitToAttack(float time)
-    {
-        canAttack = false;
-        yield return new WaitForSeconds(time);
-        canAttack = true;
-    }
-
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
