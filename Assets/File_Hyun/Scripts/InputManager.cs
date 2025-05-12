@@ -31,6 +31,10 @@ public class InputManager : MonoBehaviour
             case InputContext.UI:
                 HandleUIInput();
                 break;
+
+            case InputContext.Gameplay:
+                HandleGameplayInput();
+                break;
         }
     }
 
@@ -45,7 +49,7 @@ public class InputManager : MonoBehaviour
             {
                 Debug.Log("UI 포커스 복구");
                 EventSystem.current.SetSelectedGameObject(lastSelectedButton);
-                return;
+                selected = lastSelectedButton;
             }
         }
 
@@ -69,8 +73,12 @@ public class InputManager : MonoBehaviour
             if (controller.nextOnClick != null && controller.nextOnClick.activeInHierarchy)
             {
                 EventSystem.current.SetSelectedGameObject(controller.nextOnClick);
+                lastSelectedButton = controller.nextOnClick;
             }
         }
+
+        if (selected != lastSelectedButton)
+            lastSelectedButton = selected;
     }
 
     void TryMove(GameObject target)
@@ -78,6 +86,7 @@ public class InputManager : MonoBehaviour
         if (target != null && target.activeInHierarchy)
         {
             EventSystem.current.SetSelectedGameObject(target);
+            lastSelectedButton = target;
         }
     }
 
@@ -91,7 +100,12 @@ public class InputManager : MonoBehaviour
     }
     #endregion
 
-    #region 인게임 입력 처리
 
+
+    #region 인게임 입력 처리
+    void HandleGameplayInput()
+    {
+
+    }
     #endregion
 }
