@@ -318,7 +318,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
+  m_FirstSelected: {fileID: 1703439020}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
 --- !u!4 &91083295
@@ -2436,7 +2436,7 @@ PrefabInstance:
       objectReference: {fileID: 1537060406}
     - target: {fileID: 2320842799755233177, guid: 74fb7ef8817bb1146a2cb08d5a0e815f, type: 3}
       propertyPath: isDefaultSelected
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3203181368140840345, guid: 74fb7ef8817bb1146a2cb08d5a0e815f, type: 3}
       propertyPath: m_Pivot.x
@@ -2995,7 +2995,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 448a9dd57d673a44680deccd661b8f59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDefaultSelected: 0
   upButton: {fileID: 669476789}
   downButton: {fileID: 1602174427}
   leftButton: {fileID: 0}
@@ -5956,7 +5955,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 448a9dd57d673a44680deccd661b8f59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDefaultSelected: 0
   upButton: {fileID: 669476789}
   downButton: {fileID: 1602174427}
   leftButton: {fileID: 0}
