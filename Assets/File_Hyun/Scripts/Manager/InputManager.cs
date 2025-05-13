@@ -1,6 +1,6 @@
+using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
@@ -10,8 +10,9 @@ public class InputManager : MonoBehaviour
     public InputContext currentContext = InputContext.UI;
 
     public KeyData keyData;
-
     public GameObject lastSelectedButton;
+
+    public PlayerController player;
 
     void Awake()
     {
@@ -31,6 +32,10 @@ public class InputManager : MonoBehaviour
             case InputContext.UI:
                 HandleUIInput();
                 break;
+
+            case InputContext.Gameplay:
+                HandleGameplayInput();
+                break;
         }
     }
 
@@ -45,7 +50,7 @@ public class InputManager : MonoBehaviour
             {
                 Debug.Log("UI 포커스 복구");
                 EventSystem.current.SetSelectedGameObject(lastSelectedButton);
-                return;
+                selected = lastSelectedButton;
             }
         }
 
@@ -69,8 +74,12 @@ public class InputManager : MonoBehaviour
             if (controller.nextOnClick != null && controller.nextOnClick.activeInHierarchy)
             {
                 EventSystem.current.SetSelectedGameObject(controller.nextOnClick);
+                lastSelectedButton = controller.nextOnClick;
             }
         }
+
+        if (selected != lastSelectedButton)
+            lastSelectedButton = selected;
     }
 
     void TryMove(GameObject target)
@@ -78,6 +87,7 @@ public class InputManager : MonoBehaviour
         if (target != null && target.activeInHierarchy)
         {
             EventSystem.current.SetSelectedGameObject(target);
+            lastSelectedButton = target;
         }
     }
 
@@ -92,6 +102,20 @@ public class InputManager : MonoBehaviour
     #endregion
 
     #region 인게임 입력 처리
+    void HandleGameplayInput()
+    {
+        //player.MoveLeft = Input.GetKey(keyData.Player.LeftMoveKey);
+        //player.MoveRight = Input.GetKey(keyData.Player.RightMoveKey);
+        //player.IsRunning = Input.GetKey(keyData.Player.RunKey);
+        //player.JumpPressed = Input.GetKeyDown(keyData.Player.JumpKey);
+        //player.AttackPressed = Input.GetKeyDown(keyData.Player.AttackKey);
 
+        //// 무기 전환
+        //if (Input.GetKeyDown(keyData.Player.ItemSelectionLeftKey))
+        //    WeaponManager.Instance.SelectLeft();
+
+        //if (Input.GetKeyDown(keyData.Player.ItemSelectionRightKey))
+        //    WeaponManager.Instance.SelectRight();
+    }
     #endregion
 }

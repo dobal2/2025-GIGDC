@@ -7,9 +7,6 @@ using UnityEditor;
 
 public class UIButtonController : MonoBehaviour, ISelectHandler, IDeselectHandler, IPointerEnterHandler, IPointerClickHandler
 {
-    [Header("초기 선택 여부")]
-    public bool isDefaultSelected = false;
-
     [Header("이웃 버튼 지정")]
     public GameObject upButton;
     public GameObject downButton;
@@ -23,14 +20,6 @@ public class UIButtonController : MonoBehaviour, ISelectHandler, IDeselectHandle
     public UnityEvent onSelect;
     public UnityEvent onDeselect;
     public UnityEvent onClick;
-
-    void Start()
-    {
-        if (isDefaultSelected)
-        {
-            EventSystem.current.SetSelectedGameObject(this.gameObject);
-        }
-    }
 
     public GameObject GetNeighbor(Vector2 direction)
     {
