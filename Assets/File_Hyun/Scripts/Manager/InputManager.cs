@@ -1,6 +1,6 @@
+using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
@@ -10,8 +10,9 @@ public class InputManager : MonoBehaviour
     public InputContext currentContext = InputContext.UI;
 
     public KeyData keyData;
-
     public GameObject lastSelectedButton;
+
+    public PlayerController player;
 
     void Awake()
     {
@@ -100,12 +101,21 @@ public class InputManager : MonoBehaviour
     }
     #endregion
 
-
-
     #region 인게임 입력 처리
     void HandleGameplayInput()
     {
+        //player.MoveLeft = Input.GetKey(keyData.Player.LeftMoveKey);
+        //player.MoveRight = Input.GetKey(keyData.Player.RightMoveKey);
+        //player.IsRunning = Input.GetKey(keyData.Player.RunKey);
+        //player.JumpPressed = Input.GetKeyDown(keyData.Player.JumpKey);
+        //player.AttackPressed = Input.GetKeyDown(keyData.Player.AttackKey);
 
+        //// 무기 전환
+        //if (Input.GetKeyDown(keyData.Player.ItemSelectionLeftKey))
+        //    WeaponManager.Instance.SelectLeft();
+
+        //if (Input.GetKeyDown(keyData.Player.ItemSelectionRightKey))
+        //    WeaponManager.Instance.SelectRight();
     }
     #endregion
 }
