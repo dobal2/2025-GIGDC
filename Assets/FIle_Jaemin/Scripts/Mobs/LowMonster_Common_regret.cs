@@ -29,19 +29,18 @@ public class LowMonster_Common_regret : Monster
         {
             canMove = false;
             
-            if (player.transform.position.x > transform.position.x && !facingRight)
-            {
-                Flip();
-                nextMove = 1;
-            }
-            else if(player.transform.position.x < transform.position.x && facingRight)
-            {
-                Flip();
-                nextMove = -1;
-            }
-            
             if (canAttack)
             {
+                if (player.transform.position.x > transform.position.x && !facingRight)
+                {
+                    Flip();
+                    nextMove = 1;
+                }
+                else if(player.transform.position.x < transform.position.x && facingRight)
+                {
+                    Flip();
+                    nextMove = -1;
+                }
                 Attack();
             }
         }
@@ -130,6 +129,7 @@ public class LowMonster_Common_regret : Monster
     
     protected override void Attack()
     {
+        rigid.linearVelocity = Vector2.zero;
         anim.SetTrigger("Attack");
         Collider2D[] collidersEnemies = Physics2D.OverlapCircleAll(attackCheck.position, attackRadius);
         for (int i = 0; i < collidersEnemies.Length; i++)
