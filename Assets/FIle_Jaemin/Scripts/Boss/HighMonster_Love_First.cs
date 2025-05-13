@@ -7,12 +7,17 @@ public class HighMonster_Love_First : Monster
     [SerializeField] private GameObject noticeDangerPrefab;
     [SerializeField] private GameObject bossInkPrefab;
     [SerializeField] private GameObject bubblePrefab;
-    
-    [Header("Values")]
+    [SerializeField] private GameObject bressPrefab;
+
+    [Header("Values")] 
+    [SerializeField] private int phase = 1;
+    [SerializeField] private float phase2Hp;
     [SerializeField] private float fieldXRangeMin;
     [SerializeField] private float fieldXRangeMax;
     [SerializeField] private float fieldYRangeMin;
     [SerializeField] private float fieldYRangeMax;
+    [SerializeField] private float normalY;
+    [SerializeField] private float digY;
     
     [Header("Ink Setting")]
     [SerializeField] private float inkDamage;
@@ -20,6 +25,9 @@ public class HighMonster_Love_First : Monster
 
     [Header("Bubble Setting")] 
     [SerializeField] private float bubbleDamage;
+
+    [Header("Bress Setting")] 
+    [SerializeField] private float bressDamage;
     
     private SpriteRenderer spriteRenderer;
     private Collider2D collider;
@@ -35,22 +43,42 @@ public class HighMonster_Love_First : Monster
 
     protected override void Attack()
     {
-        throw new System.NotImplementedException();
+        if (!isAttacking)
+        {
+            StartCoroutine(PatternRoutine());
+        }
     }
 
     protected override void Die()
     {
-        throw new System.NotImplementedException();
+        StopAllCoroutines();
+        if (phase == 1)
+        {
+            phase = 2;
+            maxHp = phase2Hp;
+            hp = maxHp;
+
+            rigid.gravityScale = 0;
+
+            transform.position = new Vector2(0, 7);
+
+            isAttacking = false;
+            collider.isTrigger = false;
+            
+        }
+        else
+        {
+            gameObject.SetActive(false);
+        }
     }
 
     private IEnumerator MoveUpPattern()
     {
         collider.isTrigger = true;
         rigid.gravityScale = 0;
-        // spriteRenderer.enabled = false;
         
-        transform.position = new Vector2(Random.Range(fieldXRangeMin, fieldXRangeMax), 0);
-        GameObject newDangerObject = Instantiate(noticeDangerPrefab, new Vector2(transform.position.x,4), Quaternion.identity);
+        transform.position = new Vector2(Random.Range(fieldXRangeMin, fieldXRangeMax), digY);
+        GameObject newDangerObject = Instantiate(noticeDangerPrefab, new Vector2(transform.position.x,normalY), Quaternion.identity);
         
         yield return new WaitForSeconds(1.5f);
         Destroy(newDangerObject);
@@ -70,7 +98,7 @@ public class HighMonster_Love_First : Monster
         }
         
         
-        while (transform.position.y < 4)
+        while (transform.position.y < normalY)
         {
             transform.position += new Vector3(0, 0.1f, 0);
             yield return new WaitForSeconds(0.001f);
@@ -78,7 +106,6 @@ public class HighMonster_Love_First : Monster
         
         collider.isTrigger = false;
         rigid.gravityScale = 1;
-        spriteRenderer.enabled = true;
 
         yield return new WaitForSeconds(1f);
 
@@ -100,24 +127,82 @@ public class HighMonster_Love_First : Monster
         
         yield return new WaitForSeconds(1f);
     }
+    
+    IEnumerator SpawnAroundBubblePattern()
+    {
+        int bubbleCount = Random.Range(3, 6);
+        float radius = 4f; // 버블이 퍼질 반지름
+        Vector2 center = transform.position; // 또는 원하는 중심 좌표
+
+        for (int i = 0; i < bubbleCount; i++)
+        {
+            float angle = i * Mathf.PI * 2f / bubbleCount; // 각도를 나눠서 원형 배치
+            Vector2 offset = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * radius;
+            Vector2 spawnPos = center + offset;
+
+            GameObject newBubble = Instantiate(bubblePrefab, spawnPos, Quaternion.identity);
+            newBubble.GetComponent<Bubble>().damage = bubbleDamage;
+        }
+
+        yield return new WaitForSeconds(1f);
+    }
+
+    
+    IEnumerator BressPattern()
+    {
+        GameObject newBress = Instantiate(bressPrefab, transform.position, Quaternion.identity);
+        newBress.GetComponent<Bress>().damage = bressDamage;
+        newBress.transform.rotation *= Quaternion.Euler(new Vector3(0, 0, -60f));
+
+        while (Mathf.DeltaAngle(0, newBress.transform.eulerAngles.z) < 60)
+        {
+            newBress.transform.rotation *= Quaternion.Euler(new Vector3(0, 0, 0.2f));
+            yield return new WaitForSeconds(0.001f);
+        }
+        
+        yield return new WaitForSeconds(0.5f);
+        
+        while (Mathf.DeltaAngle(0, newBress.transform.eulerAngles.z) > -60f)
+        {
+            newBress.transform.rotation *= Quaternion.Euler(new Vector3(0, 0, -0.2f));
+            yield return new WaitForSeconds(0.001f);
+        }
+        
+        yield return new WaitForSeconds(0.5f);
+        
+        Destroy(newBress);
+        
+        yield return new WaitForSeconds(2f);
+    }
 
     IEnumerator PatternRoutine()
     {
         isAttacking = true;
-
-        yield return new WaitForSeconds(1f);
         
-        yield return StartCoroutine(MoveUpPattern());
+        yield return new WaitForSeconds(1f);
 
+        if (phase == 1)
+        {
+            yield return StartCoroutine(MoveUpPattern());    
+        }
+        else if (phase == 2)
+        {
+            yield return StartCoroutine(BressPattern());
+            yield return StartCoroutine(SpawnAroundBubblePattern());
+        }
+        else
+        {
+            Debug.LogError("fuck");
+        }
+        
         yield return new WaitForSeconds(0.5f);
         isAttacking = false;
     }
     
     void Update()
     {
-        if (!isAttacking)
-        {
-            StartCoroutine(PatternRoutine());
-        }
+        if (hp <= 0) Die();
+        
+        Attack();
     }
 }

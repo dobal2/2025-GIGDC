@@ -12,7 +12,8 @@ public class KeyData : ScriptableObject
         [Header("Moves")]
         public KeyCode LeftMoveKey;
         public KeyCode RightMoveKey;
-        public KeyCode RunKey;
+        public KeyCode DownMoveKey;
+        public KeyCode DashKey;
         public KeyCode JumpKey;
 
         [Header("Combats")]
@@ -21,10 +22,7 @@ public class KeyData : ScriptableObject
 
         [Header("Interactions")]
         public KeyCode InteractionKey;
-        public KeyCode ItemSelectionLeftKey;
-        public KeyCode ItemSelectionRightKey;
-        public KeyCode OnItemSelectionKey;
-        public KeyCode OffItemSelectionKey;
+        public KeyCode WeaponchangeKey;
     }
 
     [System.Serializable]
