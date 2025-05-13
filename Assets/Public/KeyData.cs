@@ -23,8 +23,6 @@ public class KeyData : ScriptableObject
         public KeyCode InteractionKey;
         public KeyCode ItemSelectionLeftKey;
         public KeyCode ItemSelectionRightKey;
-        public KeyCode OnItemSelectionKey;
-        public KeyCode OffItemSelectionKey;
     }
 
     [System.Serializable]
