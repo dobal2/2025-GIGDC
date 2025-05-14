@@ -12,7 +12,7 @@ public class LowMonster_Rare_interest : Monster
     [SerializeField] private float skilledSpeed = 10f;
     [SerializeField] private GameObject dashEffectPrefab;
 
-    private int nextMove;
+    private int nextMove = 1;
     private bool isDashing;
     private bool canEffect = true;
     private bool canFlip = true;
@@ -21,16 +21,8 @@ public class LowMonster_Rare_interest : Monster
     {
         base.Start();
         rigid = GetComponent<Rigidbody2D>();
-        SetRandomMoveDirection();
     }
-
-    private void SetRandomMoveDirection()
-    {
-        do
-        {
-            nextMove = Random.Range(-1, 2);
-        } while (nextMove == 0);
-    }
+    
 
     protected override void Attack()
     {
