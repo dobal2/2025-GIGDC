@@ -106,7 +106,7 @@ public class InputManager : MonoBehaviour
     {
         //player.MoveLeft = Input.GetKey(keyData.Player.LeftMoveKey);
         //player.MoveRight = Input.GetKey(keyData.Player.RightMoveKey);
-        //player.IsRunning = Input.GetKey(keyData.Player.RunKey);
+        //player.Dash = Input.GetKey(keyData.Player.DashKey);
         //player.JumpPressed = Input.GetKeyDown(keyData.Player.JumpKey);
         //player.AttackPressed = Input.GetKeyDown(keyData.Player.AttackKey);
 

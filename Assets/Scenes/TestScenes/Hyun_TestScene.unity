@@ -262,14 +262,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 395574625}
-  - component: {fileID: 395574628}
-  - component: {fileID: 395574629}
   - component: {fileID: 395574624}
   - component: {fileID: 395574627}
   - component: {fileID: 395574626}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -370,7 +368,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &395574627
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -417,35 +415,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &395574628
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 395574623}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc50ed34665582d469c817bf0e66c900, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  keyData: {fileID: 11400000, guid: eef92708e559636479c30d47676bef1e, type: 2}
-  moveController: {fileID: 395574629}
---- !u!114 &395574629
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 395574623}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc4725f96fb96d54eb5a2a50fab10f2a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rigidBody: {fileID: 395574626}
-  spriteRenderer: {fileID: 395574624}
-  moveSpeed: 5
 --- !u!1 &940833149
 GameObject:
   m_ObjectHideFlags: 0
