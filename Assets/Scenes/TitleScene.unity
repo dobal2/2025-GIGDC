@@ -568,7 +568,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentKeyData: {fileID: 11400000, guid: eef92708e559636479c30d47676bef1e, type: 2}
-  defaultKeyData: {fileID: 11400000, guid: 19dc7db4c9744d34c82588532096920c, type: 2}
+  defaultKeyData: {fileID: 11400000, guid: 223c4c8cafc61fd4f81a499cf4d16aa7, type: 2}
 --- !u!114 &214244793 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5946262408850181829, guid: afe6ebb840784784c87e9bdfc91a66b6, type: 3}
@@ -599,7 +599,7 @@ PrefabInstance:
     - target: {fileID: 6069786488033189870, guid: afe6ebb840784784c87e9bdfc91a66b6, type: 3}
       propertyPath: downButton
       value: 
-      objectReference: {fileID: 1208126192}
+      objectReference: {fileID: 2098831516}
     - target: {fileID: 6069786488033189870, guid: afe6ebb840784784c87e9bdfc91a66b6, type: 3}
       propertyPath: leftButton
       value: 
@@ -772,7 +772,7 @@ PrefabInstance:
     - target: {fileID: 6069786488033189870, guid: afe6ebb840784784c87e9bdfc91a66b6, type: 3}
       propertyPath: downButton
       value: 
-      objectReference: {fileID: 2098831516}
+      objectReference: {fileID: 1530849209}
     - target: {fileID: 6069786488033189870, guid: afe6ebb840784784c87e9bdfc91a66b6, type: 3}
       propertyPath: leftButton
       value: 
@@ -930,7 +930,7 @@ PrefabInstance:
     - target: {fileID: 6069786488033189870, guid: afe6ebb840784784c87e9bdfc91a66b6, type: 3}
       propertyPath: upButton
       value: 
-      objectReference: {fileID: 2098831516}
+      objectReference: {fileID: 1530849209}
     - target: {fileID: 6069786488033189870, guid: afe6ebb840784784c87e9bdfc91a66b6, type: 3}
       propertyPath: downButton
       value: 
@@ -946,7 +946,7 @@ PrefabInstance:
     - target: {fileID: 6069786488033189870, guid: afe6ebb840784784c87e9bdfc91a66b6, type: 3}
       propertyPath: rightButton
       value: 
-      objectReference: {fileID: 1345675405}
+      objectReference: {fileID: 1208126192}
     - target: {fileID: 7356415350951678122, guid: afe6ebb840784784c87e9bdfc91a66b6, type: 3}
       propertyPath: m_Name
       value: AttackKeyButton
@@ -1095,11 +1095,11 @@ PrefabInstance:
     - target: {fileID: 6069786488033189870, guid: afe6ebb840784784c87e9bdfc91a66b6, type: 3}
       propertyPath: downButton
       value: 
-      objectReference: {fileID: 692344629}
+      objectReference: {fileID: 0}
     - target: {fileID: 6069786488033189870, guid: afe6ebb840784784c87e9bdfc91a66b6, type: 3}
       propertyPath: leftButton
       value: 
-      objectReference: {fileID: 2141495768}
+      objectReference: {fileID: 692344629}
     - target: {fileID: 6069786488033189870, guid: afe6ebb840784784c87e9bdfc91a66b6, type: 3}
       propertyPath: nextOnClick
       value: 
@@ -1389,15 +1389,15 @@ PrefabInstance:
     - target: {fileID: 6069786488033189870, guid: afe6ebb840784784c87e9bdfc91a66b6, type: 3}
       propertyPath: upButton
       value: 
-      objectReference: {fileID: 738839526}
+      objectReference: {fileID: 1345675405}
     - target: {fileID: 6069786488033189870, guid: afe6ebb840784784c87e9bdfc91a66b6, type: 3}
       propertyPath: downButton
       value: 
-      objectReference: {fileID: 2141495768}
+      objectReference: {fileID: 1483284501}
     - target: {fileID: 6069786488033189870, guid: afe6ebb840784784c87e9bdfc91a66b6, type: 3}
       propertyPath: leftButton
       value: 
-      objectReference: {fileID: 1790930755}
+      objectReference: {fileID: 1018488288}
     - target: {fileID: 6069786488033189870, guid: afe6ebb840784784c87e9bdfc91a66b6, type: 3}
       propertyPath: nextOnClick
       value: 
@@ -1405,7 +1405,7 @@ PrefabInstance:
     - target: {fileID: 6069786488033189870, guid: afe6ebb840784784c87e9bdfc91a66b6, type: 3}
       propertyPath: rightButton
       value: 
-      objectReference: {fileID: 1483284501}
+      objectReference: {fileID: 0}
     - target: {fileID: 7356415350951678122, guid: afe6ebb840784784c87e9bdfc91a66b6, type: 3}
       propertyPath: m_Name
       value: UpKeyButton
@@ -2648,11 +2648,11 @@ PrefabInstance:
     - target: {fileID: 6069786488033189870, guid: afe6ebb840784784c87e9bdfc91a66b6, type: 3}
       propertyPath: downButton
       value: 
-      objectReference: {fileID: 1018488288}
+      objectReference: {fileID: 517696604}
     - target: {fileID: 6069786488033189870, guid: afe6ebb840784784c87e9bdfc91a66b6, type: 3}
       propertyPath: leftButton
       value: 
-      objectReference: {fileID: 1098690772}
+      objectReference: {fileID: 738839526}
     - target: {fileID: 6069786488033189870, guid: afe6ebb840784784c87e9bdfc91a66b6, type: 3}
       propertyPath: nextOnClick
       value: 
@@ -3272,7 +3272,7 @@ PrefabInstance:
     - target: {fileID: 6069786488033189870, guid: afe6ebb840784784c87e9bdfc91a66b6, type: 3}
       propertyPath: upButton
       value: 
-      objectReference: {fileID: 517696604}
+      objectReference: {fileID: 1018488288}
     - target: {fileID: 6069786488033189870, guid: afe6ebb840784784c87e9bdfc91a66b6, type: 3}
       propertyPath: downButton
       value: 
@@ -3288,7 +3288,7 @@ PrefabInstance:
     - target: {fileID: 6069786488033189870, guid: afe6ebb840784784c87e9bdfc91a66b6, type: 3}
       propertyPath: rightButton
       value: 
-      objectReference: {fileID: 1880179411}
+      objectReference: {fileID: 1483284501}
     - target: {fileID: 7356415350951678122, guid: afe6ebb840784784c87e9bdfc91a66b6, type: 3}
       propertyPath: m_Name
       value: LeftKeyButton
@@ -4081,7 +4081,7 @@ PrefabInstance:
     - target: {fileID: 6069786488033189870, guid: afe6ebb840784784c87e9bdfc91a66b6, type: 3}
       propertyPath: upButton
       value: 
-      objectReference: {fileID: 1018488288}
+      objectReference: {fileID: 517696604}
     - target: {fileID: 6069786488033189870, guid: afe6ebb840784784c87e9bdfc91a66b6, type: 3}
       propertyPath: downButton
       value: 
@@ -4089,7 +4089,7 @@ PrefabInstance:
     - target: {fileID: 6069786488033189870, guid: afe6ebb840784784c87e9bdfc91a66b6, type: 3}
       propertyPath: leftButton
       value: 
-      objectReference: {fileID: 517696604}
+      objectReference: {fileID: 2141495768}
     - target: {fileID: 6069786488033189870, guid: afe6ebb840784784c87e9bdfc91a66b6, type: 3}
       propertyPath: nextOnClick
       value: 
@@ -4274,15 +4274,15 @@ PrefabInstance:
     - target: {fileID: 6069786488033189870, guid: afe6ebb840784784c87e9bdfc91a66b6, type: 3}
       propertyPath: upButton
       value: 
-      objectReference: {fileID: 1345675405}
+      objectReference: {fileID: 738839526}
     - target: {fileID: 6069786488033189870, guid: afe6ebb840784784c87e9bdfc91a66b6, type: 3}
       propertyPath: downButton
       value: 
-      objectReference: {fileID: 1483284501}
+      objectReference: {fileID: 2141495768}
     - target: {fileID: 6069786488033189870, guid: afe6ebb840784784c87e9bdfc91a66b6, type: 3}
       propertyPath: leftButton
       value: 
-      objectReference: {fileID: 738839526}
+      objectReference: {fileID: 1790930755}
     - target: {fileID: 6069786488033189870, guid: afe6ebb840784784c87e9bdfc91a66b6, type: 3}
       propertyPath: nextOnClick
       value: 
@@ -4290,7 +4290,7 @@ PrefabInstance:
     - target: {fileID: 6069786488033189870, guid: afe6ebb840784784c87e9bdfc91a66b6, type: 3}
       propertyPath: rightButton
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 517696604}
     - target: {fileID: 7356415350951678122, guid: afe6ebb840784784c87e9bdfc91a66b6, type: 3}
       propertyPath: m_Name
       value: WeaponchangeKeyButton
@@ -4431,7 +4431,7 @@ PrefabInstance:
     - target: {fileID: 6069786488033189870, guid: afe6ebb840784784c87e9bdfc91a66b6, type: 3}
       propertyPath: upButton
       value: 
-      objectReference: {fileID: 2037326251}
+      objectReference: {fileID: 2098831516}
     - target: {fileID: 6069786488033189870, guid: afe6ebb840784784c87e9bdfc91a66b6, type: 3}
       propertyPath: downButton
       value: 
@@ -4439,7 +4439,7 @@ PrefabInstance:
     - target: {fileID: 6069786488033189870, guid: afe6ebb840784784c87e9bdfc91a66b6, type: 3}
       propertyPath: leftButton
       value: 
-      objectReference: {fileID: 2098831516}
+      objectReference: {fileID: 1098690772}
     - target: {fileID: 6069786488033189870, guid: afe6ebb840784784c87e9bdfc91a66b6, type: 3}
       propertyPath: nextOnClick
       value: 
@@ -4583,20 +4583,20 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5946262408850181829, guid: afe6ebb840784784c87e9bdfc91a66b6, type: 3}
       propertyPath: m_Text
-      value: "\uC624\uB978\uCABD \uC774\uB3D9\n"
+      value: "\uC544\uB798\uCABD \uC774\uB3D9\n"
       objectReference: {fileID: 0}
     - target: {fileID: 6069786488033189870, guid: afe6ebb840784784c87e9bdfc91a66b6, type: 3}
       propertyPath: upButton
       value: 
-      objectReference: {fileID: 188288318}
+      objectReference: {fileID: 1043845821}
     - target: {fileID: 6069786488033189870, guid: afe6ebb840784784c87e9bdfc91a66b6, type: 3}
       propertyPath: downButton
       value: 
-      objectReference: {fileID: 1208126192}
+      objectReference: {fileID: 1098690772}
     - target: {fileID: 6069786488033189870, guid: afe6ebb840784784c87e9bdfc91a66b6, type: 3}
       propertyPath: leftButton
       value: 
-      objectReference: {fileID: 1043845821}
+      objectReference: {fileID: 1790930755}
     - target: {fileID: 6069786488033189870, guid: afe6ebb840784784c87e9bdfc91a66b6, type: 3}
       propertyPath: nextOnClick
       value: 
@@ -4604,7 +4604,7 @@ PrefabInstance:
     - target: {fileID: 6069786488033189870, guid: afe6ebb840784784c87e9bdfc91a66b6, type: 3}
       propertyPath: rightButton
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2098831516}
     - target: {fileID: 7356415350951678122, guid: afe6ebb840784784c87e9bdfc91a66b6, type: 3}
       propertyPath: m_Name
       value: DownMoveKeyButton
@@ -4719,7 +4719,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8565126883835662559, guid: afe6ebb840784784c87e9bdfc91a66b6, type: 3}
       propertyPath: fieldName
-      value: 
+      value: DownMoveKey
       objectReference: {fileID: 0}
     - target: {fileID: 8565126883835662559, guid: afe6ebb840784784c87e9bdfc91a66b6, type: 3}
       propertyPath: labelText
@@ -4909,7 +4909,7 @@ PrefabInstance:
     - target: {fileID: 6069786488033189870, guid: afe6ebb840784784c87e9bdfc91a66b6, type: 3}
       propertyPath: downButton
       value: 
-      objectReference: {fileID: 517696604}
+      objectReference: {fileID: 1018488288}
     - target: {fileID: 6069786488033189870, guid: afe6ebb840784784c87e9bdfc91a66b6, type: 3}
       propertyPath: leftButton
       value: 
@@ -4921,7 +4921,7 @@ PrefabInstance:
     - target: {fileID: 6069786488033189870, guid: afe6ebb840784784c87e9bdfc91a66b6, type: 3}
       propertyPath: rightButton
       value: 
-      objectReference: {fileID: 1018488288}
+      objectReference: {fileID: 1345675405}
     - target: {fileID: 7356415350951678122, guid: afe6ebb840784784c87e9bdfc91a66b6, type: 3}
       propertyPath: m_Name
       value: InteractionKeyButton
@@ -6081,15 +6081,15 @@ PrefabInstance:
     - target: {fileID: 6069786488033189870, guid: afe6ebb840784784c87e9bdfc91a66b6, type: 3}
       propertyPath: upButton
       value: 
-      objectReference: {fileID: 1043845821}
+      objectReference: {fileID: 2037326251}
     - target: {fileID: 6069786488033189870, guid: afe6ebb840784784c87e9bdfc91a66b6, type: 3}
       propertyPath: downButton
       value: 
-      objectReference: {fileID: 1098690772}
+      objectReference: {fileID: 1208126192}
     - target: {fileID: 6069786488033189870, guid: afe6ebb840784784c87e9bdfc91a66b6, type: 3}
       propertyPath: leftButton
       value: 
-      objectReference: {fileID: 1790930755}
+      objectReference: {fileID: 1530849209}
     - target: {fileID: 6069786488033189870, guid: afe6ebb840784784c87e9bdfc91a66b6, type: 3}
       propertyPath: nextOnClick
       value: 
@@ -6097,7 +6097,7 @@ PrefabInstance:
     - target: {fileID: 6069786488033189870, guid: afe6ebb840784784c87e9bdfc91a66b6, type: 3}
       propertyPath: rightButton
       value: 
-      objectReference: {fileID: 1208126192}
+      objectReference: {fileID: 0}
     - target: {fileID: 7356415350951678122, guid: afe6ebb840784784c87e9bdfc91a66b6, type: 3}
       propertyPath: m_Name
       value: DashKeyKeyButton

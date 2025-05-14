@@ -54,6 +54,8 @@ public class UIButtonController : MonoBehaviour, ISelectHandler, IDeselectHandle
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        if (eventData.button != PointerEventData.InputButton.Left) return;
+
         onClick?.Invoke();
         if (nextOnClick != null && nextOnClick.activeInHierarchy)
         {
