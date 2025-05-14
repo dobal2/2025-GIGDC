@@ -60,7 +60,7 @@ public class HighMonster_Love_First : Monster
 
             rigid.gravityScale = 0;
 
-            transform.position = new Vector2(0, 7);
+            transform.position = new Vector2(0, 9);
 
             isAttacking = false;
             collider.isTrigger = false;

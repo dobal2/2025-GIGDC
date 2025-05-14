@@ -19,6 +19,8 @@ public class LowMonster_Rare_lethargy : Monster
 
     IEnumerator Explosion(float delayTime)
     {
+        anim.SetTrigger("Charge");
+        
         yield return new WaitForSeconds(delayTime);
         
         Collider2D[] collidersEnemies = Physics2D.OverlapCircleAll(transform.position, attackRadius);
