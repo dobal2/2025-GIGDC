@@ -517,9 +517,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  crouchSpeedMultiplier: 0.5
-  jumpForce: 10
-  maxJumpTime: 0.35
+  baseJumpForce: 10
+  heldJumpForce: 50
+  jumpDecayFactor: 0.6
+  maxJumpTime: 0.3
+  jumpBufferTime: 0.1
   dashSpeed: 20
   dashDuration: 0.2
   dashCooldown: 1
@@ -532,6 +534,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   crouchColliderHeightMultiplier: 0.5
+  crouchSpeedMultiplier: 0.5
 --- !u!1 &940833149
 GameObject:
   m_ObjectHideFlags: 0

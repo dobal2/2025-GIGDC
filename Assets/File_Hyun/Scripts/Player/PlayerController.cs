@@ -15,11 +15,15 @@ public class PlayerController : MonoBehaviour
 
     private enum PlayerState { Normal, Crouching, Dashing }
     private PlayerState currentState = PlayerState.Normal;
+    private PlayerState previousState = PlayerState.Normal;
 
     [Header("Movement Settings")]
     [SerializeField] private float moveSpeed = 5f;
-    [SerializeField] private float crouchSpeedMultiplier = 0.5f;
-    [SerializeField] private float jumpForce = 10f;
+
+    [Header("Jump Settings")]
+    [SerializeField] private float baseJumpForce = 10f;
+    [SerializeField] private float heldJumpForce = 50f;
+    [SerializeField] private float jumpDecayFactor = 0.6f;
     [SerializeField] private float maxJumpTime = 0.3f;
     [SerializeField] private float jumpBufferTime = 0.1f;
 
@@ -36,6 +40,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Crouch Settings")]
     [SerializeField] private float crouchColliderHeightMultiplier = 0.5f;
+    [SerializeField] private float crouchSpeedMultiplier = 0.5f;
 
     private Rigidbody2D rb;
     private BoxCollider2D boxCol;
@@ -60,7 +65,7 @@ public class PlayerController : MonoBehaviour
         originalColliderOffset = boxCol.offset;
     }
 
-    void Start() //
+    void Start()
     {
         InputManager.Instance.RegisterPlayer(this);
         InputManager.Instance.currentContext = InputManager.InputContext.Gameplay;
@@ -77,6 +82,12 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (currentState != previousState)
+        {
+            ApplyConstraintsForState(currentState);
+            previousState = currentState;
+        }
+
         switch (currentState)
         {
             case PlayerState.Normal:
@@ -129,6 +140,9 @@ public class PlayerController : MonoBehaviour
                 dashTimer = dashDuration;
                 lastDashTime = Time.time;
                 if (!isGrounded) canAirDash = false;
+
+                jumpBufferTimer = 0f;
+                isJumping = false;
             }
         }
     }
@@ -146,7 +160,7 @@ public class PlayerController : MonoBehaviour
         {
             isJumping = true;
             jumpTimeCounter = maxJumpTime;
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, baseJumpForce);
             jumpBufferTimer = 0f;
         }
 
@@ -154,7 +168,10 @@ public class PlayerController : MonoBehaviour
         {
             if (jumpTimeCounter > 0f)
             {
-                rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+                float upwardVelocity = Mathf.Max(rb.linearVelocity.y, 0f);
+                float decay = Mathf.Clamp01(1f - upwardVelocity * jumpDecayFactor * 0.1f);
+                float additionalForce = heldJumpForce * decay;
+                rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y + additionalForce * Time.fixedDeltaTime);
                 jumpTimeCounter -= Time.fixedDeltaTime;
             }
             else
@@ -182,6 +199,19 @@ public class PlayerController : MonoBehaviour
         if (dashTimer <= 0f)
         {
             currentState = PlayerState.Normal;
+        }
+    }
+
+    void ApplyConstraintsForState(PlayerState state)
+    {
+        switch (state)
+        {
+            case PlayerState.Dashing:
+                rb.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
+                break;
+            default:
+                rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+                break;
         }
     }
 }
