@@ -1,18 +1,12 @@
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 public class UIButtonEffect : MonoBehaviour
 {
-    public Text targetText;
+    public TMP_Text targetText;
     public Color normalColor = Color.black;
     public Color selectedColor = Color.yellow;
     public Color clickColor = Color.cyan;
-
-    void Awake()
-    {
-        if (targetText == null)
-            targetText = GetComponentInChildren<Text>();
-    }
 
     public void StopSelectEffect() // 이펙트 중지 및 제거
     {
