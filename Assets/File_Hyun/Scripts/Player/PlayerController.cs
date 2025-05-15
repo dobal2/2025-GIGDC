@@ -19,18 +19,19 @@ public class PlayerController : MonoBehaviour
 
     [Header("Movement Settings")]
     [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float fastFallGravityScale = 6f;
 
     [Header("Jump Settings")]
     [SerializeField] private float baseJumpForce = 10f;
-    [SerializeField] private float heldJumpForce = 50f;
-    [SerializeField] private float jumpDecayFactor = 0.6f;
+    [SerializeField] private float heldJumpForce = 60f;
+    [SerializeField] private float jumpDecayFactor = 0.5f;
     [SerializeField] private float maxJumpTime = 0.3f;
     [SerializeField] private float jumpBufferTime = 0.1f;
 
     [Header("Dash Settings")]
     [SerializeField] private float dashSpeed = 20f;
     [SerializeField] private float dashDuration = 0.2f;
-    [SerializeField] private float dashCooldown = 1f;
+    [SerializeField] private float dashCooldown = 0.6f;
     [SerializeField] private LayerMask wallLayer;
 
     [Header("Ground Check")]
@@ -53,6 +54,7 @@ public class PlayerController : MonoBehaviour
     private float lastDashTime = -999f;
     private float dashTimer;
     private int facingDirection = 1;
+    private float normalGravityScale;
 
     private Vector2 originalColliderSize;
     private Vector2 originalColliderOffset;
@@ -63,6 +65,7 @@ public class PlayerController : MonoBehaviour
         boxCol = GetComponent<BoxCollider2D>();
         originalColliderSize = boxCol.size;
         originalColliderOffset = boxCol.offset;
+        normalGravityScale = rb.gravityScale;
     }
 
     void Start()
@@ -103,6 +106,8 @@ public class PlayerController : MonoBehaviour
                 HandleDashMovement();
                 break;
         }
+
+        HandleFastFall();
     }
 
     void UpdateGrounded()
@@ -201,6 +206,15 @@ public class PlayerController : MonoBehaviour
             currentState = PlayerState.Normal;
         }
     }
+
+    void HandleFastFall()
+    {
+        if (!isGrounded && !isJumping && currentState != PlayerState.Dashing && CrouchHeld)
+            rb.gravityScale = fastFallGravityScale;
+        else
+            rb.gravityScale = normalGravityScale;
+    }
+
 
     void ApplyConstraintsForState(PlayerState state)
     {

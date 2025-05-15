@@ -517,14 +517,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
+  fastFallGravityScale: 6
   baseJumpForce: 10
-  heldJumpForce: 50
-  jumpDecayFactor: 0.6
+  heldJumpForce: 60
+  jumpDecayFactor: 0.5
   maxJumpTime: 0.3
   jumpBufferTime: 0.1
   dashSpeed: 20
   dashDuration: 0.2
-  dashCooldown: 1
+  dashCooldown: 0.6
   wallLayer:
     serializedVersion: 2
     m_Bits: 64
