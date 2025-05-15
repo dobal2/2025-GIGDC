@@ -12,7 +12,7 @@ public class InputManager : MonoBehaviour
     public KeyData keyData;
     public GameObject lastSelectedButton;
 
-    public PlayerController player;
+    private PlayerController _player;
 
     void Awake()
     {
@@ -23,6 +23,11 @@ public class InputManager : MonoBehaviour
         }
         Instance = this;
         DontDestroyOnLoad(gameObject);
+    }
+
+    public void RegisterPlayer(PlayerController player)
+    {
+        _player = player;
     }
 
     void Update()
@@ -102,18 +107,16 @@ public class InputManager : MonoBehaviour
     #region 인게임 입력 처리
     void HandleGameplayInput()
     {
-        //player.MoveLeft = Input.GetKey(keyData.Player.LeftMoveKey);
-        //player.MoveRight = Input.GetKey(keyData.Player.RightMoveKey);
-        //player.Dash = Input.GetKey(keyData.Player.DashKey);
-        //player.JumpPressed = Input.GetKeyDown(keyData.Player.JumpKey);
-        //player.AttackPressed = Input.GetKeyDown(keyData.Player.AttackKey);
+        if (_player == null) return;
 
-        //// 무기 전환
-        //if (Input.GetKeyDown(keyData.Player.ItemSelectionLeftKey))
-        //    WeaponManager.Instance.SelectLeft();
+        float horizontal = 0f;
+        if (Input.GetKey(keyData.Player.LeftMoveKey)) horizontal -= 1f;
+        if (Input.GetKey(keyData.Player.RightMoveKey)) horizontal += 1f;
 
-        //if (Input.GetKeyDown(keyData.Player.ItemSelectionRightKey))
-        //    WeaponManager.Instance.SelectRight();
+        _player.MoveInput = horizontal;
+        _player.JumpPressed = Input.GetKeyDown(keyData.Player.JumpKey);
+        _player.JumpHeld = Input.GetKey(keyData.Player.JumpKey);
+        _player.DashPressed = Input.GetKeyDown(keyData.Player.DashKey);
     }
     #endregion
 }

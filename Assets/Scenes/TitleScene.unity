@@ -4184,7 +4184,6 @@ MonoBehaviour:
   currentContext: 1
   keyData: {fileID: 11400000, guid: eef92708e559636479c30d47676bef1e, type: 2}
   lastSelectedButton: {fileID: 0}
-  player: {fileID: 0}
 --- !u!4 &1425523944
 Transform:
   m_ObjectHideFlags: 0
