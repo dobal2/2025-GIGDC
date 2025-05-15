@@ -117,6 +117,7 @@ public class InputManager : MonoBehaviour
         _player.JumpPressed = Input.GetKeyDown(keyData.Player.JumpKey);
         _player.JumpHeld = Input.GetKey(keyData.Player.JumpKey);
         _player.DashPressed = Input.GetKeyDown(keyData.Player.DashKey);
+        _player.CrouchHeld = Input.GetKey(keyData.Player.DownMoveKey);
     }
     #endregion
 }

@@ -6,11 +6,11 @@ public class PlayerController : MonoBehaviour
     public float MoveInput { private get; set; }
     public bool JumpHeld { private get; set; }
     public bool DashPressed { private get; set; }
+    public bool CrouchHeld { private get; set; }
 
-    private bool jumpBuffered = false;
     public bool JumpPressed
     {
-        set { if (value) jumpBuffered = true; }
+        set { if (value) jumpBufferTimer = jumpBufferTime; }
     }
 
     private enum PlayerState { Normal, Crouching, Dashing }
@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float crouchSpeedMultiplier = 0.5f;
     [SerializeField] private float jumpForce = 10f;
     [SerializeField] private float maxJumpTime = 0.3f;
+    [SerializeField] private float jumpBufferTime = 0.1f;
 
     [Header("Dash Settings")]
     [SerializeField] private float dashSpeed = 20f;
@@ -42,6 +43,7 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded;
     private bool isJumping;
     private float jumpTimeCounter;
+    private float jumpBufferTimer;
     private bool canAirDash = true;
     private float lastDashTime = -999f;
     private float dashTimer;
@@ -58,7 +60,7 @@ public class PlayerController : MonoBehaviour
         originalColliderOffset = boxCol.offset;
     }
 
-    void Start()
+    void Start() //
     {
         InputManager.Instance.RegisterPlayer(this);
         InputManager.Instance.currentContext = InputManager.InputContext.Gameplay;
@@ -68,6 +70,9 @@ public class PlayerController : MonoBehaviour
     {
         UpdateGrounded();
         HandleStateTransitions();
+
+        if (jumpBufferTimer > 0f)
+            jumpBufferTimer -= Time.deltaTime;
     }
 
     void FixedUpdate()
@@ -97,8 +102,7 @@ public class PlayerController : MonoBehaviour
 
     void HandleStateTransitions()
     {
-        // Crouch
-        if (Input.GetKey(InputManager.Instance.keyData.Player.DownMoveKey) && isGrounded && currentState != PlayerState.Dashing)
+        if (CrouchHeld && isGrounded && currentState != PlayerState.Dashing)
         {
             if (currentState != PlayerState.Crouching)
             {
@@ -117,7 +121,6 @@ public class PlayerController : MonoBehaviour
             boxCol.offset = originalColliderOffset;
         }
 
-        // Dash
         if (DashPressed && Time.time >= lastDashTime + dashCooldown)
         {
             if (isGrounded || canAirDash)
@@ -139,12 +142,12 @@ public class PlayerController : MonoBehaviour
 
     void HandleJump()
     {
-        if (jumpBuffered && isGrounded)
+        if (jumpBufferTimer > 0f && isGrounded)
         {
             isJumping = true;
             jumpTimeCounter = maxJumpTime;
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
-            jumpBuffered = false;
+            jumpBufferTimer = 0f;
         }
 
         if (JumpHeld && isJumping)
@@ -161,9 +164,7 @@ public class PlayerController : MonoBehaviour
         }
 
         if (!JumpHeld)
-        {
             isJumping = false;
-        }
     }
 
     void HandleDashMovement()
