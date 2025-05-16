@@ -6,14 +6,17 @@ public class PlayerController : MonoBehaviour
     public static PlayerController Instance { get; private set; }
 
     public float MoveInput { private get; set; }
-    public bool DashPressed { private get; set; }
     public bool CrouchHeld { private get; set; }
     public bool JumpHeld { private get; set; }
-
 
     public bool JumpPressed
     {
         set { if (value) jumpBufferTimer = jumpBufferTime; }
+    }
+
+    public bool DashPressed
+    {
+        set { if (value) dashBufferTimer = dashBufferTime; }
     }
 
     private enum PlayerState { Normal, Crouching, Dashing }
@@ -36,16 +39,17 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float dashSpeed = 20f;
     [SerializeField] private float dashDuration = 0.2f;
     [SerializeField] private float dashCooldown = 0.6f;
+    [SerializeField] private float dashBufferTime = 0.1f;
     [SerializeField] private LayerMask dashStop;
 
     [Header("Ground Check")]
     [SerializeField] private Transform groundCheck;
-    [SerializeField] private float groundCheckRadius = 0.2f;
+    [SerializeField] private float groundCheckRadius = 0.1f;
     [SerializeField] private LayerMask groundLayer;
 
     [Header("Ceiling Check")]
     [SerializeField] private Transform ceilingCheck;
-    [SerializeField] private float ceilingCheckRadius = 0.2f;
+    [SerializeField] private float ceilingCheckRadius = 0.1f;
     [SerializeField] private LayerMask ceilingLayer;
 
     [Header("Crouch Settings")]
@@ -66,6 +70,7 @@ public class PlayerController : MonoBehaviour
     private int facingDirection = 1;
     private float normalGravityScale;
     private bool isTouchingCeiling;
+    private float dashBufferTimer;
 
     private Vector2 originalColliderSize;
     private Vector2 originalColliderOffset;
@@ -100,6 +105,9 @@ public class PlayerController : MonoBehaviour
 
         if (jumpBufferTimer > 0f)
             jumpBufferTimer -= Time.deltaTime;
+
+        if (dashBufferTimer > 0f)
+            dashBufferTimer -= Time.deltaTime;
     }
 
     void FixedUpdate()
@@ -168,7 +176,7 @@ public class PlayerController : MonoBehaviour
             boxCol.offset = originalColliderOffset;
         }
 
-        if (DashPressed && Time.time >= lastDashTime + dashCooldown)
+        if (dashBufferTimer > 0f && Time.time >= lastDashTime + dashCooldown)
         {
             if (isGrounded || canAirDash)
             {
@@ -178,6 +186,7 @@ public class PlayerController : MonoBehaviour
                 if (!isGrounded) canAirDash = false;
 
                 jumpBufferTimer = 0f;
+                dashBufferTimer = 0f;
                 isJumping = false;
             }
         }

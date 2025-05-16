@@ -638,6 +638,7 @@ MonoBehaviour:
   dashSpeed: 20
   dashDuration: 0.2
   dashCooldown: 0.6
+  dashBufferTime: 0.1
   dashStop:
     serializedVersion: 2
     m_Bits: 64
