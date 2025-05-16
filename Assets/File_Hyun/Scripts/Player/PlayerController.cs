@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
     public float MoveInput { private get; set; }
     public bool DashPressed { private get; set; }
     public bool CrouchHeld { private get; set; }
+    public bool JumpHeld { private get; set; }
+
 
     public bool JumpPressed
     {
@@ -177,7 +179,7 @@ public class PlayerController : MonoBehaviour
 
         if (isJumping)
         {
-            if (jumpTimeCounter >= maxJumpTime)
+            if (!JumpHeld || jumpTimeCounter >= maxJumpTime)
             {
                 isJumping = false;
                 return;
