@@ -523,24 +523,6 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 0.699
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 0.7
       value: 0.9
       inSlope: -0.20548397
       outSlope: -0.20548397
@@ -563,7 +545,6 @@ MonoBehaviour:
   maxJumpTime: 0.4
   maxJumpForce: 20
   jumpHeightMultiplier: 1
-  jumpBufferTime: 0.1
   dashSpeed: 20
   dashDuration: 0.2
   dashCooldown: 0.6
@@ -577,6 +558,7 @@ MonoBehaviour:
     m_Bits: 128
   crouchColliderHeightMultiplier: 0.5
   crouchSpeedMultiplier: 0.5
+  jumpTimeCounter: 0
 --- !u!1 &940833149
 GameObject:
   m_ObjectHideFlags: 0
