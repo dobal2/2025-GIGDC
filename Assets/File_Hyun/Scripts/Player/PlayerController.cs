@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Movement Settings")]
     [SerializeField] private float moveSpeed = 5f;
-    [SerializeField] private float fastFallGravityScale = 6f;
+    [SerializeField] private float fastFallGravityScale = 10f;
 
     [Header("Jump Settings")]
     [SerializeField] private AnimationCurve jumpForceCurve;
@@ -30,17 +30,23 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float maxJumpForce = 20f;
     [SerializeField] private float jumpHeightMultiplier = 1f;
     [SerializeField] private float jumpBufferTime = 0.1f;
+    [SerializeField] private float coyoteTime = 0.2f;
 
     [Header("Dash Settings")]
     [SerializeField] private float dashSpeed = 20f;
     [SerializeField] private float dashDuration = 0.2f;
     [SerializeField] private float dashCooldown = 0.6f;
-    [SerializeField] private LayerMask wallLayer;
+    [SerializeField] private LayerMask dashStop;
 
     [Header("Ground Check")]
     [SerializeField] private Transform groundCheck;
     [SerializeField] private float groundCheckRadius = 0.2f;
     [SerializeField] private LayerMask groundLayer;
+
+    [Header("Ceiling Check")]
+    [SerializeField] private Transform ceilingCheck;
+    [SerializeField] private float ceilingCheckRadius = 0.2f;
+    [SerializeField] private LayerMask ceilingLayer;
 
     [Header("Crouch Settings")]
     [SerializeField] private float crouchColliderHeightMultiplier = 0.5f;
@@ -53,11 +59,13 @@ public class PlayerController : MonoBehaviour
     private bool isJumping;
     private float jumpTimeCounter;
     private float jumpBufferTimer;
+    private float coyoteTimer;
     private bool canAirDash = true;
     private float lastDashTime = -999f;
     private float dashTimer;
     private int facingDirection = 1;
     private float normalGravityScale;
+    private bool isTouchingCeiling;
 
     private Vector2 originalColliderSize;
     private Vector2 originalColliderOffset;
@@ -87,6 +95,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         UpdateGrounded();
+        UpdateCeiling();
         HandleStateTransitions();
 
         if (jumpBufferTimer > 0f)
@@ -121,8 +130,21 @@ public class PlayerController : MonoBehaviour
 
     void UpdateGrounded()
     {
+        bool wasGrounded = isGrounded;
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
-        if (isGrounded) canAirDash = true;
+
+        if (isGrounded) coyoteTimer = coyoteTime;
+        else coyoteTimer -= Time.deltaTime;
+
+        if (!wasGrounded && isGrounded)
+        {
+            canAirDash = true;
+        }
+    }
+
+    void UpdateCeiling()
+    {
+        isTouchingCeiling = Physics2D.OverlapCircle(ceilingCheck.position, ceilingCheckRadius, ceilingLayer);
     }
 
     void HandleStateTransitions()
@@ -170,16 +192,17 @@ public class PlayerController : MonoBehaviour
 
     void HandleJump()
     {
-        if (jumpBufferTimer > 0f && isGrounded)
+        if (jumpBufferTimer > 0 && (isGrounded || coyoteTimer > 0f))
         {
             isJumping = true;
             jumpTimeCounter = 0f;
             jumpBufferTimer = 0f;
+            coyoteTimer = 0f;
         }
 
         if (isJumping)
         {
-            if (!JumpHeld || jumpTimeCounter >= maxJumpTime)
+            if (!JumpHeld || jumpTimeCounter >= maxJumpTime || isTouchingCeiling)
             {
                 isJumping = false;
                 return;
@@ -197,7 +220,7 @@ public class PlayerController : MonoBehaviour
     void HandleDashMovement()
     {
         Vector2 dashDir = new(facingDirection, 0);
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, dashDir, 0.5f, wallLayer);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, dashDir, 0.5f, dashStop);
         if (hit.collider)
         {
             currentState = PlayerState.Normal;
@@ -214,7 +237,7 @@ public class PlayerController : MonoBehaviour
 
     void HandleFastFall()
     {
-        if (!isGrounded && !isJumping && currentState != PlayerState.Dashing && CrouchHeld)
+        if (!isGrounded && !isJumping && currentState != PlayerState.Dashing && CrouchHeld && rb.linearVelocity.y < 0)
             rb.gravityScale = fastFallGravityScale;
         else
             rb.gravityScale = normalGravityScale;
@@ -223,7 +246,7 @@ public class PlayerController : MonoBehaviour
     public void StopRising()
     {
         if (rb.linearVelocity.y > 0f)
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * 0.2f);
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * 0.3f);
 
         isJumping = false;
         jumpTimeCounter = maxJumpTime;
