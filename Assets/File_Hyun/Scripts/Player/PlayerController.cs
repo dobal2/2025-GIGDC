@@ -3,8 +3,9 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D), typeof(BoxCollider2D))]
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController Instance { get; private set; }
+
     public float MoveInput { private get; set; }
-    public bool JumpHeld { private get; set; }
     public bool DashPressed { private get; set; }
     public bool CrouchHeld { private get; set; }
 
@@ -22,10 +23,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float fastFallGravityScale = 6f;
 
     [Header("Jump Settings")]
-    [SerializeField] private float baseJumpForce = 10f;
-    [SerializeField] private float heldJumpForce = 60f;
-    [SerializeField] private float jumpDecayFactor = 0.5f;
-    [SerializeField] private float maxJumpTime = 0.3f;
+    [SerializeField] private AnimationCurve jumpForceCurve;
+    [SerializeField] private float maxJumpTime = 0.4f;
+    [SerializeField] private float maxJumpForce = 20f;
+    [SerializeField] private float jumpHeightMultiplier = 1f;
     [SerializeField] private float jumpBufferTime = 0.1f;
 
     [Header("Dash Settings")]
@@ -61,6 +62,13 @@ public class PlayerController : MonoBehaviour
 
     void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+
         rb = GetComponent<Rigidbody2D>();
         boxCol = GetComponent<BoxCollider2D>();
         originalColliderSize = boxCol.size;
@@ -106,7 +114,6 @@ public class PlayerController : MonoBehaviour
                 HandleDashMovement();
                 break;
         }
-
         HandleFastFall();
     }
 
@@ -164,29 +171,25 @@ public class PlayerController : MonoBehaviour
         if (jumpBufferTimer > 0f && isGrounded)
         {
             isJumping = true;
-            jumpTimeCounter = maxJumpTime;
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, baseJumpForce);
+            jumpTimeCounter = 0f;
             jumpBufferTimer = 0f;
         }
 
-        if (JumpHeld && isJumping)
+        if (isJumping)
         {
-            if (jumpTimeCounter > 0f)
-            {
-                float upwardVelocity = Mathf.Max(rb.linearVelocity.y, 0f);
-                float decay = Mathf.Clamp01(1f - upwardVelocity * jumpDecayFactor * 0.1f);
-                float additionalForce = heldJumpForce * decay;
-                rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y + additionalForce * Time.fixedDeltaTime);
-                jumpTimeCounter -= Time.fixedDeltaTime;
-            }
-            else
+            if (jumpTimeCounter >= maxJumpTime)
             {
                 isJumping = false;
+                return;
             }
-        }
 
-        if (!JumpHeld)
-            isJumping = false;
+            jumpTimeCounter += Time.fixedDeltaTime;
+
+            float t = jumpTimeCounter / maxJumpTime;
+            float force = jumpForceCurve.Evaluate(t) * maxJumpForce * jumpHeightMultiplier;
+
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, force);
+        }
     }
 
     void HandleDashMovement()
@@ -215,6 +218,14 @@ public class PlayerController : MonoBehaviour
             rb.gravityScale = normalGravityScale;
     }
 
+    public void StopRising()
+    {
+        if (rb.linearVelocity.y > 0f)
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * 0.2f);
+
+        isJumping = false;
+        jumpTimeCounter = maxJumpTime;
+    }
 
     void ApplyConstraintsForState(PlayerState state)
     {
