@@ -134,13 +134,13 @@ public class PlayerController : MonoBehaviour
     void UpdateGrounded()
     {
         bool wasGrounded = isGrounded;
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+
+        isGrounded = !isJumping && (bool)Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
 
         if (isGrounded) coyoteTimer = coyoteTime;
         else coyoteTimer -= Time.deltaTime;
 
-        if (!wasGrounded && isGrounded)
-            canAirDash = true;
+        if (!wasGrounded && isGrounded) canAirDash = true;
     }
 
     void UpdateCeiling()

@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class PlayerNormalState : PlayerState
 {
+    private bool shouldJump = false;
+
     public PlayerNormalState(PlayerController player, PlayerStateMachine stateMachine)
         : base(player, stateMachine) { }
 
@@ -24,12 +26,10 @@ public class PlayerNormalState : PlayerState
             }
         }
 
-        if (player.jumpBufferTimer > 0 && (player.isGrounded || player.coyoteTimer > 0f))
+        if (!player.isJumping && player.jumpBufferTimer > 0 && (player.isGrounded || player.coyoteTimer > 0f))
         {
-            player.isJumping = true;
-            player.jumpTimeCounter = 0f;
+            shouldJump = true;
             player.jumpBufferTimer = 0f;
-            player.coyoteTimer = 0f;
         }
 
         if (Mathf.Abs(player.MoveInput) <= 0.01f)
@@ -40,6 +40,15 @@ public class PlayerNormalState : PlayerState
 
     public override void FixedUpdate()
     {
+        if (shouldJump)
+        {
+            player.coyoteTimer = 0f;
+            player.isJumping = true;
+            player.isGrounded = false;
+            player.jumpTimeCounter = 0f;
+            shouldJump = false;
+        }
+
         player.HandleMove(player.MoveSpeed);
         player.HandleJump();
         player.HandleFastFall();

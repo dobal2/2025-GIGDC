@@ -26,10 +26,11 @@ public class PlayerIdleState : PlayerState
 
         if (player.jumpBufferTimer > 0 && (player.isGrounded || player.coyoteTimer > 0f))
         {
+            player.coyoteTimer = 0f;
             player.isJumping = true;
+            player.isGrounded = false;
             player.jumpTimeCounter = 0f;
             player.jumpBufferTimer = 0f;
-            player.coyoteTimer = 0f;
         }
 
         if (Mathf.Abs(player.MoveInput) > 0.01f)

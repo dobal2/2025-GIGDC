@@ -6,7 +6,6 @@ public class UIButtonEffect : MonoBehaviour
     public TMP_Text targetText;
     public Color normalColor = Color.black;
     public Color selectedColor = Color.yellow;
-    public Color clickColor = Color.cyan;
 
     public void StopSelectEffect() // 이펙트 중지 및 제거
     {
@@ -18,14 +17,6 @@ public class UIButtonEffect : MonoBehaviour
         if (!isActiveAndEnabled) return;
 
         SetTextColor(selectedColor);
-    }
-
-    public void PlayClickEffect() // 클릭 이펙트 재생
-    {
-        if (!isActiveAndEnabled) return;
-
-        StopAllCoroutines();
-        SetTextColor(clickColor);
     }
 
     private void OnDisable()

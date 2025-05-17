@@ -72,8 +72,15 @@ public class InputManager : MonoBehaviour
         {
             if (selected.TryGetComponent<Button>(out var btn)) btn.onClick.Invoke();
 
-            controller.onClick?.Invoke();
+            if (controller.nextOnClick != null && controller.nextOnClick.activeInHierarchy)
+            {
+                EventSystem.current.SetSelectedGameObject(controller.nextOnClick);
+                lastSelectedButton = controller.nextOnClick;
+            }
+        }
 
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
             if (controller.nextOnClick != null && controller.nextOnClick.activeInHierarchy)
             {
                 EventSystem.current.SetSelectedGameObject(controller.nextOnClick);
