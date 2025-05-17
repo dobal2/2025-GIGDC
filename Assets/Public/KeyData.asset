@@ -13,20 +13,18 @@ MonoBehaviour:
   m_Name: KeyData
   m_EditorClassIdentifier: 
   Player:
-    LeftMoveKey: 97
-    RightMoveKey: 100
-    RunKey: 304
-    JumpKey: 32
-    AttackKey: 13
-    SkillKey: 39
-    InteractionKey: 101
-    ItemSelectionLeftKey: 276
-    ItemSelectionRightKey: 275
-    OnItemSelectionKey: 273
-    OffItemSelectionKey: 274
+    LeftMoveKey: 276
+    RightMoveKey: 275
+    DownMoveKey: 274
+    DashKey: 304
+    JumpKey: 122
+    AttackKey: 120
+    SkillKey: 99
+    InteractionKey: 273
+    WeaponchangeKey: 308
   Ui:
     UpKey: 273
     DownKey: 274
     LeftKey: 276
     RightKey: 275
-    SelectKey: 32
+    SelectKey: 120
