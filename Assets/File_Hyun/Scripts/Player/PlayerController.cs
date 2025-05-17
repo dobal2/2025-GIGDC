@@ -5,9 +5,9 @@ public class PlayerController : MonoBehaviour
 {
     public static PlayerController Instance { get; private set; }
 
-    public float MoveInput { private get; set; }
-    public bool CrouchHeld { private get; set; }
-    public bool JumpHeld { private get; set; }
+    public float MoveInput { get; set; }
+    public bool CrouchHeld { get; set; }
+    public bool JumpHeld { get; set; }
 
     public bool JumpPressed
     {
@@ -19,13 +19,11 @@ public class PlayerController : MonoBehaviour
         set { if (value) dashBufferTimer = dashBufferTime; }
     }
 
-    private enum PlayerState { Normal, Crouching, Dashing }
-    private PlayerState currentState = PlayerState.Normal;
-    private PlayerState previousState = PlayerState.Normal;
-
     [Header("Movement Settings")]
     [SerializeField] private float moveSpeed = 6f;
     [SerializeField] private float fastFallGravityScale = 16f;
+    public float MoveSpeed => moveSpeed;
+    public float FastFallGravityScale => fastFallGravityScale;
 
     [Header("Jump Settings")]
     [SerializeField] private AnimationCurve jumpForceCurve;
@@ -34,6 +32,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float jumpHeightMultiplier = 1f;
     [SerializeField] private float jumpBufferTime = 0.1f;
     [SerializeField] private float coyoteTime = 0.2f;
+    public AnimationCurve JumpForceCurve => jumpForceCurve;
+    public float MaxJumpTime => maxJumpTime;
+    public float MaxJumpForce => maxJumpForce;
+    public float JumpHeightMultiplier => jumpHeightMultiplier;
+    public float JumpBufferTime => jumpBufferTime;
+    public float CoyoteTime => coyoteTime;
 
     [Header("Dash Settings")]
     [SerializeField] private float dashSpeed = 50f;
@@ -41,6 +45,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float dashCooldown = 0.8f;
     [SerializeField] private float dashBufferTime = 0.1f;
     [SerializeField] private LayerMask dashStop;
+    public float DashSpeed => dashSpeed;
+    public float DashDuration => dashDuration;
+    public float DashCooldown => dashCooldown;
+    public LayerMask DashStop => dashStop;
 
     [Header("Ground Check")]
     [SerializeField] private Transform groundCheck;
@@ -55,25 +63,29 @@ public class PlayerController : MonoBehaviour
     [Header("Crouch Settings")]
     [SerializeField] private float crouchColliderHeightMultiplier = 0.5f;
     [SerializeField] private float crouchSpeedMultiplier = 0.5f;
+    public float CrouchColliderHeightMultiplier => crouchColliderHeightMultiplier;
+    public float CrouchSpeedMultiplier => crouchSpeedMultiplier;
 
     private Rigidbody2D rb;
     private BoxCollider2D boxCol;
 
-    private bool isGrounded;
-    private bool isJumping;
-    private float jumpTimeCounter;
-    private float jumpBufferTimer;
-    private float coyoteTimer;
-    private bool canAirDash = true;
-    private float lastDashTime = -999f;
-    private float dashTimer;
-    private int facingDirection = 1;
-    private float normalGravityScale;
-    private bool isTouchingCeiling;
-    private float dashBufferTimer;
+    [HideInInspector] public bool isGrounded;
+    [HideInInspector] public bool isJumping;
+    [HideInInspector] public float jumpTimeCounter;
+    [HideInInspector] public float jumpBufferTimer;
+    [HideInInspector] public float coyoteTimer;
+    [HideInInspector] public bool canAirDash = true;
+    [HideInInspector] public float lastDashTime = -999f;
+    [HideInInspector] public float dashTimer;
+    [HideInInspector] public int facingDirection = 1;
+    [HideInInspector] public float normalGravityScale;
+    [HideInInspector] public bool isTouchingCeiling;
+    [HideInInspector] public float dashBufferTimer;
 
     private Vector2 originalColliderSize;
     private Vector2 originalColliderOffset;
+
+    private PlayerStateMachine stateMachine;
 
     void Awake()
     {
@@ -95,45 +107,28 @@ public class PlayerController : MonoBehaviour
     {
         InputManager.Instance.RegisterPlayer(this);
         InputManager.Instance.currentContext = InputManager.InputContext.Gameplay;
+
+        stateMachine = new PlayerStateMachine();
+        stateMachine.Initialize(new PlayerIdleState(this, stateMachine));
     }
 
     void Update()
     {
         UpdateGrounded();
         UpdateCeiling();
-        HandleStateTransitions();
 
         if (jumpBufferTimer > 0f)
             jumpBufferTimer -= Time.deltaTime;
 
         if (dashBufferTimer > 0f)
             dashBufferTimer -= Time.deltaTime;
+
+        stateMachine.Update();
     }
 
     void FixedUpdate()
     {
-        if (currentState != previousState)
-        {
-            ApplyConstraintsForState(currentState);
-            previousState = currentState;
-        }
-
-        switch (currentState)
-        {
-            case PlayerState.Normal:
-                HandleMove(moveSpeed);
-                HandleJump();
-                break;
-
-            case PlayerState.Crouching:
-                HandleMove(moveSpeed * crouchSpeedMultiplier);
-                break;
-
-            case PlayerState.Dashing:
-                HandleDashMovement();
-                break;
-        }
-        HandleFastFall();
+        stateMachine.FixedUpdate();
     }
 
     void UpdateGrounded()
@@ -145,9 +140,7 @@ public class PlayerController : MonoBehaviour
         else coyoteTimer -= Time.deltaTime;
 
         if (!wasGrounded && isGrounded)
-        {
             canAirDash = true;
-        }
     }
 
     void UpdateCeiling()
@@ -155,60 +148,15 @@ public class PlayerController : MonoBehaviour
         isTouchingCeiling = Physics2D.OverlapCircle(ceilingCheck.position, ceilingCheckRadius, ceilingLayer);
     }
 
-    void HandleStateTransitions()
-    {
-        if (CrouchHeld && isGrounded && currentState != PlayerState.Dashing)
-        {
-            if (currentState != PlayerState.Crouching)
-            {
-                currentState = PlayerState.Crouching;
-                Vector2 newSize = new(originalColliderSize.x, originalColliderSize.y * crouchColliderHeightMultiplier);
-                Vector2 newOffset = new(originalColliderOffset.x, originalColliderOffset.y + (originalColliderSize.y * (crouchColliderHeightMultiplier - 1f) / 2f));
-                boxCol.size = newSize;
-                boxCol.offset = newOffset;
-            }
-            return;
-        }
-        else if (currentState == PlayerState.Crouching)
-        {
-            currentState = PlayerState.Normal;
-            boxCol.size = originalColliderSize;
-            boxCol.offset = originalColliderOffset;
-        }
-
-        if (dashBufferTimer > 0f && Time.time >= lastDashTime + dashCooldown)
-        {
-            if (isGrounded || canAirDash)
-            {
-                currentState = PlayerState.Dashing;
-                dashTimer = dashDuration;
-                lastDashTime = Time.time;
-                if (!isGrounded) canAirDash = false;
-
-                jumpBufferTimer = 0f;
-                dashBufferTimer = 0f;
-                isJumping = false;
-            }
-        }
-    }
-
-    void HandleMove(float speed)
+    public void HandleMove(float speed)
     {
         rb.linearVelocity = new Vector2(MoveInput * speed, rb.linearVelocity.y);
         if (MoveInput != 0)
             facingDirection = MoveInput > 0 ? 1 : -1;
     }
 
-    void HandleJump()
+    public void HandleJump()
     {
-        if (jumpBufferTimer > 0 && (isGrounded || coyoteTimer > 0f))
-        {
-            isJumping = true;
-            jumpTimeCounter = 0f;
-            jumpBufferTimer = 0f;
-            coyoteTimer = 0f;
-        }
-
         if (isJumping)
         {
             if (!JumpHeld || jumpTimeCounter >= maxJumpTime || isTouchingCeiling)
@@ -218,35 +166,15 @@ public class PlayerController : MonoBehaviour
             }
 
             jumpTimeCounter += Time.fixedDeltaTime;
-
             float t = jumpTimeCounter / maxJumpTime;
             float force = jumpForceCurve.Evaluate(t) * maxJumpForce * jumpHeightMultiplier;
-
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, force);
         }
     }
 
-    void HandleDashMovement()
+    public void HandleFastFall()
     {
-        Vector2 dashDir = new(facingDirection, 0);
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, dashDir, 0.5f, dashStop);
-        if (hit.collider)
-        {
-            currentState = PlayerState.Normal;
-            return;
-        }
-
-        rb.linearVelocity = new Vector2(dashSpeed * facingDirection, 0);
-        dashTimer -= Time.fixedDeltaTime;
-        if (dashTimer <= 0f)
-        {
-            currentState = PlayerState.Normal;
-        }
-    }
-
-    void HandleFastFall()
-    {
-        if (!isGrounded && !isJumping && currentState != PlayerState.Dashing && CrouchHeld && rb.linearVelocity.y < 0)
+        if (!isGrounded && !isJumping && CrouchHeld && rb.linearVelocity.y < 0)
             rb.gravityScale = fastFallGravityScale;
         else
             rb.gravityScale = normalGravityScale;
@@ -261,16 +189,8 @@ public class PlayerController : MonoBehaviour
         jumpTimeCounter = maxJumpTime;
     }
 
-    void ApplyConstraintsForState(PlayerState state)
-    {
-        switch (state)
-        {
-            case PlayerState.Dashing:
-                rb.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
-                break;
-            default:
-                rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-                break;
-        }
-    }
+    public Rigidbody2D Rigidbody => rb;
+    public BoxCollider2D BoxCollider => boxCol;
+    public Vector2 OriginalColliderSize => originalColliderSize;
+    public Vector2 OriginalColliderOffset => originalColliderOffset;
 }
