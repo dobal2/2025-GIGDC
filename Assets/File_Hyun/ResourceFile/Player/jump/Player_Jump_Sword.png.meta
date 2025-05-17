@@ -309,7 +309,15 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Player_Jump_Sword_0: 4821513327841905895
+      Player_Jump_Sword_1: -4428347843783023522
+      Player_Jump_Sword_2: 229551671881691526
+      Player_Jump_Sword_3: -2112037496057602550
+      Player_Jump_Sword_4: -1621737620639501910
+      Player_Jump_Sword_5: -8432441764946706371
+      Player_Jump_Sword_6: -8190727773553386393
+      Player_Jump_Sword_7: 8246312536923835354
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
