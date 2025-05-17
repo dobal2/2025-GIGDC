@@ -24,8 +24,8 @@ public class PlayerController : MonoBehaviour
     private PlayerState previousState = PlayerState.Normal;
 
     [Header("Movement Settings")]
-    [SerializeField] private float moveSpeed = 5f;
-    [SerializeField] private float fastFallGravityScale = 10f;
+    [SerializeField] private float moveSpeed = 6f;
+    [SerializeField] private float fastFallGravityScale = 16f;
 
     [Header("Jump Settings")]
     [SerializeField] private AnimationCurve jumpForceCurve;
@@ -36,9 +36,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float coyoteTime = 0.2f;
 
     [Header("Dash Settings")]
-    [SerializeField] private float dashSpeed = 20f;
-    [SerializeField] private float dashDuration = 0.2f;
-    [SerializeField] private float dashCooldown = 0.6f;
+    [SerializeField] private float dashSpeed = 50f;
+    [SerializeField] private float dashDuration = 0.1f;
+    [SerializeField] private float dashCooldown = 0.8f;
     [SerializeField] private float dashBufferTime = 0.1f;
     [SerializeField] private LayerMask dashStop;
 
@@ -77,18 +77,18 @@ public class PlayerController : MonoBehaviour
 
     void Awake()
     {
+        rb = GetComponent<Rigidbody2D>();
+        boxCol = GetComponent<BoxCollider2D>();
+        originalColliderSize = boxCol.size;
+        originalColliderOffset = boxCol.offset;
+        normalGravityScale = rb.gravityScale;
+
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
             return;
         }
         Instance = this;
-
-        rb = GetComponent<Rigidbody2D>();
-        boxCol = GetComponent<BoxCollider2D>();
-        originalColliderSize = boxCol.size;
-        originalColliderOffset = boxCol.offset;
-        normalGravityScale = rb.gravityScale;
     }
 
     void Start()

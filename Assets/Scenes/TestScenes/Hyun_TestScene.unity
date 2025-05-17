@@ -542,9 +542,9 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!61 &395574627
 BoxCollider2D:
@@ -604,8 +604,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abd58cc7ee0517c47a5d391bd21f8779, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
-  fastFallGravityScale: 10
+  moveSpeed: 6
+  fastFallGravityScale: 16
   jumpForceCurve:
     serializedVersion: 2
     m_Curve:
@@ -635,9 +635,9 @@ MonoBehaviour:
   jumpHeightMultiplier: 1
   jumpBufferTime: 0.1
   coyoteTime: 0.2
-  dashSpeed: 20
-  dashDuration: 0.2
-  dashCooldown: 0.6
+  dashSpeed: 50
+  dashDuration: 0.1
+  dashCooldown: 0.8
   dashBufferTime: 0.1
   dashStop:
     serializedVersion: 2
