@@ -3,9 +3,7 @@ using UnityEngine;
 public class SpearSkillState : PlayerState
 {
     private bool hasLanded = false;
-    private Vector2 direction;
-    private float horizontalForce;
-    private float verticalForce;
+    private Vector2 initialVelocity;
 
     public SpearSkillState(PlayerController player, PlayerStateMachine stateMachine)
         : base(player, stateMachine) { }
@@ -17,18 +15,21 @@ public class SpearSkillState : PlayerState
     {
         if (player.isGrounded)
         {
-            direction = new Vector2(player.facingDirection, 1f).normalized;
-            horizontalForce = 10f;
-            verticalForce = 5f;
+            Vector2 direction = new(player.facingDirection, 1f);
+            initialVelocity = direction.normalized * 10f;
         }
         else
         {
-            direction = Vector2.down;
-            horizontalForce = 0f;
-            verticalForce = 20f;
+            initialVelocity = Vector2.down * 15f;
         }
 
-        player.Rigidbody.linearVelocity = direction * new Vector2(horizontalForce, verticalForce);
+        player.Rigidbody.linearVelocity = initialVelocity;
+
+        player.jumpBufferTimer = 0f;
+        player.dashBufferTimer = 0f;
+        player.attackBufferTimer = 0f;
+        player.skillRequested = false;
+        player.isJumping = false;
     }
 
     public override void Update()
@@ -43,6 +44,6 @@ public class SpearSkillState : PlayerState
 
     void TriggerImpactEffect()
     {
-        // ��: �ٴ� ��� ���� ����
+        
     }
 }

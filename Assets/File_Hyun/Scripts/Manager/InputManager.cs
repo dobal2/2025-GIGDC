@@ -126,6 +126,9 @@ public class InputManager : MonoBehaviour
         if (Input.GetKeyUp(keyData.Player.JumpKey)) PlayerController.Instance.StopRising();
         _player.DashPressed = Input.GetKeyDown(keyData.Player.DashKey);
         _player.CrouchHeld = Input.GetKey(keyData.Player.DownMoveKey);
+
+        _player.AttackPressed = Input.GetKeyDown(keyData.Player.AttackKey);
+        _player.SkillPressed = Input.GetKeyDown(keyData.Player.SkillKey);
     }
     #endregion
 }

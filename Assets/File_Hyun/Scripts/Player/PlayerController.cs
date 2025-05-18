@@ -4,6 +4,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public static PlayerController Instance { get; private set; }
+    public AttackController AttackController { get; private set; }
 
     public float MoveInput { get; set; }
     public bool CrouchHeld { get; set; }
@@ -17,6 +18,16 @@ public class PlayerController : MonoBehaviour
     public bool DashPressed
     {
         set { if (value) dashBufferTimer = dashBufferTime; }
+    }
+
+    public bool AttackPressed
+    {
+        set { if (value) attackBufferTimer = attackBufferTime; }
+    }
+
+    public bool SkillPressed
+    {
+        set { if (value) skillRequested = true; }
     }
 
     [Header("Movement Settings")]
@@ -64,6 +75,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float crouchColliderHeightMultiplier = 0.5f;
     [SerializeField] private float crouchSpeedMultiplier = 0.5f;
     public float CrouchColliderHeightMultiplier => crouchColliderHeightMultiplier;
+    public float CrouchSpeedMultiplier => crouchSpeedMultiplier;
+
+    [Header("Attack Settings")]
+    [SerializeField] private float attackBufferTime = 0.2f;
+    [HideInInspector] public float attackBufferTimer = 0f;
+    [HideInInspector] public bool skillRequested = false;
+    public bool AttackBuffered => attackBufferTimer > 0f;
 
     private Rigidbody2D rb;
     private BoxCollider2D boxCol;
@@ -90,6 +108,8 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         boxCol = GetComponent<BoxCollider2D>();
+        AttackController = GetComponent<AttackController>();
+        AttackController.Initialize(WeaponType.Spear);
         originalColliderSize = boxCol.size;
         originalColliderOffset = boxCol.offset;
         normalGravityScale = rb.gravityScale;
@@ -121,6 +141,9 @@ public class PlayerController : MonoBehaviour
 
         if (dashBufferTimer > 0f)
             dashBufferTimer -= Time.deltaTime;
+
+        if (attackBufferTimer > 0f)
+            attackBufferTimer -= Time.deltaTime;
 
         stateMachine.Update();
     }
@@ -186,6 +209,16 @@ public class PlayerController : MonoBehaviour
 
         isJumping = false;
         jumpTimeCounter = maxJumpTime;
+    }
+
+    public void ConsumeAttackBuffer()
+    {
+        attackBufferTimer = 0f;
+    }
+
+    public void ConsumeSkillRequest()
+    {
+        skillRequested = false;
     }
 
     public Rigidbody2D Rigidbody => rb;

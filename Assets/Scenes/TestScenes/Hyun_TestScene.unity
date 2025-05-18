@@ -771,6 +771,9 @@ MonoBehaviour:
     m_Bits: 64
   crouchColliderHeightMultiplier: 0.5
   crouchSpeedMultiplier: 0.5
+  attackBufferTime: 0.2
+  attackBufferTimer: 0
+  skillRequested: 0
   isGrounded: 0
   isJumping: 0
   jumpTimeCounter: 0
@@ -953,6 +956,7 @@ GameObject:
   - component: {fileID: 1252394521286520684}
   - component: {fileID: 5028477998089189781}
   - component: {fileID: 727137108348619991}
+  - component: {fileID: 5918730046746740477}
   - component: {fileID: 145162027325183794}
   - component: {fileID: 391269722744936413}
   m_Layer: 8
@@ -962,6 +966,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &5918730046746740477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5918730046746740476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 351302e8a97a6a348936a03e2eb4102d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponDatabase: {fileID: 11400000, guid: 1944ca257422ba14ebfa1d2b2b902f30, type: 2}
+  comboMaxTime: 0.5
 --- !u!212 &5974342897994062318
 SpriteRenderer:
   m_ObjectHideFlags: 0

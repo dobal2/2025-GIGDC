@@ -9,6 +9,20 @@ public class PlayerIdleState : PlayerState
 
     public override void Update()
     {
+        if (player.skillRequested)
+        {
+            player.ConsumeSkillRequest();
+            stateMachine.ChangeState(player.AttackController.GetSkillState(stateMachine));
+            return;
+        }
+
+        if (player.AttackBuffered)
+        {
+            player.ConsumeAttackBuffer();
+            stateMachine.ChangeState(player.AttackController.GetAttackState(stateMachine));
+            return;
+        }
+
         if (player.CrouchHeld && player.isGrounded)
         {
             stateMachine.ChangeState(new PlayerCrouchState(player, stateMachine));
