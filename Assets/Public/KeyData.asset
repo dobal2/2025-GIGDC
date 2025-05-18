@@ -21,7 +21,7 @@ MonoBehaviour:
     AttackKey: 120
     SkillKey: 99
     InteractionKey: 273
-    WeaponchangeKey: 308
+    WeaponchangeKey: 306
   Ui:
     UpKey: 273
     DownKey: 274

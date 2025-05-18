@@ -61,7 +61,7 @@ public class InputManager : MonoBehaviour
 
         if (selected == null) return;
 
-        if (!selected.TryGetComponent<UIButtonController>(out var controller)) return;
+        if (!selected.TryGetComponent(out UIButtonController controller)) return;
 
         if (Input.GetKeyDown(keyData.Ui.UpKey)) TryMove(controller.upButton);
         else if (Input.GetKeyDown(keyData.Ui.DownKey)) TryMove(controller.downButton);
@@ -70,7 +70,7 @@ public class InputManager : MonoBehaviour
 
         if (Input.GetKeyDown(keyData.Ui.SelectKey))
         {
-            if (selected.TryGetComponent<Button>(out var btn)) btn.onClick.Invoke();
+            if (selected.TryGetComponent(out Button button)) button.onClick.Invoke();
 
             if (controller.nextOnClick != null && controller.nextOnClick.activeInHierarchy)
             {

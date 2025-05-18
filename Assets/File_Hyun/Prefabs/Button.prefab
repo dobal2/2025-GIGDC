@@ -148,7 +148,6 @@ GameObject:
   - component: {fileID: 8587348646784421196}
   - component: {fileID: 371529187341818139}
   - component: {fileID: 5128029603793743941}
-  - component: {fileID: 8514263542083926473}
   - component: {fileID: 2320842799755233177}
   - component: {fileID: 8664367770179030054}
   m_Layer: 5
@@ -260,9 +259,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8514263542083926473}
-        m_TargetAssemblyTypeName: onClick, Assembly-CSharp
-        m_MethodName: onclick
+      - m_Target: {fileID: 8664367770179030054}
+        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
+        m_MethodName: PlayClickEffect
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -272,19 +271,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &8514263542083926473
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8693090717357717119}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cce3e3115d10d294895c3ed4ae546472, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShowLog: 0
 --- !u!114 &2320842799755233177
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -307,7 +293,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8664367770179030054}
         m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: PlaySelectEffect
+        m_MethodName: StartHoverEffect
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -322,7 +308,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8664367770179030054}
         m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StopSelectEffect
+        m_MethodName: StopHoverEffect
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -346,4 +332,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetText: {fileID: 4619251180456889816}
   normalColor: {r: 0, g: 0, b: 0, a: 1}
-  selectedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  gradientColor1: {r: 1, g: 0.98568726, b: 0, a: 1}
+  gradientColor2: {r: 0.6378139, g: 1, b: 0, a: 1}
+  gradientSpeed: 1.5
+  clickFlashInterval: 0.05

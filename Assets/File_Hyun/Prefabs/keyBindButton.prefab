@@ -148,11 +148,10 @@ GameObject:
   - component: {fileID: 1644273505340051898}
   - component: {fileID: 1649750542376693962}
   - component: {fileID: 4396876603359346018}
-  - component: {fileID: 2167885205700643763}
   - component: {fileID: 6069786488033189870}
+  - component: {fileID: 8565126883835662559}
   - component: {fileID: 7533160950113887817}
   - component: {fileID: 3560460495798004151}
-  - component: {fileID: 8565126883835662559}
   m_Layer: 5
   m_Name: keyBindButton
   m_TagString: Untagged
@@ -262,32 +261,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1649750542376693962}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2167885205700643763}
-        m_TargetAssemblyTypeName: onClick, Assembly-CSharp
-        m_MethodName: onclick
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &2167885205700643763
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7356415350951678122}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cce3e3115d10d294895c3ed4ae546472, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShowLog: 0
+      m_Calls: []
 --- !u!114 &6069786488033189870
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -310,7 +284,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7533160950113887817}
         m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: PlaySelectEffect
+        m_MethodName: StartHoverEffect
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -322,7 +296,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 3560460495798004151}
         m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: PlaySelectEffect
+        m_MethodName: StartHoverEffect
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -337,7 +311,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7533160950113887817}
         m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StopSelectEffect
+        m_MethodName: StopHoverEffect
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -349,7 +323,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 3560460495798004151}
         m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StopSelectEffect
+        m_MethodName: StopHoverEffect
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -359,41 +333,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  onClick:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!114 &7533160950113887817
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7356415350951678122}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1f27e8a9470beb4cb9da06e2694495b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetText: {fileID: 1489083552530192204}
-  normalColor: {r: 1, g: 1, b: 1, a: 1}
-  selectedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  clickColor: {r: 0, g: 1, b: 1, a: 1}
---- !u!114 &3560460495798004151
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7356415350951678122}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1f27e8a9470beb4cb9da06e2694495b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetText: {fileID: 8499854983014719156}
-  normalColor: {r: 1, g: 1, b: 1, a: 1}
-  selectedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  clickColor: {r: 0, g: 1, b: 1, a: 1}
 --- !u!114 &8565126883835662559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -411,6 +350,42 @@ MonoBehaviour:
   fieldName: 
   keyText: {fileID: 8499854983014719156}
   rebindButton: {fileID: 4396876603359346018}
+--- !u!114 &7533160950113887817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7356415350951678122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1f27e8a9470beb4cb9da06e2694495b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetText: {fileID: 1489083552530192204}
+  normalColor: {r: 1, g: 1, b: 1, a: 1}
+  gradientColor1: {r: 1, g: 0.98568726, b: 0, a: 1}
+  gradientColor2: {r: 0.6378139, g: 1, b: 0, a: 1}
+  gradientSpeed: 1.5
+  clickFlashInterval: 0.05
+--- !u!114 &3560460495798004151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7356415350951678122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1f27e8a9470beb4cb9da06e2694495b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetText: {fileID: 8499854983014719156}
+  normalColor: {r: 1, g: 1, b: 1, a: 1}
+  gradientColor1: {r: 1, g: 0.98568726, b: 0, a: 1}
+  gradientColor2: {r: 0.6378139, g: 1, b: 0, a: 1}
+  gradientSpeed: 1.5
+  clickFlashInterval: 0.05
 --- !u!1 &7375056892080854535
 GameObject:
   m_ObjectHideFlags: 0
