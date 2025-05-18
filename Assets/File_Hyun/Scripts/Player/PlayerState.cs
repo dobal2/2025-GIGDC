@@ -3,6 +3,8 @@ public abstract class PlayerState
     protected PlayerController player;
     protected PlayerStateMachine stateMachine;
 
+    public virtual bool IsCombatState => false;
+
     public abstract string Name { get; }
 
     public PlayerState(PlayerController player, PlayerStateMachine stateMachine)

@@ -10,8 +10,8 @@ public class InputManager : MonoBehaviour
     public InputContext currentContext = InputContext.UI;
 
     public KeyData keyData;
-    public GameObject lastSelectedButton;
 
+    [HideInInspector] public GameObject lastSelectedButton;
     private PlayerController _player;
 
     void Awake()

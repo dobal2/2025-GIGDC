@@ -151,7 +151,6 @@ GameObject:
   - component: {fileID: 8514263542083926473}
   - component: {fileID: 2320842799755233177}
   - component: {fileID: 8664367770179030054}
-  - component: {fileID: 3982315164754060217}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -318,18 +317,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 3982315164754060217}
-        m_TargetAssemblyTypeName: GlitchEffecter, Assembly-CSharp
-        m_MethodName: PlayHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
   onDeselect:
     m_PersistentCalls:
       m_Calls:
@@ -345,21 +332,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 3982315164754060217}
-        m_TargetAssemblyTypeName: GlitchEffecter, Assembly-CSharp
-        m_MethodName: StopSelectEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onClick:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &8664367770179030054
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -375,17 +347,3 @@ MonoBehaviour:
   targetText: {fileID: 4619251180456889816}
   normalColor: {r: 0, g: 0, b: 0, a: 1}
   selectedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
---- !u!114 &3982315164754060217
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8693090717357717119}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6be1e98e6dffc7f4a832ad316f8a70e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tmpText: {fileID: 4619251180456889816}
-  noiseScale: 2

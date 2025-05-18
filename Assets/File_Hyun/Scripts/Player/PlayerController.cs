@@ -64,7 +64,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float crouchColliderHeightMultiplier = 0.5f;
     [SerializeField] private float crouchSpeedMultiplier = 0.5f;
     public float CrouchColliderHeightMultiplier => crouchColliderHeightMultiplier;
-    public float CrouchSpeedMultiplier => crouchSpeedMultiplier;
 
     private Rigidbody2D rb;
     private BoxCollider2D boxCol;
