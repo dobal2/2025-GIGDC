@@ -13,16 +13,16 @@ MonoBehaviour:
   m_Name: Spear
   m_EditorClassIdentifier: 
   type: 0
-  maxComboCount: 3
-  comboDamages:
-  - 3
-  - 3
-  - 3
-  comboPushDistances:
-  - 0.3
-  - 0.5
-  - 0.5
-  comboDelays:
-  - 0.3
-  - 0.3
-  - 0.5
+  comboInfos:
+  - damage: 1
+    pushDistance: 2
+    pushTime: 1
+    ComboKeep: 1
+  - damage: 1
+    pushDistance: 3
+    pushTime: 1
+    ComboKeep: 2
+  - damage: 1
+    pushDistance: 4
+    pushTime: 1
+    ComboKeep: 1

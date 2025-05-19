@@ -9,24 +9,24 @@ public class AttackController : MonoBehaviour
     private WeaponData currentWeaponData;
 
     public WeaponType CurrentWeapon { get; private set; }
-    public bool HasReachedMaxCombo => comboStep >= currentWeaponData.maxComboCount;
 
     private int comboStep = 0;
-    private float comboDelayTimer = 0f;
+    private float pushTimer = 0f;
+    private float comboKeepTimer = 0f;
 
     private float currentPushDistance = 0f;
     private float pushSpeedPerSecond = 0f;
 
     private bool receivedNextInput = false;
 
-    public bool CanComboInput => comboDelayTimer <= 0f;
-
+    public bool HasReachedMaxCombo => comboStep >= currentWeaponData.maxComboCount;
+    public bool IsPushing => pushTimer > 0f && pushSpeedPerSecond != 0f;
+    public bool CanComboInput => pushTimer <= 0f;
     public bool ShouldEndCombo =>
         comboStep > 0 &&
-        (HasReachedMaxCombo || !receivedNextInput) &&
-        CanComboInput;
-
-    public bool IsPushing => comboDelayTimer > 0f && pushSpeedPerSecond > 0f;
+        !receivedNextInput &&
+        pushTimer <= 0f &&
+        comboKeepTimer <= 0f;
 
     void Awake()
     {
@@ -44,7 +44,8 @@ public class AttackController : MonoBehaviour
         currentWeaponData = weaponDatabase.GetData(weapon);
 
         comboStep = 0;
-        comboDelayTimer = 0f;
+        pushTimer = 0f;
+        comboKeepTimer = 0f;
         currentPushDistance = 0f;
         pushSpeedPerSecond = 0f;
         receivedNextInput = false;
@@ -56,12 +57,11 @@ public class AttackController : MonoBehaviour
         receivedNextInput = false;
 
         PlayCombo(comboStep);
-        comboDelayTimer = GetComboDelay(comboStep);
     }
 
     public void ContinueCombo()
     {
-        if (comboStep >= currentWeaponData.maxComboCount)
+        if (HasReachedMaxCombo)
             return;
 
         if (!CanComboInput)
@@ -71,7 +71,6 @@ public class AttackController : MonoBehaviour
         receivedNextInput = false;
 
         PlayCombo(comboStep);
-        comboDelayTimer = GetComboDelay(comboStep);
     }
 
     public void MarkComboInputReceived()
@@ -81,8 +80,10 @@ public class AttackController : MonoBehaviour
 
     public void UpdateComboTimer()
     {
-        if (comboDelayTimer > 0f)
-            comboDelayTimer -= Time.deltaTime;
+        if (pushTimer > 0f)
+            pushTimer -= Time.deltaTime;
+        else if (comboKeepTimer > 0f)
+            comboKeepTimer -= Time.deltaTime;
     }
 
     public float GetPushDelta(float deltaTime)
@@ -94,35 +95,18 @@ public class AttackController : MonoBehaviour
     {
         Debug.Log($"[Attack] 현재 콤보 단계: {step}");
 
-        currentPushDistance = GetComboPush(step);
-        float delay = GetComboDelay(step);
+        currentPushDistance = currentWeaponData.GetPush(step);
+        pushTimer = currentWeaponData.GetDelay(step);
+        comboKeepTimer = currentWeaponData.comboInfos[step - 1].ComboKeep;
 
-        if (delay <= 0f)
+        if (pushTimer <= 0f)
         {
             pushSpeedPerSecond = 0f;
         }
         else
         {
-            pushSpeedPerSecond = currentPushDistance / delay;
+            pushSpeedPerSecond = currentPushDistance / pushTimer;
         }
-    }
-
-    private float GetComboPush(int step)
-    {
-        if (currentWeaponData.comboPushDistances != null &&
-            currentWeaponData.comboPushDistances.Length >= step)
-            return currentWeaponData.comboPushDistances[step - 1];
-
-        return 0f;
-    }
-
-    private float GetComboDelay(int step)
-    {
-        if (currentWeaponData.comboDelays != null &&
-            currentWeaponData.comboDelays.Length >= step)
-            return currentWeaponData.comboDelays[step - 1];
-
-        return 0.1f;
     }
 
     public PlayerState GetAttackState(PlayerStateMachine stateMachine)
@@ -130,8 +114,6 @@ public class AttackController : MonoBehaviour
         return CurrentWeapon switch
         {
             WeaponType.Spear => new SpearAttackState(player, stateMachine),
-            //WeaponType.Bow => new BowAttackState(player, stateMachine),
-            //WeaponType.Unplanned => new UnplannedAttackState(player, stateMachine),
             _ => null
         };
     }
@@ -141,8 +123,6 @@ public class AttackController : MonoBehaviour
         return CurrentWeapon switch
         {
             WeaponType.Spear => new SpearSkillState(player, stateMachine),
-            //WeaponType.Bow => new BowSkillState(player, stateMachine),
-            //WeaponType.Unplanned => new UnplannedSkillState(player, stateMachine),
             _ => null
         };
     }

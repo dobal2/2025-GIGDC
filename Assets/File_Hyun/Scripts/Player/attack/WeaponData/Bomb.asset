@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad99cde2a807b9142bebc84796c6f9ea, type: 3}
   m_Name: Bomb
   m_EditorClassIdentifier: 
-  type: 0
+  type: 2
   maxComboCount: 0
   comboDamages: []
   comboPushDistances: []

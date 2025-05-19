@@ -18,10 +18,12 @@ public class PlayerNormalState : PlayerState
             return;
         }
 
-        if (player.AttackBuffered)
+        if (player.AttackBuffered && player.AttackController.CanComboInput)
         {
             player.ConsumeAttackBuffer();
-            stateMachine.ChangeState(player.AttackController.GetAttackState(stateMachine));
+            player.AttackController.MarkComboInputReceived();
+            player.AttackController.ContinueCombo();
+            stateMachine.ChangeState(new SpearAttackState(player, stateMachine));
             return;
         }
 
