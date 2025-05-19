@@ -4,15 +4,29 @@ using UnityEngine;
 public class AttackController : MonoBehaviour
 {
     [SerializeField] private WeaponDatabase weaponDatabase;
-    [SerializeField] private float comboMaxTime = 0.5f;
 
     private PlayerController player;
     private WeaponData currentWeaponData;
 
     public WeaponType CurrentWeapon { get; private set; }
     public bool HasReachedMaxCombo => comboStep >= currentWeaponData.maxComboCount;
+
     private int comboStep = 0;
-    private float comboTimer = 0f;
+    private float comboDelayTimer = 0f;
+
+    private float currentPushDistance = 0f;
+    private float pushSpeedPerSecond = 0f;
+
+    private bool receivedNextInput = false;
+
+    public bool CanComboInput => comboDelayTimer <= 0f;
+
+    public bool ShouldEndCombo =>
+        comboStep > 0 &&
+        (HasReachedMaxCombo || !receivedNextInput) &&
+        CanComboInput;
+
+    public bool IsPushing => comboDelayTimer > 0f && pushSpeedPerSecond > 0f;
 
     void Awake()
     {
@@ -28,15 +42,21 @@ public class AttackController : MonoBehaviour
     {
         CurrentWeapon = weapon;
         currentWeaponData = weaponDatabase.GetData(weapon);
+
         comboStep = 0;
-        comboTimer = 0f;
+        comboDelayTimer = 0f;
+        currentPushDistance = 0f;
+        pushSpeedPerSecond = 0f;
+        receivedNextInput = false;
     }
 
     public void StartCombo()
     {
         comboStep = 1;
-        comboTimer = comboMaxTime;
+        receivedNextInput = false;
+
         PlayCombo(comboStep);
+        comboDelayTimer = GetComboDelay(comboStep);
     }
 
     public void ContinueCombo()
@@ -44,35 +64,65 @@ public class AttackController : MonoBehaviour
         if (comboStep >= currentWeaponData.maxComboCount)
             return;
 
+        if (!CanComboInput)
+            return;
+
         comboStep++;
-        comboTimer = comboMaxTime;
+        receivedNextInput = false;
+
         PlayCombo(comboStep);
+        comboDelayTimer = GetComboDelay(comboStep);
+    }
+
+    public void MarkComboInputReceived()
+    {
+        receivedNextInput = true;
     }
 
     public void UpdateComboTimer()
     {
-        if (comboTimer > 0f)
-            comboTimer -= Time.deltaTime;
+        if (comboDelayTimer > 0f)
+            comboDelayTimer -= Time.deltaTime;
     }
 
-    public bool IsComboTimedOut => comboTimer <= 0f;
+    public float GetPushDelta(float deltaTime)
+    {
+        return pushSpeedPerSecond * deltaTime;
+    }
 
-    void PlayCombo(int step)
+    private void PlayCombo(int step)
     {
         Debug.Log($"[Attack] 현재 콤보 단계: {step}");
-        // 애니메이션 재생, 피격 판정 생성, 이펙트 등
-        float push = GetComboPush(step);
-        Vector2 velocity = new(push * player.facingDirection, player.Rigidbody.linearVelocity.y);
-        player.Rigidbody.linearVelocity = velocity;
+
+        currentPushDistance = GetComboPush(step);
+        float delay = GetComboDelay(step);
+
+        if (delay <= 0f)
+        {
+            pushSpeedPerSecond = 0f;
+        }
+        else
+        {
+            pushSpeedPerSecond = currentPushDistance / delay;
+        }
     }
 
-    float GetComboPush(int step)
+    private float GetComboPush(int step)
     {
         if (currentWeaponData.comboPushDistances != null &&
             currentWeaponData.comboPushDistances.Length >= step)
             return currentWeaponData.comboPushDistances[step - 1];
 
         return 0f;
+    }
+
+    private float GetComboDelay(int step)
+    {
+        if (currentWeaponData.comboDelays != null &&
+            currentWeaponData.comboDelays.Length >= step)
+            return currentWeaponData.comboDelays[step - 1];
+
+        return 0.1f;
     }
 
     public PlayerState GetAttackState(PlayerStateMachine stateMachine)
@@ -85,7 +135,6 @@ public class AttackController : MonoBehaviour
             _ => null
         };
     }
-
 
     public PlayerState GetSkillState(PlayerStateMachine stateMachine)
     {

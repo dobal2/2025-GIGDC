@@ -979,7 +979,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponDatabase: {fileID: 11400000, guid: 1944ca257422ba14ebfa1d2b2b902f30, type: 2}
-  comboMaxTime: 0.5
 --- !u!212 &5974342897994062318
 SpriteRenderer:
   m_ObjectHideFlags: 0

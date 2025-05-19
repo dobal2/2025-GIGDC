@@ -2,9 +2,6 @@ using UnityEngine;
 
 public class SpearAttackState : PlayerState
 {
-    private bool waitingForNextInput;
-    private bool comboEnded;
-
     public SpearAttackState(PlayerController player, PlayerStateMachine stateMachine)
         : base(player, stateMachine) { }
 
@@ -13,10 +10,13 @@ public class SpearAttackState : PlayerState
 
     public override void Enter()
     {
-        waitingForNextInput = true;
-        comboEnded = false;
-
+        player.Rigidbody.linearVelocity = Vector2.zero;
         player.AttackController.StartCombo();
+    }
+
+    public override void Exit()
+    {
+        player.Rigidbody.linearVelocity = Vector2.zero;
     }
 
     public override void Update()
@@ -30,23 +30,27 @@ public class SpearAttackState : PlayerState
             return;
         }
 
-        if (comboEnded || player.AttackController.IsComboTimedOut)
+        if (player.AttackController.ShouldEndCombo)
         {
             player.ConsumeAttackBuffer();
             stateMachine.ChangeState(new PlayerIdleState(player, stateMachine));
             return;
         }
 
-        if (waitingForNextInput && player.AttackBuffered)
+        if (player.AttackBuffered && player.AttackController.CanComboInput)
         {
             player.ConsumeAttackBuffer();
+            player.AttackController.MarkComboInputReceived();
             player.AttackController.ContinueCombo();
+        }
+    }
 
-            if (player.AttackController.HasReachedMaxCombo)
-            {
-                comboEnded = true;
-                waitingForNextInput = false;
-            }
+    public override void FixedUpdate()
+    {
+        if (player.AttackController.IsPushing)
+        {
+            float push = player.AttackController.GetPushDelta(Time.fixedDeltaTime);
+            player.Rigidbody.MovePosition(player.Rigidbody.position + new Vector2(push * player.facingDirection, 0f));
         }
     }
 }

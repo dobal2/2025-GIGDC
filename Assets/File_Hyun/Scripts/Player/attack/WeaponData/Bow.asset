@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: Bow
   m_EditorClassIdentifier: 
   type: 0
-  maxComboCount: 3
+  maxComboCount: 0
   comboDamages: []
   comboPushDistances: []
-  skillDamage: 0
-  skillForce: 0
+  comboDelays: []

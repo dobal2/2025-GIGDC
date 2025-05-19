@@ -9,18 +9,6 @@ public enum WeaponType
     Unplanned
 }
 
-[CreateAssetMenu(fileName = "WeaponData", menuName = "Scriptable Objects/Weapon Data")]
-public class WeaponData : ScriptableObject
-{
-    public WeaponType type;
-
-    [Header("일반 공격")]
-    public int maxComboCount = 3;
-    public float[] comboDamages;
-    public float[] comboPushDistances;
-    public float[] comboDelays;
-}
-
 [CreateAssetMenu(fileName = "WeaponDatabase", menuName = "Scriptable Objects/Weapon Database")]
 public class WeaponDatabase : ScriptableObject
 {
