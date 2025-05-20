@@ -18,12 +18,21 @@ public class PlayerNormalState : PlayerState
             return;
         }
 
+        // 콤보 연계 (ComboKeep 중)
         if (player.AttackBuffered && player.AttackController.CanComboInput)
         {
             player.ConsumeAttackBuffer();
             player.AttackController.MarkComboInputReceived();
             player.AttackController.ContinueCombo();
             stateMachine.ChangeState(new SpearAttackState(player, stateMachine));
+            return;
+        }
+
+        // 콤보 시작 (지상 or 공중 1회 허용)
+        if (player.AttackBuffered && (player.isGrounded || player.AttackController.CanStartAirborneCombo))
+        {
+            player.ConsumeAttackBuffer();
+            stateMachine.ChangeState(player.AttackController.GetAttackState(stateMachine));
             return;
         }
 

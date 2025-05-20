@@ -12,9 +12,6 @@ public class UIButtonEffect : MonoBehaviour
     bool isHovering = false;
     bool isClickEffectPlaying = false;
 
-    float gradientT = 0f;
-    bool gradientForward = true;
-
     Coroutine clickEffectCoroutine;
 
     void Update()

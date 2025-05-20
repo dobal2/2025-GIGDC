@@ -19,12 +19,14 @@ public class AttackController : MonoBehaviour
     private float pushSpeedPerSecond = 0f;
 
     private bool receivedNextInput = false;
+    private bool airborneComboUsed = false;
 
     public bool HasReachedMaxCombo => comboStep >= currentWeaponData.maxComboCount;
     public bool IsPushing => pushTimer > 0f && pushSpeedPerSecond != 0f;
     public bool IsInComboDelay => comboDelayTimer > 0f;
     public bool CanMove => !IsPushing && !IsInComboDelay;
     public bool CanComboInput => !IsPushing && !IsInComboDelay;
+    public bool CanStartAirborneCombo => !player.isGrounded && !airborneComboUsed;
 
     public bool ShouldEndCombo =>
         comboStep > 0 &&
@@ -55,12 +57,16 @@ public class AttackController : MonoBehaviour
         currentPushDistance = 0f;
         pushSpeedPerSecond = 0f;
         receivedNextInput = false;
+        airborneComboUsed = false;
     }
 
     public void StartCombo()
     {
         comboStep = 1;
         receivedNextInput = false;
+
+        if (!player.isGrounded)
+            airborneComboUsed = true;
 
         PlayCombo(comboStep);
     }
@@ -96,7 +102,8 @@ public class AttackController : MonoBehaviour
         }
         else if (comboKeepTimer > 0f)
         {
-            comboKeepTimer -= Time.deltaTime;
+            if (player.isGrounded) // 지상일 때만 감소
+                comboKeepTimer -= Time.deltaTime;
         }
     }
 
@@ -122,6 +129,11 @@ public class AttackController : MonoBehaviour
         {
             pushSpeedPerSecond = currentPushDistance / pushTimer;
         }
+    }
+
+    public void ResetAirborneCombo()
+    {
+        airborneComboUsed = false;
     }
 
     public PlayerState GetAttackState(PlayerStateMachine stateMachine)

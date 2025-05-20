@@ -12,16 +12,30 @@ public class SpearAttackState : PlayerState
     {
         player.Rigidbody.linearVelocity = Vector2.zero;
         player.AttackController.StartCombo();
+
+        if (!player.isGrounded)
+            player.Rigidbody.constraints |= RigidbodyConstraints2D.FreezePositionY;
     }
 
     public override void Exit()
     {
         player.Rigidbody.linearVelocity = Vector2.zero;
+        player.Rigidbody.constraints &= ~RigidbodyConstraints2D.FreezePositionY;
     }
 
     public override void Update()
     {
         player.AttackController.UpdateComboTimer();
+
+        // 캔슬 대시 처리
+        if (player.dashBufferTimer > 0f && Time.time >= player.lastDashTime + player.DashCooldown)
+        {
+            if (player.isGrounded || player.canAirDash)
+            {
+                stateMachine.ChangeState(new PlayerDashState(player, stateMachine));
+                return;
+            }
+        }
 
         if (player.skillRequested)
         {
@@ -30,7 +44,6 @@ public class SpearAttackState : PlayerState
             return;
         }
 
-        // 콤보 입력 시 계속 공격 상태 유지
         if (player.AttackBuffered && player.AttackController.CanComboInput)
         {
             player.ConsumeAttackBuffer();
@@ -39,8 +52,7 @@ public class SpearAttackState : PlayerState
             return;
         }
 
-        // push가 끝났으면 이동 가능한 상태로 전이
-        if (player.AttackController.CanComboInput)
+        if (player.AttackController.CanMove)
         {
             if (Mathf.Abs(player.MoveInput) > 0.01f)
                 stateMachine.ChangeState(new PlayerNormalState(player, stateMachine));
