@@ -138,8 +138,8 @@ MonoBehaviour:
   attackCoolDown: 4.5
   player: {fileID: 0}
   facingRight: 0
-  playerNoticeDistance: 3
-  windForce: 10
+  playerNoticeDistance: 4
+  windForce: 7
 --- !u!95 &6976070716524249559
 Animator:
   serializedVersion: 7

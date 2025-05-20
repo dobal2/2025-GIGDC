@@ -146,7 +146,7 @@ MonoBehaviour:
     m_Bits: 64
   attackCheck: {fileID: 5241403954044888333}
   attackRadius: 0.51
-  stopDistance: 2
+  stopDistance: 1.5
   canMove: 1
 --- !u!95 &-3808321125888372277
 Animator:

@@ -131,6 +131,12 @@ public class LowMonster_Common_regret : Monster
     {
         rigid.linearVelocity = Vector2.zero;
         anim.SetTrigger("Attack");
+        
+        StartCoroutine(WaitToAttack(attackCoolDown));    
+    }
+
+    public void AttackOverlapCircle()
+    {
         Collider2D[] collidersEnemies = Physics2D.OverlapCircleAll(attackCheck.position, attackRadius);
         for (int i = 0; i < collidersEnemies.Length; i++)
         {
@@ -140,7 +146,6 @@ public class LowMonster_Common_regret : Monster
                 collidersEnemies[i].GetComponent<PlayerHealth>().TakeDamage(damage);
             }
         }
-        StartCoroutine(WaitToAttack(attackCoolDown));    
     }
 
     protected override void Die()
