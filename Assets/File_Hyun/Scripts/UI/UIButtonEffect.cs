@@ -1,48 +1,71 @@
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
+using System.Collections;
 
 public class UIButtonEffect : MonoBehaviour
 {
-    public Text targetText;
-    public Color normalColor = Color.black;
-    public Color selectedColor = Color.yellow;
-    public Color clickColor = Color.cyan;
+    public TMP_Text targetText;
+    public Color normalColor;
+    public Color hoverColer;
+    public float clickFlashInterval = 0.05f;
 
-    void Awake()
+    bool isHovering = false;
+    bool isClickEffectPlaying = false;
+
+    Coroutine clickEffectCoroutine;
+
+    void Update()
     {
-        if (targetText == null)
-            targetText = GetComponentInChildren<Text>();
+        if (!isClickEffectPlaying)
+        {
+            if (isHovering)
+                targetText.color = hoverColer;
+            else
+                targetText.color = normalColor;
+        }
     }
 
-    public void StopSelectEffect() // 이펙트 중지 및 제거
+    void OnDisable()
     {
-        SetTextColor(normalColor);
+        if (clickEffectCoroutine != null)
+        {
+            StopCoroutine(clickEffectCoroutine);
+            clickEffectCoroutine = null;
+        }
+
+        isClickEffectPlaying = false;
+        isHovering = false;
+
+        targetText.faceColor = normalColor;
     }
 
-    public void PlaySelectEffect() // 선택 이펙트 재생
+    public void StartHoverEffect() => isHovering = true; // 호버이펙트 시작
+    public void StopHoverEffect() => isHovering = false; // 호버이펙트 종료
+    public void PlayClickEffect() // 클릭 이펙트 (자동종료)
     {
-        if (!isActiveAndEnabled) return;
+        if (clickEffectCoroutine != null)
+            StopCoroutine(clickEffectCoroutine);
 
-        SetTextColor(selectedColor);
+        clickEffectCoroutine = StartCoroutine(ClickFlashEffect());
     }
 
-    public void PlayClickEffect() // 클릭 이펙트 재생
+    IEnumerator ClickFlashEffect()
     {
-        if (!isActiveAndEnabled) return;
+        isClickEffectPlaying = true;
 
-        StopAllCoroutines();
-        SetTextColor(clickColor);
-    }
+        targetText.color = normalColor;
+        yield return new WaitForSeconds(clickFlashInterval);
 
-    private void OnDisable()
-    {
-        StopAllCoroutines();
-        StopSelectEffect();
-    }
+        targetText.color = hoverColer;
+        yield return new WaitForSeconds(clickFlashInterval);
 
-    void SetTextColor(Color color)
-    {
-        if (targetText != null)
-            targetText.color = color;
+        targetText.color = normalColor;
+        yield return new WaitForSeconds(clickFlashInterval);
+
+        targetText.color = hoverColer;
+        yield return new WaitForSeconds(clickFlashInterval);
+
+        targetText.color = normalColor;
+        isClickEffectPlaying = false;
     }
 }

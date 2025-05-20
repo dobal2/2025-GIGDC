@@ -1,12 +1,13 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class SettingsManager : MonoBehaviour
 {
     public Slider bgmSlider;
     public Slider vfxSlider;
-    public Text bgmLabel;
-    public Text vfxLabel;
+    public TMP_Text bgmLabel;
+    public TMP_Text vfxLabel;
 
     void Start()
     {

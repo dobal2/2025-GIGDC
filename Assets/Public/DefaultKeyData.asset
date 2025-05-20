@@ -17,14 +17,14 @@ MonoBehaviour:
     RightMoveKey: 275
     DownMoveKey: 274
     DashKey: 304
-    JumpKey: 32
+    JumpKey: 122
     AttackKey: 120
-    SkillKey: 122
+    SkillKey: 99
     InteractionKey: 273
-    WeaponchangeKey: 99
+    WeaponchangeKey: 306
   Ui:
     UpKey: 273
     DownKey: 274
     LeftKey: 276
     RightKey: 275
-    SelectKey: 122
+    SelectKey: 120

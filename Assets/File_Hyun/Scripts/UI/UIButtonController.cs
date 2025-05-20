@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
+using System.Collections;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -19,7 +21,6 @@ public class UIButtonController : MonoBehaviour, ISelectHandler, IDeselectHandle
     [Header("¿Ã∆Â∆Æ")]
     public UnityEvent onSelect;
     public UnityEvent onDeselect;
-    public UnityEvent onClick;
 
     public GameObject GetNeighbor(Vector2 direction)
     {
@@ -56,7 +57,6 @@ public class UIButtonController : MonoBehaviour, ISelectHandler, IDeselectHandle
     {
         if (eventData.button != PointerEventData.InputButton.Left) return;
 
-        onClick?.Invoke();
         if (nextOnClick != null && nextOnClick.activeInHierarchy)
         {
             EventSystem.current.SetSelectedGameObject(nextOnClick);
