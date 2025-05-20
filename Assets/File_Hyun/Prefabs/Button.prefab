@@ -332,7 +332,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetText: {fileID: 4619251180456889816}
   normalColor: {r: 0, g: 0, b: 0, a: 1}
-  gradientColor1: {r: 1, g: 0.98568726, b: 0, a: 1}
-  gradientColor2: {r: 0.6378139, g: 1, b: 0, a: 1}
-  gradientSpeed: 1.5
+  hoverColer: {r: 1, g: 0.9647059, b: 0, a: 1}
   clickFlashInterval: 0.05

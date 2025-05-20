@@ -3145,9 +3145,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetText: {fileID: 679384424}
   normalColor: {r: 1, g: 1, b: 1, a: 1}
-  gradientColor1: {r: 1, g: 0.98568726, b: 0, a: 1}
-  gradientColor2: {r: 0.6378139, g: 1, b: 0, a: 1}
-  gradientSpeed: 1.5
+  hoverColer: {r: 1, g: 0.9647059, b: 0, a: 1}
   clickFlashInterval: 0.05
 --- !u!1 &986442402
 GameObject:
@@ -6157,9 +6155,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetText: {fileID: 1984694379}
   normalColor: {r: 1, g: 1, b: 1, a: 1}
-  gradientColor1: {r: 1, g: 0.98568726, b: 0, a: 1}
-  gradientColor2: {r: 0.6378139, g: 1, b: 0, a: 1}
-  gradientSpeed: 1.5
+  hoverColer: {r: 1, g: 0.9647059, b: 0, a: 1}
   clickFlashInterval: 0.05
 --- !u!224 &2024455766 stripped
 RectTransform:

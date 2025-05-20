@@ -12,6 +12,7 @@ public class AttackController : MonoBehaviour
 
     private int comboStep = 0;
     private float pushTimer = 0f;
+    private float comboDelayTimer = 0f;
     private float comboKeepTimer = 0f;
 
     private float currentPushDistance = 0f;
@@ -21,11 +22,15 @@ public class AttackController : MonoBehaviour
 
     public bool HasReachedMaxCombo => comboStep >= currentWeaponData.maxComboCount;
     public bool IsPushing => pushTimer > 0f && pushSpeedPerSecond != 0f;
-    public bool CanComboInput => pushTimer <= 0f;
+    public bool IsInComboDelay => comboDelayTimer > 0f;
+    public bool CanMove => !IsPushing && !IsInComboDelay;
+    public bool CanComboInput => !IsPushing && !IsInComboDelay;
+
     public bool ShouldEndCombo =>
         comboStep > 0 &&
         !receivedNextInput &&
-        pushTimer <= 0f &&
+        !IsPushing &&
+        !IsInComboDelay &&
         comboKeepTimer <= 0f;
 
     void Awake()
@@ -45,6 +50,7 @@ public class AttackController : MonoBehaviour
 
         comboStep = 0;
         pushTimer = 0f;
+        comboDelayTimer = 0f;
         comboKeepTimer = 0f;
         currentPushDistance = 0f;
         pushSpeedPerSecond = 0f;
@@ -81,9 +87,17 @@ public class AttackController : MonoBehaviour
     public void UpdateComboTimer()
     {
         if (pushTimer > 0f)
+        {
             pushTimer -= Time.deltaTime;
+        }
+        else if (comboDelayTimer > 0f)
+        {
+            comboDelayTimer -= Time.deltaTime;
+        }
         else if (comboKeepTimer > 0f)
+        {
             comboKeepTimer -= Time.deltaTime;
+        }
     }
 
     public float GetPushDelta(float deltaTime)
@@ -97,6 +111,7 @@ public class AttackController : MonoBehaviour
 
         currentPushDistance = currentWeaponData.GetPush(step);
         pushTimer = currentWeaponData.GetDelay(step);
+        comboDelayTimer = currentWeaponData.GetComboDelay(step);
         comboKeepTimer = currentWeaponData.comboInfos[step - 1].ComboKeep;
 
         if (pushTimer <= 0f)

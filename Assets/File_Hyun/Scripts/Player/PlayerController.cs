@@ -78,7 +78,7 @@ public class PlayerController : MonoBehaviour
     public float CrouchSpeedMultiplier => crouchSpeedMultiplier;
 
     [Header("Attack Settings")]
-    [SerializeField] private float attackBufferTime = 0.2f;
+    [SerializeField] private float attackBufferTime = 0.1f;
     [HideInInspector] public float attackBufferTimer = 0f;
     [HideInInspector] public bool skillRequested = false;
     public bool AttackBuffered => attackBufferTimer > 0f;
