@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3078160377069142436}
   - component: {fileID: 8994322481782939917}
   - component: {fileID: 4453194739405206969}
+  - component: {fileID: -2154769290840770531}
   m_Layer: 0
   m_Name: inferior_attackLineStart
   m_TagString: Untagged
@@ -134,3 +135,16 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.1412487, y: 0.1632578}
   m_EdgeRadius: 0
+--- !u!114 &-2154769290840770531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8902335906651818609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e260f94186e433d4b8bc984ded5a3cc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1

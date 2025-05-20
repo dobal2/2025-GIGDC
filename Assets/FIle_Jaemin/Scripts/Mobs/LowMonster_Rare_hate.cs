@@ -32,6 +32,7 @@ public class LowMonster_Rare_hate : Monster
 
     private void ApplyWindEffect()
     {
+        player.GetComponent<PlayerHealth>().TakeDamage(damage);
         Rigidbody2D playerRigid = player.GetComponent<Rigidbody2D>();
         if (playerRigid != null)
         {

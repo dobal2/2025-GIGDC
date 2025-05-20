@@ -8,12 +8,17 @@ public class BossExcitement : Monster
     [SerializeField] private GameObject homingMissilePrefab;
     [SerializeField] private Transform missileSpawnPoint;
     [SerializeField] private Transform[] teleportPositions; // 랜덤 텔레포트 위치들
-    [SerializeField] private float moveCoolTime;
-    private float moveCoolTimer;
+    [SerializeField] private float teleportCoolTime;
+    private float teleportCoolTimer;
     private Vector3 lastTeleportedPos;
 
+    [SerializeField] private Transform bombPos;
+    [SerializeField] private GameObject bombPrefab;
+    [SerializeField] private float positionOffsetRadius;
+    [SerializeField] private float minBombThrowForce;
+    [SerializeField] private float maxBombThrowForce;
+
     private bool isAttacking;
-    private bool canTeleport = true;
 
     protected override void Start()
     {
@@ -33,6 +38,10 @@ public class BossExcitement : Monster
 
             // 4초 동안 한 자리에 있음
             yield return new WaitForSeconds(4f);
+            
+            ThrowBombAtPlayerPattern();
+            
+            
 
             isAttacking = false;
         }
@@ -48,36 +57,71 @@ public class BossExcitement : Monster
     {
         base.TakeDamage(damage);
 
-        if (canTeleport)
-        {
-            StartCoroutine(TeleportRoutine());
-        }
+        TeleportRoutine();
     }
 
-    private IEnumerator TeleportRoutine()
+    private void TeleportRoutine()
     {
-        moveCoolTimer = 0;
-        canTeleport = false;
+        teleportCoolTimer = 0;
 
-        // 랜덤 위치 선택
-        if (teleportPositions.Length > 0)
+        if (teleportPositions.Length > 1)
         {
-            Vector3 randomPos = teleportPositions[Random.Range(0, teleportPositions.Length)].position;
-            randomPos += transform.localScale / 2;
+            Vector3 randomPos;
+            do
+            {
+                randomPos = teleportPositions[Random.Range(0, teleportPositions.Length)].position;
+            } while (randomPos == lastTeleportedPos);
+
+            lastTeleportedPos = randomPos;
+            randomPos += new Vector3(0, transform.localScale.y / 2, 0);
             transform.position = randomPos;
         }
-
-        // 텔레포트 후 쿨타임 (예: 1초)
-        yield return new WaitForSeconds(1f);
-        canTeleport = true;
+        else if (teleportPositions.Length == 1)
+        {
+            Vector3 onlyPos = teleportPositions[0].position;
+            lastTeleportedPos = onlyPos;
+            transform.position = onlyPos + new Vector3(0, transform.localScale.y / 2, 0);
+        }
+        
     }
+
+    public void ThrowBombAtPlayerPattern()
+    {
+        if (player == null) return;
+
+        int bombCount = Random.Range(4, 7);
+
+        for (int i = 0; i < bombCount; i++)
+        {
+            
+            GameObject bomb = Instantiate(bombPrefab,bombPos.position,Quaternion.identity);
+            Rigidbody2D rb = bomb.GetComponent<Rigidbody2D>();
+            if (rb != null)
+            {
+                Vector3 toTarget = (player.position - bombPos.position).normalized;
+                Vector3 upward = Vector3.up * Random.Range(0f,1f);
+                Vector3 throwDir = (toTarget + upward).normalized;
+
+                float throwForce = Random.Range(minBombThrowForce, maxBombThrowForce);
+                
+                rb.linearVelocity = throwDir * throwForce;
+            }
+            else
+            {
+                Debug.Log("bomb rigid null");
+            }
+        }
+    }
+    
+    
+    
 
     private void Update()
     {
-        moveCoolTimer += Time.deltaTime;
-        if (moveCoolTime <= moveCoolTimer)
+        teleportCoolTimer += Time.deltaTime;
+        if (teleportCoolTime <= teleportCoolTimer)
         {
-            StartCoroutine(TeleportRoutine());
+            TeleportRoutine();
         }
     }
 }

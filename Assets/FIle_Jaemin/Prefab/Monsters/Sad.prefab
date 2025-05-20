@@ -170,7 +170,7 @@ MonoBehaviour:
   player: {fileID: 0}
   facingRight: 0
   projectilePrefab: {fileID: 8316670868340655994, guid: 4a0651e4419d1c4468cfab73b45bc093, type: 3}
-  bulletSpeed: 5
+  bulletSpeed: 10
   firePos: {fileID: 2004027604949582580}
 --- !u!95 &2117941503706469672
 Animator:
