@@ -46,13 +46,15 @@ public abstract class Monster : MonoBehaviour
         hp -= amount;
         if (hp <= 0) Die();
     }
-
+    
     public void KnockBack(bool isRightAttack, float knockBackForce,bool doTakeDamageAnimation)
     {
         if (doTakeDamageAnimation)
         {
             TakeDamageAnimation();
         }
+        
+        rigid.linearVelocity = Vector2.zero;
         
         if (isRightAttack)
         {

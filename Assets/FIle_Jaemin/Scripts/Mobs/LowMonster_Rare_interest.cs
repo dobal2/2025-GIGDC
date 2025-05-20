@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -12,6 +13,8 @@ public class LowMonster_Rare_interest : Monster
     [SerializeField] private float skilledSpeed = 10f;
     [SerializeField] private GameObject dashEffectPrefab;
     [SerializeField] private Transform effectPos;
+    [SerializeField] private Transform attackTransform;
+    [SerializeField] private Vector2 attackSize;
 
     private int nextMove = 1;
     private bool isDashing;
@@ -75,6 +78,11 @@ public class LowMonster_Rare_interest : Monster
         {
             anim.SetBool("Walking", false);
         }
+        
+        if (isDashing)
+        {
+            CheckDashHitbox();
+        }
     }
 
     private void Update()
@@ -94,6 +102,22 @@ public class LowMonster_Rare_interest : Monster
             }
         }
     }
+    
+    private void CheckDashHitbox()
+    {
+        // 방향에 따라 오프셋 방향 결정
+    
+        // OverlapBox로 범위 감지
+        Collider2D[] collidersEnemies = Physics2D.OverlapBoxAll(attackTransform.position,attackSize,0);
+        for (int i = 0; i < collidersEnemies.Length; i++)
+        {
+            if (collidersEnemies[i].gameObject.tag == "Player")
+            {
+                collidersEnemies[i].GetComponent<PlayerHealth>().TakeDamage(damage);
+            }
+        }
+    }
+
     
     private void Move()
     {
@@ -151,25 +175,19 @@ public class LowMonster_Rare_interest : Monster
         yield return new WaitForSeconds(0.1f);
         canEffect = true;
     }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            other.GetComponent<PlayerHealth>()?.TakeDamage(damage);
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            other.gameObject.GetComponent<PlayerHealth>()?.TakeDamage(damage);
-        }
-    }
-
+    
     protected override void Die()
     {
         gameObject.SetActive(false);
+    }
+    
+    private void OnDrawGizmosSelected()
+    {
+        if (attackTransform != null)
+        {
+            Gizmos.color = new Color(1f, 0f, 0f, 0.5f);
+            Gizmos.DrawCube(attackTransform.position,attackSize);
+        }
+        
     }
 }

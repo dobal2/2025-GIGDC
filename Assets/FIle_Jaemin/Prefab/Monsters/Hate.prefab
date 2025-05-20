@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8348612115956997148}
   - component: {fileID: 6976070716524249559}
   - component: {fileID: 5024812797070882173}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: Hate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -139,7 +139,7 @@ MonoBehaviour:
   player: {fileID: 0}
   facingRight: 0
   playerNoticeDistance: 4
-  windForce: 7
+  windForce: 6
 --- !u!95 &6976070716524249559
 Animator:
   serializedVersion: 7
@@ -217,7 +217,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6746550557834230568}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: AttackCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}

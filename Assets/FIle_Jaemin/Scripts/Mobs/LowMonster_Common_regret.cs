@@ -141,7 +141,6 @@ public class LowMonster_Common_regret : Monster
         {
             if (collidersEnemies[i].gameObject.tag == "Player")
             {
-                Debug.Log("Attack");
                 collidersEnemies[i].GetComponent<PlayerHealth>().TakeDamage(damage);
             }
         }

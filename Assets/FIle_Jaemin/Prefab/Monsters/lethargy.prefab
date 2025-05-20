@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8809391231578958112}
   - component: {fileID: 7981838903269932403}
   - component: {fileID: 7893572644855207719}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: lethargy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -194,15 +194,15 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.00054100156, y: 0.00054104626}
+  m_Offset: {x: -0.00054100156, y: 0.07591898}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5, y: 0}
     oldSize: {x: 0.23, y: 0.15}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.21268569, y: 0.13160354}
+  m_Size: {x: 0.21268569, y: 0.13328029}
   m_EdgeRadius: 0

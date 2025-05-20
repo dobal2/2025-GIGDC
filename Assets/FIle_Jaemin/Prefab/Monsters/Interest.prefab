@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1432659071033226637
+--- !u!1 &4363673640392425476
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,24 +8,24 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7416201622203175229}
-  m_Layer: 10
-  m_Name: AttackCheck
+  - component: {fileID: 6400709253822615651}
+  m_Layer: 9
+  m_Name: AttackPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7416201622203175229
+--- !u!4 &6400709253822615651
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1432659071033226637}
+  m_GameObject: {fileID: 4363673640392425476}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.073, y: 0.029, z: 0}
+  m_LocalPosition: {x: 0.054, y: 0.133, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 4629815578638163571}
   - component: {fileID: -436866121833137350}
   - component: {fileID: 3061794784079558316}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: Interest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -61,11 +61,12 @@ Transform:
   m_GameObject: {fileID: 4725185154100944832}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.13, y: -3.09, z: 0}
+  m_LocalPosition: {x: -0.13, y: -3.89, z: 0}
   m_LocalScale: {x: 7, y: 7, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7416201622203175229}
+  - {fileID: 1573218008070666160}
+  - {fileID: 6400709253822615651}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1003285279080345607
@@ -171,14 +172,17 @@ MonoBehaviour:
   facingRight: 1
   groundLayer:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 64
   wallLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 1024
   playerNoticeDistance: 5
   stopDistance: 2
   skilledSpeed: 10
   dashEffectPrefab: {fileID: 6682064114454080323, guid: 07aaff8f59a6c5b47bb38c3159d16b86, type: 3}
+  effectPos: {fileID: 1573218008070666160}
+  attackTransform: {fileID: 6400709253822615651}
+  attackSize: {x: 1.61, y: 1.37}
 --- !u!95 &-436866121833137350
 Animator:
   serializedVersion: 7
@@ -235,15 +239,46 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.00022175908, y: -0.00020453706}
+  m_Offset: {x: 0.00022175908, y: 0.11442291}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5, y: 0}
     oldSize: {x: 0.34, y: 0.24}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.322702, y: 0.22424805}
+  m_Size: {x: 0.322702, y: 0.2326354}
   m_EdgeRadius: 0
+--- !u!1 &8782769111160132728
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1573218008070666160}
+  m_Layer: 9
+  m_Name: EffectPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1573218008070666160
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8782769111160132728}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.139, y: 0.133, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 9102542144256734989}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
