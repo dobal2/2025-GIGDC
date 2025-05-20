@@ -19,25 +19,25 @@ public class WeaponData : ScriptableObject
     [Header("콤보 단계별 정보")]
     public ComboInfo[] comboInfos;
 
-    public int maxComboCount => comboInfos?.Length ?? 0;
+    public int MaxComboCount => comboInfos?.Length ?? 0;
 
     public float GetPush(int step)
     {
-        if (step < 1 || step > maxComboCount)
+        if (step < 1 || step > MaxComboCount)
             return 0f;
         return comboInfos[step - 1].pushDistance;
     }
 
     public float GetDelay(int step)
     {
-        if (step < 1 || step > maxComboCount)
+        if (step < 1 || step > MaxComboCount)
             return 0.1f;
         return comboInfos[step - 1].pushTime;
     }
 
     public float GetComboDelay(int step)
     {
-        if (step < 1 || step > maxComboCount)
+        if (step < 1 || step > MaxComboCount)
             return 0f;
         return comboInfos[step - 1].Combodelay;
     }

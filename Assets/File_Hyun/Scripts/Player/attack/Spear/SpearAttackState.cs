@@ -27,7 +27,6 @@ public class SpearAttackState : PlayerState
     {
         player.AttackController.UpdateComboTimer();
 
-        // 캔슬 대시 처리
         if (player.dashBufferTimer > 0f && Time.time >= player.lastDashTime + player.DashCooldown)
         {
             if (player.isGrounded || player.canAirDash)

@@ -21,7 +21,7 @@ public class AttackController : MonoBehaviour
     private bool receivedNextInput = false;
     private bool airborneComboUsed = false;
 
-    public bool HasReachedMaxCombo => comboStep >= currentWeaponData.maxComboCount;
+    public bool HasReachedMaxCombo => comboStep >= currentWeaponData.MaxComboCount;
     public bool IsPushing => pushTimer > 0f && pushSpeedPerSecond != 0f;
     public bool IsInComboDelay => comboDelayTimer > 0f;
     public bool CanMove => !IsPushing && !IsInComboDelay;
