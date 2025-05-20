@@ -130,8 +130,8 @@ GameObject:
   - component: {fileID: 182456070}
   - component: {fileID: 182456072}
   - component: {fileID: 182456071}
-  m_Layer: 0
-  m_Name: Plate (2)
+  m_Layer: 6
+  m_Name: Plate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -461,7 +461,7 @@ GameObject:
   - component: {fileID: 312102650}
   - component: {fileID: 312102652}
   - component: {fileID: 312102651}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Plate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -732,7 +732,7 @@ GameObject:
   - component: {fileID: 753801958}
   - component: {fileID: 753801960}
   - component: {fileID: 753801959}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Plate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1160,7 +1160,7 @@ GameObject:
   - component: {fileID: 1770784668}
   - component: {fileID: 1770784667}
   - component: {fileID: 1770784666}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1294,8 +1294,8 @@ GameObject:
   - component: {fileID: 1830304401}
   - component: {fileID: 1830304403}
   - component: {fileID: 1830304402}
-  m_Layer: 0
-  m_Name: Plate (1)
+  m_Layer: 6
+  m_Name: Plate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1428,7 +1428,7 @@ GameObject:
   - component: {fileID: 1970411843}
   - component: {fileID: 1970411845}
   - component: {fileID: 1970411844}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Plate
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -39,6 +39,7 @@ public abstract class Monster : MonoBehaviour
 
     public virtual void TakeDamage(float amount)
     {
+        anim.SetTrigger("Hit");
         hp -= amount;
         if (hp <= 0) Die();
     }

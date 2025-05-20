@@ -85,7 +85,6 @@ public class LowMonster_Common_regret : Monster
     {
         if (canMove)
         {
-            Debug.Log("Move");
             rigid.linearVelocity = new Vector2(speed * nextMove, rigid.linearVelocity.y);
             anim.SetBool("isWalking",true);
         }

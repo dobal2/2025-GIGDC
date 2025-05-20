@@ -5,16 +5,20 @@ using Random = UnityEngine.Random;
 
 public class BossExcitement : Monster
 {
+    [Header("Prefabs")]
     [SerializeField] private GameObject homingMissilePrefab;
+    [SerializeField] private GameObject bombPrefab;
+    [SerializeField] private GameObject thornPrefab;
+    
     [SerializeField] private Transform missileSpawnPoint;
     [SerializeField] private Transform[] teleportPositions; // 랜덤 텔레포트 위치들
+    [SerializeField] private Transform bombPos;
+    
+    
     [SerializeField] private float teleportCoolTime;
     private float teleportCoolTimer;
     private Vector3 lastTeleportedPos;
-
-    [SerializeField] private Transform bombPos;
-    [SerializeField] private GameObject bombPrefab;
-    [SerializeField] private float positionOffsetRadius;
+    
     [SerializeField] private float minBombThrowForce;
     [SerializeField] private float maxBombThrowForce;
 
@@ -35,6 +39,7 @@ public class BossExcitement : Monster
         {
             isAttacking = true;
             FireHomingMissile();
+            StartCoroutine(ThornPattern());
 
             // 4초 동안 한 자리에 있음
             yield return new WaitForSeconds(4f);
@@ -112,6 +117,26 @@ public class BossExcitement : Monster
             }
         }
     }
+    
+    IEnumerator ThornPattern()
+    {
+        int thornCount = 12;
+        float radius = 4f; // 버블이 퍼질 반지름
+        Vector2 center = transform.position; // 또는 원하는 중심 좌표
+
+        for (int i = 0; i < thornCount; i++)
+        {
+            float angle = i * Mathf.PI * 2f / thornCount; // 각도를 나눠서 원형 배치
+            Vector2 offset = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * radius;
+            Vector2 spawnPos = center + offset;
+
+            GameObject newBubble = Instantiate(thornPrefab, spawnPos, Quaternion.identity);
+            newBubble.GetComponent<Bubble>().damage = damage;
+        }
+
+        yield return new WaitForSeconds(1f);
+    }
+
     
     
     
