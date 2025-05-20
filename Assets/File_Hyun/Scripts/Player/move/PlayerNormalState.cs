@@ -19,7 +19,7 @@ public class PlayerNormalState : PlayerState
         }
 
         // ÄÞº¸ ¿¬°è (ComboKeep Áß)
-        if (player.AttackBuffered && player.AttackController.CanComboInput)
+        if (player.AttackBuffered && player.AttackController.CanComboInput && (player.isGrounded || player.AttackController.CanStartAirborneCombo))
         {
             player.ConsumeAttackBuffer();
             player.AttackController.MarkComboInputReceived();

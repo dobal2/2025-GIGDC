@@ -162,7 +162,11 @@ public class PlayerController : MonoBehaviour
         if (isGrounded) coyoteTimer = coyoteTime;
         else coyoteTimer -= Time.deltaTime;
 
-        if (!wasGrounded && isGrounded) canAirDash = true;
+        if (!wasGrounded && isGrounded)
+        {
+            canAirDash = true;
+            AttackController.ResetAirborneCombo();
+        }
     }
 
     void UpdateCeiling()

@@ -21,7 +21,7 @@ public class AttackController : MonoBehaviour
     private bool receivedNextInput = false;
     private bool airborneComboUsed = false;
 
-    public bool HasReachedMaxCombo => comboStep >= currentWeaponData.maxComboCount;
+    public bool HasReachedMaxCombo => comboStep >= currentWeaponData.MaxComboCount;
     public bool IsPushing => pushTimer > 0f && pushSpeedPerSecond != 0f;
     public bool IsInComboDelay => comboDelayTimer > 0f;
     public bool CanMove => !IsPushing && !IsInComboDelay;
@@ -64,9 +64,6 @@ public class AttackController : MonoBehaviour
     {
         comboStep = 1;
         receivedNextInput = false;
-
-        if (!player.isGrounded)
-            airborneComboUsed = true;
 
         PlayCombo(comboStep);
     }
@@ -120,6 +117,9 @@ public class AttackController : MonoBehaviour
         pushTimer = currentWeaponData.GetDelay(step);
         comboDelayTimer = currentWeaponData.GetComboDelay(step);
         comboKeepTimer = currentWeaponData.comboInfos[step - 1].ComboKeep;
+
+        if (!player.isGrounded && currentWeaponData.MaxComboCount == step)
+            airborneComboUsed = true;
 
         if (pushTimer <= 0f)
         {
