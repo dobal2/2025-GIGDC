@@ -65,9 +65,6 @@ public class AttackController : MonoBehaviour
         comboStep = 1;
         receivedNextInput = false;
 
-        if (!player.isGrounded)
-            airborneComboUsed = true;
-
         PlayCombo(comboStep);
     }
 
@@ -120,6 +117,9 @@ public class AttackController : MonoBehaviour
         pushTimer = currentWeaponData.GetDelay(step);
         comboDelayTimer = currentWeaponData.GetComboDelay(step);
         comboKeepTimer = currentWeaponData.comboInfos[step - 1].ComboKeep;
+
+        if (!player.isGrounded && currentWeaponData.MaxComboCount == step)
+            airborneComboUsed = true;
 
         if (pushTimer <= 0f)
         {
