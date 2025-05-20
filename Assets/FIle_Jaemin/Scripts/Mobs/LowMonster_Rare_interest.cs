@@ -94,6 +94,7 @@ public class LowMonster_Rare_interest : Monster
             }
         }
     }
+    
     private void Move()
     {
         if (!canFlip) return;
