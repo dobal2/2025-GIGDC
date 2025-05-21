@@ -21,11 +21,25 @@ public abstract class PlayerState
     public virtual void FixedUpdate() { }
     public virtual bool CanTransitionTo(PlayerState newState) => true;
 
+    protected bool TryHandleDash()
+    {
+        if (player.DashPressed && Time.time >= player.lastDashTime + player.DashCooldown)
+        {
+            if (player.isGrounded || player.canAirDash)
+            {
+                player.DashPressed = false;
+                stateMachine.ChangeState(new PlayerDashState(player, stateMachine));
+                return true;
+            }
+        }
+        return false;
+    }
+
     protected bool TryHandleSkillInput()
     {
-        if (player.skillRequested && player.AttackController.CanUseSkill)
+        if (player.SkillPressed && player.AttackController.CanUseSkill)
         {
-            player.ConsumeSkillRequest();
+            player.SkillPressed = false;
             var skillState = player.AttackController.GetSkillState(stateMachine);
             if (skillState != null)
             {
@@ -62,20 +76,6 @@ public abstract class PlayerState
             player.AttackController.StartCombo();
             stateMachine.ChangeState(new GenericAttackState(player, stateMachine));
             return true;
-        }
-        return false;
-    }
-
-    protected bool TryHandleDash()
-    {
-        if (player.dashBufferTimer > 0f &&
-            Time.time >= player.lastDashTime + player.DashCooldown)
-        {
-            if (player.isGrounded || player.canAirDash)
-            {
-                stateMachine.ChangeState(new PlayerDashState(player, stateMachine));
-                return true;
-            }
         }
         return false;
     }

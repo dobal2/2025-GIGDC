@@ -9,25 +9,17 @@ public class PlayerController : MonoBehaviour
     public float MoveInput { get; set; }
     public bool CrouchHeld { get; set; }
     public bool JumpHeld { get; set; }
+    public bool DashPressed { get; set; }
+    public bool SkillPressed { get; set; }
 
     public bool JumpPressed
     {
         set { if (value) jumpBufferTimer = jumpBufferTime; }
     }
 
-    public bool DashPressed
-    {
-        set { if (value) dashBufferTimer = dashBufferTime; }
-    }
-
     public bool AttackPressed
     {
         set { if (value) attackBufferTimer = attackBufferTime; }
-    }
-
-    public bool SkillPressed
-    {
-        set { if (value) skillRequested = true; }
     }
 
     [Header("Movement Settings")]
@@ -47,7 +39,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float dashSpeed = 50f;
     [SerializeField] private float dashDuration = 0.1f;
     [SerializeField] private float dashCooldown = 0.8f;
-    [SerializeField] private float dashBufferTime = 0.1f;
     [SerializeField] private LayerMask dashStop;
     public float DashSpeed => dashSpeed;
     public float DashDuration => dashDuration;
@@ -70,7 +61,6 @@ public class PlayerController : MonoBehaviour
     [Header("Attack Settings")]
     [SerializeField] private float attackBufferTime = 0.1f;
     [HideInInspector] public float attackBufferTimer = 0f;
-    [HideInInspector] public bool skillRequested = false;
     public bool AttackBuffered => attackBufferTimer > 0f;
 
     private Rigidbody2D rb;
@@ -88,12 +78,13 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public int facingDirection = 1;
     [HideInInspector] public float normalGravityScale;
     [HideInInspector] public bool isTouchingCeiling;
-    [HideInInspector] public float dashBufferTimer;
 
     private Vector2 originalColliderSize;
     private Vector2 originalColliderOffset;
 
     private PlayerStateMachine stateMachine;
+
+    private bool prevSkillAvailable = false;
 
     void Awake()
     {
@@ -130,11 +121,15 @@ public class PlayerController : MonoBehaviour
         if (jumpBufferTimer > 0f)
             jumpBufferTimer -= Time.deltaTime;
 
-        if (dashBufferTimer > 0f)
-            dashBufferTimer -= Time.deltaTime;
-
         if (attackBufferTimer > 0f)
             attackBufferTimer -= Time.deltaTime;
+
+        bool nowAvailable = AttackController.CanUseSkill;
+        if (!prevSkillAvailable && nowAvailable)
+        {
+            Debug.Log("[Skill] 스킬 쿨타임 완료 - 사용 가능");
+        }
+        prevSkillAvailable = nowAvailable;
 
         stateMachine.Update();
     }
@@ -194,7 +189,7 @@ public class PlayerController : MonoBehaviour
 
         DrawDebugBox(origin, boxCol.bounds.size.x * boxWidth, boxHeight, Color.green); // Ground
         DrawDebugBox(origin + Vector2.down * 1f, boxCol.bounds.size.x * boxWidth, boxLowAirHeight, Color.cyan); // LowAir
-        DrawDebugBox((Vector2)boxCol.bounds.center + Vector2.up * boxCol.bounds.extents.y, boxCol.bounds.size.x * boxWidth, boxHeight, Color.red); // Ceiling
+        DrawDebugBox((Vector2)boxCol.bounds.center + Vector2.up * boxCol.bounds.size.y * 0.5f, boxCol.bounds.size.x * boxWidth, boxHeight, Color.red); // Ceiling
     }
 
     private void DrawDebugBox(Vector2 center, float width, float height, Color color)
@@ -251,11 +246,6 @@ public class PlayerController : MonoBehaviour
     public void ConsumeAttackBuffer()
     {
         attackBufferTimer = 0f;
-    }
-
-    public void ConsumeSkillRequest()
-    {
-        skillRequested = false;
     }
 
     public Rigidbody2D Rigidbody => rb;

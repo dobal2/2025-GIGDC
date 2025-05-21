@@ -14,7 +14,6 @@ public class PlayerDashState : PlayerState
             player.canAirDash = false;
 
         player.jumpBufferTimer = 0f;
-        player.dashBufferTimer = 0f;
         player.isJumping = false;
 
         player.Rigidbody.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
