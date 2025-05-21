@@ -165,7 +165,13 @@ public class PlayerController : MonoBehaviour
         if (!wasGrounded && isGrounded)
         {
             canAirDash = true;
+            AttackController.ResetCombo();
             AttackController.ResetAirborneCombo();
+        }
+
+        if (wasGrounded && !isGrounded)
+        {
+            AttackController.ResetCombo();
         }
     }
 

@@ -11,7 +11,6 @@ public class SpearAttackState : PlayerState
     public override void Enter()
     {
         player.Rigidbody.linearVelocity = Vector2.zero;
-        player.AttackController.StartCombo();
 
         if (!player.isGrounded)
             player.Rigidbody.constraints |= RigidbodyConstraints2D.FreezePositionY;
@@ -53,9 +52,6 @@ public class SpearAttackState : PlayerState
 
         if (player.AttackController.CanMove)
         {
-            if (Mathf.Abs(player.MoveInput) > 0.01f)
-                stateMachine.ChangeState(new PlayerNormalState(player, stateMachine));
-            else
                 stateMachine.ChangeState(new PlayerIdleState(player, stateMachine));
         }
     }

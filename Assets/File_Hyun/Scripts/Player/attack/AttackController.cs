@@ -11,6 +11,7 @@ public class AttackController : MonoBehaviour
     public WeaponType CurrentWeapon { get; private set; }
 
     private int comboStep = 0;
+    public int ComboStep => comboStep;
     private float pushTimer = 0f;
     private float comboDelayTimer = 0f;
     private float comboKeepTimer = 0f;
@@ -50,6 +51,11 @@ public class AttackController : MonoBehaviour
         CurrentWeapon = weapon;
         currentWeaponData = weaponDatabase.GetData(weapon);
 
+        ResetCombo();
+    }
+
+    public void ResetCombo()
+    {
         comboStep = 0;
         pushTimer = 0f;
         comboDelayTimer = 0f;
@@ -71,7 +77,18 @@ public class AttackController : MonoBehaviour
     public void ContinueCombo()
     {
         if (HasReachedMaxCombo)
+        {
+            comboStep = 0;
+            pushTimer = 0f;
+            comboDelayTimer = 0f;
+            comboKeepTimer = 0f;
+            currentPushDistance = 0f;
+            pushSpeedPerSecond = 0f;
+            receivedNextInput = false;
+            if(player.isGrounded)
+                airborneComboUsed = false;
             return;
+        }
 
         if (!CanComboInput)
             return;

@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class PlayerIdleState : PlayerState
 {
+    private bool shouldJump = false;
+
     public PlayerIdleState(PlayerController player, PlayerStateMachine stateMachine)
         : base(player, stateMachine) { }
 
@@ -16,8 +18,8 @@ public class PlayerIdleState : PlayerState
             return;
         }
 
-        // 콤보 연계 (comboKeep 중)
-        if (player.AttackBuffered && player.AttackController.CanComboInput && (player.isGrounded || player.AttackController.CanStartAirborneCombo))
+        // 콤보 연계 (ComboKeep 중)
+        if (player.AttackBuffered && player.AttackController.CanComboInput && (player.isGrounded || player.AttackController.CanStartAirborneCombo) && player.AttackController.ComboStep > 0)
         {
             player.ConsumeAttackBuffer();
             player.AttackController.MarkComboInputReceived();
@@ -27,9 +29,10 @@ public class PlayerIdleState : PlayerState
         }
 
         // 콤보 시작 (지상 or 공중 1회 허용)
-        if (player.AttackBuffered && (player.isGrounded || player.AttackController.CanStartAirborneCombo))
+        if (player.AttackBuffered && (player.isGrounded || player.AttackController.CanStartAirborneCombo) && player.AttackController.ComboStep == 0)
         {
             player.ConsumeAttackBuffer();
+            player.AttackController.StartCombo();
             stateMachine.ChangeState(player.AttackController.GetAttackState(stateMachine));
             return;
         }
@@ -49,13 +52,11 @@ public class PlayerIdleState : PlayerState
             }
         }
 
-        if (player.jumpBufferTimer > 0 && (player.isGrounded || player.coyoteTimer > 0f))
+        if (!player.isJumping && player.jumpBufferTimer > 0 && (player.isGrounded || player.coyoteTimer > 0f))
         {
-            player.coyoteTimer = 0f;
-            player.isJumping = true;
-            player.isGrounded = false;
-            player.jumpTimeCounter = 0f;
+            shouldJump = true;
             player.jumpBufferTimer = 0f;
+            player.AttackController.ResetCombo();
         }
 
         if (Mathf.Abs(player.MoveInput) > 0.01f)
@@ -67,6 +68,15 @@ public class PlayerIdleState : PlayerState
 
     public override void FixedUpdate()
     {
+        if (shouldJump)
+        {
+            player.coyoteTimer = 0f;
+            player.isJumping = true;
+            player.isGrounded = false;
+            player.jumpTimeCounter = 0f;
+            shouldJump = false;
+        }
+
         player.HandleJump();
         player.HandleFastFall();
         player.Rigidbody.linearVelocity = new Vector2(0, player.Rigidbody.linearVelocity.y);
