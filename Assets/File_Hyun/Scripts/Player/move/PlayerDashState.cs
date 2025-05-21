@@ -18,6 +18,7 @@ public class PlayerDashState : PlayerState
         player.isJumping = false;
 
         player.Rigidbody.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
+        player.AttackController.CancelPush();
     }
 
     public override void FixedUpdate()

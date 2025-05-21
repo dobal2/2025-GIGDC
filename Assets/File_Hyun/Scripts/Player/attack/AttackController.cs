@@ -104,6 +104,19 @@ public class AttackController : MonoBehaviour
         receivedNextInput = true;
     }
 
+    public void CancelPush()
+    {
+        if (comboStep < 1 || comboStep > currentWeaponData.MaxComboCount)
+            return;
+
+        pushTimer = 0f;
+        pushSpeedPerSecond = 0f;
+        currentPushDistance = 0f;
+
+        comboDelayTimer = 0f;
+        comboKeepTimer = currentWeaponData.comboInfos[comboStep - 1].ComboKeep;
+    }
+
     public void UpdateComboTimer()
     {
         if (pushTimer > 0f)
