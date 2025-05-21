@@ -1,11 +1,11 @@
 using UnityEngine;
 
-public class SpearAttackState : PlayerState
+public class GenericAttackState : PlayerState
 {
-    public SpearAttackState(PlayerController player, PlayerStateMachine stateMachine)
+    public GenericAttackState(PlayerController player, PlayerStateMachine stateMachine)
         : base(player, stateMachine) { }
 
-    public override string Name => "SpearAttack";
+    public override string Name => "GenericAttack";
     public override bool IsCombatState => true;
 
     public override void Enter()
@@ -14,18 +14,23 @@ public class SpearAttackState : PlayerState
 
         if (!player.isGrounded)
             player.Rigidbody.constraints |= RigidbodyConstraints2D.FreezePositionY;
+
+        player.AttackController.OnAttackEnter(); // 무기별 특화 진입 동작 (예: 투사체 발사 등)
     }
 
     public override void Exit()
     {
         player.Rigidbody.linearVelocity = Vector2.zero;
         player.Rigidbody.constraints &= ~RigidbodyConstraints2D.FreezePositionY;
+
+        player.AttackController.OnAttackExit(); // 무기별 특화 종료 동작 (예: 효과 정리 등)
     }
 
     public override void Update()
     {
         player.AttackController.UpdateComboTimer();
 
+        // 공격 중 대시 캔슬
         if (player.dashBufferTimer > 0f && Time.time >= player.lastDashTime + player.DashCooldown)
         {
             if (player.isGrounded || player.canAirDash)
@@ -35,6 +40,7 @@ public class SpearAttackState : PlayerState
             }
         }
 
+        // 스킬 전이
         if (player.skillRequested)
         {
             player.ConsumeSkillRequest();
@@ -42,6 +48,7 @@ public class SpearAttackState : PlayerState
             return;
         }
 
+        // 콤보 연계
         if (player.AttackBuffered && player.AttackController.CanComboInput)
         {
             player.ConsumeAttackBuffer();
@@ -50,9 +57,10 @@ public class SpearAttackState : PlayerState
             return;
         }
 
+        // 공격 종료
         if (player.AttackController.CanMove)
         {
-                stateMachine.ChangeState(new PlayerIdleState(player, stateMachine));
+            stateMachine.ChangeState(new PlayerIdleState(player, stateMachine));
         }
     }
 

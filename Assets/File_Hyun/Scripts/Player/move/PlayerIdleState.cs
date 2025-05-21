@@ -24,7 +24,7 @@ public class PlayerIdleState : PlayerState
             player.ConsumeAttackBuffer();
             player.AttackController.MarkComboInputReceived();
             player.AttackController.ContinueCombo();
-            stateMachine.ChangeState(new SpearAttackState(player, stateMachine));
+            stateMachine.ChangeState(new GenericAttackState(player, stateMachine));
             return;
         }
 
@@ -33,7 +33,7 @@ public class PlayerIdleState : PlayerState
         {
             player.ConsumeAttackBuffer();
             player.AttackController.StartCombo();
-            stateMachine.ChangeState(player.AttackController.GetAttackState(stateMachine));
+            stateMachine.ChangeState(new GenericAttackState(player, stateMachine));
             return;
         }
 
