@@ -3969,7 +3969,7 @@
     "m_ShaderOutputName": "B",
     "m_StageCapability": 3,
     "m_Value": {
-        "x": -0.0044999998062849049,
+        "x": -0.0035000001080334188,
         "y": 0.0,
         "z": 0.0,
         "w": 0.0
@@ -5463,10 +5463,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": 2339.0,
-            "y": 344.0,
-            "width": 130.0,
-            "height": 118.0
+            "x": 2347.0,
+            "y": 403.9999694824219,
+            "width": 129.999755859375,
+            "height": 117.99996948242188
         }
     },
     "m_Slots": [
@@ -7295,7 +7295,7 @@
     "m_Title": "SimpleNoise",
     "m_Position": {
         "x": -1324.0,
-        "y": -1931.0
+        "y": -1930.5
     }
 }
 
