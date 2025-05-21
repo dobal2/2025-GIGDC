@@ -11,14 +11,12 @@ public class AttackController : MonoBehaviour
     public WeaponType CurrentWeapon { get; private set; }
 
     private int comboStep = 0;
-    public int ComboStep => comboStep;
     private float pushTimer = 0f;
     private float comboDelayTimer = 0f;
     private float comboKeepTimer = 0f;
-
     private float currentPushDistance = 0f;
     private float pushSpeedPerSecond = 0f;
-
+    private float lastSkillTime = -999f;
     private bool receivedNextInput = false;
     private bool airborneComboUsed = false;
 
@@ -28,6 +26,8 @@ public class AttackController : MonoBehaviour
     public bool CanMove => !IsPushing && !IsInComboDelay;
     public bool CanComboInput => !IsPushing && !IsInComboDelay;
     public bool CanStartAirborneCombo => !player.isGrounded && !airborneComboUsed;
+    public int ComboStep => comboStep;
+    public bool CanUseSkill => Time.time >= lastSkillTime + currentWeaponData.skillcooldown;
 
     public bool ShouldEndCombo =>
         comboStep > 0 &&
@@ -52,6 +52,11 @@ public class AttackController : MonoBehaviour
         currentWeaponData = weaponDatabase.GetData(weapon);
 
         ResetCombo();
+    }
+
+    public void MarkSkillUsed()
+    {
+        lastSkillTime = Time.time;
     }
 
     public void ResetCombo()
@@ -122,15 +127,26 @@ public class AttackController : MonoBehaviour
         if (pushTimer > 0f)
         {
             pushTimer -= Time.deltaTime;
+            return;
         }
-        else if (comboDelayTimer > 0f)
+
+        if (comboDelayTimer > 0f)
         {
             comboDelayTimer -= Time.deltaTime;
+            return;
         }
-        else if (comboKeepTimer > 0f)
+
+        if (comboKeepTimer > 0f)
         {
-            if (player.isGrounded) // 지상일 때만 감소
+            if (player.isGrounded)
+            {
                 comboKeepTimer -= Time.deltaTime;
+
+                if (comboKeepTimer <= 0f)
+                {
+                    ResetCombo();
+                }
+            }
         }
     }
 

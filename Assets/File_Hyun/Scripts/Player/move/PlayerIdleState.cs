@@ -11,31 +11,12 @@ public class PlayerIdleState : PlayerState
 
     public override void Update()
     {
-        if (player.skillRequested)
-        {
-            player.ConsumeSkillRequest();
-            stateMachine.ChangeState(player.AttackController.GetSkillState(stateMachine));
-            return;
-        }
+        player.AttackController.UpdateComboTimer();
 
-        // 콤보 연계 (ComboKeep 중)
-        if (player.AttackBuffered && player.AttackController.CanComboInput && (player.isGrounded || player.AttackController.CanStartAirborneCombo) && player.AttackController.ComboStep > 0)
-        {
-            player.ConsumeAttackBuffer();
-            player.AttackController.MarkComboInputReceived();
-            player.AttackController.ContinueCombo();
-            stateMachine.ChangeState(new GenericAttackState(player, stateMachine));
-            return;
-        }
-
-        // 콤보 시작 (지상 or 공중 1회 허용)
-        if (player.AttackBuffered && (player.isGrounded || player.AttackController.CanStartAirborneCombo) && player.AttackController.ComboStep == 0)
-        {
-            player.ConsumeAttackBuffer();
-            player.AttackController.StartCombo();
-            stateMachine.ChangeState(new GenericAttackState(player, stateMachine));
-            return;
-        }
+        if (TryHandleSkillInput()) return;
+        if (TryHandleComboContinue()) return;
+        if (TryHandleComboStart()) return;
+        if (TryHandleDash()) return;
 
         if (player.CrouchHeld && player.isGrounded)
         {
@@ -43,16 +24,7 @@ public class PlayerIdleState : PlayerState
             return;
         }
 
-        if (player.dashBufferTimer > 0f && Time.time >= player.lastDashTime + player.DashCooldown)
-        {
-            if (player.isGrounded || player.canAirDash)
-            {
-                stateMachine.ChangeState(new PlayerDashState(player, stateMachine));
-                return;
-            }
-        }
-
-        if (!player.isJumping && player.jumpBufferTimer > 0 && (player.isGrounded || player.coyoteTimer > 0f))
+        if (!player.isJumping && player.jumpBufferTimer > 0f && (player.isGrounded || player.coyoteTimer > 0f))
         {
             shouldJump = true;
             player.jumpBufferTimer = 0f;
@@ -64,7 +36,6 @@ public class PlayerIdleState : PlayerState
             stateMachine.ChangeState(new PlayerNormalState(player, stateMachine));
         }
     }
-
 
     public override void FixedUpdate()
     {
