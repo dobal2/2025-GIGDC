@@ -1,131 +1,114 @@
+using System;
 using System.Collections;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class LowMonster_Rare_interest : Monster
 {
-    [SerializeField] private  LayerMask groundLayer;
-    [SerializeField] private  LayerMask wallLayer;
-    [SerializeField] private  Transform attackCheck;
-    [SerializeField] private  float attackRadius;
-    [SerializeField] private  float playerNoticeDistance;
-    [SerializeField] private float skilledSpeed;
-    [SerializeField] private bool isSkilled;
-    
-    private int nextMove;
-    private bool canMove = true;
-    
-    
+    [Header("Settings")]
+    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private LayerMask wallLayer;
+    [SerializeField] private float playerNoticeDistance = 5f;
+    [SerializeField] private float stopDistance = 1.5f;
+    [SerializeField] private float skilledSpeed = 10f;
+    [SerializeField] private GameObject dashEffectPrefab;
+    [SerializeField] private Transform effectPos;
+    [SerializeField] private Transform attackTransform;
+    [SerializeField] private Vector2 attackSize;
+
+    private int nextMove = 1;
+    private bool isDashing;
+    private bool canEffect = true;
+    private bool canFlip = true;
+
     protected override void Start()
     {
         base.Start();
         rigid = GetComponent<Rigidbody2D>();
-        SetRandomMoveDirection();
+    }
+
+    protected override void Attack()
+    {
+        StartCoroutine(Dash());
+    }
+
+    private IEnumerator Dash()
+    {
+        anim.SetBool("Dashing", true);
+        isDashing = true;
+        canFlip = false;
+
+        float dashDirection = facingRight ? 1f : -1f;
+        rigid.linearVelocity = new Vector2(skilledSpeed * dashDirection, rigid.linearVelocity.y);
+
+        yield return new WaitForSeconds(0.5f);
+
+        rigid.linearVelocity = Vector2.zero;
+        anim.SetBool("Dashing", false);
+        StartCoroutine(WaitToAttack(attackCoolDown));
+
+        isDashing = false;
+
+        yield return new WaitForSeconds(0.5f);
+        canFlip = true;
     }
 
     private void FixedUpdate()
     {
-        Move();
+        float distanceX = player.position.x - transform.position.x;
+        float absDistanceX = Mathf.Abs(distanceX);
+        float distanceY = player.position.y - transform.position.y;
+        float absDistanceY = Mathf.Abs(distanceY);
 
-        if (isSkilled && canAttack)
+        // 플레이어 감지 및 방향 전환
+        if (absDistanceX <= playerNoticeDistance && absDistanceY < 2f)
         {
-            Attack();
+            FacePlayer();
+
+            if (canAttack)
+                Attack();
         }
 
-        float distance = Vector2.Distance(player.position, transform.position);
-
-        if (distance <= playerNoticeDistance)
+        // 이동
+        if (!isDashing && absDistanceX > stopDistance)
         {
-            if (!isSkilled)
-            {
-                isSkilled = true;
-            }
-            else
-            {
-                isSkilled = false;
-            }
+            Move();
+        }
+        else
+        {
+            anim.SetBool("Walking", false);
         }
         
-        if (nextMove == -1)
+        if (isDashing)
         {
-            if (facingRight)
+            CheckDashHitbox();
+        }
+    }
+
+    private void Update()
+    {
+        Effect();
+    }
+    
+    private void FacePlayer()
+    {
+        if (!isDashing)
+        {
+            bool shouldFaceRight = player.position.x > transform.position.x;
+            if (shouldFaceRight != facingRight)
             {
                 Flip();
+                nextMove = facingRight ? 1 : -1;
             }
         }
-        else if (nextMove == 1)
-        {
-            if (!facingRight)
-            {
-                Flip();
-            }
-        }   
     }
     
-
-    private void SetRandomMoveDirection()
+    private void CheckDashHitbox()
     {
-        nextMove = Random.Range(-1, 2);
-        if (nextMove == 0)
-        {
-            SetRandomMoveDirection();
-        }
-        
-        
-    }
+        // 방향에 따라 오프셋 방향 결정
     
-    private void Move()
-    {
-        if (canMove)
-        {
-            if (isSkilled)
-            {
-                rigid.linearVelocity = new Vector2(skilledSpeed * nextMove, rigid.linearVelocity.y);    
-            }
-            else
-            {
-                rigid.linearVelocity = new Vector2(speed * nextMove, rigid.linearVelocity.y);
-            }
-            
-        }
-
-        GroundDetector();
-        WallDetector();
-
-    }
-
-    private void GroundDetector()
-    {
-        Vector2 frontVec = new Vector2((rigid.position.x + nextMove), rigid.position.y);
-        Debug.DrawRay(frontVec,Vector3.down,new Color(0,1,0));
-        RaycastHit2D groundRayHit = Physics2D.Raycast(frontVec, Vector3.down,1,groundLayer);
-        if (groundRayHit.collider == null)
-        {
-            Debug.Log("NoGround Detected");
-            nextMove *= -1;
-        }
-    }
-    
-    private void WallDetector()
-    {
-        Vector2 frontVec = rigid.position + new Vector2(nextMove * 0.5f, 0);
-            
-        Debug.DrawRay(frontVec, new Vector2(nextMove, 0) * 0.5f, Color.blue);
-            
-        RaycastHit2D wallRayHit = Physics2D.Raycast(frontVec, new Vector2(nextMove, 0), 0.5f,wallLayer);
-
-        if (wallRayHit.collider != null)
-        {
-            Debug.Log("Wall Detected");
-            nextMove *= -1;
-        }
-
-    }
-    
-    
-
-    protected override void Attack()
-    {
-        Collider2D[] collidersEnemies = Physics2D.OverlapCircleAll(attackCheck.position, attackRadius);
+        // OverlapBox로 범위 감지
+        Collider2D[] collidersEnemies = Physics2D.OverlapBoxAll(attackTransform.position,attackSize,0);
         for (int i = 0; i < collidersEnemies.Length; i++)
         {
             if (collidersEnemies[i].gameObject.tag == "Player")
@@ -133,21 +116,77 @@ public class LowMonster_Rare_interest : Monster
                 collidersEnemies[i].GetComponent<PlayerHealth>().TakeDamage(damage);
             }
         }
-        StartCoroutine(WaitToAttack(attackCoolDown));    
     }
 
+    
+    private void Move()
+    {
+        if (!canFlip) return;
+
+        anim.SetBool("Walking", true);
+        rigid.linearVelocity = new Vector2(speed * nextMove, rigid.linearVelocity.y);
+
+        DetectGroundAndWalls();
+    }
+
+    /// <summary>
+    /// 낭떠러지와 벽 감지 후 방향 반전
+    /// </summary>
+    private void DetectGroundAndWalls()
+    {
+        Vector2 groundCheckPos = rigid.position + new Vector2(nextMove, 1f);
+        Vector2 wallCheckPos = rigid.position + new Vector2(nextMove * 0.5f, 1f);
+
+        Debug.DrawRay(groundCheckPos, Vector2.down * 1.5f, Color.green);
+        Debug.DrawRay(wallCheckPos, Vector2.right * nextMove * 1.0f, Color.blue);
+
+        bool noGround = !Physics2D.Raycast(groundCheckPos, Vector2.down, 1.5f, groundLayer);
+        bool hitWall = Physics2D.Raycast(wallCheckPos, Vector2.right * nextMove, 1.0f, wallLayer);
+
+        if ((noGround || hitWall) && !isDashing)
+        {
+            nextMove *= -1;
+            if (canFlip)
+            {
+                Flip();
+            }
+        }
+    }
+
+    /// <summary>
+    /// 대시 중 이펙트 생성
+    /// </summary>
+    private void Effect()
+    {
+        if (isDashing && canEffect)
+        {
+            GameObject effect = Instantiate(dashEffectPrefab, effectPos.position, Quaternion.identity);
+
+            if (!facingRight)
+                effect.GetComponent<InterestEffect>()?.Flip();
+
+            canEffect = false;
+            StartCoroutine(ResetCanEffect());
+        }
+    }
+
+    private IEnumerator ResetCanEffect()
+    {
+        yield return new WaitForSeconds(0.1f);
+        canEffect = true;
+    }
+    
     protected override void Die()
     {
         gameObject.SetActive(false);
     }
     
-
     private void OnDrawGizmosSelected()
     {
-        if (attackCheck != null)
+        if (attackTransform != null)
         {
             Gizmos.color = new Color(1f, 0f, 0f, 0.5f);
-            Gizmos.DrawWireSphere(attackCheck.position, attackRadius);
+            Gizmos.DrawCube(attackTransform.position,attackSize);
         }
         
     }

@@ -85,7 +85,6 @@ public class LowMonster_Common_regret : Monster
     {
         if (canMove)
         {
-            Debug.Log("Move");
             rigid.linearVelocity = new Vector2(speed * nextMove, rigid.linearVelocity.y);
             anim.SetBool("isWalking",true);
         }
@@ -131,16 +130,20 @@ public class LowMonster_Common_regret : Monster
     {
         rigid.linearVelocity = Vector2.zero;
         anim.SetTrigger("Attack");
+        
+        StartCoroutine(WaitToAttack(attackCoolDown));    
+    }
+
+    public void AttackOverlapCircle()
+    {
         Collider2D[] collidersEnemies = Physics2D.OverlapCircleAll(attackCheck.position, attackRadius);
         for (int i = 0; i < collidersEnemies.Length; i++)
         {
             if (collidersEnemies[i].gameObject.tag == "Player")
             {
-                Debug.Log("Attack");
                 collidersEnemies[i].GetComponent<PlayerHealth>().TakeDamage(damage);
             }
         }
-        StartCoroutine(WaitToAttack(attackCoolDown));    
     }
 
     protected override void Die()

@@ -10,9 +10,9 @@ public class InputManager : MonoBehaviour
     public InputContext currentContext = InputContext.UI;
 
     public KeyData keyData;
-    public GameObject lastSelectedButton;
 
-    public PlayerController player;
+    [HideInInspector] public GameObject lastSelectedButton;
+    private PlayerController _player;
 
     void Awake()
     {
@@ -23,6 +23,11 @@ public class InputManager : MonoBehaviour
         }
         Instance = this;
         DontDestroyOnLoad(gameObject);
+    }
+
+    public void RegisterPlayer(PlayerController player)
+    {
+        _player = player;
     }
 
     void Update()
@@ -56,8 +61,7 @@ public class InputManager : MonoBehaviour
 
         if (selected == null) return;
 
-        var controller = selected.GetComponent<UIButtonController>();
-        if (controller == null) return;
+        if (!selected.TryGetComponent(out UIButtonController controller)) return;
 
         if (Input.GetKeyDown(keyData.Ui.UpKey)) TryMove(controller.upButton);
         else if (Input.GetKeyDown(keyData.Ui.DownKey)) TryMove(controller.downButton);
@@ -66,11 +70,17 @@ public class InputManager : MonoBehaviour
 
         if (Input.GetKeyDown(keyData.Ui.SelectKey))
         {
-            var btn = selected.GetComponent<Button>();
-            if (btn != null) btn.onClick.Invoke();
+            if (selected.TryGetComponent(out Button button)) button.onClick.Invoke();
 
-            controller.onClick?.Invoke();
+            if (controller.nextOnClick != null && controller.nextOnClick.activeInHierarchy)
+            {
+                EventSystem.current.SetSelectedGameObject(controller.nextOnClick);
+                lastSelectedButton = controller.nextOnClick;
+            }
+        }
 
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
             if (controller.nextOnClick != null && controller.nextOnClick.activeInHierarchy)
             {
                 EventSystem.current.SetSelectedGameObject(controller.nextOnClick);
@@ -104,18 +114,21 @@ public class InputManager : MonoBehaviour
     #region 인게임 입력 처리
     void HandleGameplayInput()
     {
-        //player.MoveLeft = Input.GetKey(keyData.Player.LeftMoveKey);
-        //player.MoveRight = Input.GetKey(keyData.Player.RightMoveKey);
-        //player.IsRunning = Input.GetKey(keyData.Player.RunKey);
-        //player.JumpPressed = Input.GetKeyDown(keyData.Player.JumpKey);
-        //player.AttackPressed = Input.GetKeyDown(keyData.Player.AttackKey);
+        if (_player == null) return;
 
-        //// 무기 전환
-        //if (Input.GetKeyDown(keyData.Player.ItemSelectionLeftKey))
-        //    WeaponManager.Instance.SelectLeft();
+        float horizontal = 0f;
+        if (Input.GetKey(keyData.Player.LeftMoveKey)) horizontal -= 1f;
+        if (Input.GetKey(keyData.Player.RightMoveKey)) horizontal += 1f;
 
-        //if (Input.GetKeyDown(keyData.Player.ItemSelectionRightKey))
-        //    WeaponManager.Instance.SelectRight();
+        _player.MoveInput = horizontal;
+        _player.JumpPressed = Input.GetKeyDown(keyData.Player.JumpKey);
+        _player.JumpHeld = Input.GetKey(keyData.Player.JumpKey);
+        if (Input.GetKeyUp(keyData.Player.JumpKey)) PlayerController.Instance.StopRising();
+        _player.DashPressed = Input.GetKeyDown(keyData.Player.DashKey);
+        _player.CrouchHeld = Input.GetKey(keyData.Player.DownMoveKey);
+
+        _player.AttackPressed = Input.GetKeyDown(keyData.Player.AttackKey);
+        _player.SkillPressed = Input.GetKeyDown(keyData.Player.SkillKey);
     }
     #endregion
 }

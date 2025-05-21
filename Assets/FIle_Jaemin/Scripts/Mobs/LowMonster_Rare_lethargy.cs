@@ -19,7 +19,11 @@ public class LowMonster_Rare_lethargy : Monster
 
     IEnumerator Explosion(float delayTime)
     {
+        anim.SetTrigger("Charge");
+        
         yield return new WaitForSeconds(delayTime);
+        
+        anim.SetTrigger("Explode");
         
         Collider2D[] collidersEnemies = Physics2D.OverlapCircleAll(transform.position, attackRadius);
         for (int i = 0; i < collidersEnemies.Length; i++)
@@ -30,6 +34,7 @@ public class LowMonster_Rare_lethargy : Monster
                 collidersEnemies[i].GetComponent<PlayerHealth>().TakeDamage(damage);
             }
         }
+        yield return new WaitForSeconds(1);
         gameObject.SetActive(false);
     }
 

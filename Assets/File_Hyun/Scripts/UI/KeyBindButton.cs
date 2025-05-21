@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using System;
 using System.Collections;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public class KeyBindButton : MonoBehaviour
 {
@@ -17,8 +18,7 @@ public class KeyBindButton : MonoBehaviour
     public string fieldName;
 
     [Header("키 레이블")]
-    public Text labelText;
-    public Text keyText;
+    public TMP_Text keyText;
     public Button rebindButton;
 
     private Func<KeyCode> getKey;

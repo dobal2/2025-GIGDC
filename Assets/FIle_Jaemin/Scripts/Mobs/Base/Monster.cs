@@ -4,8 +4,7 @@ using UnityEngine;
 
 public abstract class Monster : MonoBehaviour
 {
-    [Header("Stats")]
-    [SerializeField] protected float maxHp;
+    [Header("Stats")] [SerializeField] protected float maxHp;
     [SerializeField] protected float hp;
     [SerializeField] protected float damage;
     [SerializeField] protected float speed;
@@ -23,15 +22,20 @@ public abstract class Monster : MonoBehaviour
         anim = GetComponent<Animator>();
         if (anim != null)
         {
-            Debug.Log("Anim not null");   
+            Debug.Log("Anim not null");
         }
         else
         {
             Debug.Log("Anim null");
         }
-            
-        if(player == null)
+
+        if (player == null)
             player = GameObject.FindGameObjectWithTag("Player")?.transform;
+
+        if (player == null)
+        {
+            Debug.LogError("No Player");
+        }
     }
 
     protected abstract void Attack();
@@ -43,7 +47,31 @@ public abstract class Monster : MonoBehaviour
         if (hp <= 0) Die();
     }
     
-    protected void Flip()
+    public void KnockBack(bool isRightAttack, float knockBackForce,bool doTakeDamageAnimation)
+    {
+        if (doTakeDamageAnimation)
+        {
+            TakeDamageAnimation();
+        }
+        
+        rigid.linearVelocity = Vector2.zero;
+        
+        if (isRightAttack)
+        {
+            rigid.AddForce(new Vector2(knockBackForce, 0),ForceMode2D.Impulse);
+        }
+        else
+        {
+            rigid.AddForce(new Vector2(-knockBackForce, 0),ForceMode2D.Impulse);
+        }
+    }
+
+    public void TakeDamageAnimation()
+    {
+        anim.SetTrigger("Hit");
+    }
+
+protected void Flip()
     {
         facingRight = !facingRight;
         

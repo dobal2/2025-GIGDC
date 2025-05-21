@@ -12,7 +12,7 @@ public class TitleScreenManager : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene("InGameScen");
+        SceneManager.LoadScene("Hyun_TestScene");
     }
 
     public void OpenSettings()
