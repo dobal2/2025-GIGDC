@@ -130,8 +130,9 @@ GameObject:
   - component: {fileID: 197438599}
   - component: {fileID: 197438598}
   - component: {fileID: 197438602}
-  - component: {fileID: 197438601}
   - component: {fileID: 197438600}
+  - component: {fileID: 197438604}
+  - component: {fileID: 197438603}
   m_Layer: 0
   m_Name: Love
   m_TagString: Untagged
@@ -183,7 +184,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: -1473978736422417158, guid: 9969707ef9d7ece44bcb05b4cec074bf, type: 3}
   m_Color: {r: 0.5589924, g: 1, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -203,8 +204,8 @@ Transform:
   m_GameObject: {fileID: 197438597}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.76, y: 4.03, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 1}
+  m_LocalPosition: {x: -6.76, y: 2.51, z: 0}
+  m_LocalScale: {x: 9, y: 9, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -236,7 +237,64 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!61 &197438601
+--- !u!114 &197438602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 197438597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39bf77436e01c0f4c937ff446b535539, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHp: 180
+  hp: 180
+  damage: 1
+  speed: 0
+  attackCoolDown: 5
+  player: {fileID: 0}
+  facingRight: 0
+  noticeDangerPrefab: {fileID: 47727939884314154, guid: 1021fd4d83d564a49a93956f77f023ee, type: 3}
+  bossInkPrefab: {fileID: 9069091658686909327, guid: cf54ed00abf8a254fb24ba2f63ee5775, type: 3}
+  bubblePrefab: {fileID: 2434027098245798612, guid: fc51ca48b682e5b449cc01a6b41e0adb, type: 3}
+  bressPrefab: {fileID: 5670720847636786518, guid: 8b87d9a2db585554aa93b4b7d46aaf47, type: 3}
+  phase: 1
+  phase2Hp: 250
+  fieldXRangeMin: -7
+  fieldXRangeMax: 7
+  fieldYRangeMin: 3
+  fieldYRangeMax: 6
+  normalY: 2.44
+  digY: -0.6
+  inkDamage: 1
+  inkForce: 20
+  bubbleDamage: 1
+  bressDamage: 1
+--- !u!95 &197438603
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 197438597}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6271ef9c160a10e4dbd2806d15ce5352, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!61 &197438604
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -270,53 +328,18 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.00066511333, y: 0.17566593}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    pivot: {x: 0.5, y: 0}
+    oldSize: {x: 0.38, y: 0.35}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.36171845, y: 0.33380154}
   m_EdgeRadius: 0
---- !u!114 &197438602
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 197438597}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39bf77436e01c0f4c937ff446b535539, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHp: 180
-  hp: 180
-  damage: 1
-  speed: 0
-  attackCoolDown: 5
-  player: {fileID: 0}
-  facingRight: 0
-  noticeDangerPrefab: {fileID: 47727939884314154, guid: 1021fd4d83d564a49a93956f77f023ee, type: 3}
-  bossInkPrefab: {fileID: 9069091658686909327, guid: cf54ed00abf8a254fb24ba2f63ee5775, type: 3}
-  bubblePrefab: {fileID: 2434027098245798612, guid: fc51ca48b682e5b449cc01a6b41e0adb, type: 3}
-  bressPrefab: {fileID: 5670720847636786518, guid: 8b87d9a2db585554aa93b4b7d46aaf47, type: 3}
-  phase: 1
-  phase2Hp: 250
-  fieldXRangeMin: -7
-  fieldXRangeMax: 7
-  fieldYRangeMin: 3
-  fieldYRangeMax: 6
-  normalY: 4
-  digY: 0
-  inkDamage: 1
-  inkForce: 20
-  bubbleDamage: 1
-  bressDamage: 1
 --- !u!1 &397537761
 GameObject:
   m_ObjectHideFlags: 0
@@ -781,6 +804,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 1972
   health: 1972
+  invincibleTime: 1
+  isInvincible: 0
 --- !u!114 &1549056370
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -793,8 +818,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc50ed34665582d469c817bf0e66c900, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keyData: {fileID: 11400000, guid: eef92708e559636479c30d47676bef1e, type: 2}
-  moveController: {fileID: 1549056371}
 --- !u!114 &1549056371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -807,9 +830,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc4725f96fb96d54eb5a2a50fab10f2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rigidBody: {fileID: 1549056372}
-  spriteRenderer: {fileID: 1549056373}
-  moveSpeed: 7
 --- !u!50 &1549056372
 Rigidbody2D:
   serializedVersion: 5

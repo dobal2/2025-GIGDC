@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -8,11 +9,17 @@ public class BossExcitement : Monster
     [Header("Prefabs")]
     [SerializeField] private GameObject homingMissilePrefab;
     [SerializeField] private GameObject bombPrefab;
-    [SerializeField] private GameObject thornPrefab;
+    [SerializeField] private GameObject targetBoardPrefab;
     
+    [Header("Transforms")]
     [SerializeField] private Transform missileSpawnPoint;
     [SerializeField] private Transform[] teleportPositions; // 랜덤 텔레포트 위치들
     [SerializeField] private Transform bombPos;
+    [SerializeField] private Transform targetBoardPoint;
+    
+    [Header("Values")]
+    [SerializeField] private int phase = 1;
+    [SerializeField] private float phase2Hp;
     
     
     [SerializeField] private float teleportCoolTime;
@@ -27,27 +34,56 @@ public class BossExcitement : Monster
     protected override void Start()
     {
         base.Start();
-        StartCoroutine(PatternRoutine());
     }
 
-    protected override void Attack() { }
-    protected override void Die() { }
+    protected override void Attack()
+    {
+        if (!isAttacking)
+        {
+            StartCoroutine(PatternRoutine());
+        }
+    }
+
+    protected override void Die()
+    {
+        StopAllCoroutines();
+        if (phase == 1)
+        {
+            Phase2();
+        }
+        else
+        {
+            gameObject.SetActive(false);
+        }
+    }
+
+    private void Phase2()
+    {
+        phase = 2;
+        maxHp = phase2Hp;
+        hp = maxHp;
+        isAttacking = false;
+    }
 
     private IEnumerator PatternRoutine()
     {
         while (true)
         {
             isAttacking = true;
-            FireHomingMissile();
-            StartCoroutine(ThornPattern());
 
-            // 4초 동안 한 자리에 있음
+            if (phase == 1)
+            {
+                FireHomingMissile();
+            
+                ThrowBombAtPlayerPattern();
+            }
+            else if (phase == 2)
+            {
+                yield return StartCoroutine(SpawnTargetBoard());
+            }
+            
             yield return new WaitForSeconds(4f);
             
-            ThrowBombAtPlayerPattern();
-            
-            
-
             isAttacking = false;
         }
     }
@@ -118,35 +154,33 @@ public class BossExcitement : Monster
         }
     }
     
-    IEnumerator ThornPattern()
+    
+    //phase2 pattern
+    IEnumerator SpawnTargetBoard()
     {
-        int thornCount = 12;
-        float radius = 4f; // 버블이 퍼질 반지름
-        Vector2 center = transform.position; // 또는 원하는 중심 좌표
+        yield return new WaitForSeconds(3);
 
-        for (int i = 0; i < thornCount; i++)
-        {
-            float angle = i * Mathf.PI * 2f / thornCount; // 각도를 나눠서 원형 배치
-            Vector2 offset = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * radius;
-            Vector2 spawnPos = center + offset;
-
-            GameObject newBubble = Instantiate(thornPrefab, spawnPos, Quaternion.identity);
-            newBubble.GetComponent<Bubble>().damage = damage;
-        }
-
-        yield return new WaitForSeconds(1f);
+        GameObject newTargetBoard = Instantiate(targetBoardPrefab,targetBoardPoint.position,Quaternion.identity);
+        
+        yield return new WaitForSeconds(2);
+        
+        Destroy(newTargetBoard);
+        
     }
-
     
-    
-    
-
     private void Update()
     {
-        teleportCoolTimer += Time.deltaTime;
-        if (teleportCoolTime <= teleportCoolTimer)
+        if (hp <= 0) Die();
+        
+        Attack();
+
+        if (phase == 1)
         {
-            TeleportRoutine();
+            teleportCoolTimer += Time.deltaTime;
+            if (teleportCoolTime <= teleportCoolTimer)
+            {
+                TeleportRoutine();
+            }   
         }
     }
 }
