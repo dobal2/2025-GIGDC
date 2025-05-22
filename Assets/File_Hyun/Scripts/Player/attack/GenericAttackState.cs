@@ -15,7 +15,7 @@ public class GenericAttackState : PlayerState
         if (!player.isGrounded)
             player.Rigidbody.constraints |= RigidbodyConstraints2D.FreezePositionY;
 
-        player.AttackController.OnAttackEnter(); // 무기별 특화 진입 동작 (예: 투사체 발사 등)
+        player.AttackController.OnAttackEnter(); // 무기별 특화 진입 동작
     }
 
     public override void Exit()
@@ -23,32 +23,16 @@ public class GenericAttackState : PlayerState
         player.Rigidbody.linearVelocity = Vector2.zero;
         player.Rigidbody.constraints &= ~RigidbodyConstraints2D.FreezePositionY;
 
-        player.AttackController.OnAttackExit(); // 무기별 특화 종료 동작 (예: 효과 정리 등)
+        player.AttackController.OnAttackExit(); // 무기별 특화 종료 동작
     }
 
     public override void Update()
     {
         player.AttackController.UpdateComboTimer();
 
-        // 공격 중 대시 캔슬
-        if (player.dashBufferTimer > 0f && Time.time >= player.lastDashTime + player.DashCooldown)
-        {
-            if (player.isGrounded || player.canAirDash)
-            {
-                stateMachine.ChangeState(new PlayerDashState(player, stateMachine));
-                return;
-            }
-        }
+        if (TryHandleDash()) return;
+        if (TryHandleSkillInput()) return;
 
-        // 스킬 전이
-        if (player.skillRequested)
-        {
-            player.ConsumeSkillRequest();
-            stateMachine.ChangeState(player.AttackController.GetSkillState(stateMachine));
-            return;
-        }
-
-        // 콤보 연계
         if (player.AttackBuffered && player.AttackController.CanComboInput)
         {
             player.ConsumeAttackBuffer();
@@ -57,7 +41,6 @@ public class GenericAttackState : PlayerState
             return;
         }
 
-        // 공격 종료
         if (player.AttackController.CanMove)
         {
             stateMachine.ChangeState(new PlayerIdleState(player, stateMachine));

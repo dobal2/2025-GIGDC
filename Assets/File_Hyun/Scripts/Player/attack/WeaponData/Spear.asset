@@ -13,19 +13,24 @@ MonoBehaviour:
   m_Name: Spear
   m_EditorClassIdentifier: 
   type: 0
+  skillDamage: 0
+  skillcooldown: 3
   comboInfos:
   - damage: 1
     pushDistance: 0.5
     pushTime: 0.1
     Combodelay: 0.2
     ComboKeep: 1
+    projectilePrefab: {fileID: 0}
   - damage: 1
     pushDistance: 0.5
     pushTime: 0.1
     Combodelay: 0.2
     ComboKeep: 1
+    projectilePrefab: {fileID: 0}
   - damage: 1
     pushDistance: 0.5
     pushTime: 0.1
     Combodelay: 0.2
     ComboKeep: 1
+    projectilePrefab: {fileID: 0}

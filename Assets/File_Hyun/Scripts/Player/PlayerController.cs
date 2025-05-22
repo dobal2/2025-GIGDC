@@ -9,15 +9,12 @@ public class PlayerController : MonoBehaviour
     public float MoveInput { get; set; }
     public bool CrouchHeld { get; set; }
     public bool JumpHeld { get; set; }
+    public bool DashPressed { get; set; }
+    public bool SkillPressed { get; set; }
 
     public bool JumpPressed
     {
         set { if (value) jumpBufferTimer = jumpBufferTime; }
-    }
-
-    public bool DashPressed
-    {
-        set { if (value) dashBufferTimer = dashBufferTime; }
     }
 
     public bool AttackPressed
@@ -25,16 +22,10 @@ public class PlayerController : MonoBehaviour
         set { if (value) attackBufferTimer = attackBufferTime; }
     }
 
-    public bool SkillPressed
-    {
-        set { if (value) skillRequested = true; }
-    }
-
     [Header("Movement Settings")]
     [SerializeField] private float moveSpeed = 6f;
     [SerializeField] private float fastFallGravityScale = 16f;
     public float MoveSpeed => moveSpeed;
-    public float FastFallGravityScale => fastFallGravityScale;
 
     [Header("Jump Settings")]
     [SerializeField] private AnimationCurve jumpForceCurve;
@@ -42,34 +33,25 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float maxJumpForce = 20f;
     [SerializeField] private float jumpHeightMultiplier = 1f;
     [SerializeField] private float jumpBufferTime = 0.1f;
-    [SerializeField] private float coyoteTime = 0.2f;
-    public AnimationCurve JumpForceCurve => jumpForceCurve;
-    public float MaxJumpTime => maxJumpTime;
-    public float MaxJumpForce => maxJumpForce;
-    public float JumpHeightMultiplier => jumpHeightMultiplier;
-    public float JumpBufferTime => jumpBufferTime;
-    public float CoyoteTime => coyoteTime;
+    [SerializeField] private float coyoteTime = 0.1f;
 
     [Header("Dash Settings")]
     [SerializeField] private float dashSpeed = 50f;
     [SerializeField] private float dashDuration = 0.1f;
     [SerializeField] private float dashCooldown = 0.8f;
-    [SerializeField] private float dashBufferTime = 0.1f;
     [SerializeField] private LayerMask dashStop;
     public float DashSpeed => dashSpeed;
     public float DashDuration => dashDuration;
     public float DashCooldown => dashCooldown;
     public LayerMask DashStop => dashStop;
 
-    [Header("Ground Check")]
-    [SerializeField] private Transform groundCheck;
-    [SerializeField] private float groundCheckRadius = 0.1f;
+    [Header("Check Settings")]
     [SerializeField] private LayerMask groundLayer;
-
-    [Header("Ceiling Check")]
-    [SerializeField] private Transform ceilingCheck;
-    [SerializeField] private float ceilingCheckRadius = 0.1f;
     [SerializeField] private LayerMask ceilingLayer;
+    [SerializeField] private float boxWidth = 0.99f;
+    [SerializeField] private float boxHeight = 0.1f;
+    [SerializeField] private float boxLowAirHeight = 2f;
+    public LayerMask GroundLayer => groundLayer;
 
     [Header("Crouch Settings")]
     [SerializeField] private float crouchColliderHeightMultiplier = 0.5f;
@@ -80,13 +62,13 @@ public class PlayerController : MonoBehaviour
     [Header("Attack Settings")]
     [SerializeField] private float attackBufferTime = 0.1f;
     [HideInInspector] public float attackBufferTimer = 0f;
-    [HideInInspector] public bool skillRequested = false;
     public bool AttackBuffered => attackBufferTimer > 0f;
 
     private Rigidbody2D rb;
     private BoxCollider2D boxCol;
 
     [HideInInspector] public bool isGrounded;
+    [HideInInspector] public bool isLowAir;
     [HideInInspector] public bool isJumping;
     [HideInInspector] public float jumpTimeCounter;
     [HideInInspector] public float jumpBufferTimer;
@@ -97,12 +79,13 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public int facingDirection = 1;
     [HideInInspector] public float normalGravityScale;
     [HideInInspector] public bool isTouchingCeiling;
-    [HideInInspector] public float dashBufferTimer;
 
     private Vector2 originalColliderSize;
     private Vector2 originalColliderOffset;
 
     private PlayerStateMachine stateMachine;
+
+    private bool prevSkillAvailable = false;
 
     void Awake()
     {
@@ -139,11 +122,15 @@ public class PlayerController : MonoBehaviour
         if (jumpBufferTimer > 0f)
             jumpBufferTimer -= Time.deltaTime;
 
-        if (dashBufferTimer > 0f)
-            dashBufferTimer -= Time.deltaTime;
-
         if (attackBufferTimer > 0f)
             attackBufferTimer -= Time.deltaTime;
+
+        bool nowAvailable = AttackController.CanUseSkill;
+        if (!prevSkillAvailable && nowAvailable)
+        {
+            Debug.Log("[Skill] 스킬 쿨타임 완료 - 사용 가능");
+        }
+        prevSkillAvailable = nowAvailable;
 
         stateMachine.Update();
     }
@@ -157,7 +144,15 @@ public class PlayerController : MonoBehaviour
     {
         bool wasGrounded = isGrounded;
 
-        isGrounded = !isJumping && (bool)Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+        Vector2 boxSize = new(boxCol.bounds.size.x * boxWidth, boxHeight);
+        Vector2 origin = (Vector2)boxCol.bounds.center + Vector2.down * boxCol.bounds.extents.y;
+        RaycastHit2D hit = Physics2D.BoxCast(origin, boxSize, 0f, Vector2.down, 0f, groundLayer);
+
+        Vector2 lowAirSize = new(boxCol.bounds.size.x * boxWidth, boxLowAirHeight);
+        RaycastHit2D lowAirHit = Physics2D.BoxCast(origin + Vector2.down * 1f, lowAirSize, 0f, Vector2.down, 0f, groundLayer);
+        isLowAir = lowAirHit.collider != null;
+
+        isGrounded = !isJumping && hit.collider != null;
 
         if (isGrounded) coyoteTimer = coyoteTime;
         else coyoteTimer -= Time.deltaTime;
@@ -177,8 +172,36 @@ public class PlayerController : MonoBehaviour
 
     void UpdateCeiling()
     {
-        isTouchingCeiling = Physics2D.OverlapCircle(ceilingCheck.position, ceilingCheckRadius, ceilingLayer);
+        Vector2 boxSize = new(boxCol.bounds.size.x * boxWidth, boxHeight);
+        Vector2 origin = (Vector2)boxCol.bounds.center + Vector2.up * boxCol.bounds.extents.y;
+        RaycastHit2D hit = Physics2D.BoxCast(origin, boxSize, 0f, Vector2.up, 0f, ceilingLayer);
+
+        isTouchingCeiling = hit.collider != null;
     }
+
+#if UNITY_EDITOR
+    [ContextMenu("박스캐스트 시각화")]
+    private void DebugDrawBoxCastGizmos()
+    {
+        if (boxCol == null)
+            boxCol = GetComponent<BoxCollider2D>();
+
+        Vector2 origin = (Vector2)boxCol.bounds.center + Vector2.down * boxCol.bounds.extents.y;
+
+        DrawDebugBox(origin, boxCol.bounds.size.x * boxWidth, boxHeight, Color.green); // Ground
+        DrawDebugBox(origin + Vector2.down * 1f, boxCol.bounds.size.x * boxWidth, boxLowAirHeight, Color.cyan); // LowAir
+        DrawDebugBox((Vector2)boxCol.bounds.center + Vector2.up * boxCol.bounds.size.y * 0.5f, boxCol.bounds.size.x * boxWidth, boxHeight, Color.red); // Ceiling
+    }
+
+    private void DrawDebugBox(Vector2 center, float width, float height, Color color)
+    {
+        Vector2 half = new Vector2(width, height) * 0.5f;
+        Debug.DrawLine(center - half, center + new Vector2(half.x, -half.y), color, 1f);
+        Debug.DrawLine(center + new Vector2(half.x, -half.y), center + half, color, 1f);
+        Debug.DrawLine(center + half, center + new Vector2(-half.x, half.y), color, 1f);
+        Debug.DrawLine(center + new Vector2(-half.x, half.y), center - half, color, 1f);
+    }
+#endif
 
     public void HandleMove(float speed)
     {
@@ -224,11 +247,6 @@ public class PlayerController : MonoBehaviour
     public void ConsumeAttackBuffer()
     {
         attackBufferTimer = 0f;
-    }
-
-    public void ConsumeSkillRequest()
-    {
-        skillRequested = false;
     }
 
     public Rigidbody2D Rigidbody => rb;
