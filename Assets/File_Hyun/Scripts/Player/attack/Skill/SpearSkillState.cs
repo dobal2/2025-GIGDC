@@ -72,7 +72,7 @@ public class SpearSkillState : PlayerState
                 Vector2 boxSize = new Vector2(player.BoxCollider.bounds.size.x * 0.99f, 0.1f);
                 Vector2 origin = player.BoxCollider.bounds.center;
 
-                RaycastHit2D hit = Physics2D.BoxCast(origin, boxSize, 0f, Vector2.down, 100f, player.DashStop);
+                RaycastHit2D hit = Physics2D.BoxCast(origin, boxSize, 0f, Vector2.down, 100f, player.GroundLayer);
 
                 if (hit.collider)
                 {

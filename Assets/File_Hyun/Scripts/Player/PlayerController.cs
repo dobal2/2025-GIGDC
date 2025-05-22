@@ -51,6 +51,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float boxWidth = 0.99f;
     [SerializeField] private float boxHeight = 0.1f;
     [SerializeField] private float boxLowAirHeight = 2f;
+    public LayerMask GroundLayer => groundLayer;
 
     [Header("Crouch Settings")]
     [SerializeField] private float crouchColliderHeightMultiplier = 0.5f;

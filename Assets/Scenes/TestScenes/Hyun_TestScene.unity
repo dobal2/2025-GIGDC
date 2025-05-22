@@ -407,7 +407,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!61 &1757578480
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -783,7 +783,6 @@ MonoBehaviour:
   dashSpeed: 50
   dashDuration: 0.1
   dashCooldown: 0.8
-  dashBufferTime: 0.1
   dashStop:
     serializedVersion: 2
     m_Bits: 64
@@ -800,7 +799,6 @@ MonoBehaviour:
   crouchSpeedMultiplier: 0.5
   attackBufferTime: 0.1
   attackBufferTimer: 0
-  skillRequested: 0
   isGrounded: 0
   isLowAir: 0
   isJumping: 0
@@ -813,7 +811,6 @@ MonoBehaviour:
   facingDirection: 1
   normalGravityScale: 0
   isTouchingCeiling: 0
-  dashBufferTimer: 0
 --- !u!4 &1252394521286520684
 Transform:
   m_ObjectHideFlags: 0
