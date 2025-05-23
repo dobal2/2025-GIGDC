@@ -119,11 +119,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1
-        y: 40
+        y: 41
         width: 29
         height: 32
       alignment: 9
-      pivot: {x: 0.65, y: 0}
+      pivot: {x: 0.621, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -141,11 +141,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 42
-        y: 40
+        y: 41
         width: 25
         height: 31
       alignment: 9
-      pivot: {x: 0.65, y: 0}
+      pivot: {x: 0.66, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -163,11 +163,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 83
-        y: 40
+        y: 41
         width: 29
         height: 32
       alignment: 9
-      pivot: {x: 0.55, y: 0}
+      pivot: {x: 0.552, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -185,11 +185,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 5
-        y: 0
+        y: 1
         width: 29
         height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0.448, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -207,11 +207,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 43
-        y: 0
+        y: 1
         width: 29
         height: 31
       alignment: 9
-      pivot: {x: 0.55, y: 0}
+      pivot: {x: 0.551, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -229,11 +229,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 82
-        y: 0
+        y: 1
         width: 25
         height: 32
       alignment: 9
-      pivot: {x: 0.65, y: 0}
+      pivot: {x: 0.66, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -250,7 +250,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: ab8c881c43e4ca44cac8fd5cacc121d6
+    spriteID: 6fb2a1fdb4d934b448a16be4e39a199c
     internalID: 0
     vertices: []
     indices: 

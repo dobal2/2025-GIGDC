@@ -43,7 +43,7 @@ public class GenericAttackState : PlayerState
 
         if (player.AttackController.CanMove)
         {
-            stateMachine.ChangeState(new PlayerIdleState(player, stateMachine));
+            stateMachine.ChangeState(new PlayerLocomotionState(player, stateMachine));
         }
     }
 

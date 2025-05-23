@@ -37,6 +37,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float jumpHeightMultiplier = 1f;
     [SerializeField] private float jumpBufferTime = 0.1f;
     [SerializeField] private float coyoteTime = 0.1f;
+    public float MaxJumpTime => maxJumpTime;
 
     [Header("Dash Settings")]
     [SerializeField] private float dashSpeed = 50f;
@@ -111,7 +112,7 @@ public class PlayerController : MonoBehaviour
         InputManager.Instance.currentContext = InputManager.InputContext.Gameplay;
 
         stateMachine = new PlayerStateMachine();
-        stateMachine.Initialize(new PlayerIdleState(this, stateMachine));
+        stateMachine.Initialize(new PlayerLocomotionState(this, stateMachine));
     }
 
     void Update()

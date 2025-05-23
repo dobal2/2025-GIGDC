@@ -101,7 +101,7 @@ public class SpearSkillState : PlayerState
 
         if (phase == SkillPhase.Landing && timer >= landingDuration)
         {
-            stateMachine.ChangeState(new PlayerIdleState(player, stateMachine));
+            stateMachine.ChangeState(new PlayerLocomotionState(player, stateMachine));
         }
     }
 

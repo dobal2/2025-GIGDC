@@ -2,9 +2,8 @@ using UnityEngine;
 
 public enum PlayerStateType
 {
-    None,
-    Idle,
-    Move,
+    Missing,
+    Locomotion,
     Dash,
     Attack,
     SpearSkill

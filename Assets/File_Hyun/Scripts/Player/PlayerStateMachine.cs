@@ -3,7 +3,7 @@ public class PlayerStateMachine
     private PlayerState currentState;
     private PlayerState previousState;
 
-    public PlayerStateType CurrentStateType => currentState?.StateType ?? PlayerStateType.None;
+    public PlayerStateType CurrentStateType => currentState?.StateType ?? PlayerStateType.Missing;
 
     public void Initialize(PlayerState startingState)
     {

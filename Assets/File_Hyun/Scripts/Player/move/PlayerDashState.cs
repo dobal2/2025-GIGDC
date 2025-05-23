@@ -29,7 +29,7 @@ public class PlayerDashState : PlayerState
 
         if (hit.collider)
         {
-            stateMachine.ChangeState(new PlayerIdleState(player, stateMachine));
+            stateMachine.ChangeState(new PlayerLocomotionState(player, stateMachine));
             return;
         }
 
@@ -38,7 +38,7 @@ public class PlayerDashState : PlayerState
 
         if (player.dashTimer <= 0f)
         {
-            stateMachine.ChangeState(new PlayerIdleState(player, stateMachine));
+            stateMachine.ChangeState(new PlayerLocomotionState(player, stateMachine));
         }
     }
 
