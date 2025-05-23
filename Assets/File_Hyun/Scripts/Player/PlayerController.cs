@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
         set { if (value) attackBufferTimer = attackBufferTime; }
     }
 
-    public string CurrentStateName => stateMachine.CurrentStateName;
+    public PlayerStateType CurrentStateType => stateMachine.CurrentStateType;
 
     [Header("Movement Settings")]
     [SerializeField] private float moveSpeed = 6f;

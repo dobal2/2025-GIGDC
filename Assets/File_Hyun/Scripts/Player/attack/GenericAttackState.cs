@@ -5,7 +5,7 @@ public class GenericAttackState : PlayerState
     public GenericAttackState(PlayerController player, PlayerStateMachine stateMachine)
         : base(player, stateMachine) { }
 
-    public override string Name => "GenericAttack";
+    public override PlayerStateType StateType => PlayerStateType.Attack;
     public override bool IsCombatState => true;
 
     public override void Enter()

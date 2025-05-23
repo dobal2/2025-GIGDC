@@ -20,7 +20,7 @@ public class SpearSkillState : PlayerState
     public SpearSkillState(PlayerController player, PlayerStateMachine stateMachine)
         : base(player, stateMachine) { }
 
-    public override string Name => "SpearSkill";
+    public override PlayerStateType StateType => PlayerStateType.SpearSkill;
     public override bool IsCombatState => true;
 
     public override void Enter()

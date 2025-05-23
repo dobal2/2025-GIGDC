@@ -5,7 +5,8 @@ public class PlayerDashState : PlayerState
     public PlayerDashState(PlayerController player, PlayerStateMachine stateMachine)
         : base(player, stateMachine) { }
 
-    public override string Name => "Dash";
+    public override PlayerStateType StateType => PlayerStateType.Dash;
+
     public override void Enter()
     {
         player.Animator.Play("Player_Dash");

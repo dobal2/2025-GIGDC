@@ -1,13 +1,24 @@
 using UnityEngine;
 
+public enum PlayerStateType
+{
+    None,
+    Idle,
+    Move,
+    Dash,
+    Attack,
+    SpearSkill
+    // 필요 시 추가
+}
+
 public abstract class PlayerState
 {
     protected PlayerController player;
     protected PlayerStateMachine stateMachine;
 
-    public virtual bool IsCombatState => false;
+    public abstract PlayerStateType StateType { get; }
 
-    public abstract string Name { get; }
+    public virtual bool IsCombatState => false;
 
     public PlayerState(PlayerController player, PlayerStateMachine stateMachine)
     {

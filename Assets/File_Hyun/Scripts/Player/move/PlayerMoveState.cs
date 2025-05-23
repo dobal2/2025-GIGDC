@@ -7,7 +7,7 @@ public class PlayerMoveState : PlayerState
     public PlayerMoveState(PlayerController player, PlayerStateMachine stateMachine)
         : base(player, stateMachine) { }
 
-    public override string Name => "Normal";
+    public override PlayerStateType StateType => PlayerStateType.Move;
 
     public override void Enter()
     {

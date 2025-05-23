@@ -7,7 +7,7 @@ public class PlayerIdleState : PlayerState
     public PlayerIdleState(PlayerController player, PlayerStateMachine stateMachine)
         : base(player, stateMachine) { }
 
-    public override string Name => "Idle";
+    public override PlayerStateType StateType => PlayerStateType.Idle;
 
     public override void Enter()
     {
