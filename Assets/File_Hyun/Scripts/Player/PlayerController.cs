@@ -192,7 +192,7 @@ public class PlayerController : MonoBehaviour
 
         DrawDebugBox(origin, boxCol.bounds.size.x * boxWidth, boxHeight, Color.green); // Ground
         DrawDebugBox(origin + Vector2.down * 1f, boxCol.bounds.size.x * boxWidth, boxLowAirHeight, Color.cyan); // LowAir
-        DrawDebugBox((Vector2)boxCol.bounds.center + Vector2.up * boxCol.bounds.size.y * 0.5f, boxCol.bounds.size.x * boxWidth, boxHeight, Color.red); // Ceiling
+        DrawDebugBox((Vector2)boxCol.bounds.center + 0.5f * boxCol.bounds.size.y * Vector2.up, boxCol.bounds.size.x * boxWidth, boxHeight, Color.red); // Ceiling
     }
 
     private void DrawDebugBox(Vector2 center, float width, float height, Color color)
@@ -219,12 +219,6 @@ public class PlayerController : MonoBehaviour
     {
         if (isJumping)
         {
-            if (!JumpHeld || jumpTimeCounter >= maxJumpTime || isTouchingCeiling)
-            {
-                isJumping = false;
-                return;
-            }
-
             jumpTimeCounter += Time.fixedDeltaTime;
             float t = jumpTimeCounter / maxJumpTime;
             float force = jumpForceCurve.Evaluate(t) * maxJumpForce * jumpHeightMultiplier;
@@ -251,7 +245,6 @@ public class PlayerController : MonoBehaviour
         if (rb.linearVelocity.y > 0f)
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * 0.3f);
 
-        isJumping = false;
         jumpTimeCounter = maxJumpTime;
     }
 

@@ -3,6 +3,7 @@ using UnityEngine;
 public class PlayerLocomotionState : PlayerState
 {
     private bool shouldJump = false;
+    private bool pendingEndJump = false;
 
     public PlayerLocomotionState(PlayerController player, PlayerStateMachine stateMachine)
         : base(player, stateMachine) { }
@@ -40,6 +41,14 @@ public class PlayerLocomotionState : PlayerState
             player.isGrounded = false;
             player.jumpTimeCounter = 0f;
             shouldJump = false;
+
+            player.Animator.Play("Player_Jump");
+        }
+
+        if (player.isJumping && (!player.JumpHeld || player.jumpTimeCounter >= player.MaxJumpTime || player.isTouchingCeiling))
+        {
+            player.isJumping = false;
+            pendingEndJump = true;
         }
 
         player.HandleMove(player.MoveSpeed);
@@ -53,18 +62,15 @@ public class PlayerLocomotionState : PlayerState
     {
         if (!player.isGrounded)
         {
-            if (player.isJumping)
+            if (pendingEndJump)
             {
-                if (player.jumpTimeCounter >= player.MaxJumpTime * 0.6f)
-                    player.Animator.Play("Player_Jump_End");
-                else if (player.Rigidbody.linearVelocity.y > 0f)
-                    player.Animator.Play("Player_Jump");
-                else
-                    player.Animator.Play("Player_Fall");
+                player.Animator.Play("Player_Endjump");
+                pendingEndJump = false;
             }
-            else
+            else if (!player.isJumping)
             {
-                player.Animator.Play("Player_Fall");
+                if (!player.Animator.GetCurrentAnimatorStateInfo(0).IsName("Player_Endjump"))
+                    player.Animator.Play("Player_Fall");
             }
         }
         else
