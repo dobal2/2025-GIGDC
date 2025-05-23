@@ -1,13 +1,18 @@
 using UnityEngine;
 
-public class PlayerNormalState : PlayerState
+public class PlayerMoveState : PlayerState
 {
     private bool shouldJump = false;
 
-    public PlayerNormalState(PlayerController player, PlayerStateMachine stateMachine)
+    public PlayerMoveState(PlayerController player, PlayerStateMachine stateMachine)
         : base(player, stateMachine) { }
 
     public override string Name => "Normal";
+
+    public override void Enter()
+    {
+        player.Animator.Play("Player_Walk");
+    }
 
     public override void Update()
     {
@@ -31,6 +36,32 @@ public class PlayerNormalState : PlayerState
         }
     }
 
+    void UpdateAirAnimation()
+    {
+        if (!player.isGrounded)
+        {
+            if (player.isJumping && player.Rigidbody.linearVelocity.y > 0f)
+            {
+                    //player.Animator.Play("Player_Jump");
+            }
+            else
+            {
+                    player.Animator.Play("Player_Fall");
+            }
+        }
+        else
+        {
+            if (Mathf.Abs(player.MoveInput) > 0.01f)
+            {
+                    player.Animator.Play("Player_Walk");
+            }
+            else
+            {
+                    player.Animator.Play("Player_Idle");
+            }
+        }
+    }
+
     public override void FixedUpdate()
     {
         if (shouldJump)
@@ -45,5 +76,7 @@ public class PlayerNormalState : PlayerState
         player.HandleMove(player.MoveSpeed);
         player.HandleJump();
         player.HandleFastFall();
+
+        UpdateAirAnimation();
     }
 }

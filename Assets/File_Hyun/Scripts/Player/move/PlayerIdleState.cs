@@ -9,6 +9,11 @@ public class PlayerIdleState : PlayerState
 
     public override string Name => "Idle";
 
+    public override void Enter()
+    {
+        player.Animator.Play("Player_Idle");
+    }
+
     public override void Update()
     {
         player.AttackController.UpdateComboTimer();
@@ -27,7 +32,33 @@ public class PlayerIdleState : PlayerState
 
         if (Mathf.Abs(player.MoveInput) > 0.01f)
         {
-            stateMachine.ChangeState(new PlayerNormalState(player, stateMachine));
+            stateMachine.ChangeState(new PlayerMoveState(player, stateMachine));
+        }
+    }
+
+    void UpdateAirAnimation()
+    {
+        if (!player.isGrounded)
+        {
+            if (player.isJumping && player.Rigidbody.linearVelocity.y > 0f)
+            {
+                    //player.Animator.Play("Player_Jump");
+            }
+            else
+            {
+                    player.Animator.Play("Player_Fall");
+            }
+        }
+        else
+        {
+            if (Mathf.Abs(player.MoveInput) > 0.01f)
+            {
+                    player.Animator.Play("Player_Walk");
+            }
+            else
+            {
+                    player.Animator.Play("Player_Idle");
+            }
         }
     }
 
@@ -45,5 +76,7 @@ public class PlayerIdleState : PlayerState
         player.HandleJump();
         player.HandleFastFall();
         player.Rigidbody.linearVelocity = new Vector2(0, player.Rigidbody.linearVelocity.y);
+
+        UpdateAirAnimation();
     }
 }

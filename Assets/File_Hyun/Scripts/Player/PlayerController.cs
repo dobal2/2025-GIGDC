@@ -5,6 +5,7 @@ public class PlayerController : MonoBehaviour
 {
     public static PlayerController Instance { get; private set; }
     public AttackController AttackController { get; private set; }
+    public Animator Animator { get; private set; }
 
     public float MoveInput { get; set; }
     public bool DownHeld { get; set; }
@@ -21,6 +22,8 @@ public class PlayerController : MonoBehaviour
     {
         set { if (value) attackBufferTimer = attackBufferTime; }
     }
+
+    public string CurrentStateName => stateMachine.CurrentStateName;
 
     [Header("Movement Settings")]
     [SerializeField] private float moveSpeed = 6f;
@@ -60,6 +63,7 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D rb;
     private BoxCollider2D boxCol;
+    private SpriteRenderer SpriteRenderer;
 
     [HideInInspector] public bool isGrounded;
     [HideInInspector] public bool isLowAir;
@@ -85,6 +89,8 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         boxCol = GetComponent<BoxCollider2D>();
+        Animator = GetComponent<Animator>();
+        SpriteRenderer = GetComponent<SpriteRenderer>();
         AttackController = GetComponent<AttackController>();
         AttackController.Initialize(WeaponType.Spear);
         originalColliderSize = boxCol.size;
@@ -201,7 +207,10 @@ public class PlayerController : MonoBehaviour
     {
         rb.linearVelocity = new Vector2(MoveInput * speed, rb.linearVelocity.y);
         if (MoveInput != 0)
+        {
             facingDirection = MoveInput > 0 ? 1 : -1;
+            SpriteRenderer.flipX = facingDirection == -1;
+        }
     }
 
     public void HandleJump()

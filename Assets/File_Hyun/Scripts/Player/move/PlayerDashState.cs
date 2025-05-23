@@ -8,6 +8,7 @@ public class PlayerDashState : PlayerState
     public override string Name => "Dash";
     public override void Enter()
     {
+        player.Animator.Play("Player_Dash");
         player.dashTimer = player.DashDuration;
         player.lastDashTime = Time.time;
         if (!player.isGrounded)
