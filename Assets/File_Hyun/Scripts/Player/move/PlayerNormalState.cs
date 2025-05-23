@@ -18,12 +18,6 @@ public class PlayerNormalState : PlayerState
         if (TryHandleComboStart()) return;
         if (TryHandleDash()) return;
 
-        if (player.CrouchHeld && player.isGrounded)
-        {
-            stateMachine.ChangeState(new PlayerCrouchState(player, stateMachine));
-            return;
-        }
-
         if (!player.isJumping && player.jumpBufferTimer > 0f && (player.isGrounded || player.coyoteTimer > 0f))
         {
             shouldJump = true;

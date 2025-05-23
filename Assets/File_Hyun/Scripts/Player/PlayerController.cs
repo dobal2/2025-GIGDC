@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     public AttackController AttackController { get; private set; }
 
     public float MoveInput { get; set; }
-    public bool CrouchHeld { get; set; }
+    public bool DownHeld { get; set; }
     public bool JumpHeld { get; set; }
     public bool DashPressed { get; set; }
     public bool SkillPressed { get; set; }
@@ -52,12 +52,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float boxHeight = 0.1f;
     [SerializeField] private float boxLowAirHeight = 2f;
     public LayerMask GroundLayer => groundLayer;
-
-    [Header("Crouch Settings")]
-    [SerializeField] private float crouchColliderHeightMultiplier = 0.5f;
-    [SerializeField] private float crouchSpeedMultiplier = 0.5f;
-    public float CrouchColliderHeightMultiplier => crouchColliderHeightMultiplier;
-    public float CrouchSpeedMultiplier => crouchSpeedMultiplier;
 
     [Header("Attack Settings")]
     [SerializeField] private float attackBufferTime = 0.1f;
@@ -229,7 +223,7 @@ public class PlayerController : MonoBehaviour
 
     public void HandleFastFall()
     {
-        if (!isGrounded && !isJumping && CrouchHeld && rb.linearVelocity.y < 0)
+        if (!isGrounded && !isJumping && DownHeld && rb.linearVelocity.y < 0)
             rb.gravityScale = fastFallGravityScale;
         else
             rb.gravityScale = normalGravityScale;
