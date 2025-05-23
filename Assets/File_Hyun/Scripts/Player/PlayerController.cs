@@ -78,6 +78,7 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public int facingDirection = 1;
     [HideInInspector] public float normalGravityScale;
     [HideInInspector] public bool isTouchingCeiling;
+    [HideInInspector] public bool isFastFalling = false;
 
     private Vector2 originalColliderSize;
     private Vector2 originalColliderOffset;
@@ -234,9 +235,15 @@ public class PlayerController : MonoBehaviour
     public void HandleFastFall()
     {
         if (!isGrounded && !isJumping && DownHeld && rb.linearVelocity.y < 0)
+        {
+            isFastFalling = true;
             rb.gravityScale = fastFallGravityScale;
+        }
         else
+        {
+            isFastFalling = false;
             rb.gravityScale = normalGravityScale;
+        }
     }
 
     public void StopRising()

@@ -70,7 +70,7 @@ public abstract class PlayerState
             player.ConsumeAttackBuffer();
             player.AttackController.MarkComboInputReceived();
             player.AttackController.ContinueCombo();
-            stateMachine.ChangeState(new GenericAttackState(player, stateMachine));
+            stateMachine.ChangeState(new NormalAttackState(player, stateMachine));
             return true;
         }
         return false;
@@ -84,7 +84,7 @@ public abstract class PlayerState
         {
             player.ConsumeAttackBuffer();
             player.AttackController.StartCombo();
-            stateMachine.ChangeState(new GenericAttackState(player, stateMachine));
+            stateMachine.ChangeState(new NormalAttackState(player, stateMachine));
             return true;
         }
         return false;

@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class GenericAttackState : PlayerState
+public class NormalAttackState : PlayerState
 {
-    public GenericAttackState(PlayerController player, PlayerStateMachine stateMachine)
+    public NormalAttackState(PlayerController player, PlayerStateMachine stateMachine)
         : base(player, stateMachine) { }
 
     public override PlayerStateType StateType => PlayerStateType.Attack;
