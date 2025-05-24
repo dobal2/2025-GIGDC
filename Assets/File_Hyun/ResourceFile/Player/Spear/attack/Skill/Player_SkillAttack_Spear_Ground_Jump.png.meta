@@ -1,22 +1,22 @@
 fileFormatVersion: 2
-guid: 8617f53e0974476478d0bdfc292f4b66
+guid: e2544f5219a1e994291fedf322b5738b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2005424239753318832
-    second: Player_SkillAttack_Spear_GroundAir_Jump_0
+      213: 4921947656253174810
+    second: Player_SkillAttack_Spear_Ground_Jump_0
   - first:
-      213: 5388157025860856127
-    second: Player_SkillAttack_Spear_GroundAir_Jump_1
+      213: -4871616337573695424
+    second: Player_SkillAttack_Spear_Ground_Jump_1
   - first:
-      213: 7572560953238046349
-    second: Player_SkillAttack_Spear_GroundAir_Jump_2
+      213: -5600300982849490923
+    second: Player_SkillAttack_Spear_Ground_Jump_2
   - first:
-      213: 8681888125710534681
-    second: Player_SkillAttack_Spear_GroundAir_Jump_3
+      213: 2759154136424728724
+    second: Player_SkillAttack_Spear_Ground_Jump_3
   - first:
-      213: -3822954866083375904
-    second: Player_SkillAttack_Spear_GroundAir_Jump_4
+      213: -8753274392141853275
+    second: Player_SkillAttack_Spear_Ground_Jump_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -49,7 +49,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -63,7 +63,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -87,7 +87,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -112,12 +112,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Player_SkillAttack_Spear_GroundAir_Jump_0
+      name: Player_SkillAttack_Spear_Ground_Jump_0
       rect:
         serializedVersion: 2
         x: 9
         y: 0
-        width: 17
+        width: 19
         height: 30
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -127,14 +127,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0b1547a88b2b4db10800000000000000
-      internalID: 2005424239753318832
+      spriteID: a147906d0554e4440800000000000000
+      internalID: 4921947656253174810
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_SkillAttack_Spear_GroundAir_Jump_1
+      name: Player_SkillAttack_Spear_Ground_Jump_1
       rect:
         serializedVersion: 2
         x: 50
@@ -149,14 +149,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f392670744496ca40800000000000000
-      internalID: 5388157025860856127
+      spriteID: 0403eec70ca846cb0800000000000000
+      internalID: -4871616337573695424
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_SkillAttack_Spear_GroundAir_Jump_2
+      name: Player_SkillAttack_Spear_Ground_Jump_2
       rect:
         serializedVersion: 2
         x: 89
@@ -171,14 +171,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d864fb9d014271960800000000000000
-      internalID: 7572560953238046349
+      spriteID: 5103cf18debb742b0800000000000000
+      internalID: -5600300982849490923
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_SkillAttack_Spear_GroundAir_Jump_3
+      name: Player_SkillAttack_Spear_Ground_Jump_3
       rect:
         serializedVersion: 2
         x: 125
@@ -193,14 +193,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 91888a070434c7870800000000000000
-      internalID: 8681888125710534681
+      spriteID: 4984526811c7a4620800000000000000
+      internalID: 2759154136424728724
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_SkillAttack_Spear_GroundAir_Jump_4
+      name: Player_SkillAttack_Spear_Ground_Jump_4
       rect:
         serializedVersion: 2
         x: 165
@@ -215,8 +215,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0e4dfbeddc222fac0800000000000000
-      internalID: -3822954866083375904
+      spriteID: 5ad8cd2315f168680800000000000000
+      internalID: -8753274392141853275
       vertices: []
       indices: 
       edges: []
@@ -234,7 +234,12 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Player_SkillAttack_Spear_Ground_Jump_0: 4921947656253174810
+      Player_SkillAttack_Spear_Ground_Jump_1: -4871616337573695424
+      Player_SkillAttack_Spear_Ground_Jump_2: -5600300982849490923
+      Player_SkillAttack_Spear_Ground_Jump_3: 2759154136424728724
+      Player_SkillAttack_Spear_Ground_Jump_4: -8753274392141853275
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

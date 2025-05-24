@@ -100,7 +100,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -114,7 +114,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -138,7 +138,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -659,7 +659,29 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Player_SkillAttack_Spear_Flying_Land_0: -6407881521512763615
+      Player_SkillAttack_Spear_Flying_Land_1: 9027630013759112617
+      Player_SkillAttack_Spear_Flying_Land_10: 4446658380307454360
+      Player_SkillAttack_Spear_Flying_Land_11: 1937858292102722348
+      Player_SkillAttack_Spear_Flying_Land_12: 4129374452508624415
+      Player_SkillAttack_Spear_Flying_Land_13: 8914577443334430665
+      Player_SkillAttack_Spear_Flying_Land_14: 4580564667740413023
+      Player_SkillAttack_Spear_Flying_Land_15: 1843282830096644130
+      Player_SkillAttack_Spear_Flying_Land_16: -4748061519089435294
+      Player_SkillAttack_Spear_Flying_Land_17: 5043664760863069972
+      Player_SkillAttack_Spear_Flying_Land_18: -8323155637350739250
+      Player_SkillAttack_Spear_Flying_Land_19: 6399430919832591934
+      Player_SkillAttack_Spear_Flying_Land_2: -238888270467065998
+      Player_SkillAttack_Spear_Flying_Land_20: -4838052952039845089
+      Player_SkillAttack_Spear_Flying_Land_21: 1234951093560312598
+      Player_SkillAttack_Spear_Flying_Land_3: 8702554201125678741
+      Player_SkillAttack_Spear_Flying_Land_4: -1371502454309317154
+      Player_SkillAttack_Spear_Flying_Land_5: -2219532891712226419
+      Player_SkillAttack_Spear_Flying_Land_6: -3484302841690266182
+      Player_SkillAttack_Spear_Flying_Land_7: -8394762498947278075
+      Player_SkillAttack_Spear_Flying_Land_8: 8146152923193530276
+      Player_SkillAttack_Spear_Flying_Land_9: 1307168245748705452
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

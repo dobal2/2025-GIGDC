@@ -103,7 +103,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -117,7 +117,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -141,7 +141,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -684,7 +684,30 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Player_SkillAttack_Spear_Ground_Land_0: -5785138826110001212
+      Player_SkillAttack_Spear_Ground_Land_1: 1294244987930550945
+      Player_SkillAttack_Spear_Ground_Land_10: -4408764516453355841
+      Player_SkillAttack_Spear_Ground_Land_11: -6460928177596048318
+      Player_SkillAttack_Spear_Ground_Land_12: -6960079463836750828
+      Player_SkillAttack_Spear_Ground_Land_13: -4103997342589674028
+      Player_SkillAttack_Spear_Ground_Land_14: -5091631253831755961
+      Player_SkillAttack_Spear_Ground_Land_15: -5227290219972110033
+      Player_SkillAttack_Spear_Ground_Land_16: -2654959431226517914
+      Player_SkillAttack_Spear_Ground_Land_17: 8634181914744834609
+      Player_SkillAttack_Spear_Ground_Land_18: 8989460728062040174
+      Player_SkillAttack_Spear_Ground_Land_19: -2221392405805929777
+      Player_SkillAttack_Spear_Ground_Land_2: 7292011110774973117
+      Player_SkillAttack_Spear_Ground_Land_20: -8812119018660184226
+      Player_SkillAttack_Spear_Ground_Land_21: -7802310659427262939
+      Player_SkillAttack_Spear_Ground_Land_22: -4918279049809237299
+      Player_SkillAttack_Spear_Ground_Land_3: 822119964963680423
+      Player_SkillAttack_Spear_Ground_Land_4: -9072576984591373511
+      Player_SkillAttack_Spear_Ground_Land_5: 1253414198075532348
+      Player_SkillAttack_Spear_Ground_Land_6: 2832417894133133332
+      Player_SkillAttack_Spear_Ground_Land_7: 6790805448800127394
+      Player_SkillAttack_Spear_Ground_Land_8: -935720007690908106
+      Player_SkillAttack_Spear_Ground_Land_9: 140992511804715869
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

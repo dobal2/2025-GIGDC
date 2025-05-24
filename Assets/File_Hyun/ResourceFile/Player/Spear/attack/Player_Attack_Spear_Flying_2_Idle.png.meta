@@ -1,31 +1,22 @@
 fileFormatVersion: 2
-guid: df7356e3690a87e4eabad583d19660c1
+guid: db6442dd751d97f47aae96565dfdfc42
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8420932721436441925
-    second: Player_Attack_Spear_3_Idle_0
+      213: 2504791084465584021
+    second: Player_Attack_Spear_Flying_2_Idle_0
   - first:
-      213: 7146906252594715392
-    second: Player_Attack_Spear_3_Idle_1
+      213: -5305786794662067278
+    second: Player_Attack_Spear_Flying_2_Idle_1
   - first:
-      213: 8346411065830303725
-    second: Player_Attack_Spear_3_Idle_2
+      213: 5823551076643868875
+    second: Player_Attack_Spear_Flying_2_Idle_2
   - first:
-      213: -9044392449180568297
-    second: Player_Attack_Spear_3_Idle_3
+      213: -7024717332509425839
+    second: Player_Attack_Spear_Flying_2_Idle_3
   - first:
-      213: -6644152834581169121
-    second: Player_Attack_Spear_3_Idle_4
-  - first:
-      213: -545415880655375125
-    second: Player_Attack_Spear_3_Idle_5
-  - first:
-      213: 8974887108076442477
-    second: Player_Attack_Spear_3_Idle_6
-  - first:
-      213: -1475787349511204723
-    second: Player_Attack_Spear_3_Idle_7
+      213: 210079379138626842
+    second: Player_Attack_Spear_Flying_2_Idle_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -58,7 +49,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -72,7 +63,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -96,7 +87,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -121,34 +112,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Player_Attack_Spear_3_Idle_0
+      name: Player_Attack_Spear_Flying_2_Idle_0
       rect:
         serializedVersion: 2
-        x: 16
-        y: 0
-        width: 28
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 54dbea2b1b92dd470800000000000000
-      internalID: 8420932721436441925
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Player_Attack_Spear_3_Idle_1
-      rect:
-        serializedVersion: 2
-        x: 65
-        y: 0
-        width: 21
+        x: 11
+        y: 3
+        width: 20
         height: 37
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -158,63 +127,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 00b1decee59ee2360800000000000000
-      internalID: 7146906252594715392
+      spriteID: 597f22a683ec2c220800000000000000
+      internalID: 2504791084465584021
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_Attack_Spear_3_Idle_2
+      name: Player_Attack_Spear_Flying_2_Idle_1
       rect:
         serializedVersion: 2
-        x: 105
+        x: 60
         y: 0
-        width: 25
-        height: 34
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: de76438a4a864d370800000000000000
-      internalID: 8346411065830303725
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Player_Attack_Spear_3_Idle_3
-      rect:
-        serializedVersion: 2
-        x: 151
-        y: 0
-        width: 28
-        height: 34
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 715fd599cfcdb7280800000000000000
-      internalID: -9044392449180568297
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Player_Attack_Spear_3_Idle_4
-      rect:
-        serializedVersion: 2
-        x: 203
-        y: 0
-        width: 70
+        width: 39
         height: 40
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -224,20 +149,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f1c726df23a3bc3a0800000000000000
-      internalID: -6644152834581169121
+      spriteID: 2b38532850f0e56b0800000000000000
+      internalID: -5305786794662067278
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_Attack_Spear_3_Idle_5
+      name: Player_Attack_Spear_Flying_2_Idle_2
       rect:
         serializedVersion: 2
-        x: 295
+        x: 115
         y: 0
-        width: 78
-        height: 40
+        width: 55
+        height: 38
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -246,20 +171,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: be4fda2752b4e68f0800000000000000
-      internalID: -545415880655375125
+      spriteID: bc093b689d861d050800000000000000
+      internalID: 5823551076643868875
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_Attack_Spear_3_Idle_6
+      name: Player_Attack_Spear_Flying_2_Idle_3
       rect:
         serializedVersion: 2
-        x: 396
+        x: 195
         y: 0
-        width: 31
-        height: 29
+        width: 33
+        height: 33
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -268,20 +193,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d63112816443d8c70800000000000000
-      internalID: 8974887108076442477
+      spriteID: 15ffe3cfdc0338e90800000000000000
+      internalID: -7024717332509425839
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_Attack_Spear_3_Idle_7
+      name: Player_Attack_Spear_Flying_2_Idle_4
       rect:
         serializedVersion: 2
-        x: 444
+        x: 247
         y: 0
         width: 27
-        height: 29
+        height: 33
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -290,8 +215,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d809e548933f48be0800000000000000
-      internalID: -1475787349511204723
+      spriteID: a154130151a5ae200800000000000000
+      internalID: 210079379138626842
       vertices: []
       indices: 
       edges: []
@@ -309,7 +234,12 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Player_Attack_Spear_Flying_2_Idle_0: 2504791084465584021
+      Player_Attack_Spear_Flying_2_Idle_1: -5305786794662067278
+      Player_Attack_Spear_Flying_2_Idle_2: 5823551076643868875
+      Player_Attack_Spear_Flying_2_Idle_3: -7024717332509425839
+      Player_Attack_Spear_Flying_2_Idle_4: 210079379138626842
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
