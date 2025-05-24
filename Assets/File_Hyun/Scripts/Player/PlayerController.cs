@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(BoxCollider2D))]
@@ -14,6 +15,7 @@ public class PlayerController : MonoBehaviour
         GroundWalkDust, // 먼지
         // 필요 시 추가
     }
+    public event Action<PlayerEffectState> OnEffectStateChanged;
 
     public PlayerEffectState CurrentEffectState { get; private set; }
     public float MoveInput { get; set; }
@@ -155,7 +157,7 @@ public class PlayerController : MonoBehaviour
     {
         if (CurrentEffectState == newState) return;
         CurrentEffectState = newState;
-        Debug.Log($"[Effect] 이펙트 상태 전환: {newState}");
+        OnEffectStateChanged?.Invoke(newState);
     }
 
     void UpdateGrounded()
