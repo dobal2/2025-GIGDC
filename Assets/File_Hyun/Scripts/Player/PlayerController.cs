@@ -7,6 +7,15 @@ public class PlayerController : MonoBehaviour
     public AttackController AttackController { get; private set; }
     public Animator Animator { get; private set; }
 
+    public enum PlayerEffectState
+    {
+        None, // 이펙트 없음
+        Afterimage, // 잔상
+        GroundWalkDust, // 먼지
+        // 필요 시 추가
+    }
+
+    public PlayerEffectState CurrentEffectState { get; private set; }
     public float MoveInput { get; set; }
     public bool DownHeld { get; set; }
     public bool JumpHeld { get; set; }
@@ -78,7 +87,6 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public int facingDirection = 1;
     [HideInInspector] public float normalGravityScale;
     [HideInInspector] public bool isTouchingCeiling;
-    [HideInInspector] public bool isFastFalling = false;
 
     private Vector2 originalColliderSize;
     private Vector2 originalColliderOffset;
@@ -114,6 +122,7 @@ public class PlayerController : MonoBehaviour
 
         stateMachine = new PlayerStateMachine();
         stateMachine.Initialize(new PlayerLocomotionState(this, stateMachine));
+        SetEffectState(PlayerEffectState.None);
     }
 
     void Update()
@@ -140,6 +149,13 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         stateMachine.FixedUpdate();
+    }
+
+    public void SetEffectState(PlayerEffectState newState)
+    {
+        if (CurrentEffectState == newState) return;
+        CurrentEffectState = newState;
+        Debug.Log($"[Effect] 이펙트 상태 전환: {newState}");
     }
 
     void UpdateGrounded()
@@ -230,12 +246,12 @@ public class PlayerController : MonoBehaviour
     {
         if (!isGrounded && !isJumping && DownHeld && rb.linearVelocity.y < 0)
         {
-            isFastFalling = true;
+            SetEffectState(PlayerEffectState.Afterimage);
             rb.gravityScale = fastFallGravityScale;
         }
         else
         {
-            isFastFalling = false;
+            SetEffectState(PlayerEffectState.None);
             rb.gravityScale = normalGravityScale;
         }
     }

@@ -1,4 +1,5 @@
 using UnityEngine;
+using static PlayerController;
 
 public class PlayerDashState : PlayerState
 {
@@ -9,6 +10,7 @@ public class PlayerDashState : PlayerState
 
     public override void Enter()
     {
+        player.SetEffectState(PlayerEffectState.Afterimage);
         player.Animator.Play("Player_Dash");
         player.dashTimer = player.DashDuration;
         player.lastDashTime = Time.time;

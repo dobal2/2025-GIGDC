@@ -1,4 +1,5 @@
 using UnityEngine;
+using static PlayerController;
 
 public class PlayerLocomotionState : PlayerState
 {
@@ -82,8 +83,14 @@ public class PlayerLocomotionState : PlayerState
     void PlayGroundedAnimation()
     {
         if (Mathf.Abs(player.MoveInput) > 0.01f)
+        {
             player.Animator.Play("Player_Walk");
+            player.SetEffectState(PlayerEffectState.GroundWalkDust);
+        }
         else
+        {
             player.Animator.Play("Player_Idle");
+            player.SetEffectState(PlayerEffectState.None);
+        }
     }
 }
