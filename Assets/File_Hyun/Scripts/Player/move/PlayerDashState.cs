@@ -46,6 +46,7 @@ public class PlayerDashState : PlayerState
 
     public override void Exit()
     {
+        player.SetEffectState(PlayerEffectState.None);
         player.Rigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 }
