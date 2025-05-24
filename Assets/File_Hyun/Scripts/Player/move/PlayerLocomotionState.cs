@@ -43,7 +43,7 @@ public class PlayerLocomotionState : PlayerState
             player.jumpTimeCounter = 0f;
             shouldJump = false;
 
-            player.Animator.Play("Player_Jump");
+            player.Animator.Play("Jump");
         }
 
         if (player.isJumping && (!player.JumpHeld || player.jumpTimeCounter >= player.MaxJumpTime || player.isTouchingCeiling))
@@ -65,13 +65,13 @@ public class PlayerLocomotionState : PlayerState
         {
             if (pendingEndJump)
             {
-                player.Animator.Play("Player_Endjump");
+                player.Animator.Play("Endjump");
                 pendingEndJump = false;
             }
             else if (!player.isJumping)
             {
-                if (!player.Animator.GetCurrentAnimatorStateInfo(0).IsName("Player_Endjump"))
-                    player.Animator.Play("Player_Fall");
+                if (!player.Animator.GetCurrentAnimatorStateInfo(0).IsName("Endjump"))
+                    player.Animator.Play("Fall");
             }
         }
         else
@@ -84,12 +84,12 @@ public class PlayerLocomotionState : PlayerState
     {
         if (Mathf.Abs(player.MoveInput) > 0.01f)
         {
-            player.Animator.Play("Player_Walk");
+            player.Animator.Play("Walk");
             player.SetEffectState(PlayerEffectState.GroundWalkDust);
         }
         else
         {
-            player.Animator.Play("Player_Idle");
+            player.Animator.Play("Idle");
             player.SetEffectState(PlayerEffectState.None);
         }
     }

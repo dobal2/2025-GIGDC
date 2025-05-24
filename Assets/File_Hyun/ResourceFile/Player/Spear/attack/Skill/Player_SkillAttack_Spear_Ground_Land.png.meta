@@ -166,37 +166,15 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Player_SkillAttack_Spear_Ground_Land_0
+      name: Player_SkillAttack_Spear_Ground_Land_3
       rect:
         serializedVersion: 2
-        x: 338
-        y: 55
-        width: 47
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4cf946d73ee07bfa0800000000000000
-      internalID: -5785138826110001212
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Player_SkillAttack_Spear_Ground_Land_1
-      rect:
-        serializedVersion: 2
-        x: 495
-        y: 0
-        width: 126
-        height: 95
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 498
+        y: 1
+        width: 120
+        height: 91
+      alignment: 9
+      pivot: {x: 0.446, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -210,103 +188,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_SkillAttack_Spear_Ground_Land_2
+      name: Player_SkillAttack_Spear_Ground_Land_0
       rect:
         serializedVersion: 2
-        x: 657
-        y: 73
-        width: 22
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: db2a1f3787d623560800000000000000
-      internalID: 7292011110774973117
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Player_SkillAttack_Spear_Ground_Land_3
-      rect:
-        serializedVersion: 2
-        x: 760
-        y: 62
-        width: 17
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7a0ba6a90c1c86b00800000000000000
-      internalID: 822119964963680423
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Player_SkillAttack_Spear_Ground_Land_4
-      rect:
-        serializedVersion: 2
-        x: 818
-        y: 76
-        width: 13
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 93beb041d4bb71280800000000000000
-      internalID: -9072576984591373511
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Player_SkillAttack_Spear_Ground_Land_5
-      rect:
-        serializedVersion: 2
-        x: 927
-        y: 81
-        width: 11
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c3429b08295056110800000000000000
-      internalID: 1253414198075532348
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Player_SkillAttack_Spear_Ground_Land_6
-      rect:
-        serializedVersion: 2
-        x: 18
-        y: 0
-        width: 86
-        height: 54
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 21
+        y: 1
+        width: 80
+        height: 66
+      alignment: 9
+      pivot: {x: 0.4311, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -320,37 +210,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_SkillAttack_Spear_Ground_Land_7
+      name: Player_SkillAttack_Spear_Ground_Land_1
       rect:
         serializedVersion: 2
-        x: 30
-        y: 33
-        width: 29
-        height: 36
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2a9c4829399cd3e50800000000000000
-      internalID: 6790805448800127394
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Player_SkillAttack_Spear_Ground_Land_8
-      rect:
-        serializedVersion: 2
-        x: 163
-        y: 0
-        width: 123
-        height: 79
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 165
+        y: 1
+        width: 118
+        height: 76
+      alignment: 9
+      pivot: {x: 0.445, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -364,15 +232,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_SkillAttack_Spear_Ground_Land_9
+      name: Player_SkillAttack_Spear_Ground_Land_2
       rect:
         serializedVersion: 2
-        x: 335
-        y: 0
-        width: 124
-        height: 80
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 337
+        y: 1
+        width: 120
+        height: 78
+      alignment: 9
+      pivot: {x: 0.446, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -386,15 +254,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_SkillAttack_Spear_Ground_Land_10
+      name: Player_SkillAttack_Spear_Ground_Land_4
       rect:
         serializedVersion: 2
-        x: 660
+        x: 658
         y: 1
-        width: 121
-        height: 66
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 120
+        height: 91
+      alignment: 9
+      pivot: {x: 0.446, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -408,103 +276,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_SkillAttack_Spear_Ground_Land_11
-      rect:
-        serializedVersion: 2
-        x: 879
-        y: 54
-        width: 12
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 24c531fcd0c2656a0800000000000000
-      internalID: -6460928177596048318
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Player_SkillAttack_Spear_Ground_Land_12
-      rect:
-        serializedVersion: 2
-        x: 655
-        y: 24
-        width: 13
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 41ce48d8a94d86f90800000000000000
-      internalID: -6960079463836750828
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Player_SkillAttack_Spear_Ground_Land_13
-      rect:
-        serializedVersion: 2
-        x: 696
-        y: 0
-        width: 32
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4dd9bcb292cab07c0800000000000000
-      internalID: -4103997342589674028
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Player_SkillAttack_Spear_Ground_Land_14
+      name: Player_SkillAttack_Spear_Ground_Land_5
       rect:
         serializedVersion: 2
         x: 817
-        y: 32
-        width: 11
-        height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 747d41ce954e659b0800000000000000
-      internalID: -5091631253831755961
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Player_SkillAttack_Spear_Ground_Land_15
-      rect:
-        serializedVersion: 2
-        x: 831
-        y: 15
-        width: 96
-        height: 38
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        y: 1
+        width: 120
+        height: 91
+      alignment: 9
+      pivot: {x: 0.446, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -518,37 +298,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_SkillAttack_Spear_Ground_Land_16
+      name: Player_SkillAttack_Spear_Ground_Land_8
       rect:
         serializedVersion: 2
-        x: 927
-        y: 20
-        width: 14
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6669ba0c670b72bd0800000000000000
-      internalID: -2654959431226517914
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Player_SkillAttack_Spear_Ground_Land_17
-      rect:
-        serializedVersion: 2
-        x: 1135
-        y: 0
-        width: 20
-        height: 34
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1136
+        y: 1
+        width: 18
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -562,15 +320,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_SkillAttack_Spear_Ground_Land_18
+      name: Player_SkillAttack_Spear_Ground_Land_9
       rect:
         serializedVersion: 2
-        x: 1196
-        y: 0
-        width: 30
-        height: 34
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1197
+        y: 1
+        width: 28
+        height: 32
+      alignment: 9
+      pivot: {x: 0.3927, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -584,81 +342,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_SkillAttack_Spear_Ground_Land_19
+      name: Player_SkillAttack_Spear_Ground_Land_7
       rect:
         serializedVersion: 2
-        x: 862
-        y: 0
-        width: 27
-        height: 29
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: fcaef2950670c21e0800000000000000
-      internalID: -2221392405805929777
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Player_SkillAttack_Spear_Ground_Land_20
-      rect:
-        serializedVersion: 2
-        x: 929
-        y: 5
-        width: 13
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e5fbb4ee07015b580800000000000000
-      internalID: -8812119018660184226
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Player_SkillAttack_Spear_Ground_Land_21
-      rect:
-        serializedVersion: 2
-        x: 1008
-        y: 0
-        width: 23
-        height: 29
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 52e189d2bcf98b390800000000000000
-      internalID: -7802310659427262939
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Player_SkillAttack_Spear_Ground_Land_22
-      rect:
-        serializedVersion: 2
-        x: 1064
-        y: 0
-        width: 23
-        height: 29
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1065
+        y: 1
+        width: 21
+        height: 27
+      alignment: 9
+      pivot: {x: 0.428, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -671,11 +363,33 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Player_SkillAttack_Spear_Ground_Land_6
+      rect:
+        serializedVersion: 2
+        x: 1009
+        y: 1
+        width: 21
+        height: 27
+      alignment: 9
+      pivot: {x: 0.452, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6502556828579ee4490a0be8ffe34bba
+      internalID: -748576601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: c4afc05dffb59e145858aa31366d583a
     internalID: 0
     vertices: []
     indices: 
@@ -685,29 +399,24 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Player_SkillAttack_Spear_Ground_Land_0: -5785138826110001212
-      Player_SkillAttack_Spear_Ground_Land_1: 1294244987930550945
-      Player_SkillAttack_Spear_Ground_Land_10: -4408764516453355841
+      2: 140992511804715869
+      Player_SkillAttack_Spear_Ground_Land_0: 2832417894133133332
+      Player_SkillAttack_Spear_Ground_Land_1: -935720007690908106
       Player_SkillAttack_Spear_Ground_Land_11: -6460928177596048318
       Player_SkillAttack_Spear_Ground_Land_12: -6960079463836750828
       Player_SkillAttack_Spear_Ground_Land_13: -4103997342589674028
       Player_SkillAttack_Spear_Ground_Land_14: -5091631253831755961
-      Player_SkillAttack_Spear_Ground_Land_15: -5227290219972110033
       Player_SkillAttack_Spear_Ground_Land_16: -2654959431226517914
-      Player_SkillAttack_Spear_Ground_Land_17: 8634181914744834609
-      Player_SkillAttack_Spear_Ground_Land_18: 8989460728062040174
       Player_SkillAttack_Spear_Ground_Land_19: -2221392405805929777
-      Player_SkillAttack_Spear_Ground_Land_2: 7292011110774973117
+      Player_SkillAttack_Spear_Ground_Land_2: 140992511804715869
       Player_SkillAttack_Spear_Ground_Land_20: -8812119018660184226
-      Player_SkillAttack_Spear_Ground_Land_21: -7802310659427262939
-      Player_SkillAttack_Spear_Ground_Land_22: -4918279049809237299
-      Player_SkillAttack_Spear_Ground_Land_3: 822119964963680423
-      Player_SkillAttack_Spear_Ground_Land_4: -9072576984591373511
-      Player_SkillAttack_Spear_Ground_Land_5: 1253414198075532348
-      Player_SkillAttack_Spear_Ground_Land_6: 2832417894133133332
-      Player_SkillAttack_Spear_Ground_Land_7: 6790805448800127394
-      Player_SkillAttack_Spear_Ground_Land_8: -935720007690908106
-      Player_SkillAttack_Spear_Ground_Land_9: 140992511804715869
+      Player_SkillAttack_Spear_Ground_Land_3: 1294244987930550945
+      Player_SkillAttack_Spear_Ground_Land_4: -4408764516453355841
+      Player_SkillAttack_Spear_Ground_Land_5: -5227290219972110033
+      Player_SkillAttack_Spear_Ground_Land_6: -748576601
+      Player_SkillAttack_Spear_Ground_Land_7: -4918279049809237299
+      Player_SkillAttack_Spear_Ground_Land_8: 8634181914744834609
+      Player_SkillAttack_Spear_Ground_Land_9: 8989460728062040174
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

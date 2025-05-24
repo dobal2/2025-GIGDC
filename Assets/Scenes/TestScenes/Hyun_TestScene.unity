@@ -794,7 +794,7 @@ MonoBehaviour:
     m_Bits: 64
   boxWidth: 0.99
   boxHeight: 0.1
-  boxLowAirHeight: 1.5
+  boxLowAirHeight: 2
   attackBufferTime: 0.1
   attackBufferTimer: 0
   isGrounded: 0

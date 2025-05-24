@@ -11,8 +11,8 @@ public class SpearSkillState : PlayerState
     private float timer;
     private float dashSpeed;
     private float jumpSpeed = 10f;
-    private float chargeDuration = 0.5f;
-    private float landingDuration = 0.6f;
+    private float chargeDuration = 0.6f;
+    private float landingDuration = 0.83f;
 
     private bool landingTriggered = false;
     private bool forceGroundedIgnore = false;
@@ -32,6 +32,7 @@ public class SpearSkillState : PlayerState
 
         if (player.isGrounded)
         {
+            player.Animator.Play("Spear_Ground_Jump");
             mode = SkillMode.Ground;
             phase = SkillPhase.Moving;
             dashSpeed = 15f;
@@ -40,6 +41,7 @@ public class SpearSkillState : PlayerState
         }
         else if (player.isLowAir)
         {
+            player.Animator.Play("Spear_GroundAir_Jump");
             mode = SkillMode.LowAir;
             phase = SkillPhase.Moving;
             dashSpeed = 30f;
@@ -48,6 +50,7 @@ public class SpearSkillState : PlayerState
         }
         else
         {
+            player.Animator.Play("Spear_Flying_Charge");
             mode = SkillMode.HighAir;
             phase = SkillPhase.Charging;
             player.Rigidbody.linearVelocity = Vector2.zero;
@@ -90,6 +93,12 @@ public class SpearSkillState : PlayerState
         {
             player.Rigidbody.linearVelocity = Vector2.zero;
             landingTriggered = true;
+
+            if (phase == SkillPhase.Moving)
+                player.Animator.Play("Spear_Ground_Land");
+            else if (phase == SkillPhase.WaitingForLanding)
+                player.Animator.Play("Spear_Flying_Land");
+
             phase = SkillPhase.Landing;
             timer = 0f;
 
