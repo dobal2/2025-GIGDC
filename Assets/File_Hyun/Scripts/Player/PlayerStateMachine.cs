@@ -24,7 +24,7 @@ public class PlayerStateMachine
 
     public void Update()
     {
-        //UnityEngine.Debug.Log($"Current State: {currentState?.Name}");
+        //UnityEngine.Debug.Log($"Current State: {CurrentStateType}");
         currentState?.Update();
     }
 

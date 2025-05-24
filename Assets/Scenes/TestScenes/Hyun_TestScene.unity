@@ -794,7 +794,7 @@ MonoBehaviour:
     m_Bits: 64
   boxWidth: 0.99
   boxHeight: 0.1
-  boxLowAirHeight: 2
+  boxLowAirHeight: 1.5
   attackBufferTime: 0.1
   attackBufferTimer: 0
   isGrounded: 0
@@ -809,7 +809,6 @@ MonoBehaviour:
   facingDirection: 1
   normalGravityScale: 0
   isTouchingCeiling: 0
-  isFastFalling: 0
 --- !u!4 &1252394521286520684
 Transform:
   m_ObjectHideFlags: 0

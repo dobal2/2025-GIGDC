@@ -25,6 +25,7 @@ public class SpearSkillState : PlayerState
 
     public override void Enter()
     {
+        player.isJumping = false;
         player.Rigidbody.linearVelocity = Vector2.zero;
         player.AttackController.MarkSkillUsed();
         Debug.Log("[Skill] 스킬 사용됨 - 쿨타임 시작");
@@ -34,7 +35,7 @@ public class SpearSkillState : PlayerState
             mode = SkillMode.Ground;
             phase = SkillPhase.Moving;
             dashSpeed = 15f;
-            Vector2 vel = new Vector2(player.facingDirection * dashSpeed, jumpSpeed);
+            Vector2 vel = new(player.facingDirection * dashSpeed, jumpSpeed);
             player.Rigidbody.linearVelocity = vel;
         }
         else if (player.isLowAir)
@@ -42,7 +43,7 @@ public class SpearSkillState : PlayerState
             mode = SkillMode.LowAir;
             phase = SkillPhase.Moving;
             dashSpeed = 30f;
-            Vector2 vel = new Vector2(player.facingDirection * dashSpeed, 0f);
+            Vector2 vel = new(player.facingDirection * dashSpeed, 0f);
             player.Rigidbody.linearVelocity = vel;
         }
         else
@@ -69,16 +70,12 @@ public class SpearSkillState : PlayerState
         {
             if (timer >= chargeDuration)
             {
-                Vector2 boxSize = new Vector2(player.BoxCollider.bounds.size.x * 0.99f, 0.1f);
+                Vector2 boxSize = new(player.BoxCollider.bounds.size.x * 0.99f, 0.1f);
                 Vector2 origin = player.BoxCollider.bounds.center;
 
                 RaycastHit2D hit = Physics2D.BoxCast(origin, boxSize, 0f, Vector2.down, 100f, player.GroundLayer);
 
-                if (hit.collider)
-                {
-                    float yOffset = player.BoxCollider.bounds.extents.y;
-                    player.transform.position = hit.point + Vector2.up * yOffset;
-                }
+                if (hit.collider) player.transform.position = hit.point;
 
                 player.Rigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
                 player.Rigidbody.linearVelocity = Vector2.zero;
