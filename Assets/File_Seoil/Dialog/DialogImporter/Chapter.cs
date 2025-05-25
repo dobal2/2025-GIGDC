@@ -10,7 +10,7 @@ public class Chapter : ScriptableObject
 
     public Dialog.TargetData GetTargetByName(string targetName)
     {
-        foreach(Dialog.TargetData target in DialogTargets)
+        foreach (Dialog.TargetData target in DialogTargets)
         {
             if (target.Name == targetName)
                 return target;

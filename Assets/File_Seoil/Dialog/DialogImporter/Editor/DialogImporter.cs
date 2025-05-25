@@ -9,8 +9,7 @@ public class DialogImporter : AssetPostprocessor
         foreach(string assetFilePath in importedAssets)
         {
             if  (
-                !assetFilePath.EndsWith(".tsv") && 
-                File.ReadAllLines(assetFilePath).Length > 0 &&
+                !assetFilePath.EndsWith(".tsv") ||
                 File.ReadAllLines(assetFilePath)[0].Split("\t").Length != 2
                 )
                 continue;
@@ -53,7 +52,10 @@ public class DialogImporter : AssetPostprocessor
             string[] texts = textLine.Split('\t');
 
             if(texts.Length != 2)
-                throw new System.Exception($"Dialog line is invalid: {textLine}");
+            {
+                Debug.LogWarning($"Dialog line is invalid(Text Length : {texts.Length}): {textLine}");
+                continue;
+            }
 
             string targetName = texts[0];
 
@@ -79,11 +81,14 @@ public class DialogImporter : AssetPostprocessor
             string[] texts = textLine.Split('\t');
 
             if (texts.Length != 2)
-                throw new System.Exception($"Dialog line is invalid: {textLine}");
+            {
+                Debug.LogWarning($"Dialog line is invalid(Text Length : {texts.Length}): {textLine}");
+                continue;
+            }
 
             string targetName = texts[0];
             string line = texts[1];
-
+            
             Dialog.TargetData targetData = chapter.GetTargetByName(targetName);
             Dialog dialog = new Dialog(targetData, line);
 
