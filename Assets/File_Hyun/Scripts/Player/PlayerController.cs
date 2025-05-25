@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(BoxCollider2D))]
@@ -5,19 +6,27 @@ public class PlayerController : MonoBehaviour
 {
     public static PlayerController Instance { get; private set; }
     public AttackController AttackController { get; private set; }
+    public Animator Animator { get; private set; }
 
+    public enum PlayerEffectState
+    {
+        None, // 이펙트 없음
+        Afterimage, // 잔상
+        GroundWalkDust, // 먼지
+        // 필요 시 추가
+    }
+    public event Action<PlayerEffectState> OnEffectStateChanged;
+
+    public PlayerEffectState CurrentEffectState { get; private set; }
     public float MoveInput { get; set; }
-    public bool CrouchHeld { get; set; }
+    public bool DownHeld { get; set; }
     public bool JumpHeld { get; set; }
+    public bool DashPressed { get; set; }
+    public bool SkillPressed { get; set; }
 
     public bool JumpPressed
     {
         set { if (value) jumpBufferTimer = jumpBufferTime; }
-    }
-
-    public bool DashPressed
-    {
-        set { if (value) dashBufferTimer = dashBufferTime; }
     }
 
     public bool AttackPressed
@@ -25,16 +34,12 @@ public class PlayerController : MonoBehaviour
         set { if (value) attackBufferTimer = attackBufferTime; }
     }
 
-    public bool SkillPressed
-    {
-        set { if (value) skillRequested = true; }
-    }
+    public PlayerStateType CurrentStateType => stateMachine.CurrentStateType;
 
     [Header("Movement Settings")]
     [SerializeField] private float moveSpeed = 6f;
     [SerializeField] private float fastFallGravityScale = 16f;
     public float MoveSpeed => moveSpeed;
-    public float FastFallGravityScale => fastFallGravityScale;
 
     [Header("Jump Settings")]
     [SerializeField] private AnimationCurve jumpForceCurve;
@@ -42,51 +47,38 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float maxJumpForce = 20f;
     [SerializeField] private float jumpHeightMultiplier = 1f;
     [SerializeField] private float jumpBufferTime = 0.1f;
-    [SerializeField] private float coyoteTime = 0.2f;
-    public AnimationCurve JumpForceCurve => jumpForceCurve;
+    [SerializeField] private float coyoteTime = 0.1f;
     public float MaxJumpTime => maxJumpTime;
-    public float MaxJumpForce => maxJumpForce;
-    public float JumpHeightMultiplier => jumpHeightMultiplier;
-    public float JumpBufferTime => jumpBufferTime;
-    public float CoyoteTime => coyoteTime;
 
     [Header("Dash Settings")]
     [SerializeField] private float dashSpeed = 50f;
     [SerializeField] private float dashDuration = 0.1f;
     [SerializeField] private float dashCooldown = 0.8f;
-    [SerializeField] private float dashBufferTime = 0.1f;
     [SerializeField] private LayerMask dashStop;
     public float DashSpeed => dashSpeed;
     public float DashDuration => dashDuration;
     public float DashCooldown => dashCooldown;
     public LayerMask DashStop => dashStop;
 
-    [Header("Ground Check")]
-    [SerializeField] private Transform groundCheck;
-    [SerializeField] private float groundCheckRadius = 0.1f;
+    [Header("Check Settings")]
     [SerializeField] private LayerMask groundLayer;
-
-    [Header("Ceiling Check")]
-    [SerializeField] private Transform ceilingCheck;
-    [SerializeField] private float ceilingCheckRadius = 0.1f;
     [SerializeField] private LayerMask ceilingLayer;
-
-    [Header("Crouch Settings")]
-    [SerializeField] private float crouchColliderHeightMultiplier = 0.5f;
-    [SerializeField] private float crouchSpeedMultiplier = 0.5f;
-    public float CrouchColliderHeightMultiplier => crouchColliderHeightMultiplier;
-    public float CrouchSpeedMultiplier => crouchSpeedMultiplier;
+    [SerializeField] private float boxWidth = 0.99f;
+    [SerializeField] private float boxHeight = 0.1f;
+    [SerializeField] private float boxLowAirHeight = 2f;
+    public LayerMask GroundLayer => groundLayer;
 
     [Header("Attack Settings")]
     [SerializeField] private float attackBufferTime = 0.1f;
     [HideInInspector] public float attackBufferTimer = 0f;
-    [HideInInspector] public bool skillRequested = false;
     public bool AttackBuffered => attackBufferTimer > 0f;
 
     private Rigidbody2D rb;
     private BoxCollider2D boxCol;
+    private SpriteRenderer SpriteRenderer;
 
     [HideInInspector] public bool isGrounded;
+    [HideInInspector] public bool isLowAir;
     [HideInInspector] public bool isJumping;
     [HideInInspector] public float jumpTimeCounter;
     [HideInInspector] public float jumpBufferTimer;
@@ -97,17 +89,20 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public int facingDirection = 1;
     [HideInInspector] public float normalGravityScale;
     [HideInInspector] public bool isTouchingCeiling;
-    [HideInInspector] public float dashBufferTimer;
 
     private Vector2 originalColliderSize;
     private Vector2 originalColliderOffset;
 
     private PlayerStateMachine stateMachine;
 
+    private bool prevSkillAvailable = false;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         boxCol = GetComponent<BoxCollider2D>();
+        Animator = GetComponent<Animator>();
+        SpriteRenderer = GetComponent<SpriteRenderer>();
         AttackController = GetComponent<AttackController>();
         AttackController.Initialize(WeaponType.Spear);
         originalColliderSize = boxCol.size;
@@ -128,7 +123,8 @@ public class PlayerController : MonoBehaviour
         InputManager.Instance.currentContext = InputManager.InputContext.Gameplay;
 
         stateMachine = new PlayerStateMachine();
-        stateMachine.Initialize(new PlayerIdleState(this, stateMachine));
+        stateMachine.Initialize(new PlayerLocomotionState(this, stateMachine));
+        SetEffectState(PlayerEffectState.None);
     }
 
     void Update()
@@ -139,11 +135,15 @@ public class PlayerController : MonoBehaviour
         if (jumpBufferTimer > 0f)
             jumpBufferTimer -= Time.deltaTime;
 
-        if (dashBufferTimer > 0f)
-            dashBufferTimer -= Time.deltaTime;
-
         if (attackBufferTimer > 0f)
             attackBufferTimer -= Time.deltaTime;
+
+        bool nowAvailable = AttackController.CanUseSkill;
+        if (!prevSkillAvailable && nowAvailable)
+        {
+            Debug.Log("[Skill] 스킬 쿨타임 완료 - 사용 가능");
+        }
+        prevSkillAvailable = nowAvailable;
 
         stateMachine.Update();
     }
@@ -153,11 +153,26 @@ public class PlayerController : MonoBehaviour
         stateMachine.FixedUpdate();
     }
 
+    public void SetEffectState(PlayerEffectState newState)
+    {
+        if (CurrentEffectState == newState) return;
+        CurrentEffectState = newState;
+        OnEffectStateChanged?.Invoke(newState);
+    }
+
     void UpdateGrounded()
     {
         bool wasGrounded = isGrounded;
 
-        isGrounded = !isJumping && (bool)Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+        Vector2 boxSize = new(boxCol.bounds.size.x * boxWidth, boxHeight);
+        Vector2 origin = (Vector2)boxCol.bounds.center + Vector2.down * boxCol.bounds.extents.y;
+        RaycastHit2D hit = Physics2D.BoxCast(origin, boxSize, 0f, Vector2.down, 0f, groundLayer);
+
+        Vector2 lowAirSize = new(boxCol.bounds.size.x * boxWidth, boxLowAirHeight);
+        RaycastHit2D lowAirHit = Physics2D.BoxCast(origin + Vector2.down * 1f, lowAirSize, 0f, Vector2.down, 0f, groundLayer);
+        isLowAir = lowAirHit.collider != null;
+
+        isGrounded = !isJumping && hit.collider != null;
 
         if (isGrounded) coyoteTimer = coyoteTime;
         else coyoteTimer -= Time.deltaTime;
@@ -177,26 +192,51 @@ public class PlayerController : MonoBehaviour
 
     void UpdateCeiling()
     {
-        isTouchingCeiling = Physics2D.OverlapCircle(ceilingCheck.position, ceilingCheckRadius, ceilingLayer);
+        Vector2 boxSize = new(boxCol.bounds.size.x * boxWidth, boxHeight);
+        Vector2 origin = (Vector2)boxCol.bounds.center + Vector2.up * boxCol.bounds.extents.y;
+        RaycastHit2D hit = Physics2D.BoxCast(origin, boxSize, 0f, Vector2.up, 0f, ceilingLayer);
+
+        isTouchingCeiling = hit.collider != null;
     }
+
+#if UNITY_EDITOR
+    [ContextMenu("박스캐스트 시각화")]
+    private void DebugDrawBoxCastGizmos()
+    {
+        if (boxCol == null)
+            boxCol = GetComponent<BoxCollider2D>();
+
+        Vector2 origin = (Vector2)boxCol.bounds.center + Vector2.down * boxCol.bounds.extents.y;
+
+        DrawDebugBox(origin, boxCol.bounds.size.x * boxWidth, boxHeight, Color.green); // Ground
+        DrawDebugBox(origin + Vector2.down * 1f, boxCol.bounds.size.x * boxWidth, boxLowAirHeight, Color.cyan); // LowAir
+        DrawDebugBox((Vector2)boxCol.bounds.center + 0.5f * boxCol.bounds.size.y * Vector2.up, boxCol.bounds.size.x * boxWidth, boxHeight, Color.red); // Ceiling
+    }
+
+    private void DrawDebugBox(Vector2 center, float width, float height, Color color)
+    {
+        Vector2 half = new Vector2(width, height) * 0.5f;
+        Debug.DrawLine(center - half, center + new Vector2(half.x, -half.y), color, 1f);
+        Debug.DrawLine(center + new Vector2(half.x, -half.y), center + half, color, 1f);
+        Debug.DrawLine(center + half, center + new Vector2(-half.x, half.y), color, 1f);
+        Debug.DrawLine(center + new Vector2(-half.x, half.y), center - half, color, 1f);
+    }
+#endif
 
     public void HandleMove(float speed)
     {
         rb.linearVelocity = new Vector2(MoveInput * speed, rb.linearVelocity.y);
         if (MoveInput != 0)
+        {
             facingDirection = MoveInput > 0 ? 1 : -1;
+            SpriteRenderer.flipX = facingDirection == -1;
+        }
     }
 
     public void HandleJump()
     {
         if (isJumping)
         {
-            if (!JumpHeld || jumpTimeCounter >= maxJumpTime || isTouchingCeiling)
-            {
-                isJumping = false;
-                return;
-            }
-
             jumpTimeCounter += Time.fixedDeltaTime;
             float t = jumpTimeCounter / maxJumpTime;
             float force = jumpForceCurve.Evaluate(t) * maxJumpForce * jumpHeightMultiplier;
@@ -206,10 +246,16 @@ public class PlayerController : MonoBehaviour
 
     public void HandleFastFall()
     {
-        if (!isGrounded && !isJumping && CrouchHeld && rb.linearVelocity.y < 0)
+        if (!isGrounded && !isJumping && DownHeld && rb.linearVelocity.y < 0)
+        {
+            SetEffectState(PlayerEffectState.Afterimage);
             rb.gravityScale = fastFallGravityScale;
+        }
         else
+        {
+            SetEffectState(PlayerEffectState.None);
             rb.gravityScale = normalGravityScale;
+        }
     }
 
     public void StopRising()
@@ -217,18 +263,12 @@ public class PlayerController : MonoBehaviour
         if (rb.linearVelocity.y > 0f)
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * 0.3f);
 
-        isJumping = false;
         jumpTimeCounter = maxJumpTime;
     }
 
     public void ConsumeAttackBuffer()
     {
         attackBufferTimer = 0f;
-    }
-
-    public void ConsumeSkillRequest()
-    {
-        skillRequested = false;
     }
 
     public Rigidbody2D Rigidbody => rb;

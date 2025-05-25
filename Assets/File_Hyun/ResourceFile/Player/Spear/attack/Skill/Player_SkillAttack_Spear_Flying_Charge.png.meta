@@ -1,0 +1,299 @@
+fileFormatVersion: 2
+guid: 7d47eef0f0db4b241a85f470771e7f49
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -816411700208653044
+    second: Player_SkillAttack_Spear_Flying_Charge_0
+  - first:
+      213: 1724353586013182651
+    second: Player_SkillAttack_Spear_Flying_Charge_1
+  - first:
+      213: -8183559611827059833
+    second: Player_SkillAttack_Spear_Flying_Charge_2
+  - first:
+      213: -7183433180170930898
+    second: Player_SkillAttack_Spear_Flying_Charge_3
+  - first:
+      213: -2681752880268172241
+    second: Player_SkillAttack_Spear_Flying_Charge_4
+  - first:
+      213: -962991145419781480
+    second: Player_SkillAttack_Spear_Flying_Charge_5
+  - first:
+      213: 4175016794461874109
+    second: Player_SkillAttack_Spear_Flying_Charge_6
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Player_SkillAttack_Spear_Flying_Charge_0
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 5
+        width: 34
+        height: 33
+      alignment: 9
+      pivot: {x: 0.515, y: 0.00017379993}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c0d279a52e58ba4f0800000000000000
+      internalID: -816411700208653044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SkillAttack_Spear_Flying_Charge_1
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 8
+        width: 25
+        height: 28
+      alignment: 9
+      pivot: {x: 0.44, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bba9c7153722ee710800000000000000
+      internalID: 1724353586013182651
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SkillAttack_Spear_Flying_Charge_2
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 1
+        width: 30
+        height: 37
+      alignment: 9
+      pivot: {x: 0.516, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 78380d234e72e6e80800000000000000
+      internalID: -8183559611827059833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SkillAttack_Spear_Flying_Charge_3
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 1
+        width: 39
+        height: 40
+      alignment: 9
+      pivot: {x: 0.551, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e25382405915f4c90800000000000000
+      internalID: -7183433180170930898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SkillAttack_Spear_Flying_Charge_4
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 1
+        width: 43
+        height: 40
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f242c34c6ff78cad0800000000000000
+      internalID: -2681752880268172241
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SkillAttack_Spear_Flying_Charge_5
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 1
+        width: 32
+        height: 40
+      alignment: 9
+      pivot: {x: 0.453, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89a4867c7a4c2a2f0800000000000000
+      internalID: -962991145419781480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SkillAttack_Spear_Flying_Charge_6
+      rect:
+        serializedVersion: 2
+        x: 254
+        y: 1
+        width: 17
+        height: 33
+      alignment: 9
+      pivot: {x: 0.441, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db7a03587a3a0f930800000000000000
+      internalID: 4175016794461874109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: b2a496b34e3915844987fd3d0a20fb4f
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Player_SkillAttack_Spear_Flying_Charge_0: -816411700208653044
+      Player_SkillAttack_Spear_Flying_Charge_1: 1724353586013182651
+      Player_SkillAttack_Spear_Flying_Charge_2: -8183559611827059833
+      Player_SkillAttack_Spear_Flying_Charge_3: -7183433180170930898
+      Player_SkillAttack_Spear_Flying_Charge_4: -2681752880268172241
+      Player_SkillAttack_Spear_Flying_Charge_5: -962991145419781480
+      Player_SkillAttack_Spear_Flying_Charge_6: 4175016794461874109
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

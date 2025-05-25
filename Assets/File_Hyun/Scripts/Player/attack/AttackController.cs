@@ -11,14 +11,12 @@ public class AttackController : MonoBehaviour
     public WeaponType CurrentWeapon { get; private set; }
 
     private int comboStep = 0;
-    public int ComboStep => comboStep;
     private float pushTimer = 0f;
     private float comboDelayTimer = 0f;
     private float comboKeepTimer = 0f;
-
     private float currentPushDistance = 0f;
     private float pushSpeedPerSecond = 0f;
-
+    private float lastSkillTime = -999f;
     private bool receivedNextInput = false;
     private bool airborneComboUsed = false;
 
@@ -28,6 +26,8 @@ public class AttackController : MonoBehaviour
     public bool CanMove => !IsPushing && !IsInComboDelay;
     public bool CanComboInput => !IsPushing && !IsInComboDelay;
     public bool CanStartAirborneCombo => !player.isGrounded && !airborneComboUsed;
+    public int ComboStep => comboStep;
+    public bool CanUseSkill => Time.time >= lastSkillTime + currentWeaponData.skillcooldown;
 
     public bool ShouldEndCombo =>
         comboStep > 0 &&
@@ -52,6 +52,11 @@ public class AttackController : MonoBehaviour
         currentWeaponData = weaponDatabase.GetData(weapon);
 
         ResetCombo();
+    }
+
+    public void MarkSkillUsed()
+    {
+        lastSkillTime = Time.time;
     }
 
     public void ResetCombo()
@@ -104,20 +109,44 @@ public class AttackController : MonoBehaviour
         receivedNextInput = true;
     }
 
+    public void CancelPush()
+    {
+        if (comboStep < 1 || comboStep > currentWeaponData.MaxComboCount)
+            return;
+
+        pushTimer = 0f;
+        pushSpeedPerSecond = 0f;
+        currentPushDistance = 0f;
+
+        comboDelayTimer = 0f;
+        comboKeepTimer = currentWeaponData.comboInfos[comboStep - 1].ComboKeep;
+    }
+
     public void UpdateComboTimer()
     {
         if (pushTimer > 0f)
         {
             pushTimer -= Time.deltaTime;
+            return;
         }
-        else if (comboDelayTimer > 0f)
+
+        if (comboDelayTimer > 0f)
         {
             comboDelayTimer -= Time.deltaTime;
+            return;
         }
-        else if (comboKeepTimer > 0f)
+
+        if (comboKeepTimer > 0f)
         {
-            if (player.isGrounded) // 지상일 때만 감소
+            if (player.isGrounded)
+            {
                 comboKeepTimer -= Time.deltaTime;
+
+                if (comboKeepTimer <= 0f)
+                {
+                    ResetCombo();
+                }
+            }
         }
     }
 
@@ -153,13 +182,31 @@ public class AttackController : MonoBehaviour
         airborneComboUsed = false;
     }
 
-    public PlayerState GetAttackState(PlayerStateMachine stateMachine)
+    public void OnAttackEnter()
     {
-        return CurrentWeapon switch
-        {
-            WeaponType.Spear => new SpearAttackState(player, stateMachine),
-            _ => null
-        };
+        if (comboStep < 1 || comboStep > currentWeaponData.MaxComboCount)
+            return;
+
+        if (CurrentWeapon == WeaponType.Bow || CurrentWeapon == WeaponType.Bomb)
+            FireProjectile(comboStep);
+    }
+
+    public void OnAttackExit()
+    {
+        // 필요 시 여기에 투사체 관련 정리, 애니메이션 종료 등 추가 가능
+    }
+
+    private void FireProjectile(int step)
+    {
+        var data = currentWeaponData.comboInfos[step - 1];
+        if (data.projectilePrefab == null)
+            return;
+
+        Vector3 spawnPos = player.transform.position + new Vector3(player.facingDirection * 0.5f, 0, 0);
+        GameObject obj = GameObject.Instantiate(data.projectilePrefab, spawnPos, Quaternion.identity);
+
+        if (obj.TryGetComponent(out Projectile projectile))
+            projectile.Initialize(player.facingDirection);
     }
 
     public PlayerState GetSkillState(PlayerStateMachine stateMachine)

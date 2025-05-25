@@ -38,7 +38,6 @@ public class BossLove : Monster
         spriteRenderer = GetComponent<SpriteRenderer>();
         collider = GetComponent<Collider2D>();
         base.Start();
-        StartCoroutine(PatternRoutine());
     }
 
     protected override void Attack()
@@ -189,10 +188,6 @@ public class BossLove : Monster
         {
             yield return StartCoroutine(BressPattern());
             yield return StartCoroutine(SpawnAroundBubblePattern());
-        }
-        else
-        {
-            Debug.LogError("fuck");
         }
         
         yield return new WaitForSeconds(0.5f);

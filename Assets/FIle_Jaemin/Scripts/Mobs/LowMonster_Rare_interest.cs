@@ -70,7 +70,7 @@ public class LowMonster_Rare_interest : Monster
         }
 
         // 이동
-        if (!isDashing && absDistanceX > stopDistance)
+        if (!isDashing && canFlip && absDistanceX > stopDistance)
         {
             Move();
         }
@@ -92,7 +92,7 @@ public class LowMonster_Rare_interest : Monster
     
     private void FacePlayer()
     {
-        if (!isDashing)
+        if (!isDashing && canFlip)
         {
             bool shouldFaceRight = player.position.x > transform.position.x;
             if (shouldFaceRight != facingRight)

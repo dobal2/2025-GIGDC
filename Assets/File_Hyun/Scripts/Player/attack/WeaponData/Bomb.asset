@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Bomb
   m_EditorClassIdentifier: 
   type: 2
-  maxComboCount: 0
-  comboDamages: []
-  comboPushDistances: []
-  comboDelays: []
+  comboInfos:
+  - damage: 0
+    pushDistance: 0
+    pushTime: 0
+    Combodelay: 0
+    ComboKeep: 0

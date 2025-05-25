@@ -1,23 +1,27 @@
 using UnityEngine;
+using static PlayerController;
 
 public class PlayerDashState : PlayerState
 {
     public PlayerDashState(PlayerController player, PlayerStateMachine stateMachine)
         : base(player, stateMachine) { }
 
-    public override string Name => "Dash";
+    public override PlayerStateType StateType => PlayerStateType.Dash;
+
     public override void Enter()
     {
+        player.SetEffectState(PlayerEffectState.Afterimage);
+        player.Animator.Play("Dash");
         player.dashTimer = player.DashDuration;
         player.lastDashTime = Time.time;
         if (!player.isGrounded)
             player.canAirDash = false;
 
         player.jumpBufferTimer = 0f;
-        player.dashBufferTimer = 0f;
         player.isJumping = false;
 
         player.Rigidbody.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
+        player.AttackController.CancelPush();
     }
 
     public override void FixedUpdate()
@@ -27,7 +31,7 @@ public class PlayerDashState : PlayerState
 
         if (hit.collider)
         {
-            stateMachine.ChangeState(new PlayerIdleState(player, stateMachine));
+            stateMachine.ChangeState(new PlayerLocomotionState(player, stateMachine));
             return;
         }
 
@@ -36,12 +40,13 @@ public class PlayerDashState : PlayerState
 
         if (player.dashTimer <= 0f)
         {
-            stateMachine.ChangeState(new PlayerIdleState(player, stateMachine));
+            stateMachine.ChangeState(new PlayerLocomotionState(player, stateMachine));
         }
     }
 
     public override void Exit()
     {
+        player.SetEffectState(PlayerEffectState.None);
         player.Rigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 }
