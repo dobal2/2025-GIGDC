@@ -13,10 +13,14 @@ public class PlayerParticleController : MonoBehaviour {
 
     [SerializeField] private Rigidbody2D playerRb;
     
+    
+    
     private float counter;
     private bool isOnGround;
 
     [SerializeField] private ParticleSystem landParticle;
+    
+    [SerializeField] private ParticleSystem DashParticle;
     
     private void Update() {
         
@@ -27,7 +31,11 @@ public class PlayerParticleController : MonoBehaviour {
                 movementParticle.Play();
                 counter = 0;
             }
-        } 
+        }
+
+        if (Input.GetKeyDown(KeyCode.LeftShift)) {
+            DashParticle.Play();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
