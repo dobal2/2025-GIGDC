@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   skillDamage: 0
-  skillcooldown: 3
+  skillcooldown: 1
   comboInfos:
   - damage: 1
     pushDistance: 0.5

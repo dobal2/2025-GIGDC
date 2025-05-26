@@ -37,8 +37,8 @@ public class PlayerController : MonoBehaviour
     public PlayerStateType CurrentStateType => stateMachine.CurrentStateType;
 
     [Header("Movement Settings")]
-    [SerializeField] private float moveSpeed = 6f;
-    [SerializeField] private float fastFallGravityScale = 16f;
+    [SerializeField] private float moveSpeed = 10f;
+    [SerializeField] private float fastFallGravityScale = 18f;
     public float MoveSpeed => moveSpeed;
     public Vector2 CurrentVelocity => rb.linearVelocity;
 
@@ -66,7 +66,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask ceilingLayer;
     [SerializeField] private float boxWidth = 0.99f;
     [SerializeField] private float boxHeight = 0.1f;
-    [SerializeField] private float boxLowAirHeight = 2f;
+    [SerializeField] private float boxLowAirHeight = 3f;
     public LayerMask GroundLayer => groundLayer;
 
     [Header("Attack Settings")]

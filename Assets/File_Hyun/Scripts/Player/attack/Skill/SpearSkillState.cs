@@ -10,7 +10,7 @@ public class SpearSkillState : PlayerState
 
     private float timer;
     private float dashSpeed;
-    private float jumpSpeed = 10f;
+    private float jumpSpeed = 16f;
     private float chargeDuration = 0.6f;
     private float landingDuration = 0.83f;
 
@@ -34,7 +34,7 @@ public class SpearSkillState : PlayerState
             player.Animator.Play("Spear_Ground_Jump");
             mode = SkillMode.Ground;
             phase = SkillPhase.Moving;
-            dashSpeed = 15f;
+            dashSpeed = 20f;
             Vector2 vel = new(player.facingDirection * dashSpeed, jumpSpeed);
             player.Rigidbody.linearVelocity = vel;
         }
@@ -43,7 +43,7 @@ public class SpearSkillState : PlayerState
             player.Animator.Play("Spear_GroundAir_Jump");
             mode = SkillMode.LowAir;
             phase = SkillPhase.Moving;
-            dashSpeed = 20f;
+            dashSpeed = 30f;
             Vector2 vel = new(player.facingDirection * dashSpeed, jumpSpeed * 0.5f);
             player.Rigidbody.linearVelocity = vel;
         }
