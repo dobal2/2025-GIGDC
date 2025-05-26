@@ -10,10 +10,10 @@ public class PlayerController : MonoBehaviour
 
     public enum PlayerEffectState
     {
-        None, // ÀÌÆåÆ® ¾øÀ½
-        Afterimage, // ÀÜ»ó
-        GroundWalkDust, // ¸ÕÁö
-        // ÇÊ¿ä ½Ã Ãß°¡
+        None, // ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
+        Afterimage, // ï¿½Ü»ï¿½
+        GroundWalkDust, // ï¿½ï¿½ï¿½ï¿½
+        // ï¿½Ê¿ï¿½ ï¿½ï¿½ ï¿½ß°ï¿½
     }
     public event Action<PlayerEffectState> OnEffectStateChanged;
 
@@ -40,6 +40,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float moveSpeed = 6f;
     [SerializeField] private float fastFallGravityScale = 16f;
     public float MoveSpeed => moveSpeed;
+    public Vector2 CurrentVelocity => rb.linearVelocity;
 
     [Header("Jump Settings")]
     [SerializeField] private AnimationCurve jumpForceCurve;
@@ -141,7 +142,7 @@ public class PlayerController : MonoBehaviour
         bool nowAvailable = AttackController.CanUseSkill;
         if (!prevSkillAvailable && nowAvailable)
         {
-            Debug.Log("[Skill] ½ºÅ³ ÄðÅ¸ÀÓ ¿Ï·á - »ç¿ë °¡´É");
+            Debug.Log("[Skill] ï¿½ï¿½Å³ ï¿½ï¿½Å¸ï¿½ï¿½ ï¿½Ï·ï¿½ - ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
         }
         prevSkillAvailable = nowAvailable;
 
@@ -200,7 +201,7 @@ public class PlayerController : MonoBehaviour
     }
 
 #if UNITY_EDITOR
-    [ContextMenu("¹Ú½ºÄ³½ºÆ® ½Ã°¢È­")]
+    [ContextMenu("ï¿½Ú½ï¿½Ä³ï¿½ï¿½Æ® ï¿½Ã°ï¿½È­")]
     private void DebugDrawBoxCastGizmos()
     {
         if (boxCol == null)
