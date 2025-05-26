@@ -6,7 +6,7 @@ public class PlayerParticleController : MonoBehaviour {
     [SerializeField] private ParticleSystem movementParticle;
 
     [Range(0, 10)] 
-    [SerializeField] private int occurAfterVelocity;
+    [SerializeField] private float occurAfterVelocity;
 
     [Range(0, .2f)] 
     [SerializeField] private float dustFromationPeriod;
@@ -16,6 +16,8 @@ public class PlayerParticleController : MonoBehaviour {
     private float counter;
     private bool isOnGround;
 
+    [SerializeField] private ParticleSystem landParticle;
+    
     private void Update() {
         
         counter += Time.deltaTime;
@@ -30,12 +32,14 @@ public class PlayerParticleController : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.CompareTag("Ground")) {
+            landParticle.Play();
             isOnGround = true;
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision) {
         if (collision.CompareTag("Ground")) {
+            landParticle.Play();
             isOnGround = false;
         }
     }
