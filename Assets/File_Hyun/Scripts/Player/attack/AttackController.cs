@@ -217,9 +217,6 @@ public class AttackController : MonoBehaviour
 
         Vector3 spawnPos = player.transform.position + new Vector3(player.facingDirection * 0.5f, 0, 0);
         GameObject obj = GameObject.Instantiate(data.projectilePrefab, spawnPos, Quaternion.identity);
-
-        if (obj.TryGetComponent(out Projectile projectile))
-            projectile.Initialize(player.facingDirection);
     }
 
     public PlayerState GetSkillState(PlayerStateMachine stateMachine)
