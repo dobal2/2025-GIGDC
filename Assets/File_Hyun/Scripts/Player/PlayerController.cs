@@ -10,10 +10,10 @@ public class PlayerController : MonoBehaviour
 
     public enum PlayerEffectState
     {
-        None, // ����Ʈ ����
-        Afterimage, // �ܻ�
-        GroundWalkDust, // ����
-        // �ʿ� �� �߰�
+        None, // 이펙트 없음
+        Afterimage, // 잔상
+        GroundWalkDust, // 먼지
+        // 필요 시 추가
     }
     public event Action<PlayerEffectState> OnEffectStateChanged;
 
@@ -142,7 +142,7 @@ public class PlayerController : MonoBehaviour
         bool nowAvailable = AttackController.CanUseSkill;
         if (!prevSkillAvailable && nowAvailable)
         {
-            Debug.Log("[Skill] ��ų ��Ÿ�� �Ϸ� - ��� ����");
+            Debug.Log("[Skill] 스킬 쿨타임 완료 - 사용 가능");
         }
         prevSkillAvailable = nowAvailable;
 
@@ -201,7 +201,7 @@ public class PlayerController : MonoBehaviour
     }
 
 #if UNITY_EDITOR
-    [ContextMenu("�ڽ�ĳ��Ʈ �ð�ȭ")]
+    [ContextMenu("박스캐스트 시각화")]
     private void DebugDrawBoxCastGizmos()
     {
         if (boxCol == null)
