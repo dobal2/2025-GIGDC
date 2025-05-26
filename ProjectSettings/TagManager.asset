@@ -24,6 +24,7 @@ TagManager:
   - 
   - 
   - 
+  - Pixelation
   - 
   - 
   - 
@@ -36,8 +37,7 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - RawImage
   m_SortingLayers:
   - name: Default
     uniqueID: 0

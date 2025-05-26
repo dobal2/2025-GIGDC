@@ -3,60 +3,48 @@ using UnityEngine;
 
 public class WaterTriggerHandler : MonoBehaviour
 {
-    [SerializeField] private LayerMask _waterMask;
-    //[SerializeField] private GameObject _Particles;
-
-    private EdgeCollider2D _edgeColl;
-
-    private InteractableWater _water;
+    [Tooltip("플레이어 레이어만 상호작용")]
+    [SerializeField] private string _playerLayerName = "Player";
     
+    private EdgeCollider2D _edgeColl;
+    private InteractableWater _water;
+    private int _playerLayer;
+
     private void Awake()
     {
         _edgeColl = GetComponent<EdgeCollider2D>();
         _water = GetComponent<InteractableWater>();
+        _playerLayer = LayerMask.NameToLayer(_playerLayerName);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if ((_waterMask.value & 1 << collision.gameObject.layer) > 0)
-        {
-            Rigidbody2D rb = collision.GetComponentInParent<Rigidbody2D>();
+        // 플레이어 레이어만 허용
+        if (collision.gameObject.layer != _playerLayer)
+            return;
 
-            if (rb != null)
-            {
-                // Vector2 localpos = gameObject.transform.localPosition;
-                // Vector2 hitObjectPos = collision.transform.position;
-                // Bounds hitObjectBounds = collision.bounds;
-                //
-                // Vector3 spawnPos = Vector3.zero;
-                // if (collision.transform.position.y >= _edgeColl.points[1].y + _edgeColl.offset.y + localpos.y)
-                // {
-                //     //hit from above
-                //     spawnPos = hitObjectPos - new Vector2(0f, hitObjectBounds.extents.y);
-                // }
-                // else
-                // {
-                //     //hit from below
-                //     spawnPos = hitObjectPos + new Vector2(0f, hitObjectBounds.extents.y);
-                // }
-                
-                //clamp splash point to a MAX velocity
+        Rigidbody2D rb = collision.GetComponentInParent<Rigidbody2D>();
+        if (rb == null)
+            return;
 
-                int multiplier = -1;
-                if (rb.linearVelocity.y < 0)
-                {
-                    multiplier = 1;
-                }
-                
-                float vel =2f *rb.linearVelocity.y * _water.ForceMultiplier;
-                
-                vel = Mathf.Clamp(Mathf.Abs(vel), 0f, _water.MaxForce);
-                vel *= multiplier;
-                
-                _water.Splash(collision, vel);
-            }
+        Vector2 velocity = rb.linearVelocity;
+        float combinedForce = 0f;
 
-            
-        }
+        // 방향에 따라 multiplier 결정
+        int verticalDir = velocity.y < 0 ? 1 : -1;
+        int horizontalDir = velocity.x < 0 ? -1 : 1;
+
+        // Y축 기반 스플래시
+        float yForce = 2f * velocity.y * _water.ForceMultiplier;
+        yForce = Mathf.Clamp(Mathf.Abs(yForce), 0f, _water.MaxForce) * verticalDir;
+
+        // X축 기반 스플래시 추가 (보조적인 영향)
+        float xForce = velocity.x * 0.5f * _water.ForceMultiplier;
+        xForce = Mathf.Clamp(xForce, -_water.MaxForce * 0.5f, _water.MaxForce * 0.5f);
+
+        // 전체 힘은 두 방향의 조합 (혹은 두 힘을 따로 써도 됨)
+        combinedForce = yForce + xForce;
+
+        _water.Splash(collision, combinedForce);
     }
 }

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 5b5e58a188da81b43a2a246ecb09fdeb
+guid: 2346e8305a146734d91c7658396ae488
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7316089315771452962
-    second: Player_Dash_Spear_0
+      213: -2963626110420976540
+    second: LightTrail_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 16
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -100,23 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Player_Dash_Spear_0
+      name: LightTrail_0
       rect:
         serializedVersion: 2
-        x: 6
-        y: 2
-        width: 24
-        height: 30
-      alignment: 9
-      pivot: {x: 0.563, y: 0}
+        x: 0
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ed179649787087a90800000000000000
-      internalID: -7316089315771452962
+      spriteID: 46cf84921c51fd6d0800000000000000
+      internalID: -2963626110420976540
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: c9578b0c46dbf304e901e955a4d7cc03
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Player_Dash_Spear_0: -7316089315771452962
+      LightTrail_0: -2963626110420976540
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
