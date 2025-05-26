@@ -25,7 +25,6 @@ public class SpearSkillState : PlayerState
 
     public override void Enter()
     {
-        player.isJumping = false;
         player.Rigidbody.linearVelocity = Vector2.zero;
         player.AttackController.MarkSkillUsed();
         Debug.Log("[Skill] 스킬 사용됨 - 쿨타임 시작");
@@ -44,8 +43,8 @@ public class SpearSkillState : PlayerState
             player.Animator.Play("Spear_GroundAir_Jump");
             mode = SkillMode.LowAir;
             phase = SkillPhase.Moving;
-            dashSpeed = 30f;
-            Vector2 vel = new(player.facingDirection * dashSpeed, 0f);
+            dashSpeed = 20f;
+            Vector2 vel = new(player.facingDirection * dashSpeed, jumpSpeed * 0.5f);
             player.Rigidbody.linearVelocity = vel;
         }
         else
@@ -53,7 +52,6 @@ public class SpearSkillState : PlayerState
             player.Animator.Play("Spear_Flying_Charge");
             mode = SkillMode.HighAir;
             phase = SkillPhase.Charging;
-            player.Rigidbody.linearVelocity = Vector2.zero;
             player.Rigidbody.constraints = RigidbodyConstraints2D.FreezePositionX |
                                            RigidbodyConstraints2D.FreezePositionY;
         }

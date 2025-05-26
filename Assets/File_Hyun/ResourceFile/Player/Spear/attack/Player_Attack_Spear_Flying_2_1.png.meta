@@ -115,12 +115,12 @@ TextureImporter:
       name: Player_Attack_Spear_Flying_2_1_0
       rect:
         serializedVersion: 2
-        x: 11
-        y: 0
-        width: 24
-        height: 40
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 12
+        y: 2
+        width: 22
+        height: 37
+      alignment: 9
+      pivot: {x: 0.545, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -137,12 +137,12 @@ TextureImporter:
       name: Player_Attack_Spear_Flying_2_1_1
       rect:
         serializedVersion: 2
-        x: 60
-        y: 0
-        width: 39
-        height: 40
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 61
+        y: 2
+        width: 37
+        height: 38
+      alignment: 9
+      pivot: {x: 0.351, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -159,12 +159,12 @@ TextureImporter:
       name: Player_Attack_Spear_Flying_2_1_2
       rect:
         serializedVersion: 2
-        x: 115
-        y: 0
-        width: 55
-        height: 38
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 116
+        y: 2
+        width: 53
+        height: 35
+      alignment: 9
+      pivot: {x: 0.311, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -181,12 +181,12 @@ TextureImporter:
       name: Player_Attack_Spear_Flying_2_1_3
       rect:
         serializedVersion: 2
-        x: 195
-        y: 0
-        width: 33
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 196
+        y: 2
+        width: 31
+        height: 30
+      alignment: 9
+      pivot: {x: 0.532, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -203,12 +203,12 @@ TextureImporter:
       name: Player_Attack_Spear_Flying_2_1_4
       rect:
         serializedVersion: 2
-        x: 247
-        y: 0
-        width: 27
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 248
+        y: 2
+        width: 25
+        height: 30
+      alignment: 9
+      pivot: {x: 0.66, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -225,7 +225,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 451b81e7d37af5b4db5d67b2c0af901b
     internalID: 0
     vertices: []
     indices: 

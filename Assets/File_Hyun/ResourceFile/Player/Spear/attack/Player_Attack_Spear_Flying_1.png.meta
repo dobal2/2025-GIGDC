@@ -118,12 +118,12 @@ TextureImporter:
       name: Player_Attack_Spear_Flying_1_0
       rect:
         serializedVersion: 2
-        x: 12
-        y: 0
-        width: 25
-        height: 38
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 13
+        y: 2
+        width: 23
+        height: 35
+      alignment: 9
+      pivot: {x: 0.326, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -140,12 +140,12 @@ TextureImporter:
       name: Player_Attack_Spear_Flying_1_1
       rect:
         serializedVersion: 2
-        x: 58
-        y: 0
-        width: 29
-        height: 40
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 59
+        y: 2
+        width: 27
+        height: 38
+      alignment: 9
+      pivot: {x: 0.3885, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -162,12 +162,12 @@ TextureImporter:
       name: Player_Attack_Spear_Flying_1_2
       rect:
         serializedVersion: 2
-        x: 106
-        y: 1
-        width: 25
-        height: 39
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 107
+        y: 3
+        width: 23
+        height: 36
+      alignment: 9
+      pivot: {x: 0.435, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -184,12 +184,12 @@ TextureImporter:
       name: Player_Attack_Spear_Flying_1_3
       rect:
         serializedVersion: 2
-        x: 151
-        y: 0
-        width: 50
-        height: 40
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 152
+        y: 2
+        width: 48
+        height: 38
+      alignment: 9
+      pivot: {x: 0.271, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -206,12 +206,12 @@ TextureImporter:
       name: Player_Attack_Spear_Flying_1_4
       rect:
         serializedVersion: 2
-        x: 207
-        y: 1
-        width: 34
-        height: 37
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 208
+        y: 3
+        width: 32
+        height: 34
+      alignment: 9
+      pivot: {x: 0.578, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -228,12 +228,12 @@ TextureImporter:
       name: Player_Attack_Spear_Flying_1_5
       rect:
         serializedVersion: 2
-        x: 255
-        y: 1
-        width: 29
-        height: 37
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 256
+        y: 3
+        width: 27
+        height: 34
+      alignment: 9
+      pivot: {x: 0.685, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -250,7 +250,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 3f8e63192c7366f4b9c9ab428aec20dc
     internalID: 0
     vertices: []
     indices: 

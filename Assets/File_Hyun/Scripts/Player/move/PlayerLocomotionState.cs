@@ -93,4 +93,10 @@ public class PlayerLocomotionState : PlayerState
             player.SetEffectState(PlayerEffectState.None);
         }
     }
+
+    public override void Exit()
+    {
+        player.SetEffectState(PlayerEffectState.None);
+        player.isJumping = false;
+    }
 }

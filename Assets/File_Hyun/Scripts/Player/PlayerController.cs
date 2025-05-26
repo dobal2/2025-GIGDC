@@ -235,7 +235,7 @@ public class PlayerController : MonoBehaviour
 
     public void HandleJump()
     {
-        if (isJumping)
+        if (isJumping && CurrentStateType == PlayerStateType.Locomotion)
         {
             jumpTimeCounter += Time.fixedDeltaTime;
             float t = jumpTimeCounter / maxJumpTime;
@@ -246,8 +246,10 @@ public class PlayerController : MonoBehaviour
 
     public void HandleFastFall()
     {
-        if (!isGrounded && !isJumping && DownHeld && rb.linearVelocity.y < 0)
+        if (!isGrounded && !isJumping && DownHeld && rb.linearVelocity.y < 0 && CurrentStateType == PlayerStateType.Locomotion)
         {
+            isJumping = false;
+            Animator.Play("Fall");
             SetEffectState(PlayerEffectState.Afterimage);
             rb.gravityScale = fastFallGravityScale;
         }
