@@ -230,7 +230,7 @@ public class PlayerController : MonoBehaviour
         if (MoveInput != 0)
         {
             facingDirection = MoveInput > 0 ? 1 : -1;
-            SpriteRenderer.flipX = facingDirection == -1;
+            transform.rotation = Quaternion.Euler(0f, facingDirection == -1 ? 180f : 0f, 0f);
         }
     }
 
