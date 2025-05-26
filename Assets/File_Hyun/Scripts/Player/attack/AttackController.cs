@@ -19,7 +19,6 @@ public class AttackController : MonoBehaviour
     private float lastSkillTime = -999f;
     private bool receivedNextInput = false;
     private bool airborneComboUsed = false;
-    private bool lastComboContinued = false;
 
     public bool HasReachedMaxCombo => comboStep >= currentWeaponData.MaxComboCount;
     public bool IsPushing => pushTimer > 0f && pushSpeedPerSecond != 0f;
@@ -76,7 +75,6 @@ public class AttackController : MonoBehaviour
     {
         comboStep = 1;
         receivedNextInput = false;
-        lastComboContinued = false;
 
         PlayCombo(comboStep);
     }
@@ -102,7 +100,6 @@ public class AttackController : MonoBehaviour
 
         comboStep++;
         receivedNextInput = false;
-        lastComboContinued = true;
 
         PlayCombo(comboStep);
     }
@@ -161,11 +158,7 @@ public class AttackController : MonoBehaviour
     private string GetComboAnimName(int step)
     {
         string baseName;
-
-        if (step == 1)
-            baseName = "1_Idle";
-        else
-            baseName = lastComboContinued ? $"{step}_{step - 1}" : $"{step}_Idle";
+        baseName = $"{step}";
 
         if (!player.isGrounded)
             baseName = "Flying_" + baseName;
