@@ -11,8 +11,12 @@ public class PlayerController : MonoBehaviour
     public enum PlayerEffectState
     {
         None, // 이펙트 없음
-        Afterimage, // 잔상
         GroundWalkDust, // 먼지
+        Dash, // 대시 중
+        FastFall, // 빠른 낙하
+        SpearAirSkill, // 창 내려찍기
+        BowSkillCharging, // 활 스킬 차징중
+        BowSkillRelease, // 활 스킬 발사
         // 필요 시 추가
     }
     public event Action<PlayerEffectState> OnEffectStateChanged;
@@ -251,7 +255,7 @@ public class PlayerController : MonoBehaviour
         {
             isJumping = false;
             Animator.Play("Fall");
-            SetEffectState(PlayerEffectState.Afterimage);
+            SetEffectState(PlayerEffectState.FastFall);
             rb.gravityScale = fastFallGravityScale;
         }
         else

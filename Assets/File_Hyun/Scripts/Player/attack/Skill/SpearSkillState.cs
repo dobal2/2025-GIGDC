@@ -1,4 +1,5 @@
 using UnityEngine;
+using static PlayerController;
 
 public class SpearSkillState : PlayerState
 {
@@ -92,6 +93,7 @@ public class SpearSkillState : PlayerState
             player.Rigidbody.linearVelocity = Vector2.zero;
             landingTriggered = true;
 
+            player.SetEffectState(PlayerEffectState.SpearAirSkill);
             if (phase == SkillPhase.Moving)
                 player.Animator.Play("Spear_Ground_Land");
             else if (phase == SkillPhase.WaitingForLanding)
@@ -121,6 +123,7 @@ public class SpearSkillState : PlayerState
 
     public override void Exit()
     {
+        player.SetEffectState(PlayerEffectState.None);
         player.Rigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
         player.Rigidbody.linearVelocity = Vector2.zero;
     }

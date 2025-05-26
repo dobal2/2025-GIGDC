@@ -29,7 +29,7 @@ public class PlayerGhostTrail : MonoBehaviour
     {
         switch (state)
         {
-            case PlayerController.PlayerEffectState.Afterimage:
+            case PlayerController.PlayerEffectState.Dash:
                 if (ghostRoutine == null)
                     ghostRoutine = StartCoroutine(SpawnGhostsRoutine());
                 break;

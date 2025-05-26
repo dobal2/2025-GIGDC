@@ -10,7 +10,7 @@ public class PlayerDashState : PlayerState
 
     public override void Enter()
     {
-        player.SetEffectState(PlayerEffectState.Afterimage);
+        player.SetEffectState(PlayerEffectState.Dash);
         player.Animator.Play("Dash");
         player.dashTimer = player.DashDuration;
         player.lastDashTime = Time.time;
