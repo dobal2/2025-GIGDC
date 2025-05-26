@@ -195,35 +195,22 @@ public class AttackController : MonoBehaviour
         airborneComboUsed = false;
     }
 
-    public void OnAttackEnter()
-    {
-        if (comboStep < 1 || comboStep > currentWeaponData.MaxComboCount)
-            return;
-
-        if (CurrentWeapon == WeaponType.Bow || CurrentWeapon == WeaponType.Bomb)
-            FireProjectile(comboStep);
-    }
-
-    public void OnAttackExit()
-    {
-        // 필요 시 여기에 투사체 관련 정리, 애니메이션 종료 등 추가 가능
-    }
-
-    private void FireProjectile(int step)
-    {
-        var data = currentWeaponData.comboInfos[step - 1];
-        if (data.projectilePrefab == null)
-            return;
-
-        Vector3 spawnPos = player.transform.position + new Vector3(player.facingDirection * 0.5f, 0, 0);
-        GameObject obj = GameObject.Instantiate(data.projectilePrefab, spawnPos, Quaternion.identity);
-    }
-
     public PlayerState GetSkillState(PlayerStateMachine stateMachine)
     {
         return CurrentWeapon switch
         {
             WeaponType.Spear => new SpearSkillState(player, stateMachine),
+            _ => null
+        };
+    }
+
+    public PlayerState GetAttackState(PlayerStateMachine stateMachine)
+    {
+        return CurrentWeapon switch
+        {
+            WeaponType.Spear => new SpearAttackState(player, stateMachine),
+            //WeaponType.Bow => new BowAttackState(player, stateMachine),
+            //WeaponType.Spear => new SpearAttackState(player, stateMachine),
             _ => null
         };
     }

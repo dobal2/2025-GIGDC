@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class NormalAttackState : PlayerState
+public class SpearAttackState : PlayerState
 {
-    public NormalAttackState(PlayerController player, PlayerStateMachine stateMachine)
+    public SpearAttackState(PlayerController player, PlayerStateMachine stateMachine)
         : base(player, stateMachine) { }
 
     public override PlayerStateType StateType => PlayerStateType.Attack;
@@ -14,16 +14,12 @@ public class NormalAttackState : PlayerState
 
         if (!player.isGrounded)
             player.Rigidbody.constraints |= RigidbodyConstraints2D.FreezePositionY;
-
-        player.AttackController.OnAttackEnter(); // 무기별 특화 진입 동작
     }
 
     public override void Exit()
     {
         player.Rigidbody.linearVelocity = Vector2.zero;
         player.Rigidbody.constraints &= ~RigidbodyConstraints2D.FreezePositionY;
-
-        player.AttackController.OnAttackExit(); // 무기별 특화 종료 동작
     }
 
     public override void Update()
