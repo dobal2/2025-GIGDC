@@ -18,8 +18,8 @@ MonoBehaviour:
   comboInfos:
   - damage: 1
     pushDistance: 0.5
-    pushTime: 0.1
-    Combodelay: 0.2
+    pushTime: 0.3
+    Combodelay: 0.3
     ComboKeep: 1
     projectilePrefab: {fileID: 0}
   - damage: 1
