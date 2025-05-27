@@ -72,7 +72,6 @@ public abstract class PlayerState
             player.AttackController.ComboStep > 0)
         {
             player.ConsumeAttackBuffer();
-            player.AttackController.MarkComboInputReceived();
             player.AttackController.ContinueCombo();
             stateMachine.ChangeState(player.AttackController.GetAttackState(stateMachine));
             return true;

@@ -79,14 +79,12 @@ public class AttackController : MonoBehaviour
         comboKeepTimer = 0f;
         currentPushDistance = 0f;
         pushSpeedPerSecond = 0f;
-        receivedNextInput = false;
         airborneComboUsed = false;
     }
 
     public void StartCombo()
     {
         comboStep = 1;
-        receivedNextInput = false;
 
         PlayCombo(comboStep);
     }
@@ -101,7 +99,6 @@ public class AttackController : MonoBehaviour
             comboKeepTimer = 0f;
             currentPushDistance = 0f;
             pushSpeedPerSecond = 0f;
-            receivedNextInput = false;
             if (player.isGrounded)
                 airborneComboUsed = false;
             return;
@@ -111,14 +108,8 @@ public class AttackController : MonoBehaviour
             return;
 
         comboStep++;
-        receivedNextInput = false;
 
         PlayCombo(comboStep);
-    }
-
-    public void MarkComboInputReceived()
-    {
-        receivedNextInput = true;
     }
 
     public void CancelPush()
@@ -175,6 +166,8 @@ public class AttackController : MonoBehaviour
                 pushTimer = spearData.GetDelay(step);
                 comboDelayTimer = spearData.GetComboDelay(step);
                 comboKeepTimer = spearData.GetComboKeep(step);
+                if (!player.isGrounded && spearData.MaxCombo == step)
+                    airborneComboUsed = true;
                 break;
 
             case WeaponType.Bow:
@@ -182,14 +175,13 @@ public class AttackController : MonoBehaviour
                 pushTimer = bowData.GetDelay(step);
                 comboDelayTimer = bowData.GetComboDelay(step);
                 comboKeepTimer = bowData.GetComboKeep(step);
+                if (!player.isGrounded && bowData.MaxCombo == step)
+                    airborneComboUsed = true;
                 break;
 
                 //case WeaponType.Bomb:
 
         }
-
-        if (!player.isGrounded && spearData.MaxCombo == step)
-            airborneComboUsed = true;
 
         pushSpeedPerSecond = pushTimer > 0f ? currentPushDistance / pushTimer : 0f;
 

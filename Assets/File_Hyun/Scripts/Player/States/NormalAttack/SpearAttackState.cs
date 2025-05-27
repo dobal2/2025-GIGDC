@@ -32,7 +32,6 @@ public class SpearAttackState : PlayerState
         if (player.AttackBuffered && player.AttackController.CanComboInput)
         {
             player.ConsumeAttackBuffer();
-            player.AttackController.MarkComboInputReceived();
             player.AttackController.ContinueCombo();
             return;
         }
