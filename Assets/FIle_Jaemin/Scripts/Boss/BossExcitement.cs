@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -10,10 +11,13 @@ public class BossExcitement : Monster
     [SerializeField] private GameObject homingMissilePrefab;
     [SerializeField] private GameObject bombPrefab;
     [SerializeField] private GameObject targetBoardPrefab;
+    [SerializeField] private GameObject glassWallPrefab;
+    [SerializeField] private GameObject glassBowlPrefab;
     
     [Header("Transforms")]
     [SerializeField] private Transform missileSpawnPoint;
     [SerializeField] private Transform[] teleportPositions; // 랜덤 텔레포트 위치들
+    [SerializeField] private Transform phase2Transform;
     [SerializeField] private Transform bombPos;
     [SerializeField] private Transform targetBoardPoint;
     
@@ -59,6 +63,7 @@ public class BossExcitement : Monster
 
     private void Phase2()
     {
+        transform.position = phase2Transform.position + new Vector3(0,transform.localScale.y/2,0);
         phase = 2;
         maxHp = phase2Hp;
         hp = maxHp;
@@ -80,6 +85,8 @@ public class BossExcitement : Monster
             else if (phase == 2)
             {
                 yield return StartCoroutine(SpawnTargetBoard());
+                yield return StartCoroutine(GlassWallPattern());
+                yield return StartCoroutine(GlassBowlPattern());
             }
             
             yield return new WaitForSeconds(4f);
@@ -167,6 +174,60 @@ public class BossExcitement : Monster
         Destroy(newTargetBoard);
         
     }
+
+    IEnumerator GlassWallPattern()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            GameObject newGlassWall = Instantiate(glassWallPrefab, targetBoardPoint.position, Quaternion.identity);
+            
+            yield return new WaitForSeconds(1);
+            
+            
+        }
+    }
+    
+    IEnumerator GlassBowlPattern()
+    {
+        int bubbleCount = Random.Range(4, 6); // 4~5
+        float radius = 4f;
+        Vector2 center = transform.position;
+
+        List<GameObject> newGlassBowls = new List<GameObject>();
+
+        for (int i = 0; i < bubbleCount; i++)
+        {
+            float angleDeg = -90f + (180f * i / (bubbleCount - 1)); // -90도~+90도
+            float angleRad = Mathf.Deg2Rad * angleDeg;
+
+            Vector2 offset = new Vector2(Mathf.Cos(angleRad), Mathf.Sin(angleRad)) * radius;
+            Vector2 spawnPos = center + offset;
+
+            GameObject newGlassBowl = Instantiate(glassBowlPrefab, spawnPos, Quaternion.identity);
+            newGlassBowls.Add(newGlassBowl);
+
+            yield return new WaitForSeconds(0.1f); // 생성 간격
+        }
+
+        foreach (var newGlassBowl in newGlassBowls)
+        {
+            if (newGlassBowl == null) continue;
+
+            Vector2 direction = (player.transform.position - newGlassBowl.transform.position).normalized;
+            float speed = 10f;
+
+            Rigidbody2D rb = newGlassBowl.GetComponent<Rigidbody2D>();
+            if (rb != null)
+            {
+                rb.linearVelocity = direction * speed;
+            }
+
+            yield return new WaitForSeconds(1f); // 발사 간격
+        }
+    }
+
+
+
     
     private void Update()
     {

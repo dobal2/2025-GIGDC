@@ -1,0 +1,455 @@
+fileFormatVersion: 2
+guid: 6926a4b24f8d2084eb147b6424e7d618
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5534757923069992788
+    second: Player_Attack_Bow_Flying_4_0
+  - first:
+      213: 3707307104746719602
+    second: Player_Attack_Bow_Flying_4_1
+  - first:
+      213: -4532583977786826754
+    second: Player_Attack_Bow_Flying_4_2
+  - first:
+      213: -4837274356424269002
+    second: Player_Attack_Bow_Flying_4_3
+  - first:
+      213: -3672800692547778175
+    second: Player_Attack_Bow_Flying_4_4
+  - first:
+      213: 4897782904433824691
+    second: Player_Attack_Bow_Flying_4_5
+  - first:
+      213: 285746139997690024
+    second: Player_Attack_Bow_Flying_4_6
+  - first:
+      213: -1477614302650126848
+    second: Player_Attack_Bow_Flying_4_7
+  - first:
+      213: 4310527760635746676
+    second: Player_Attack_Bow_Flying_4_8
+  - first:
+      213: 7044594479968073758
+    second: Player_Attack_Bow_Flying_4_9
+  - first:
+      213: -2169901741211895391
+    second: Player_Attack_Bow_Flying_4_10
+  - first:
+      213: 1319833683117732313
+    second: Player_Attack_Bow_Flying_4_11
+  - first:
+      213: 922111916086999622
+    second: Player_Attack_Bow_Flying_4_12
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Player_Attack_Bow_Flying_4_0
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 30
+        width: 20
+        height: 31
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 45f9d52b1096fcc40800000000000000
+      internalID: 5534757923069992788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_Attack_Bow_Flying_4_1
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 31
+        width: 23
+        height: 30
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 279c5bb6b20037330800000000000000
+      internalID: 3707307104746719602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_Attack_Bow_Flying_4_2
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 32
+        width: 25
+        height: 29
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eff936903e60911c0800000000000000
+      internalID: -4532583977786826754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_Attack_Bow_Flying_4_3
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 32
+        width: 36
+        height: 29
+      alignment: 9
+      pivot: {x: 0.3475, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 633a9301a9c8edcb0800000000000000
+      internalID: -4837274356424269002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_Attack_Bow_Flying_4_4
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 32
+        width: 35
+        height: 29
+      alignment: 9
+      pivot: {x: 0.357, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18981edba37970dc0800000000000000
+      internalID: -3672800692547778175
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_Attack_Bow_Flying_4_5
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 32
+        width: 31
+        height: 29
+      alignment: 9
+      pivot: {x: 0.403, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b352cd1a9b68f340800000000000000
+      internalID: 4897782904433824691
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_Attack_Bow_Flying_4_6
+      rect:
+        serializedVersion: 2
+        x: 246
+        y: 32
+        width: 31
+        height: 29
+      alignment: 9
+      pivot: {x: 0.403, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a85082b99c27f300800000000000000
+      internalID: 285746139997690024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_Attack_Bow_Flying_4_7
+      rect:
+        serializedVersion: 2
+        x: 285
+        y: 32
+        width: 38
+        height: 29
+      alignment: 9
+      pivot: {x: 0.355, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00ea087de957e7be0800000000000000
+      internalID: -1477614302650126848
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_Attack_Bow_Flying_4_8
+      rect:
+        serializedVersion: 2
+        x: 328
+        y: 28
+        width: 37
+        height: 33
+      alignment: 9
+      pivot: {x: 0.378, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 479572ff82212db30800000000000000
+      internalID: 4310527760635746676
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_Attack_Bow_Flying_4_9
+      rect:
+        serializedVersion: 2
+        x: 372
+        y: 28
+        width: 43
+        height: 36
+      alignment: 9
+      pivot: {x: 0.3255, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e18bc2d0b5d63c160800000000000000
+      internalID: 7044594479968073758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_Attack_Bow_Flying_4_10
+      rect:
+        serializedVersion: 2
+        x: 422
+        y: 28
+        width: 47
+        height: 41
+      alignment: 9
+      pivot: {x: 0.2976, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a9309decd5f2e1e0800000000000000
+      internalID: -2169901741211895391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_Attack_Bow_Flying_4_11
+      rect:
+        serializedVersion: 2
+        x: 482
+        y: 22
+        width: 54
+        height: 56
+      alignment: 9
+      pivot: {x: 0.259, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d1f3d4fdbdf05210800000000000000
+      internalID: 1319833683117732313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_Attack_Bow_Flying_4_12
+      rect:
+        serializedVersion: 2
+        x: 545
+        y: 28
+        width: 28
+        height: 33
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64a3581f6effbcc00800000000000000
+      internalID: 922111916086999622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 2ce517da655ccd848b5994c1dd5af331
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Player_Attack_Bow_Flying_4_0: 5534757923069992788
+      Player_Attack_Bow_Flying_4_1: 3707307104746719602
+      Player_Attack_Bow_Flying_4_10: -2169901741211895391
+      Player_Attack_Bow_Flying_4_11: 1319833683117732313
+      Player_Attack_Bow_Flying_4_12: 922111916086999622
+      Player_Attack_Bow_Flying_4_2: -4532583977786826754
+      Player_Attack_Bow_Flying_4_3: -4837274356424269002
+      Player_Attack_Bow_Flying_4_4: -3672800692547778175
+      Player_Attack_Bow_Flying_4_5: 4897782904433824691
+      Player_Attack_Bow_Flying_4_6: 285746139997690024
+      Player_Attack_Bow_Flying_4_7: -1477614302650126848
+      Player_Attack_Bow_Flying_4_8: 4310527760635746676
+      Player_Attack_Bow_Flying_4_9: 7044594479968073758
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
