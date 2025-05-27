@@ -130,12 +130,12 @@ TextureImporter:
       name: Player_Attack_Bow_Flying_3_0
       rect:
         serializedVersion: 2
-        x: 6
-        y: 17
-        width: 28
-        height: 38
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 8
+        y: 19
+        width: 24
+        height: 34
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -152,12 +152,12 @@ TextureImporter:
       name: Player_Attack_Bow_Flying_3_1
       rect:
         serializedVersion: 2
-        x: 37
-        y: 18
-        width: 25
-        height: 39
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 39
+        y: 20
+        width: 21
+        height: 35
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -174,12 +174,12 @@ TextureImporter:
       name: Player_Attack_Bow_Flying_3_2
       rect:
         serializedVersion: 2
-        x: 64
-        y: 18
-        width: 28
-        height: 39
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 66
+        y: 20
+        width: 24
+        height: 35
+      alignment: 9
+      pivot: {x: 0.4375, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -196,12 +196,12 @@ TextureImporter:
       name: Player_Attack_Bow_Flying_3_3
       rect:
         serializedVersion: 2
-        x: 103
-        y: 19
-        width: 36
-        height: 38
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 105
+        y: 21
+        width: 32
+        height: 34
+      alignment: 9
+      pivot: {x: 0.359, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -218,12 +218,12 @@ TextureImporter:
       name: Player_Attack_Bow_Flying_3_4
       rect:
         serializedVersion: 2
-        x: 141
-        y: 19
-        width: 39
-        height: 38
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 143
+        y: 21
+        width: 35
+        height: 34
+      alignment: 9
+      pivot: {x: 0.3285, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -240,12 +240,12 @@ TextureImporter:
       name: Player_Attack_Bow_Flying_3_5
       rect:
         serializedVersion: 2
-        x: 180
-        y: 19
-        width: 41
-        height: 43
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 182
+        y: 21
+        width: 37
+        height: 39
+      alignment: 9
+      pivot: {x: 0.2835, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -262,12 +262,12 @@ TextureImporter:
       name: Player_Attack_Bow_Flying_3_6
       rect:
         serializedVersion: 2
-        x: 220
-        y: 18
-        width: 43
-        height: 45
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 222
+        y: 20
+        width: 39
+        height: 41
+      alignment: 9
+      pivot: {x: 0.282, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -284,12 +284,12 @@ TextureImporter:
       name: Player_Attack_Bow_Flying_3_7
       rect:
         serializedVersion: 2
-        x: 263
-        y: 18
-        width: 77
-        height: 41
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 265
+        y: 20
+        width: 34
+        height: 33
+      alignment: 9
+      pivot: {x: 0.3235, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -306,12 +306,12 @@ TextureImporter:
       name: Player_Attack_Bow_Flying_3_8
       rect:
         serializedVersion: 2
-        x: 342
-        y: 18
-        width: 42
-        height: 42
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 344
+        y: 20
+        width: 38
+        height: 38
+      alignment: 9
+      pivot: {x: 0.2895, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -328,12 +328,12 @@ TextureImporter:
       name: Player_Attack_Bow_Flying_3_9
       rect:
         serializedVersion: 2
-        x: 391
-        y: 18
-        width: 26
-        height: 37
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 393
+        y: 20
+        width: 22
+        height: 33
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -346,11 +346,33 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Player_Attack_Bow_Flying_3_10
+      rect:
+        serializedVersion: 2
+        x: 301
+        y: 20
+        width: 37
+        height: 37
+      alignment: 9
+      pivot: {x: 0.297, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d44d7806374e8b5439ffa616216197cb
+      internalID: -787265185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 0f22aaaa5154a3b4a9fef6df53997c1e
     internalID: 0
     vertices: []
     indices: 
@@ -362,6 +384,7 @@ TextureImporter:
     nameFileIdTable:
       Player_Attack_Bow_Flying_3_0: -4135145075952376834
       Player_Attack_Bow_Flying_3_1: -528760419196498176
+      Player_Attack_Bow_Flying_3_10: -787265185
       Player_Attack_Bow_Flying_3_2: -2127726950082988383
       Player_Attack_Bow_Flying_3_3: 3307300141740741822
       Player_Attack_Bow_Flying_3_4: -7162157063425315610

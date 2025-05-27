@@ -124,12 +124,12 @@ TextureImporter:
       name: Player_Attack_Bow_2_0
       rect:
         serializedVersion: 2
-        x: 16
-        y: 5
-        width: 25
-        height: 39
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 18
+        y: 7
+        width: 21
+        height: 35
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -146,12 +146,12 @@ TextureImporter:
       name: Player_Attack_Bow_2_1
       rect:
         serializedVersion: 2
-        x: 56
-        y: 5
-        width: 30
-        height: 37
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 58
+        y: 7
+        width: 26
+        height: 33
+      alignment: 9
+      pivot: {x: 0.423, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -168,12 +168,12 @@ TextureImporter:
       name: Player_Attack_Bow_2_2
       rect:
         serializedVersion: 2
-        x: 93
-        y: 5
-        width: 35
-        height: 34
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 95
+        y: 7
+        width: 31
+        height: 30
+      alignment: 9
+      pivot: {x: 0.355, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -190,12 +190,12 @@ TextureImporter:
       name: Player_Attack_Bow_2_3
       rect:
         serializedVersion: 2
-        x: 138
-        y: 5
-        width: 41
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 140
+        y: 7
+        width: 37
+        height: 29
+      alignment: 9
+      pivot: {x: 0.2975, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -212,12 +212,12 @@ TextureImporter:
       name: Player_Attack_Bow_2_4
       rect:
         serializedVersion: 2
-        x: 185
-        y: 5
-        width: 44
-        height: 34
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 187
+        y: 7
+        width: 40
+        height: 30
+      alignment: 9
+      pivot: {x: 0.275, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -234,12 +234,12 @@ TextureImporter:
       name: Player_Attack_Bow_2_5
       rect:
         serializedVersion: 2
-        x: 234
-        y: 5
-        width: 47
-        height: 39
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 236
+        y: 7
+        width: 43
+        height: 35
+      alignment: 9
+      pivot: {x: 0.256, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -256,12 +256,12 @@ TextureImporter:
       name: Player_Attack_Bow_2_6
       rect:
         serializedVersion: 2
-        x: 283
-        y: 5
-        width: 49
-        height: 40
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 285
+        y: 7
+        width: 45
+        height: 36
+      alignment: 9
+      pivot: {x: 0.2445, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -278,12 +278,12 @@ TextureImporter:
       name: Player_Attack_Bow_2_7
       rect:
         serializedVersion: 2
-        x: 345
-        y: 4
-        width: 27
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 347
+        y: 6
+        width: 23
+        height: 29
+      alignment: 9
+      pivot: {x: 0.479, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -300,7 +300,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: d924aa803ad6eea4386a746e1af03d37
     internalID: 0
     vertices: []
     indices: 
