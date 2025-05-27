@@ -200,6 +200,8 @@ public class AttackController : MonoBehaviour
         return CurrentWeapon switch
         {
             WeaponType.Spear => new SpearSkillState(player, stateMachine),
+            // WeaponType.Bow => new BowSkillState(player, stateMachine),
+            // WeaponType.Bomb => new BombSkillState(player, stateMachine),
             _ => null
         };
     }
@@ -209,6 +211,8 @@ public class AttackController : MonoBehaviour
         return CurrentWeapon switch
         {
             WeaponType.Spear => new SpearAttackState(player, stateMachine),
+            // WeaponType.Bow => new BowAttackState(player, stateMachine),
+            // WeaponType.Bomb => new BombAttackState(player, stateMachine),
             _ => null
         };
     }
@@ -218,6 +222,8 @@ public class AttackController : MonoBehaviour
         return CurrentWeapon switch
         {
             WeaponType.Spear => spearData.MaxCombo,
+            // WeaponType.Bow => bowData.MaxCombo,
+            // WeaponType.Bomb => bombData.MaxCombo,
             _ => 0
         };
     }
@@ -227,7 +233,9 @@ public class AttackController : MonoBehaviour
         return CurrentWeapon switch
         {
             WeaponType.Spear => spearData.spearSkillcooldown,
-            _ => 9999f
+            // WeaponType.Bow => bowData.Bowskillcooldown,
+            // WeaponType.Bomb => bombData.Bombskillcooldown,
+            _ => 1f
         };
     }
 
@@ -236,6 +244,8 @@ public class AttackController : MonoBehaviour
         return CurrentWeapon switch
         {
             WeaponType.Spear => spearData.GetComboKeep(step),
+            // WeaponType.Bow => bowData.GetComboKeep(step),
+            // WeaponType.Bomb => bombData.GetComboKeep(step),
             _ => 0f
         };
     }
