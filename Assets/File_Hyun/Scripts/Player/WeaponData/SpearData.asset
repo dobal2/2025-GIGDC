@@ -15,7 +15,7 @@ MonoBehaviour:
   spearSkillDamage: 1
   spearSkillcooldown: 1
   animatorController: {fileID: 9100000, guid: f793756eaf78bb04f9def9b2860a6fa2, type: 2}
-  comboInfos:
+  spearComboInfos:
   - damage: 1
     pushDistance: 0.5
     pushTime: 0.2653
@@ -27,7 +27,7 @@ MonoBehaviour:
     Combodelay: 0.1225
     ComboKeep: 1
   - damage: 1
-    pushDistance: 0.5
+    pushDistance: 1
     pushTime: 0.3038
     Combodelay: 0.1631
     ComboKeep: 1

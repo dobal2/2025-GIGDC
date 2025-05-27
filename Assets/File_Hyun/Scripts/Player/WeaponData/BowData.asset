@@ -12,8 +12,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64ba3782c4380e54ea28ff43ae15584d, type: 3}
   m_Name: BowData
   m_EditorClassIdentifier: 
-  type: 0
   BowskillDamage: 1
   Bowskillcooldown: 1
   animatorController: {fileID: 9100000, guid: c2649cd78942c0e478cdb525a0297988, type: 2}
-  bowComboInfos: []
+  normalArrowPrefab: {fileID: 0}
+  skillArrowPrefab: {fileID: 0}
+  bowComboInfos:
+  - damage: 1
+    pushDistance: 0
+    pushTime: 0
+    Combodelay: 0
+    ComboKeep: 1
+    arrows: []
+  - damage: 1
+    pushDistance: 0
+    pushTime: 0
+    Combodelay: 0
+    ComboKeep: 1
+    arrows: []
+  - damage: 1
+    pushDistance: 0
+    pushTime: 0
+    Combodelay: 0
+    ComboKeep: 1
+    arrows: []
+  - damage: 1
+    pushDistance: 0
+    pushTime: 0
+    Combodelay: 0
+    ComboKeep: 1
+    arrows: []

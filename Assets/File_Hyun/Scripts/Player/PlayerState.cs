@@ -5,8 +5,12 @@ public enum PlayerStateType
     Missing,
     Locomotion,
     Dash,
-    Attack,
-    SpearSkill
+    SpearAttack,
+    SpearSkill,
+    BowAttack,
+    BowSkill,
+    BombAttack,
+    BombSkill,
     // 필요 시 추가
 }
 

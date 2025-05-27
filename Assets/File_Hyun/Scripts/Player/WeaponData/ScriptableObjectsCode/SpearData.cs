@@ -15,42 +15,21 @@ public struct SpearComboInfo
 public class SpearData : ScriptableObject
 {
     [Header("특수공격 정보")]
-    public float spearSkillDamage; // 특수공격 데미지
-    public float spearSkillcooldown; // 특수공격 쿨타임
+    public float spearSkillDamage;
+    public float spearSkillcooldown;
 
     [Header("Animator")]
     public RuntimeAnimatorController animatorController;
 
     [Header("콤보 단계별 정보")]
-    public SpearComboInfo[] comboInfos;
+    public SpearComboInfo[] spearComboInfos;
 
-    public int MaxCombo => comboInfos?.Length ?? 0;
+    public int MaxCombo => spearComboInfos?.Length ?? 0;
+    private bool InBounds(int step) => step >= 1 && step <= MaxCombo;
 
-    public float GetPush(int step)
-    {
-        if (step < 1 || step > MaxCombo)
-            return 0f;
-        return comboInfos[step - 1].pushDistance;
-    }
-
-    public float GetDelay(int step)
-    {
-        if (step < 1 || step > MaxCombo)
-            return 0.1f;
-        return comboInfos[step - 1].pushTime;
-    }
-
-    public float GetComboDelay(int step)
-    {
-        if (step < 1 || step > MaxCombo)
-            return 0f;
-        return comboInfos[step - 1].Combodelay;
-    }
-
-    public float GetComboKeep(int step)
-    {
-        if (step < 1 || step > MaxCombo)
-            return 0f;
-        return comboInfos[step - 1].ComboKeep;
-    }
+    public float GetDamage(int step) => InBounds(step) ? spearComboInfos[step - 1].damage : 0f;
+    public float GetPush(int step) => InBounds(step) ? spearComboInfos[step - 1].pushDistance : 0f;
+    public float GetDelay(int step) => InBounds(step) ? spearComboInfos[step - 1].pushTime : 0.1f;
+    public float GetComboDelay(int step) => InBounds(step) ? spearComboInfos[step - 1].Combodelay : 0f;
+    public float GetComboKeep(int step) => InBounds(step) ? spearComboInfos[step - 1].ComboKeep : 0f;
 }

@@ -7,9 +7,9 @@ public class AttackController : MonoBehaviour
 
     private PlayerController player;
 
-    private SpearData spearData;
-    private BowData bowData;
-    private BombData bombData;
+    public SpearData spearData;
+    public BowData bowData;
+    public BombData bombData;
 
     public WeaponType CurrentWeapon { get; private set; }
 
@@ -60,10 +60,10 @@ public class AttackController : MonoBehaviour
                 player.Animator.runtimeAnimatorController = spearData.animatorController;
                 break;
 
-                // case WeaponType.Bow:
-                //     bowData = weaponDatabase.GetData<BowData>(WeaponType.Bow);
-                //     player.Animator.runtimeAnimatorController = bowData.animatorController;
-                //     break;
+            case WeaponType.Bow:
+                bowData = weaponDatabase.GetData<BowData>(WeaponType.Bow);
+                player.Animator.runtimeAnimatorController = bowData.animatorController;
+                break;
 
                 // case WeaponType.Bomb:
                 //     bombData = weaponDatabase.GetData<BombData>(WeaponType.Bomb);
@@ -176,10 +176,25 @@ public class AttackController : MonoBehaviour
     {
         Debug.Log($"[Attack] 현재 콤보 단계: {step}");
 
-        currentPushDistance = spearData.GetPush(step);
-        pushTimer = spearData.GetDelay(step);
-        comboDelayTimer = spearData.GetComboDelay(step);
-        comboKeepTimer = spearData.GetComboKeep(step);
+        switch (CurrentWeapon)
+        {
+            case WeaponType.Spear:
+                currentPushDistance = spearData.GetPush(step);
+                pushTimer = spearData.GetDelay(step);
+                comboDelayTimer = spearData.GetComboDelay(step);
+                comboKeepTimer = spearData.GetComboKeep(step);
+                break;
+
+            case WeaponType.Bow:
+                currentPushDistance = bowData.GetPush(step);
+                pushTimer = bowData.GetDelay(step);
+                comboDelayTimer = bowData.GetComboDelay(step);
+                comboKeepTimer = bowData.GetComboKeep(step);
+                break;
+
+                //case WeaponType.Bomb:
+
+        }
 
         if (!player.isGrounded && spearData.MaxCombo == step)
             airborneComboUsed = true;
@@ -211,7 +226,7 @@ public class AttackController : MonoBehaviour
         return CurrentWeapon switch
         {
             WeaponType.Spear => new SpearAttackState(player, stateMachine),
-            // WeaponType.Bow => new BowAttackState(player, stateMachine),
+            WeaponType.Bow => new BowAttackState(player, stateMachine),
             // WeaponType.Bomb => new BombAttackState(player, stateMachine),
             _ => null
         };
@@ -222,7 +237,7 @@ public class AttackController : MonoBehaviour
         return CurrentWeapon switch
         {
             WeaponType.Spear => spearData.MaxCombo,
-            // WeaponType.Bow => bowData.MaxCombo,
+            WeaponType.Bow => bowData.MaxCombo,
             // WeaponType.Bomb => bombData.MaxCombo,
             _ => 0
         };
@@ -233,7 +248,7 @@ public class AttackController : MonoBehaviour
         return CurrentWeapon switch
         {
             WeaponType.Spear => spearData.spearSkillcooldown,
-            // WeaponType.Bow => bowData.Bowskillcooldown,
+            WeaponType.Bow => bowData.Bowskillcooldown,
             // WeaponType.Bomb => bombData.Bombskillcooldown,
             _ => 1f
         };
@@ -244,7 +259,7 @@ public class AttackController : MonoBehaviour
         return CurrentWeapon switch
         {
             WeaponType.Spear => spearData.GetComboKeep(step),
-            // WeaponType.Bow => bowData.GetComboKeep(step),
+            WeaponType.Bow => bowData.GetComboKeep(step),
             // WeaponType.Bomb => bombData.GetComboKeep(step),
             _ => 0f
         };
