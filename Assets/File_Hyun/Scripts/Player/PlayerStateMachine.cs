@@ -1,3 +1,5 @@
+using System.Diagnostics;
+
 public class PlayerStateMachine
 {
     private PlayerState currentState;
@@ -19,6 +21,7 @@ public class PlayerStateMachine
         currentState?.Exit();
         previousState = currentState;
         currentState = newState;
+        UnityEngine.Debug.Log($"Changing state from {previousState?.StateType} to {currentState.StateType}");
         currentState.Enter();
     }
 

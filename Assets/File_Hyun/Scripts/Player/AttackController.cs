@@ -20,7 +20,6 @@ public class AttackController : MonoBehaviour
     private float currentPushDistance = 0f;
     private float pushSpeedPerSecond = 0f;
     private float lastSkillTime = -999f;
-    private bool receivedNextInput = false;
     private bool airborneComboUsed = false;
 
     public bool HasReachedMaxCombo => comboStep >= GetMaxCombo();
@@ -31,13 +30,6 @@ public class AttackController : MonoBehaviour
     public bool CanStartAirborneCombo => !player.isGrounded && !airborneComboUsed;
     public int ComboStep => comboStep;
     public bool CanUseSkill => Time.time >= lastSkillTime + GetSkillCooldown();
-
-    public bool ShouldEndCombo =>
-        comboStep > 0 &&
-        !receivedNextInput &&
-        !IsPushing &&
-        !IsInComboDelay &&
-        comboKeepTimer <= 0f;
 
     void Awake()
     {
