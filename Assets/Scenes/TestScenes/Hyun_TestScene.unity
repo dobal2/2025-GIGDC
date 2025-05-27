@@ -247,8 +247,8 @@ Transform:
   m_GameObject: {fileID: 104908095}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -3, z: 0}
-  m_LocalScale: {x: 20.872568, y: 1.008216, z: 1}
+  m_LocalPosition: {x: 0, y: -8.72, z: 0}
+  m_LocalScale: {x: 37.716923, y: 1.7756331, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -315,7 +315,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -518,8 +518,8 @@ Transform:
   m_GameObject: {fileID: 1757578479}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.76, y: 0.38, z: 0}
-  m_LocalScale: {x: 1.2815838, y: 0.2712801, z: 1}
+  m_LocalPosition: {x: -8.82, y: -1.91, z: 0}
+  m_LocalScale: {x: 2.6997855, y: 0.47571543, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -698,17 +698,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 1}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
+    pivot: {x: 0.565, y: 0}
+    oldSize: {x: 1.9375, y: 2.25}
+    newSize: {x: 0.31, y: 0.36}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 2}
   m_EdgeRadius: 0
 --- !u!50 &391269722744936413
 Rigidbody2D:
@@ -725,7 +725,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 4
+  m_GravityScale: 6
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -749,8 +749,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abd58cc7ee0517c47a5d391bd21f8779, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 6
-  fastFallGravityScale: 16
+  moveSpeed: 10
+  fastFallGravityScale: 18
   jumpForceCurve:
     serializedVersion: 2
     m_Curve:
@@ -777,7 +777,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   maxJumpTime: 0.4
   maxJumpForce: 20
-  jumpHeightMultiplier: 1
+  jumpHeightMultiplier: 2
   jumpBufferTime: 0.1
   coyoteTime: 0.1
   dashSpeed: 50
@@ -794,9 +794,7 @@ MonoBehaviour:
     m_Bits: 64
   boxWidth: 0.99
   boxHeight: 0.1
-  boxLowAirHeight: 2
-  crouchColliderHeightMultiplier: 0.5
-  crouchSpeedMultiplier: 0.5
+  boxLowAirHeight: 3
   attackBufferTime: 0.1
   attackBufferTimer: 0
   isGrounded: 0
@@ -821,8 +819,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 2, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -870,12 +868,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: -8905401573296025958, guid: 570ebb65fd8d28544b4f229f1dcc7484, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.31, y: 0.36}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -895,6 +893,7 @@ GameObject:
   - component: {fileID: 5918730046746740477}
   - component: {fileID: 145162027325183794}
   - component: {fileID: 391269722744936413}
+  - component: {fileID: 5918730046746740478}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -914,7 +913,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 351302e8a97a6a348936a03e2eb4102d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponDatabase: {fileID: 11400000, guid: 1944ca257422ba14ebfa1d2b2b902f30, type: 2}
+  weaponDatabase: {fileID: 11400000, guid: 54120d3f0c20a2c4cadbc83558eb4b46, type: 2}
+  spearData: {fileID: 0}
+  bowData: {fileID: 0}
+  bombData: {fileID: 0}
+--- !u!95 &5918730046746740478
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5918730046746740476}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f793756eaf78bb04f9def9b2860a6fa2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

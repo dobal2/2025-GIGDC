@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 821eb68c798b0d44c96f5ca814be2c9a, type: 3}
+  m_Name: SpearData
+  m_EditorClassIdentifier: 
+  spearSkillDamage: 1
+  spearSkillcooldown: 1
+  animatorController: {fileID: 9100000, guid: f793756eaf78bb04f9def9b2860a6fa2, type: 2}
+  spearComboInfos:
+  - damage: 1
+    pushDistance: 0.5
+    pushTime: 0.2653
+    Combodelay: 0.1428
+    ComboKeep: 1
+  - damage: 1
+    pushDistance: 0.5
+    pushTime: 0.2275
+    Combodelay: 0.1225
+    ComboKeep: 1
+  - damage: 1
+    pushDistance: 1
+    pushTime: 0.3038
+    Combodelay: 0.1631
+    ComboKeep: 1

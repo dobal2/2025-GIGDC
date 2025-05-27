@@ -1,13 +1,27 @@
 using UnityEngine;
 
+public enum PlayerStateType
+{
+    Missing,
+    Locomotion,
+    Dash,
+    SpearAttack,
+    SpearSkill,
+    BowAttack,
+    BowSkill,
+    BombAttack,
+    BombSkill,
+    // 필요 시 추가
+}
+
 public abstract class PlayerState
 {
     protected PlayerController player;
     protected PlayerStateMachine stateMachine;
 
-    public virtual bool IsCombatState => false;
+    public abstract PlayerStateType StateType { get; }
 
-    public abstract string Name { get; }
+    public virtual bool IsCombatState => false;
 
     public PlayerState(PlayerController player, PlayerStateMachine stateMachine)
     {
@@ -60,7 +74,7 @@ public abstract class PlayerState
             player.ConsumeAttackBuffer();
             player.AttackController.MarkComboInputReceived();
             player.AttackController.ContinueCombo();
-            stateMachine.ChangeState(new GenericAttackState(player, stateMachine));
+            stateMachine.ChangeState(player.AttackController.GetAttackState(stateMachine));
             return true;
         }
         return false;
@@ -74,7 +88,7 @@ public abstract class PlayerState
         {
             player.ConsumeAttackBuffer();
             player.AttackController.StartCombo();
-            stateMachine.ChangeState(new GenericAttackState(player, stateMachine));
+            stateMachine.ChangeState(player.AttackController.GetAttackState(stateMachine));
             return true;
         }
         return false;

@@ -3,7 +3,7 @@ public class PlayerStateMachine
     private PlayerState currentState;
     private PlayerState previousState;
 
-    public string CurrentStateName => currentState?.Name ?? "None";
+    public PlayerStateType CurrentStateType => currentState?.StateType ?? PlayerStateType.Missing;
 
     public void Initialize(PlayerState startingState)
     {
@@ -24,7 +24,7 @@ public class PlayerStateMachine
 
     public void Update()
     {
-        //UnityEngine.Debug.Log($"Current State: {currentState?.Name}");
+        //UnityEngine.Debug.Log($"Current State: {CurrentStateType}");
         currentState?.Update();
     }
 
