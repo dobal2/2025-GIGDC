@@ -9,13 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad99cde2a807b9142bebc84796c6f9ea, type: 3}
-  m_Name: Bomb
+  m_Script: {fileID: 11500000, guid: 517340614559b454d8e0865667004203, type: 3}
+  m_Name: BombData
   m_EditorClassIdentifier: 
-  type: 2
-  comboInfos:
-  - damage: 0
-    pushDistance: 0
-    pushTime: 0
-    Combodelay: 0
-    ComboKeep: 0
+  BombskillDamage: 1
+  Bombskillcooldown: 1
+  animatorController: {fileID: 9100000, guid: 467bc3eedbd11b448a262f1cded9a74b, type: 2}
+  BombComboInfos: []

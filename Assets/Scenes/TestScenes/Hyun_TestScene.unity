@@ -913,7 +913,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 351302e8a97a6a348936a03e2eb4102d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponDatabase: {fileID: 11400000, guid: 1944ca257422ba14ebfa1d2b2b902f30, type: 2}
+  weaponDatabase: {fileID: 11400000, guid: 54120d3f0c20a2c4cadbc83558eb4b46, type: 2}
 --- !u!95 &5918730046746740478
 Animator:
   serializedVersion: 7

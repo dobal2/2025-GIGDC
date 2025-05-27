@@ -6,7 +6,10 @@ public class AttackController : MonoBehaviour
     [SerializeField] private WeaponDatabase weaponDatabase;
 
     private PlayerController player;
-    private WeaponData currentWeaponData;
+
+    private SpearData spearData;
+    private BowData bowData;
+    private BombData bombData;
 
     public WeaponType CurrentWeapon { get; private set; }
 
@@ -20,14 +23,14 @@ public class AttackController : MonoBehaviour
     private bool receivedNextInput = false;
     private bool airborneComboUsed = false;
 
-    public bool HasReachedMaxCombo => comboStep >= currentWeaponData.MaxComboCount;
+    public bool HasReachedMaxCombo => comboStep >= GetMaxCombo();
     public bool IsPushing => pushTimer > 0f && pushSpeedPerSecond != 0f;
     public bool IsInComboDelay => comboDelayTimer > 0f;
     public bool CanMove => !IsPushing && !IsInComboDelay;
     public bool CanComboInput => !IsPushing && !IsInComboDelay;
     public bool CanStartAirborneCombo => !player.isGrounded && !airborneComboUsed;
     public int ComboStep => comboStep;
-    public bool CanUseSkill => Time.time >= lastSkillTime + currentWeaponData.skillcooldown;
+    public bool CanUseSkill => Time.time >= lastSkillTime + GetSkillCooldown();
 
     public bool ShouldEndCombo =>
         comboStep > 0 &&
@@ -49,7 +52,24 @@ public class AttackController : MonoBehaviour
     public void SetWeapon(WeaponType weapon)
     {
         CurrentWeapon = weapon;
-        currentWeaponData = weaponDatabase.GetData(weapon);
+
+        switch (weapon)
+        {
+            case WeaponType.Spear:
+                spearData = weaponDatabase.GetData<SpearData>(WeaponType.Spear);
+                player.Animator.runtimeAnimatorController = spearData.animatorController;
+                break;
+
+                // case WeaponType.Bow:
+                //     bowData = weaponDatabase.GetData<BowData>(WeaponType.Bow);
+                //     player.Animator.runtimeAnimatorController = bowData.animatorController;
+                //     break;
+
+                // case WeaponType.Bomb:
+                //     bombData = weaponDatabase.GetData<BombData>(WeaponType.Bomb);
+                //     player.Animator.runtimeAnimatorController = bombData.animatorController;
+                //     break;
+        }
 
         ResetCombo();
     }
@@ -90,7 +110,7 @@ public class AttackController : MonoBehaviour
             currentPushDistance = 0f;
             pushSpeedPerSecond = 0f;
             receivedNextInput = false;
-            if(player.isGrounded)
+            if (player.isGrounded)
                 airborneComboUsed = false;
             return;
         }
@@ -111,7 +131,7 @@ public class AttackController : MonoBehaviour
 
     public void CancelPush()
     {
-        if (comboStep < 1 || comboStep > currentWeaponData.MaxComboCount)
+        if (comboStep < 1 || comboStep > GetMaxCombo())
             return;
 
         pushTimer = 0f;
@@ -119,7 +139,7 @@ public class AttackController : MonoBehaviour
         currentPushDistance = 0f;
 
         comboDelayTimer = 0f;
-        comboKeepTimer = currentWeaponData.comboInfos[comboStep - 1].ComboKeep;
+        comboKeepTimer = GetComboKeep(comboStep);
     }
 
     public void UpdateComboTimer()
@@ -141,11 +161,8 @@ public class AttackController : MonoBehaviour
             if (player.isGrounded)
             {
                 comboKeepTimer -= Time.deltaTime;
-
                 if (comboKeepTimer <= 0f)
-                {
                     ResetCombo();
-                }
             }
         }
     }
@@ -155,39 +172,22 @@ public class AttackController : MonoBehaviour
         return pushSpeedPerSecond * deltaTime;
     }
 
-    private string GetComboAnimName(int step)
-    {
-        string baseName;
-        baseName = $"{step}";
-
-        if (!player.isGrounded)
-            baseName = "Flying_" + baseName;
-
-        return baseName;
-    }
-
     private void PlayCombo(int step)
     {
         Debug.Log($"[Attack] 현재 콤보 단계: {step}");
 
-        currentPushDistance = currentWeaponData.GetPush(step);
-        pushTimer = currentWeaponData.GetDelay(step);
-        comboDelayTimer = currentWeaponData.GetComboDelay(step);
-        comboKeepTimer = currentWeaponData.comboInfos[step - 1].ComboKeep;
+        currentPushDistance = spearData.GetPush(step);
+        pushTimer = spearData.GetDelay(step);
+        comboDelayTimer = spearData.GetComboDelay(step);
+        comboKeepTimer = spearData.GetComboKeep(step);
 
-        if (!player.isGrounded && currentWeaponData.MaxComboCount == step)
+        if (!player.isGrounded && spearData.MaxCombo == step)
             airborneComboUsed = true;
 
-        if (pushTimer <= 0f)
-        {
-            pushSpeedPerSecond = 0f;
-        }
-        else
-        {
-            pushSpeedPerSecond = currentPushDistance / pushTimer;
-        }
+        pushSpeedPerSecond = pushTimer > 0f ? currentPushDistance / pushTimer : 0f;
 
-        player.Animator.Play(GetComboAnimName(step));
+        string animName = !player.isGrounded ? $"Flying_{step}" : $"{step}";
+        player.Animator.Play(animName);
     }
 
     public void ResetAirborneCombo()
@@ -209,9 +209,34 @@ public class AttackController : MonoBehaviour
         return CurrentWeapon switch
         {
             WeaponType.Spear => new SpearAttackState(player, stateMachine),
-            //WeaponType.Bow => new BowAttackState(player, stateMachine),
-            //WeaponType.Spear => new SpearAttackState(player, stateMachine),
             _ => null
+        };
+    }
+
+    private int GetMaxCombo()
+    {
+        return CurrentWeapon switch
+        {
+            WeaponType.Spear => spearData.MaxCombo,
+            _ => 0
+        };
+    }
+
+    private float GetSkillCooldown()
+    {
+        return CurrentWeapon switch
+        {
+            WeaponType.Spear => spearData.spearSkillcooldown,
+            _ => 9999f
+        };
+    }
+
+    private float GetComboKeep(int step)
+    {
+        return CurrentWeapon switch
+        {
+            WeaponType.Spear => spearData.GetComboKeep(step),
+            _ => 0f
         };
     }
 }

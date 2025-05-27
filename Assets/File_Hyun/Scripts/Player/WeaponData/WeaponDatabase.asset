@@ -9,10 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 973cacd3e931658429c36b7c500597a6, type: 3}
+  m_Script: {fileID: 11500000, guid: a832547b08d2e614baf207afb870fbc5, type: 3}
   m_Name: WeaponDatabase
   m_EditorClassIdentifier: 
-  weapons:
-  - {fileID: 11400000, guid: f6cd8075f43c7a44a9270f74496fbcc4, type: 2}
-  - {fileID: 11400000, guid: 1c5b0280b66afd34085e6e40fb8508a8, type: 2}
-  - {fileID: 11400000, guid: c140270f62fffd24997dcea146defc75, type: 2}
+  spearData: {fileID: 11400000, guid: 1ed84a4341f1eb34da53b4227098d1ad, type: 2}
+  bowData: {fileID: 11400000, guid: ec3f2d0d78e40f648a481e241ce0b514, type: 2}
+  bombData: {fileID: 11400000, guid: feeec036d93b68a489ca849ac49d15f9, type: 2}

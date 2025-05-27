@@ -109,7 +109,6 @@ public class PlayerController : MonoBehaviour
         Animator = GetComponent<Animator>();
         SpriteRenderer = GetComponent<SpriteRenderer>();
         AttackController = GetComponent<AttackController>();
-        AttackController.Initialize(WeaponType.Spear);
         originalColliderSize = boxCol.size;
         originalColliderOffset = boxCol.offset;
         normalGravityScale = rb.gravityScale;
@@ -127,6 +126,7 @@ public class PlayerController : MonoBehaviour
         InputManager.Instance.RegisterPlayer(this);
         InputManager.Instance.currentContext = InputManager.InputContext.Gameplay;
 
+        AttackController.Initialize(WeaponType.Spear);
         stateMachine = new PlayerStateMachine();
         stateMachine.Initialize(new PlayerLocomotionState(this, stateMachine));
         SetEffectState(PlayerEffectState.None);
