@@ -386,7 +386,7 @@ TextureImporter:
         width: 54
         height: 56
       alignment: 9
-      pivot: {x: 0.259, y: 0}
+      pivot: {x: 0.259, y: 0.107}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -421,6 +421,28 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Player_Attack_Bow_Flying_4_13
+      rect:
+        serializedVersion: 2
+        x: 482
+        y: 22
+        width: 54
+        height: 56
+      alignment: 9
+      pivot: {x: 0.259, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06f160227e5927f448908cfbf1be36e6
+      internalID: -284434283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -440,6 +462,7 @@ TextureImporter:
       Player_Attack_Bow_Flying_4_10: -2169901741211895391
       Player_Attack_Bow_Flying_4_11: 1319833683117732313
       Player_Attack_Bow_Flying_4_12: 922111916086999622
+      Player_Attack_Bow_Flying_4_13: -284434283
       Player_Attack_Bow_Flying_4_2: -4532583977786826754
       Player_Attack_Bow_Flying_4_3: -4837274356424269002
       Player_Attack_Bow_Flying_4_4: -3672800692547778175

@@ -21,34 +21,34 @@ MonoBehaviour:
   - damage: 1
     pushDistance: -0.5
     pushTime: 0.1
-    Combodelay: 0.2
+    Combodelay: 0.413
     ComboKeep: 1
     arrows:
-    - localOffset: {x: 0.5, y: 1}
-      ShootDelay: 0.1
+    - localOffset: {x: 0.67, y: 1.4}
+      ShootDelay: 0.235
   - damage: 1
     pushDistance: 1
     pushTime: 0.1
-    Combodelay: 0.2
+    Combodelay: 0.413
     ComboKeep: 1
     arrows:
-    - localOffset: {x: 0.5, y: 1}
-      ShootDelay: 0.1
+    - localOffset: {x: 0.8, y: 1.22}
+      ShootDelay: 0.24
   - damage: 1
     pushDistance: -0.5
-    pushTime: 0.1
-    Combodelay: 0.2
+    pushTime: 0.605
+    Combodelay: 0.1
     ComboKeep: 1
     arrows:
-    - localOffset: {x: 0.5, y: 1.2}
-      ShootDelay: 0.09
-    - localOffset: {x: 0.4, y: 1}
-      ShootDelay: 0.12
+    - localOffset: {x: 0.68, y: 1.4}
+      ShootDelay: 0.2
+    - localOffset: {x: 0.63, y: 1.28}
+      ShootDelay: 0.41
   - damage: 1
-    pushDistance: -2
-    pushTime: 0.1
-    Combodelay: 0.5
+    pushDistance: -2.5
+    pushTime: 0.304
+    Combodelay: 0.85
     ComboKeep: 1
     arrows:
-    - localOffset: {x: 0.5, y: 0.5}
-      ShootDelay: 0.3
+    - localOffset: {x: 0.7, y: 1}
+      ShootDelay: 0.9

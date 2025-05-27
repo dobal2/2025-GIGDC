@@ -7,9 +7,9 @@ public class AttackController : MonoBehaviour
 
     private PlayerController player;
 
-    public SpearData spearData;
-    public BowData bowData;
-    public BombData bombData;
+    [HideInInspector] public SpearData spearData;
+    [HideInInspector] public BowData bowData;
+    [HideInInspector] public BombData bombData;
 
     public WeaponType CurrentWeapon { get; private set; }
 
@@ -179,7 +179,7 @@ public class AttackController : MonoBehaviour
                     airborneComboUsed = true;
                 break;
 
-                //case WeaponType.Bomb:
+             //case WeaponType.Bomb:
 
         }
 
