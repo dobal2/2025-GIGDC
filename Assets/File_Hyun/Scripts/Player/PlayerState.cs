@@ -74,7 +74,7 @@ public abstract class PlayerState
             player.ConsumeAttackBuffer();
             player.AttackController.MarkComboInputReceived();
             player.AttackController.ContinueCombo();
-            stateMachine.ChangeState(new SpearAttackState(player, stateMachine));
+            stateMachine.ChangeState(player.AttackController.GetAttackState(stateMachine));
             return true;
         }
         return false;
@@ -88,7 +88,7 @@ public abstract class PlayerState
         {
             player.ConsumeAttackBuffer();
             player.AttackController.StartCombo();
-            stateMachine.ChangeState(new SpearAttackState(player, stateMachine));
+            stateMachine.ChangeState(player.AttackController.GetAttackState(stateMachine));
             return true;
         }
         return false;

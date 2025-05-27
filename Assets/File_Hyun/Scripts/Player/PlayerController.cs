@@ -80,7 +80,6 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D rb;
     private BoxCollider2D boxCol;
-    private SpriteRenderer SpriteRenderer;
 
     [HideInInspector] public bool isGrounded;
     [HideInInspector] public bool isLowAir;
@@ -107,7 +106,6 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         boxCol = GetComponent<BoxCollider2D>();
         Animator = GetComponent<Animator>();
-        SpriteRenderer = GetComponent<SpriteRenderer>();
         AttackController = GetComponent<AttackController>();
         originalColliderSize = boxCol.size;
         originalColliderOffset = boxCol.offset;
@@ -126,7 +124,7 @@ public class PlayerController : MonoBehaviour
         InputManager.Instance.RegisterPlayer(this);
         InputManager.Instance.currentContext = InputManager.InputContext.Gameplay;
 
-        AttackController.Initialize(WeaponType.Spear);
+        AttackController.Initialize(WeaponType.Bow);
         stateMachine = new PlayerStateMachine();
         stateMachine.Initialize(new PlayerLocomotionState(this, stateMachine));
         SetEffectState(PlayerEffectState.None);

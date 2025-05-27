@@ -15,30 +15,40 @@ MonoBehaviour:
   BowskillDamage: 1
   Bowskillcooldown: 1
   animatorController: {fileID: 9100000, guid: c2649cd78942c0e478cdb525a0297988, type: 2}
-  normalArrowPrefab: {fileID: 0}
+  normalArrowPrefab: {fileID: 7523045259425540334, guid: 342d4ae33c36d2a4892d12e3043635a7, type: 3}
   skillArrowPrefab: {fileID: 0}
   bowComboInfos:
   - damage: 1
-    pushDistance: 0
-    pushTime: 0
-    Combodelay: 0
+    pushDistance: -0.5
+    pushTime: 0.1
+    Combodelay: 0.2
     ComboKeep: 1
-    arrows: []
+    arrows:
+    - localOffset: {x: 0.5, y: 1}
+      ShootDelay: 0.1
   - damage: 1
-    pushDistance: 0
-    pushTime: 0
-    Combodelay: 0
+    pushDistance: 1
+    pushTime: 0.1
+    Combodelay: 0.2
     ComboKeep: 1
-    arrows: []
+    arrows:
+    - localOffset: {x: 0.5, y: 1}
+      ShootDelay: 0.1
   - damage: 1
-    pushDistance: 0
-    pushTime: 0
-    Combodelay: 0
+    pushDistance: -0.5
+    pushTime: 0.1
+    Combodelay: 0.2
     ComboKeep: 1
-    arrows: []
+    arrows:
+    - localOffset: {x: 0.5, y: 1.2}
+      ShootDelay: 0.09
+    - localOffset: {x: 0.4, y: 1}
+      ShootDelay: 0.12
   - damage: 1
-    pushDistance: 0
-    pushTime: 0
-    Combodelay: 0
+    pushDistance: -2
+    pushTime: 0.1
+    Combodelay: 0.5
     ComboKeep: 1
-    arrows: []
+    arrows:
+    - localOffset: {x: 0.5, y: 0.5}
+      ShootDelay: 0.3

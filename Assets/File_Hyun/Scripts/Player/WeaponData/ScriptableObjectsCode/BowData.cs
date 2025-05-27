@@ -4,7 +4,7 @@ using UnityEngine;
 [Serializable]
 public struct BowArrowInfo
 {
-    public Transform firePoint;
+    public Vector2 localOffset;
     public float ShootDelay;
 }
 

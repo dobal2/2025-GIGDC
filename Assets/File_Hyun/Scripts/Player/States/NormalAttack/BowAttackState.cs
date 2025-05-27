@@ -5,8 +5,11 @@ using UnityEngine;
 public class BowAttackState : PlayerState
 {
     private float timer;
-    private List<(Transform firePoint, float delay)> scheduledArrows;
+    private float pushTimer;
     private int currentArrowIndex;
+    private float pushSpeedPerSecond;
+    private List<(Vector2 localOffset, float delay)> scheduledArrows;
+
     private BowData bowData;
 
     public BowAttackState(PlayerController player, PlayerStateMachine stateMachine)
@@ -24,14 +27,22 @@ public class BowAttackState : PlayerState
         if (!player.isGrounded)
             player.Rigidbody.constraints |= RigidbodyConstraints2D.FreezePositionY;
 
-        var arrowInfos = bowData.GetArrowInfos(player.AttackController.ComboStep);
-        scheduledArrows = arrowInfos?.Select(a => (a.firePoint, a.ShootDelay)).ToList() ?? new();
+        // 콤보 단계
+        int step = player.AttackController.ComboStep;
+
+        // 화살 발사 스케줄 준비
+        var arrowInfos = bowData.GetArrowInfos(step);
+        scheduledArrows = arrowInfos?.Select(a => (a.localOffset, a.ShootDelay)).ToList() ?? new();
         currentArrowIndex = 0;
         timer = 0f;
 
-        string animName = player.isGrounded
-            ? $"Bow_{player.AttackController.ComboStep}"
-            : $"Bow_Flying_{player.AttackController.ComboStep}";
+        // 밀림 설정
+        float distance = bowData.GetPush(step);
+        pushTimer = bowData.GetDelay(step);
+        pushSpeedPerSecond = pushTimer > 0f ? distance / pushTimer : 0f;
+
+        // 애니메이션 재생
+        string animName = player.isGrounded ? $"Bow_{step}" : $"Bow_Flying_{step}";
         player.Animator.Play(animName);
     }
 
@@ -40,10 +51,14 @@ public class BowAttackState : PlayerState
         timer += Time.deltaTime;
         player.AttackController.UpdateComboTimer();
 
+        if (pushTimer > 0f)
+            pushTimer -= Time.deltaTime;
+
+        // 화살 발사 조건 체크
         while (currentArrowIndex < scheduledArrows.Count &&
                timer >= scheduledArrows[currentArrowIndex].delay)
         {
-            FireArrow(scheduledArrows[currentArrowIndex].firePoint);
+            FireArrow(scheduledArrows[currentArrowIndex].localOffset);
             currentArrowIndex++;
         }
 
@@ -60,14 +75,16 @@ public class BowAttackState : PlayerState
         }
 
         if (player.AttackController.CanMove)
+        {
             stateMachine.ChangeState(new PlayerLocomotionState(player, stateMachine));
+        }
     }
 
     public override void FixedUpdate()
     {
-        if (player.AttackController.IsPushing)
+        if (pushTimer > 0f)
         {
-            float push = player.AttackController.GetPushDelta(Time.fixedDeltaTime);
+            float push = pushSpeedPerSecond * Time.fixedDeltaTime;
             player.Rigidbody.MovePosition(player.Rigidbody.position + new Vector2(push * player.facingDirection, 0f));
         }
     }
@@ -77,22 +94,23 @@ public class BowAttackState : PlayerState
         player.Rigidbody.constraints &= ~RigidbodyConstraints2D.FreezePositionY;
     }
 
-    private void FireArrow(Transform firePoint)
+    private void FireArrow(Vector2 localOffset)
     {
         var arrowPrefab = bowData.normalArrowPrefab;
         if (arrowPrefab == null)
         {
-            Debug.LogWarning("[Bow] 화살 프리팹이 할당되지 않음");
+            Debug.LogWarning("[Bow] 화살 프리팹이 할당되지 않았습니다.");
             return;
         }
 
-        GameObject arrow = Object.Instantiate(arrowPrefab, firePoint.position, Quaternion.identity);
-        Vector2 direction = new(player.facingDirection, 0f);
+        Vector2 firePos = (Vector2)player.transform.position + new Vector2(localOffset.x * player.facingDirection, localOffset.y);
+        GameObject arrow = Object.Instantiate(arrowPrefab, firePos, Quaternion.identity);
 
+        Vector2 direction = new(player.facingDirection, 0f);
         var rb = arrow.GetComponent<Rigidbody2D>();
         if (rb)
             rb.linearVelocity = direction * 20f;
 
-        Debug.Log($"[Bow] 화살 발사됨 at {firePoint.name}");
+        Debug.Log($"[Bow] 화살 발사됨 at {firePos}");
     }
 }

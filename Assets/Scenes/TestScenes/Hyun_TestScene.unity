@@ -914,6 +914,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponDatabase: {fileID: 11400000, guid: 54120d3f0c20a2c4cadbc83558eb4b46, type: 2}
+  spearData: {fileID: 0}
+  bowData: {fileID: 0}
+  bombData: {fileID: 0}
 --- !u!95 &5918730046746740478
 Animator:
   serializedVersion: 7

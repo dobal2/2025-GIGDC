@@ -109,12 +109,12 @@ TextureImporter:
       name: Player_Idle_Bow_0
       rect:
         serializedVersion: 2
-        x: 7
-        y: 32
-        width: 21
-        height: 34
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 8
+        y: 34
+        width: 19
+        height: 32
+      alignment: 9
+      pivot: {x: 0.395, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -128,15 +128,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_Idle_Bow_1
+      name: Player_Idle_Bow_2
       rect:
         serializedVersion: 2
-        x: 7
-        y: 0
-        width: 21
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 8
+        y: 1
+        width: 19
+        height: 31
+      alignment: 9
+      pivot: {x: 0.395, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -150,15 +150,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_Idle_Bow_2
+      name: Player_Idle_Bow_1
       rect:
         serializedVersion: 2
-        x: 39
-        y: 0
-        width: 21
-        height: 66
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 40
+        y: 34
+        width: 19
+        height: 31
+      alignment: 9
+      pivot: {x: 0.395, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -171,11 +171,33 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Player_Idle_Bow_3
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 1
+        width: 19
+        height: 32
+      alignment: 9
+      pivot: {x: 0.395, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ef0b05fcc732a94a813a8739ced59db
+      internalID: 111489732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: d12016d860c56f14da519fb8e70c0167
     internalID: 0
     vertices: []
     indices: 
@@ -186,8 +208,9 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       Player_Idle_Bow_0: 4581006002292336979
-      Player_Idle_Bow_1: -3066140209558794799
-      Player_Idle_Bow_2: 7045820949828422417
+      Player_Idle_Bow_1: 7045820949828422417
+      Player_Idle_Bow_2: -3066140209558794799
+      Player_Idle_Bow_3: 111489732
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
