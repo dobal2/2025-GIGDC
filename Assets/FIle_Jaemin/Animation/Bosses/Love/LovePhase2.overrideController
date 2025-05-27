@@ -1,0 +1,13 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: LovePhase2
+  m_Controller: {fileID: 9100000, guid: 6271ef9c160a10e4dbd2806d15ce5352, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 569bad3961eb91b4197ff2625b0af67f, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 64be0d45b1b4ed94180b001f308b195b, type: 2}

@@ -28,6 +28,9 @@ public class BossLove : Monster
 
     [Header("Bress Setting")] 
     [SerializeField] private float bressDamage;
+
+    [SerializeField] private AnimatorOverrideController phase2Anim;
+    [SerializeField] private Transform bressTransform;
     
     private SpriteRenderer spriteRenderer;
     private Collider2D collider;
@@ -53,21 +56,43 @@ public class BossLove : Monster
         StopAllCoroutines();
         if (phase == 1)
         {
-            phase = 2;
-            maxHp = phase2Hp;
-            hp = maxHp;
-
-            rigid.gravityScale = 0;
-
-            transform.position = new Vector2(0, 9);
-
-            isAttacking = false;
-            collider.isTrigger = false;
-            
+            Phase2();
         }
         else
         {
             gameObject.SetActive(false);
+        }
+    }
+
+    private void Phase2()
+    {
+        phase = 2;
+        maxHp = phase2Hp;
+        hp = maxHp;
+        anim.runtimeAnimatorController = phase2Anim;
+
+        rigid.gravityScale = 0;
+
+        transform.position = new Vector2(0, 7);
+
+        isAttacking = false;
+        collider.isTrigger = false;
+    }
+
+    private void MoveUpInk()
+    {
+        int bossInkCount = Random.Range(6, 10);
+        for (int i = 0; i < bossInkCount; i++)
+        {
+            GameObject newBossInk = Instantiate(bossInkPrefab, transform.position, Quaternion.identity);
+            newBossInk.GetComponent<Bullet>().damage = inkDamage;
+            
+            float angle = Random.Range(-20f, 20f);
+            Vector2 direction = Quaternion.Euler(0, 0, angle) * Vector2.up;
+            
+            
+            Rigidbody2D rb = newBossInk.GetComponent<Rigidbody2D>();
+            rb.AddForce(direction * inkForce, ForceMode2D.Impulse);
         }
     }
 
@@ -82,19 +107,7 @@ public class BossLove : Monster
         yield return new WaitForSeconds(1.5f);
         Destroy(newDangerObject);
         
-        int bossInkCount = Random.Range(10, 15);
-        for (int i = 0; i < bossInkCount; i++)
-        {
-            GameObject newBossInk = Instantiate(bossInkPrefab, transform.position, Quaternion.identity);
-            newBossInk.GetComponent<Bullet>().damage = inkDamage;
-            
-            float angle = Random.Range(-40f, 40f);
-            Vector2 direction = Quaternion.Euler(0, 0, angle) * Vector2.up;
-            
-            
-            Rigidbody2D rb = newBossInk.GetComponent<Rigidbody2D>();
-            rb.AddForce(direction * inkForce, ForceMode2D.Impulse);
-        }
+        MoveUpInk();
         
         
         while (transform.position.y < normalY)
@@ -149,13 +162,14 @@ public class BossLove : Monster
     
     IEnumerator BressPattern()
     {
-        GameObject newBress = Instantiate(bressPrefab, transform.position, Quaternion.identity);
+        GameObject newBress = Instantiate(bressPrefab, bressTransform.position, Quaternion.identity);
+        newBress.transform.parent = bressTransform;
         newBress.GetComponent<Bress>().damage = bressDamage;
         newBress.transform.rotation *= Quaternion.Euler(new Vector3(0, 0, -60f));
 
         while (Mathf.DeltaAngle(0, newBress.transform.eulerAngles.z) < 60)
         {
-            newBress.transform.rotation *= Quaternion.Euler(new Vector3(0, 0, 0.2f));
+            newBress.transform.rotation *= Quaternion.Euler(new Vector3(0, 0, 0.4f));
             yield return new WaitForSeconds(0.001f);
         }
         
@@ -163,7 +177,7 @@ public class BossLove : Monster
         
         while (Mathf.DeltaAngle(0, newBress.transform.eulerAngles.z) > -60f)
         {
-            newBress.transform.rotation *= Quaternion.Euler(new Vector3(0, 0, -0.2f));
+            newBress.transform.rotation *= Quaternion.Euler(new Vector3(0, 0, -0.4f));
             yield return new WaitForSeconds(0.001f);
         }
         
