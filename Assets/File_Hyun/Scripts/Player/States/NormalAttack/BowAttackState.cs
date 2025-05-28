@@ -40,10 +40,6 @@ public class BowAttackState : PlayerState
         float distance = bowData.GetPush(step);
         pushTimer = bowData.GetDelay(step);
         pushSpeedPerSecond = pushTimer > 0f ? distance / pushTimer : 0f;
-
-        // 애니메이션 재생
-        string animName = player.isGrounded ? $"Bow_{step}" : $"Bow_Flying_{step}";
-        player.Animator.Play(animName);
     }
 
     public override void Update()

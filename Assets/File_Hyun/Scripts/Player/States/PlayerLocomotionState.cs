@@ -13,7 +13,8 @@ public class PlayerLocomotionState : PlayerState
 
     public override void Enter()
     {
-        PlayGroundedAnimation();
+        player.Rigidbody2D.linearVelocity = new Vector2(player.facingDirection * 0.001f, player.Rigidbody2D.linearVelocity.y);
+
     }
 
     public override void Update()
