@@ -95,20 +95,17 @@ public class BowAttackState : PlayerState
 
     private void FireArrow(Vector2 localOffset)
     {
+        Debug.Log($"[Bow] 화살 발사 준비: {localOffset}");
+
         var arrowPrefab = bowData.normalArrowPrefab;
         if (arrowPrefab == null)
         {
-            Debug.LogWarning("[Bow] 화살 프리팹이 할당되지 않았습니다.");
+            Debug.LogError("[Bow] 화살 프리팹이 할당되지 않았습니다.");
             return;
         }
 
         Vector2 firePos = (Vector2)player.transform.position + new Vector2(localOffset.x * player.facingDirection, localOffset.y);
         GameObject arrow = Object.Instantiate(arrowPrefab, firePos, Quaternion.identity);
-
-        Vector2 direction = new(player.facingDirection, 0f);
-        var rb = arrow.GetComponent<Rigidbody2D>();
-        if (rb)
-            rb.linearVelocity = direction * 20f;
 
         Debug.Log($"[Bow] 화살 발사됨 at {firePos}");
     }

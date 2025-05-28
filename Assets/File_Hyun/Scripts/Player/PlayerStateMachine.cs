@@ -18,6 +18,9 @@ public class PlayerStateMachine
         if (currentState != null && !currentState.CanTransitionTo(newState))
             return;
 
+        if (currentState?.StateType == newState.StateType)
+            return;
+
         currentState?.Exit();
         previousState = currentState;
         currentState = newState;

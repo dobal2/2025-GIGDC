@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Movement Settings")]
     [SerializeField] private float moveSpeed = 10f;
-    [SerializeField] private float fastFallGravityScale = 18f;
+    [SerializeField] private float fastFallGravityScale = 20f;
     public float MoveSpeed => moveSpeed;
     public Vector2 CurrentVelocity => rb.linearVelocity;
 

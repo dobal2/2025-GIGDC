@@ -750,7 +750,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
-  fastFallGravityScale: 18
+  fastFallGravityScale: 20
   jumpForceCurve:
     serializedVersion: 2
     m_Curve:

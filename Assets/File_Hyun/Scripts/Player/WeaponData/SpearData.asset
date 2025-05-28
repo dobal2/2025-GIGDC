@@ -20,14 +20,14 @@ MonoBehaviour:
     pushDistance: 0.5
     pushTime: 0.2653
     Combodelay: 0.1428
-    ComboKeep: 1
+    ComboKeep: 0.6
   - damage: 1
     pushDistance: 0.5
     pushTime: 0.2275
     Combodelay: 0.1225
-    ComboKeep: 1
+    ComboKeep: 0.6
   - damage: 1
     pushDistance: 1
     pushTime: 0.3038
     Combodelay: 0.1631
-    ComboKeep: 1
+    ComboKeep: 0
