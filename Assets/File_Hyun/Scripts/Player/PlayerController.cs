@@ -79,10 +79,7 @@ public class PlayerController : MonoBehaviour
     public bool AttackBuffered => attackBufferTimer > 0f;
 
     private Rigidbody2D rb;
-    public Rigidbody2D Rigidbody2D => rb;
-
     private BoxCollider2D boxCol;
-    public BoxCollider2D BoxCollider2D => boxCol;
 
     [HideInInspector] public bool isGrounded;
     [HideInInspector] public bool isLowAir;
