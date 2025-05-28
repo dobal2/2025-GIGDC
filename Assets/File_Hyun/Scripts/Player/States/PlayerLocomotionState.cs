@@ -13,8 +13,7 @@ public class PlayerLocomotionState : PlayerState
 
     public override void Enter()
     {
-        player.Rigidbody2D.linearVelocity = new Vector2(player.facingDirection * 0.001f, player.Rigidbody2D.linearVelocity.y);
-
+        player.Rigidbody.WakeUp();
     }
 
     public override void Update()
