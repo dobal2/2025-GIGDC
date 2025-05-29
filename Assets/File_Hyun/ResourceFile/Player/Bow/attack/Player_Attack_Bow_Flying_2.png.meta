@@ -55,7 +55,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -69,7 +69,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -93,7 +93,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -284,7 +284,14 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Player_Attack_Bow_Flying_2_0: 4969233686762387195
+      Player_Attack_Bow_Flying_2_1: -7915077156448932320
+      Player_Attack_Bow_Flying_2_2: 4704605319009111955
+      Player_Attack_Bow_Flying_2_3: -1456138301713999691
+      Player_Attack_Bow_Flying_2_4: 3292064018321920896
+      Player_Attack_Bow_Flying_2_5: -5030933868162470737
+      Player_Attack_Bow_Flying_2_6: -3920653259267475701
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
