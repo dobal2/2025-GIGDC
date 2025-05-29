@@ -91,8 +91,6 @@ public class BowAttackState : PlayerState
 
     private void FireArrow(Vector2 localOffset)
     {
-        Debug.Log($"[Bow] 화살 발사 준비: {localOffset}");
-
         var arrowPrefab = bowData.normalArrowPrefab;
         if (arrowPrefab == null)
         {
@@ -102,7 +100,5 @@ public class BowAttackState : PlayerState
 
         Vector2 firePos = (Vector2)player.transform.position + new Vector2(localOffset.x * player.facingDirection, localOffset.y);
         GameObject arrow = Object.Instantiate(arrowPrefab, firePos, Quaternion.identity);
-
-        Debug.Log($"[Bow] 화살 발사됨 at {firePos}");
     }
 }
