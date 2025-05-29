@@ -116,11 +116,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 5
-        y: 1
+        y: 2
         width: 25
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        height: 31
+      alignment: 9
+      pivot: {x: 0.7, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -137,12 +137,12 @@ TextureImporter:
       name: Player_Attack_Spear_Flying_3_1
       rect:
         serializedVersion: 2
-        x: 53
-        y: 0
-        width: 31
-        height: 40
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 54
+        y: 2
+        width: 29
+        height: 37
+      alignment: 9
+      pivot: {x: 0.672, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -159,12 +159,12 @@ TextureImporter:
       name: Player_Attack_Spear_Flying_3_2
       rect:
         serializedVersion: 2
-        x: 117
-        y: 0
-        width: 77
-        height: 43
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 119
+        y: 1
+        width: 73
+        height: 42
+      alignment: 9
+      pivot: {x: 0.281, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -181,12 +181,12 @@ TextureImporter:
       name: Player_Attack_Spear_Flying_3_3
       rect:
         serializedVersion: 2
-        x: 212
-        y: 0
-        width: 42
-        height: 36
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 213
+        y: 1
+        width: 40
+        height: 34
+      alignment: 9
+      pivot: {x: 0.513, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -203,12 +203,12 @@ TextureImporter:
       name: Player_Attack_Spear_Flying_3_4
       rect:
         serializedVersion: 2
-        x: 260
-        y: 0
-        width: 35
-        height: 36
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 261
+        y: 1
+        width: 33
+        height: 34
+      alignment: 9
+      pivot: {x: 0.621, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
