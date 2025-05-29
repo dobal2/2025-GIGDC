@@ -1,6 +1,10 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Text.RegularExpressions;
 using UnityEngine;
+using YamlDotNet.Serialization;
+using YamlDotNet.Serialization.NamingConventions;
 
 public static class YamlToJsonConverter
 {
@@ -9,41 +13,65 @@ public static class YamlToJsonConverter
         try
         {
             string yamlText = File.ReadAllText(yamlFilePath);
-
-            // 파서가 못 읽는 태그 제거 or 치환
             yamlText = RemoveUnityTags(yamlText);
 
-            var deserializer = new YamlDotNet.Serialization.DeserializerBuilder()
+            string[] yamlDocs = Regex.Split(yamlText, @"^---\s*", RegexOptions.Multiline);
+
+            var deserializer = new DeserializerBuilder()
                 .IgnoreUnmatchedProperties()
-                .WithNamingConvention(YamlDotNet.Serialization.NamingConventions.CamelCaseNamingConvention.Instance)
+                .WithNamingConvention(CamelCaseNamingConvention.Instance)
                 .Build();
 
-            var yamlObject = deserializer.Deserialize(new StringReader(yamlText));
+            var resultList = new List<object>();
+            foreach (var doc in yamlDocs)
+            {
+                if (string.IsNullOrWhiteSpace(doc)) continue;
+                var reader = new StringReader(doc);
 
-            var serializer = new YamlDotNet.Serialization.SerializerBuilder()
+                try
+                {
+                    object parsed = ParseByUnityType(deserializer, doc, reader);
+                    resultList.Add(parsed);
+                }
+                catch (Exception ex)
+                {
+                    Debug.LogWarning($"[YAML 파싱 실패] fallback 처리됨: {ex.Message}");
+                    reader = new StringReader(doc);
+                    var fallback = deserializer.Deserialize(reader);
+                    resultList.Add(fallback);
+                }
+            }
+
+            var serializer = new SerializerBuilder()
                 .JsonCompatible()
                 .Build();
 
-            string jsonText = serializer.Serialize(yamlObject);
-            return jsonText;
+            return serializer.Serialize(resultList);
         }
         catch (Exception e)
         {
-            Debug.LogError($"YAML → JSON 변환 실패: {yamlFilePath}\n{e.Message}");
-            return "{}";
+            Debug.LogError($"YAML → JSON 변환 실패: {yamlFilePath}\n{e}");
+            return "[]";
         }
     }
 
-    // Unity 태그 제거 함수
+    private static object ParseByUnityType(IDeserializer deserializer, string doc, StringReader reader)
+    {
+        if (doc.StartsWith("!u!1")) return deserializer.Deserialize<GameObjectData>(reader);
+        if (doc.StartsWith("!u!4")) return deserializer.Deserialize<TransformData>(reader);
+        if (doc.StartsWith("!u!212")) return deserializer.Deserialize<SpriteRendererData>(reader);
+        if (doc.StartsWith("!u!50")) return deserializer.Deserialize<Rigidbody2DData>(reader);
+        if (doc.StartsWith("!u!58")) return deserializer.Deserialize<BoxCollider2DData>(reader);
+        if (doc.StartsWith("!u!114")) return deserializer.Deserialize<MonoBehaviourData>(reader);
+        if (doc.StartsWith("!u!224")) return deserializer.Deserialize<RectTransformData>(reader);
+        return deserializer.Deserialize(reader); // fallback
+    }
+
     private static string RemoveUnityTags(string yamlText)
     {
-        // !u!xxx &id 형태 제거
-        yamlText = System.Text.RegularExpressions.Regex.Replace(yamlText, @"^--- !u!\d+ &\d+\s*", "---", System.Text.RegularExpressions.RegexOptions.Multiline);
-        // %TAG !u! tag:unity3d.com,2011: 제거
-        yamlText = System.Text.RegularExpressions.Regex.Replace(yamlText, @"^%TAG.*", "", System.Text.RegularExpressions.RegexOptions.Multiline);
-        // %YAML 1.1 제거
-        yamlText = System.Text.RegularExpressions.Regex.Replace(yamlText, @"^%YAML.*", "", System.Text.RegularExpressions.RegexOptions.Multiline);
-
+        yamlText = Regex.Replace(yamlText, @"^%TAG.*", "", RegexOptions.Multiline);
+        yamlText = Regex.Replace(yamlText, @"^%YAML.*", "", RegexOptions.Multiline);
+        yamlText = Regex.Replace(yamlText, @"^--- !u!\d+ &-?\d+", "---", RegexOptions.Multiline);
         return yamlText.Trim();
     }
 }

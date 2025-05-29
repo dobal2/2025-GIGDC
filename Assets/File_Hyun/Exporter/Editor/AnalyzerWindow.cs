@@ -22,7 +22,7 @@ public class AnalyzerWindow : EditorWindow
         // 바탕화면 기본 경로 설정
         if (string.IsNullOrEmpty(outputPath))
         {
-            outputPath = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Desktop), "AIAnalysisOutput");
+            outputPath = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Desktop), "Exported");
         }
 
         if (string.IsNullOrEmpty(inputPath))

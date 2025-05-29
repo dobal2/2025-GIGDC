@@ -1,11 +1,24 @@
-using System.IO;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public static class FileProcessor
 {
-    private static readonly HashSet<string> TextDataExtensions = new() { ".csv", ".json", ".txt", ".xml", ".tsv", ".ini" };
-    private static readonly HashSet<string> UnityYamlExtensions = new() { ".unity", ".prefab", ".asset", ".mat", ".anim", ".controller", ".shader", ".yaml", ".yml" };
+    private static readonly HashSet<string> TextDataExtensions = new()
+    {
+        ".csv", ".json", ".txt", ".xml", ".tsv", ".ini"
+    };
+
+    private static readonly HashSet<string> UnityYamlExtensions = new()
+    {
+        ".unity", ".prefab", ".asset", ".mat", ".anim", ".controller", ".overrideController",
+        ".mask", ".lighting", ".physicsMaterial", ".physicMaterial", ".physicsMaterial2D",
+        ".terrainlayer", ".spriteatlas", ".timeline", ".signal", ".renderTexture",
+        ".shaderGraph", ".vfx", ".preset", ".yaml", ".yml",
+        ".brush", ".fln", ".signalEmitter", ".volumeProfile", ".sceneTemplate",
+        ".customEditorExtension", ".variant", ".visualeffect"
+    };
 
     public static void ProcessFiles(List<string> selectedFiles, string outputPath)
     {
@@ -19,35 +32,27 @@ public static class FileProcessor
             string ext = Path.GetExtension(filePath).ToLowerInvariant();
             string fileName = Path.GetFileName(filePath);
             string destPath;
-
-            // 대응 메타파일 경로
             string metaPath = filePath + ".meta";
 
-            // === C# 코드: 그대로 복사 ===
-            if (ext == ".cs")
+            // === C# 및 텍스트 파일 ===
+            if (ext == ".cs" || TextDataExtensions.Contains(ext))
             {
                 destPath = Path.Combine(outputPath, fileName);
                 File.Copy(filePath, destPath, overwrite: true);
             }
-            // === 텍스트 파일: 그대로 복사 ===
-            else if (TextDataExtensions.Contains(ext))
-            {
-                destPath = Path.Combine(outputPath, fileName);
-                File.Copy(filePath, destPath, overwrite: true);
-            }
-            // === YAML 기반 유니티 파일: JSON으로 변환 ===
-            else if (UnityYamlExtensions.Contains(ext))
+            // === Unity YAML 기반 에셋 처리 ===
+            else if (UnityYamlExtensions.Contains(ext) || IsUnityYamlFile(filePath))
             {
                 string jsonText = YamlToJsonConverter.ConvertFile(filePath);
                 File.WriteAllText(Path.Combine(outputPath, fileName + ".json"), jsonText);
             }
-            // === 바이너리 파일은 무시 ===
+            // === 바이너리 파일 ===
             else
             {
-                Debug.Log($"무시된 바이너리 파일: {fileName}");
+                Debug.Log($"무시된 파일: {fileName} (확장자: {ext})");
             }
 
-            // === 메타파일 처리 (내용 직접 저장) ===
+            // === 메타 파일 처리 ===
             if (File.Exists(metaPath))
             {
                 string jsonText = YamlToJsonConverter.ConvertFile(metaPath);
@@ -55,13 +60,33 @@ public static class FileProcessor
             }
         }
 
-        // 메타 결과 병합 저장 (문자열 수동 JSON 조립)
+        // === 메타 병합 저장 ===
         string metaJson = "{\n";
         foreach (var kvp in metaResults)
-        {
             metaJson += $"  \"{kvp.Key}\": {kvp.Value},\n";
-        }
         metaJson = metaJson.TrimEnd(',', '\n') + "\n}";
         File.WriteAllText(Path.Combine(outputPath, "ProcessedMetas.json"), metaJson);
+    }
+
+    private static bool IsUnityYamlFile(string filePath)
+    {
+#nullable enable
+        try
+        {
+            using var reader = new StreamReader(filePath);
+            for (int i = 0; i < 5; i++)
+            {
+                string? line = reader.ReadLine();
+                if (line == null) break;
+
+                if (line.StartsWith("%YAML") || line.StartsWith("%TAG") || line.StartsWith("--- !u!"))
+                    return true;
+            }
+        }
+        catch (Exception e)
+        {
+            Debug.LogWarning($"YAML 판별 실패: {filePath}\n{e.Message}");
+        }
+        return false;
     }
 }
