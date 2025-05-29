@@ -88,5 +88,6 @@ public static class FileProcessor
             Debug.LogWarning($"YAML 판별 실패: {filePath}\n{e.Message}");
         }
         return false;
+#nullable restore
     }
 }
