@@ -33,9 +33,9 @@ public class PlayerParticleController : MonoBehaviour {
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftShift)) {
-            DashParticle.Play();
-        }
+        // if (Input.GetKeyDown(KeyCode.LeftShift)) {
+        //     DashParticle.Play();
+        // }
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
