@@ -25,19 +25,27 @@ public class DialogImporter : AssetPostprocessor
 
     private static Chapter GenerateChapter(string filePath)
     {
-        string directory = Path.GetDirectoryName(filePath);
-        string name = Path.GetFileNameWithoutExtension(filePath) + ".asset";
+        string originalDirectory = Path.GetDirectoryName(filePath);
+        string chapterName = Path.GetFileNameWithoutExtension(filePath);
 
-        string fullPath = Path.Combine(directory, name);
+        string chapterFolder = Path.Combine(originalDirectory, chapterName);
+        if (!Directory.Exists(chapterFolder))
+            Directory.CreateDirectory(chapterFolder);
 
-        Chapter chapter = (Chapter)ScriptableObject.CreateInstance(typeof(Chapter));
-        
-        if(File.Exists(fullPath))
-            AssetDatabase.DeleteAsset(fullPath);
-        AssetDatabase.CreateAsset(chapter, fullPath);
+        string assetFolderPath = chapterFolder.Replace("\\", "/");
+
+        string fullAssetPath = Path.Combine(assetFolderPath, chapterName + ".asset").Replace("\\", "/");
+
+        Chapter chapter = ScriptableObject.CreateInstance<Chapter>();
+
+        if (File.Exists(fullAssetPath))
+            AssetDatabase.DeleteAsset(fullAssetPath);
+
+        AssetDatabase.CreateAsset(chapter, fullAssetPath);
 
         return chapter;
     }
+
 
     private static void AllocateChapter(string filePath, Chapter chapter)
     {
@@ -89,7 +97,7 @@ public class DialogImporter : AssetPostprocessor
             string targetName = texts[0];
             string line = texts[1];
             
-            Dialog.TargetData targetData = chapter.GetTargetByName(targetName);
+            TargetData targetData = chapter.GetTargetByName(targetName);
             Dialog dialog = new Dialog(targetData, line);
 
             dialogs.Add(dialog);
