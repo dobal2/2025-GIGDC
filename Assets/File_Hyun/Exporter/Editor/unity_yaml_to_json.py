@@ -1,7 +1,6 @@
 ﻿import sys
 import json
 import re
-import os
 from ruamel.yaml import YAML
 
 yaml_parser = YAML(typ='rt')
@@ -70,33 +69,41 @@ def parse_yaml_blocks(blocks):
 
     return parsed, idmap
 
-def convert(filepath):
-    with open(filepath, "r", encoding="utf-8") as f:
-        content = f.read()
-
+def convert_from_string(content):
     blocks = split_blocks(content)
-    parsed_data, idmap = parse_yaml_blocks(blocks)
 
+    # === 블록이 없을 경우 전체 YAML 문서로 처리 ===
+    if not blocks:
+        try:
+            data = yaml_parser.load(content)
+            return [data] if data is not None else []
+        except Exception as e:
+            return [{
+                "_parse_error": True,
+                "_error_message": str(e),
+                "_raw": content
+            }]
+
+    # === 기존 블록 기반 처리 ===
+    parsed_data, idmap = parse_yaml_blocks(blocks)
     result = parsed_data
     if idmap:
         result.append({"_idmap": idmap})
     return result
 
-def save_result_as_json(output_path, result):
-    with open(output_path, "w", encoding="utf-8") as f:
-        json.dump(result, f, indent=2, ensure_ascii=False)
-    print(f"[OK] 저장 완료: {output_path}")
-
 if __name__ == "__main__":
-    if len(sys.argv) < 2:
-        print("Usage: python unity_yaml_to_json_v3_clean.py <input_yaml> [output_json]")
-        sys.exit(1)
-
-    input_path = sys.argv[1]
-    output_path = sys.argv[2] if len(sys.argv) > 2 else input_path + ".json"
-
     try:
-        result = convert(input_path)
-        save_result_as_json(output_path, result)
+        # 입력 소스 선택
+        if len(sys.argv) == 2 and sys.argv[1] != "--from-stdin":
+            input_path = sys.argv[1]
+            with open(input_path, "r", encoding="utf-8") as f:
+                content = f.read()
+        else:
+            content = sys.stdin.read()
+
+        result = convert_from_string(content)
+        print(json.dumps(result, indent=2, ensure_ascii=False))
+
     except Exception as e:
-        print(f"[ERROR] 오류 발생: {e}")
+        print(json.dumps({"_error": str(e)}), file=sys.stderr)
+        sys.exit(1)

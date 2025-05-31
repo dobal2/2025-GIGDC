@@ -31,25 +31,31 @@ public static class FileProcessor
         {
             string ext = Path.GetExtension(filePath).ToLowerInvariant();
             string fileName = Path.GetFileName(filePath);
-            string destPath;
+            string destPath = Path.Combine(outputPath, fileName);
             string metaPath = filePath + ".meta";
 
-            // === C# 및 텍스트 파일 ===
+            // === 텍스트 및 코드 파일 복사 ===
             if (ext == ".cs" || TextDataExtensions.Contains(ext))
             {
-                destPath = Path.Combine(outputPath, fileName);
                 File.Copy(filePath, destPath, overwrite: true);
             }
-            // === Unity YAML 기반 에셋 처리 ===
+            // === Unity YAML 변환 ===
             else if (UnityYamlExtensions.Contains(ext) || IsUnityYamlFile(filePath))
             {
-                string outputJsonPath = Path.Combine(outputPath, fileName + ".json");
-                PythonYamlConverter.RunYamlToJson(filePath, outputJsonPath);
+                string yamlText = File.ReadAllText(filePath);
+                string jsonResult = PythonYamlConverter.ConvertYamlToJson(yamlText);
 
-                if (!File.Exists(outputJsonPath))
-                    Debug.LogWarning($"[YAML 변환 실패 또는 누락] {outputJsonPath}");
+                if (!string.IsNullOrWhiteSpace(jsonResult))
+                {
+                    string outputJsonPath = Path.Combine(outputPath, fileName + ".json");
+                    File.WriteAllText(outputJsonPath, jsonResult);
+                    Debug.Log($"[변환 완료] {outputJsonPath}");
+                }
+                else
+                {
+                    Debug.LogWarning($"[YAML 변환 실패 또는 누락] {fileName}");
+                }
             }
-            // === 바이너리 파일 ===
             else
             {
                 Debug.Log($"무시된 파일: {fileName} (확장자: {ext})");
@@ -59,12 +65,12 @@ public static class FileProcessor
             if (File.Exists(metaPath))
             {
                 string metaJsonPath = Path.Combine(outputPath, fileName + ".meta.json");
-                PythonYamlConverter.RunYamlToJson(metaPath, metaJsonPath);
+                string metaYaml = File.ReadAllText(metaPath);
+                string metaJson = PythonYamlConverter.ConvertYamlToJson(metaYaml);
 
-                if (File.Exists(metaJsonPath))
+                if (!string.IsNullOrWhiteSpace(metaJson))
                 {
-                    string metaJsonText = File.ReadAllText(metaJsonPath);
-                    metaResults[fileName + ".meta"] = metaJsonText;
+                    metaResults[fileName + ".meta"] = metaJson;
                 }
                 else
                 {
@@ -77,20 +83,14 @@ public static class FileProcessor
         string metaOutputPath = Path.Combine(outputPath, "ProcessedMetas.json");
         using StreamWriter writer = new(metaOutputPath, false);
         writer.WriteLine("{");
+
+        int count = 0;
         foreach (var kvp in metaResults)
         {
-            writer.WriteLine($"  \"{kvp.Key}\": {kvp.Value},");
+            writer.WriteLine($"  \"{kvp.Key}\": {kvp.Value}{(count++ < metaResults.Count - 1 ? "," : "")}");
         }
 
-        if (metaResults.Count > 0 && writer.BaseStream.Length >= 2)
-        {
-            writer.BaseStream.SetLength(writer.BaseStream.Length - 2); // 마지막 , 제거
-            writer.WriteLine("\n}");
-        }
-        else
-        {
-            writer.WriteLine("}");
-        }
+        writer.WriteLine("}");
     }
 
     private static bool IsUnityYamlFile(string filePath)

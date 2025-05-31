@@ -81,7 +81,7 @@ public class AnalyzerWindow : EditorWindow
             Debug.Log("출력 폴더: " + outputPath);
 
             List<string> selected = GetSelectedFiles();
-            //FileProcessor.ProcessFiles(selected, outputPath);
+            FileProcessor.ProcessFiles(selected, outputPath);
 
             OpenDirectory(outputPath);
         }

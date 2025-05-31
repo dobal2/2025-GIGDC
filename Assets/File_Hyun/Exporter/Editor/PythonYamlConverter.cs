@@ -1,15 +1,16 @@
 using System.Diagnostics;
 using System.IO;
-using UnityEngine;
 
 public static class PythonYamlConverter
 {
     private static string GetScriptPath()
     {
-        string codePath = new System.Diagnostics.StackTrace(true).GetFrame(0)?.GetFileName();
+#nullable enable
+        string? codePath = new StackTrace(true).GetFrame(0)?.GetFileName();
+#nullable restore
         if (string.IsNullOrEmpty(codePath))
         {
-            UnityEngine.Debug.LogError("Python 경로를 찾을 수 없습니다.");
+            UnityEngine.Debug.LogError("Python 스크립트 경로를 찾을 수 없습니다.");
             return "";
         }
 
@@ -18,33 +19,58 @@ public static class PythonYamlConverter
         return scriptPath;
     }
 
-    public static void RunYamlToJson(string yamlPath, string outputJsonPath)
+    /// <summary>
+    /// YAML 문자열을 Python 스크립트를 통해 JSON 문자열로 변환
+    /// </summary>
+    public static string ConvertYamlToJson(string yamlContent)
     {
         string scriptPath = GetScriptPath();
         if (!File.Exists(scriptPath))
         {
-            UnityEngine.Debug.LogError("Python 스크립트 파일이 존재하지 않습니다: " + scriptPath);
-            return;
+            UnityEngine.Debug.LogError("Python 스크립트가 존재하지 않습니다: " + scriptPath);
+            return "";
         }
 
         ProcessStartInfo psi = new()
         {
             FileName = "python",
-            Arguments = $"\"{scriptPath}\" \"{yamlPath}\" \"{outputJsonPath}\"",
+            Arguments = $"\"{scriptPath}\" --from-stdin",
             UseShellExecute = false,
+            RedirectStandardInput = true,
             RedirectStandardOutput = true,
             RedirectStandardError = true,
             CreateNoWindow = true
         };
 
-        using Process process = Process.Start(psi);
-        string output = process.StandardOutput.ReadToEnd();
-        string errors = process.StandardError.ReadToEnd();
-        process.WaitForExit();
+        using Process process = new();
+        process.StartInfo = psi;
 
-        if (!string.IsNullOrWhiteSpace(errors))
-            UnityEngine.Debug.LogError($"[YAML 변환 오류] {Path.GetFileName(yamlPath)}\n{errors}");
-        else
-            UnityEngine.Debug.Log($"[YAML 변환 성공] {Path.GetFileName(outputJsonPath)}");
+        try
+        {
+            process.Start();
+
+            // YAML 문자열 전달
+            using (StreamWriter writer = process.StandardInput)
+            {
+                writer.Write(yamlContent);
+            }
+
+            string output = process.StandardOutput.ReadToEnd();
+            string errors = process.StandardError.ReadToEnd();
+            process.WaitForExit();
+
+            if (!string.IsNullOrWhiteSpace(errors))
+            {
+                UnityEngine.Debug.LogError($"[YAML 변환 오류]\n{errors}");
+                return "";
+            }
+
+            return output;
+        }
+        catch (System.Exception ex)
+        {
+            UnityEngine.Debug.LogError($"[Python 실행 실패]\n{ex.Message}");
+            return "";
+        }
     }
 }
