@@ -61,6 +61,13 @@ public class SpearSkillState : PlayerState
         timer = 0f;
     }
 
+    public override void Exit()
+    {
+        player.SetEffectState(PlayerEffectState.None);
+        player.Rigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
+        player.Rigidbody.linearVelocity = Vector2.zero;
+    }
+
     public override void Update()
     {
         timer += Time.deltaTime;
@@ -119,12 +126,5 @@ public class SpearSkillState : PlayerState
             vel.x = player.facingDirection * dashSpeed;
             player.Rigidbody.linearVelocity = vel;
         }
-    }
-
-    public override void Exit()
-    {
-        player.SetEffectState(PlayerEffectState.None);
-        player.Rigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
-        player.Rigidbody.linearVelocity = Vector2.zero;
     }
 }

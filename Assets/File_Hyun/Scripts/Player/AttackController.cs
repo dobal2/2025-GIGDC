@@ -23,7 +23,9 @@ public class AttackController : MonoBehaviour
     private bool airborneComboUsed = false;
 
     public bool HasReachedMaxCombo => comboStep >= GetMaxCombo();
-    public bool IsPushing => pushTimer > 0f && pushSpeedPerSecond != 0f;
+    public bool IsPushing => pushTimer > 0f && pushSpeedPerSecond != 0f && (!player.isEdge || 
+        (pushSpeedPerSecond * player.facingDirection < 0 && player.isGroundedLeft) || 
+        (pushSpeedPerSecond * player.facingDirection > 0 && player.isGroundedRight));
     public bool IsInComboDelay => comboDelayTimer > 0f;
     public bool CanMove => !IsPushing && !IsInComboDelay;
     public bool CanComboInput => !IsPushing && !IsInComboDelay;

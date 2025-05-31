@@ -24,6 +24,12 @@ public class PlayerDashState : PlayerState
         player.AttackController.CancelPush();
     }
 
+    public override void Exit()
+    {
+        player.SetEffectState(PlayerEffectState.None);
+        player.Rigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
+    }
+
     public override void FixedUpdate()
     {
         Vector2 dashDir = new(player.facingDirection, 0);
@@ -42,11 +48,5 @@ public class PlayerDashState : PlayerState
         {
             stateMachine.ChangeState(new PlayerLocomotionState(player, stateMachine));
         }
-    }
-
-    public override void Exit()
-    {
-        player.SetEffectState(PlayerEffectState.None);
-        player.Rigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 }

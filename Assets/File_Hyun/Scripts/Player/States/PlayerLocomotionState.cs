@@ -16,6 +16,12 @@ public class PlayerLocomotionState : PlayerState
         player.Rigidbody.WakeUp();
     }
 
+    public override void Exit()
+    {
+        player.SetEffectState(PlayerEffectState.None);
+        player.isJumping = false;
+    }
+
     public override void Update()
     {
         player.AttackController.UpdateComboTimer();
@@ -92,11 +98,5 @@ public class PlayerLocomotionState : PlayerState
             player.Animator.Play("Idle");
             player.SetEffectState(PlayerEffectState.None);
         }
-    }
-
-    public override void Exit()
-    {
-        player.SetEffectState(PlayerEffectState.None);
-        player.isJumping = false;
     }
 }
