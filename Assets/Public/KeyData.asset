@@ -28,3 +28,5 @@ MonoBehaviour:
     LeftKey: 276
     RightKey: 275
     SelectKey: 120
+  Dialog:
+    ProcessKey: 32

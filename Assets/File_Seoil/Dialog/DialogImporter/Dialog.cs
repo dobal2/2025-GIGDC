@@ -12,11 +12,4 @@ public class Dialog
         Target = target;
         Line = line;
     }
-
-    [Serializable]
-    public class TargetData
-    {
-        public string Name;
-        public Transform Transform;
-    }
 }
