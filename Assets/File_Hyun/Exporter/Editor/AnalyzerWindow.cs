@@ -118,7 +118,7 @@ public class AnalyzerWindow : EditorWindow
 
     private FileNode BuildTreeRecursive(string path)
     {
-        FileNode node = new FileNode
+        FileNode node = new()
         {
             Path = path,
             Name = System.IO.Path.GetFileName(path),
