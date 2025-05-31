@@ -81,7 +81,7 @@ public class AnalyzerWindow : EditorWindow
             Debug.Log("출력 폴더: " + outputPath);
 
             List<string> selected = GetSelectedFiles();
-            FileProcessor.ProcessFiles(selected, outputPath);
+            //FileProcessor.ProcessFiles(selected, outputPath);
 
             OpenDirectory(outputPath);
         }
@@ -118,7 +118,7 @@ public class AnalyzerWindow : EditorWindow
 
     private FileNode BuildTreeRecursive(string path)
     {
-        FileNode node = new FileNode
+        FileNode node = new()
         {
             Path = path,
             Name = System.IO.Path.GetFileName(path),
