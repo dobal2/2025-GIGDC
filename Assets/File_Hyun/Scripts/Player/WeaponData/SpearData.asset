@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SpearData
   m_EditorClassIdentifier: 
   spearSkillDamage: 1
-  spearSkillcooldown: 1
+  spearSkillcooldown: 1.5
   animatorController: {fileID: 9100000, guid: f793756eaf78bb04f9def9b2860a6fa2, type: 2}
   spearComboInfos:
   - damage: 1
