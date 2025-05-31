@@ -2,13 +2,17 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class DialogView : MonoBehaviour
 {
+    [HideInInspector] public bool SkipProcessingText = false;
+
     [SerializeField] private TextMeshProUGUI dialogText;
+    [SerializeField] private RectTransform backGroundRect;
 
     private RectTransform rectTransform;
     private static readonly Vector2 baseDialogPosition = new Vector2(0, 2);
@@ -17,8 +21,22 @@ public class DialogView : MonoBehaviour
     private Dialog allocatedDialog = null;
     private Coroutine currentDialogCoroutine = null;
 
-    private Dictionary<string, Action<string[]>> commandDatas = new();
+    private static Dictionary<string, MethodInfo> commandDatas = new();
 
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+    private static void InitializeCommandDatas()
+    {
+        MethodInfo[] methods = typeof(DialogView).GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+        foreach(MethodInfo method in methods)
+        {
+            DialogCommandAttribute attribute = method.GetCustomAttribute<DialogCommandAttribute>();
+
+            if (attribute != null)
+            {
+                commandDatas.Add(attribute.CommandName, method);
+            }
+        }
+    }
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
@@ -34,6 +52,7 @@ public class DialogView : MonoBehaviour
         string line = allocatedDialog.Line;
 
         dialogText.text = "";
+        UpdateBackGround();
         
         for (int index = 0; index < line.Length; index++)
         {
@@ -49,10 +68,21 @@ public class DialogView : MonoBehaviour
             }
 
             dialogText.text = line.Substring(0, index + 1) ?? "";
+            UpdateBackGround();
 
-            yield return new WaitForSeconds(dialogWritingDelay);
+            if (!SkipProcessingText) yield return new WaitForSeconds(dialogWritingDelay);
         }
+
+        if(SkipProcessingText) SkipProcessingText = false;
     }
+    private void UpdateBackGround()
+    {
+        dialogText.ForceMeshUpdate();
+
+        Vector2 newSize = new Vector2(dialogText.preferredWidth, backGroundRect.sizeDelta.y);
+        backGroundRect.sizeDelta = newSize;
+    }
+
     private void SetPosition(Dialog dialog, Canvas dialogCanvas)
     {
         Vector3 worldPos = dialog.Target.Transform.position + baseDialogPosition.ToVector3();
@@ -94,14 +124,95 @@ public class DialogView : MonoBehaviour
 
         if (commandDatas.ContainsKey(commandName))
         {
-            commandDatas[commandName].Invoke(commandParams
+            commandDatas[commandName].Invoke(this, new object[] { commandParams
                 .Split(',')
                 .Select(item => item.Trim())
-                .ToArray()
+                .ToArray() }
             );
 
             return true;
         }
         else return false;
     }
+
+    //============================================================== Commands
+
+    [DialogCommand("MoveCharactor")]
+    private void MoveCharactor(string[] lines)
+    {
+        
+    }
+
+    [DialogCommand("AnimateCharactor")]
+    private void AnimateCharactor(string[] lines)
+    {
+
+    }
+
+    [DialogCommand("ChangeWritingScale")]
+    private void ChangeWritingScale(string[] lines)
+    {
+
+    }
+
+    [DialogCommand("DelayWriting")]
+    private void DelayWriting(string[] lines)
+    {
+
+    }
+
+    [DialogCommand("ShakeCamera")]
+    private void ShakeCamera(string[] lines)
+    {
+
+    }
+
+    [DialogCommand("ScaleCamera")]
+    private void ScaleCamera(string[] lines)
+    {
+        
+    }
+
+    [DialogCommand("FadeCameraToDark")]
+    private void FadeCameraToDark(string[] lines)
+    {
+
+    }
+
+    [DialogCommand("FadeCameraToBright")]
+    private void FadeCameraToBright(string[] lines)
+    {
+
+    }
+
+    [DialogCommand("ChangeScene")]
+    private void ChangeScene(string[] lines)
+    {
+
+    }
+
+    [DialogCommand("GiveItem")]
+    private void GiveItem(string[] lines)
+    {
+
+    }
+
+    [DialogCommand("PlaySound")]
+    private void PlaySound(string[] lines)
+    {
+
+    }
+
+    [DialogCommand("MoveCamera")]
+    private void MoveCamera(string[] lines)
+    {
+
+    }
+
+    [DialogCommand("SetTimeScale")]
+    private void SetTimeScale(string[] lines)
+    {
+
+    }
+
 }
