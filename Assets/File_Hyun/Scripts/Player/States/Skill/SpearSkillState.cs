@@ -35,6 +35,7 @@ public class SpearSkillState : PlayerState
             player.Animator.Play("Spear_Ground_Jump");
             mode = SkillMode.Ground;
             phase = SkillPhase.Moving;
+            player.isNoClip = true;
             dashSpeed = 20f;
             Vector2 vel = new(player.facingDirection * dashSpeed, jumpSpeed);
             player.Rigidbody.linearVelocity = vel;
@@ -59,6 +60,14 @@ public class SpearSkillState : PlayerState
 
         forceGroundedIgnore = true;
         timer = 0f;
+    }
+
+    public override void Exit()
+    {
+        player.isNoClip = false;
+        player.SetEffectState(PlayerEffectState.None);
+        player.Rigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
+        player.Rigidbody.linearVelocity = Vector2.zero;
     }
 
     public override void Update()
@@ -107,7 +116,7 @@ public class SpearSkillState : PlayerState
 
         if (phase == SkillPhase.Landing && timer >= landingDuration)
         {
-            stateMachine.ChangeState(new PlayerLocomotionState(player, stateMachine));
+            stateMachine.ChangeState(new LocomotionState(player, stateMachine));
         }
     }
 
@@ -119,12 +128,5 @@ public class SpearSkillState : PlayerState
             vel.x = player.facingDirection * dashSpeed;
             player.Rigidbody.linearVelocity = vel;
         }
-    }
-
-    public override void Exit()
-    {
-        player.SetEffectState(PlayerEffectState.None);
-        player.Rigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
-        player.Rigidbody.linearVelocity = Vector2.zero;
     }
 }

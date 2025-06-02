@@ -78,8 +78,11 @@ public class KeyBindButton : MonoBehaviour
 
     IEnumerator WaitForKey()
     {
+        if (InputManager.Instance.IsCapturingKey) yield break;
+
         keyText.text = "키 입력";
         EventSystem.current.SetSelectedGameObject(null);
+        InputManager.Instance.IsCapturingKey = true;
         rebindButton.interactable = false;
         yield return null;
 
@@ -100,9 +103,8 @@ public class KeyBindButton : MonoBehaviour
             }
         }
 
-        Debug.Log("입력 종료");
-
-        yield return new WaitUntil(() => Input.GetMouseButtonUp(0));
+        InputManager.Instance.IsCapturingKey = false;
         rebindButton.interactable = true;
+        Debug.Log("입력 종료");
     }
 }

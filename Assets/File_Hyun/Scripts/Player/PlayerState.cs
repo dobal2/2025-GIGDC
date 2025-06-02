@@ -42,7 +42,7 @@ public abstract class PlayerState
             if (player.isGrounded || player.canAirDash)
             {
                 player.DashPressed = false;
-                stateMachine.ChangeState(new PlayerDashState(player, stateMachine));
+                stateMachine.ChangeState(new DashState(player, stateMachine));
                 return true;
             }
         }

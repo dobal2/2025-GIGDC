@@ -1,12 +1,12 @@
 using UnityEngine;
 using static PlayerController;
 
-public class PlayerLocomotionState : PlayerState
+public class LocomotionState : PlayerState
 {
     private bool shouldJump = false;
     private bool pendingEndJump = false;
 
-    public PlayerLocomotionState(PlayerController player, PlayerStateMachine stateMachine)
+    public LocomotionState(PlayerController player, PlayerStateMachine stateMachine)
         : base(player, stateMachine) { }
 
     public override PlayerStateType StateType => PlayerStateType.Locomotion;
@@ -14,6 +14,12 @@ public class PlayerLocomotionState : PlayerState
     public override void Enter()
     {
         player.Rigidbody.WakeUp();
+    }
+
+    public override void Exit()
+    {
+        player.SetEffectState(PlayerEffectState.None);
+        player.isJumping = false;
     }
 
     public override void Update()
@@ -92,11 +98,5 @@ public class PlayerLocomotionState : PlayerState
             player.Animator.Play("Idle");
             player.SetEffectState(PlayerEffectState.None);
         }
-    }
-
-    public override void Exit()
-    {
-        player.SetEffectState(PlayerEffectState.None);
-        player.isJumping = false;
     }
 }

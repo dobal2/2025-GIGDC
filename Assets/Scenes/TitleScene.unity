@@ -946,6 +946,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8499854983014719156, guid: afe6ebb840784784c87e9bdfc91a66b6, type: 3}
+      propertyPath: m_text
+      value: "\uD0A4 \uC774\uB984"
+      objectReference: {fileID: 0}
     - target: {fileID: 8565126883835662559, guid: afe6ebb840784784c87e9bdfc91a66b6, type: 3}
       propertyPath: keyData
       value: 
@@ -4169,6 +4173,7 @@ MonoBehaviour:
   currentContext: 1
   keyData: {fileID: 11400000, guid: eef92708e559636479c30d47676bef1e, type: 2}
   lastSelectedButton: {fileID: 0}
+  IsCapturingKey: 0
 --- !u!4 &1425523944
 Transform:
   m_ObjectHideFlags: 0
