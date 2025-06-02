@@ -48,7 +48,6 @@ public class InputManager : MonoBehaviour
     #region UI 입력 처리
     void HandleUIInput()
     {
-
         GameObject selected = EventSystem.current.currentSelectedGameObject;
 
         if (selected == null && AnyUIKeyPressed())
