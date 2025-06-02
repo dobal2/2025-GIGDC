@@ -71,14 +71,13 @@ public abstract class Monster : MonoBehaviour
         anim.SetTrigger("Hit");
     }
 
-protected void Flip()
+    protected void Flip()
     {
         facingRight = !facingRight;
         
-        Vector3 theScale = transform.localScale;
-        theScale.x *= -1;
-        transform.localScale = theScale;
+        transform.rotation = Quaternion.Euler(0f, transform.eulerAngles.y + 180f, 0f);
     }
+
 
     protected IEnumerator WaitToAttack(float time)
     {

@@ -7,7 +7,7 @@ public class PlayerHealth : MonoBehaviour
     public float maxHealth;
     public float health;
     [SerializeField] private float invincibleTime = 1;
-    [SerializeField] private bool isInvincible;
+    public bool isInvincible;
 
     private void Die()
     {

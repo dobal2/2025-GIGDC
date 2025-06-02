@@ -143,8 +143,8 @@ public class BossLove : Monster
     IEnumerator SpawnAroundBubblePattern()
     {
         int bubbleCount = Random.Range(3, 6);
-        float radius = 4f; // 버블이 퍼질 반지름
-        Vector2 center = transform.position; // 또는 원하는 중심 좌표
+        float radius = 3.5f; // 버블이 퍼질 반지름
+        Vector2 center = transform.position + new Vector3(0,1.5f,0); // 또는 원하는 중심 좌표
 
         for (int i = 0; i < bubbleCount; i++)
         {

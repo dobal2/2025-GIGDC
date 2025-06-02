@@ -1,10 +1,13 @@
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class LowMonster_Rare_lethargy : Monster
 {
-    public float attackRadius;
+    [SerializeField] private float attackRadius;
+    [SerializeField] private Transform explosionTransform;
+    
 
 
     protected override void Start()
@@ -25,7 +28,7 @@ public class LowMonster_Rare_lethargy : Monster
         
         anim.SetTrigger("Explode");
         
-        Collider2D[] collidersEnemies = Physics2D.OverlapCircleAll(transform.position, attackRadius);
+        Collider2D[] collidersEnemies = Physics2D.OverlapCircleAll(explosionTransform.position, attackRadius);
         for (int i = 0; i < collidersEnemies.Length; i++)
         {
             if (collidersEnemies[i].gameObject.tag == "Player")
@@ -45,8 +48,11 @@ public class LowMonster_Rare_lethargy : Monster
     
     private void OnDrawGizmosSelected()
     {
-        Gizmos.color = new Color(1f, 0f, 0f, 0.5f);
-        Gizmos.DrawWireSphere(transform.position, attackRadius);
+        if (explosionTransform != null)
+        {
+            Gizmos.color = new Color(1f, 0f, 0f, 0.5f);
+            Gizmos.DrawWireSphere(explosionTransform.position, attackRadius);   
+        }
         
     }
 }

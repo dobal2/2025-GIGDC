@@ -112,11 +112,11 @@ public class LowMonster_Common_regret : Monster
     
     private void WallDetector()
     {
-        Vector2 frontVec = rigid.position + new Vector2(nextMove * 0.5f, 0);
+        Vector2 frontVec = rigid.position + new Vector2(nextMove, 0);
             
-        Debug.DrawRay(frontVec, new Vector2(nextMove, 0) * 0.5f, Color.blue);
+        Debug.DrawRay(frontVec, new Vector2(nextMove, 0), Color.blue);
             
-        RaycastHit2D wallRayHit = Physics2D.Raycast(frontVec, new Vector2(nextMove, 0), 0.5f,wallLayer);
+        RaycastHit2D wallRayHit = Physics2D.Raycast(frontVec, new Vector2(nextMove, 0), 1,wallLayer);
 
         if (wallRayHit.collider != null)
         {

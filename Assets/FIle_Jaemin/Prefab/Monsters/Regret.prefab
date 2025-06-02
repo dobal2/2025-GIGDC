@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 9009162291636133385}
   - component: {fileID: 3959101397109259775}
   - component: {fileID: -3808321125888372277}
-  - component: {fileID: 8908526806444711106}
+  - component: {fileID: 8639121624867120543}
   m_Layer: 9
   m_Name: Regret
   m_TagString: Untagged
@@ -30,8 +30,8 @@ Transform:
   m_GameObject: {fileID: 877545979594178709}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.75, y: -3.78, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 1}
+  m_LocalPosition: {x: 2.529, y: -3.78, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5241403954044888333}
@@ -83,7 +83,7 @@ SpriteRenderer:
   m_SortingOrder: 3
   m_Sprite: {fileID: -5913495570599995177, guid: 0ad0bf6aebf74de4ea42028b1d367a54, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
@@ -137,7 +137,7 @@ MonoBehaviour:
   speed: 3
   attackCoolDown: 1.5
   player: {fileID: 0}
-  facingRight: 0
+  facingRight: 1
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -145,7 +145,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   attackCheck: {fileID: 5241403954044888333}
-  attackRadius: 0.5
+  attackRadius: 0.65
   stopDistance: 1.5
   canMove: 1
 --- !u!95 &-3808321125888372277
@@ -170,7 +170,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!61 &8908526806444711106
+--- !u!61 &8639121624867120543
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -204,17 +204,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.0014190078, y: 0.09545473}
+  m_Offset: {x: 0.026580215, y: 0.6223905}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
-    oldSize: {x: 0.34, y: 0.19}
+    oldSize: {x: 2.125, y: 1.1875}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.32202673, y: 0.17314745}
+  m_Size: {x: 2.0718396, y: 1.130219}
   m_EdgeRadius: 0
 --- !u!1 &3770075202182695600
 GameObject:
@@ -241,7 +241,7 @@ Transform:
   m_GameObject: {fileID: 3770075202182695600}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.133, y: 0.0994, z: 0}
+  m_LocalPosition: {x: -0.72, y: 0.71, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
