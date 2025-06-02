@@ -51,9 +51,9 @@ public class DialogView : MonoBehaviour
     {
         string line = allocatedDialog.Line;
 
-        dialogText.text = "";
+        dialogText.text = "";        
         UpdateBackGround();
-        
+
         for (int index = 0; index < line.Length; index++)
         {
             string commandTag = InspectCommandTag(line, index);
@@ -82,7 +82,6 @@ public class DialogView : MonoBehaviour
         Vector2 newSize = new Vector2(dialogText.preferredWidth, backGroundRect.sizeDelta.y);
         backGroundRect.sizeDelta = newSize;
     }
-
     private void SetPosition(Dialog dialog, Canvas dialogCanvas)
     {
         Vector3 worldPos = dialog.Target.Transform.position + baseDialogPosition.ToVector3();
@@ -214,5 +213,4 @@ public class DialogView : MonoBehaviour
     {
 
     }
-
 }
