@@ -946,6 +946,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8499854983014719156, guid: afe6ebb840784784c87e9bdfc91a66b6, type: 3}
+      propertyPath: m_text
+      value: "\uD0A4 \uC774\uB984"
+      objectReference: {fileID: 0}
     - target: {fileID: 8565126883835662559, guid: afe6ebb840784784c87e9bdfc91a66b6, type: 3}
       propertyPath: keyData
       value: 
@@ -2621,7 +2625,7 @@ RectTransform:
   m_Father: {fileID: 510240263}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2681,7 +2685,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &774382323
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3832,7 +3836,7 @@ RectTransform:
   m_Father: {fileID: 1773924367}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -4169,6 +4173,7 @@ MonoBehaviour:
   currentContext: 1
   keyData: {fileID: 11400000, guid: eef92708e559636479c30d47676bef1e, type: 2}
   lastSelectedButton: {fileID: 0}
+  IsCapturingKey: 0
 --- !u!4 &1425523944
 Transform:
   m_ObjectHideFlags: 0
@@ -5037,7 +5042,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1644356958
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5799,7 +5804,7 @@ RectTransform:
   m_Father: {fileID: 673873988}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -6631,7 +6636,7 @@ RectTransform:
   m_Father: {fileID: 519525716}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
