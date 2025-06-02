@@ -47,7 +47,7 @@ public class KeyBindButton : MonoBehaviour
 
     void SetupBinding()
     {
-        if (!InputManager.Instance.IsCapturingKey) StopCoroutine(WaitForKey());
+        StopCoroutine(WaitForKey());
 
         object container = keyType == KeyType.Player ? (object)keyData.Player : keyData.Ui;
         var field = container.GetType().GetField(fieldName);
