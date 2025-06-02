@@ -17,9 +17,20 @@ public class LowMonster_Common_sad : Monster
 
     private void FixedUpdate()
     {
+        FacePlayer();
+        
         if (canAttack)
         {
             Attack();
+        }
+    }
+    
+    private void FacePlayer()
+    {
+        bool shouldFaceRight = player.position.x > transform.position.x;
+        if (shouldFaceRight != facingRight)
+        {
+            Flip();
         }
     }
     protected override void Attack()
