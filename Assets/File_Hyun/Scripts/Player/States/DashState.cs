@@ -1,9 +1,9 @@
 using UnityEngine;
 using static PlayerController;
 
-public class PlayerDashState : PlayerState
+public class DashState : PlayerState
 {
-    public PlayerDashState(PlayerController player, PlayerStateMachine stateMachine)
+    public DashState(PlayerController player, PlayerStateMachine stateMachine)
         : base(player, stateMachine) { }
 
     public override PlayerStateType StateType => PlayerStateType.Dash;
@@ -12,6 +12,7 @@ public class PlayerDashState : PlayerState
     {
         player.SetEffectState(PlayerEffectState.Dash);
         player.Animator.Play("Dash");
+        player.isNoClip = true;
         player.dashTimer = player.DashDuration;
         player.lastDashTime = Time.time;
         if (!player.isGrounded)
@@ -26,6 +27,7 @@ public class PlayerDashState : PlayerState
 
     public override void Exit()
     {
+        player.isNoClip = false;
         player.SetEffectState(PlayerEffectState.None);
         player.Rigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
@@ -37,7 +39,7 @@ public class PlayerDashState : PlayerState
 
         if (hit.collider)
         {
-            stateMachine.ChangeState(new PlayerLocomotionState(player, stateMachine));
+            stateMachine.ChangeState(new LocomotionState(player, stateMachine));
             return;
         }
 
@@ -46,7 +48,7 @@ public class PlayerDashState : PlayerState
 
         if (player.dashTimer <= 0f)
         {
-            stateMachine.ChangeState(new PlayerLocomotionState(player, stateMachine));
+            stateMachine.ChangeState(new LocomotionState(player, stateMachine));
         }
     }
 }

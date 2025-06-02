@@ -206,7 +206,7 @@ public class AttackController : MonoBehaviour
         return CurrentWeapon switch
         {
             WeaponType.Spear => new SpearSkillState(player, stateMachine),
-            // WeaponType.Bow => new BowSkillState(player, stateMachine),
+            WeaponType.Bow => new BowSkillState(player, stateMachine),
             // WeaponType.Bomb => new BombSkillState(player, stateMachine),
             _ => null
         };

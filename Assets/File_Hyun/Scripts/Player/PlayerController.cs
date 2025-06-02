@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
     public bool JumpHeld { get; set; }
     public bool DashPressed { get; set; }
     public bool SkillPressed { get; set; }
+    public bool SkillHeld { get; set; }
 
     public bool JumpPressed
     {
@@ -80,6 +81,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private BoxCollider2D boxCol;
 
+    [HideInInspector] public bool isNoClip = false; // 무적상태
     [HideInInspector] public int facingDirection = 1;
 
     [HideInInspector] public bool isGrounded;
@@ -131,7 +133,7 @@ public class PlayerController : MonoBehaviour
         AttackController.Initialize(WeaponType.Bow);
         //AttackController.Initialize(WeaponType.Spear);
         stateMachine = new PlayerStateMachine();
-        stateMachine.Initialize(new PlayerLocomotionState(this, stateMachine));
+        stateMachine.Initialize(new LocomotionState(this, stateMachine));
         SetEffectState(PlayerEffectState.None);
     }
 

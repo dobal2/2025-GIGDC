@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1254016432034181930}
   - component: {fileID: 6061435025137426687}
-  - component: {fileID: 8568106257173530090}
+  - component: {fileID: 308980301045865974}
   - component: {fileID: 6937725060511186496}
   m_Layer: 0
   m_Name: SkillArrow
@@ -89,7 +89,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8568106257173530090
+--- !u!114 &308980301045865974
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -98,17 +98,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 7523045259425540334}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bc6e95b2a1179945bdb5c141ab1de76, type: 3}
+  m_Script: {fileID: 11500000, guid: 286387e0700c31248bafb375a708063b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 20
-  maxDistance: 15
+  maxDistance: 30
   collisionMask:
     serializedVersion: 2
-    m_Bits: 192
+    m_Bits: 0
   enemyMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 0
 --- !u!95 &6937725060511186496
 Animator:
   serializedVersion: 7

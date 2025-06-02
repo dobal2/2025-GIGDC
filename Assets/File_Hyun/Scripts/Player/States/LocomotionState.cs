@@ -1,12 +1,12 @@
 using UnityEngine;
 using static PlayerController;
 
-public class PlayerLocomotionState : PlayerState
+public class LocomotionState : PlayerState
 {
     private bool shouldJump = false;
     private bool pendingEndJump = false;
 
-    public PlayerLocomotionState(PlayerController player, PlayerStateMachine stateMachine)
+    public LocomotionState(PlayerController player, PlayerStateMachine stateMachine)
         : base(player, stateMachine) { }
 
     public override PlayerStateType StateType => PlayerStateType.Locomotion;

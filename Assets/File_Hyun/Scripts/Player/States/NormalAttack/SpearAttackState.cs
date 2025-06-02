@@ -38,7 +38,7 @@ public class SpearAttackState : PlayerState
 
         if (player.AttackController.CanMove)
         {
-            stateMachine.ChangeState(new PlayerLocomotionState(player, stateMachine));
+            stateMachine.ChangeState(new LocomotionState(player, stateMachine));
         }
     }
 

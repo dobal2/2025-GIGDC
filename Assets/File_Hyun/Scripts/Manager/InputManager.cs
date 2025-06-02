@@ -129,6 +129,7 @@ public class InputManager : MonoBehaviour
 
         _player.AttackPressed = Input.GetKeyDown(keyData.Player.AttackKey);
         _player.SkillPressed = Input.GetKeyDown(keyData.Player.SkillKey);
+        _player.SkillHeld = Input.GetKey(keyData.Player.SkillKey);
     }
     #endregion
 }
