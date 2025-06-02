@@ -12,7 +12,7 @@ public class TargetSelector : MonoBehaviour
         {
             if(chapter.Name == AllocatedChapterName)
             {
-                foreach(Dialog.TargetData targetData in chapter.DialogTargets)
+                foreach(TargetData targetData in chapter.DialogTargets)
                 {
                     if (targetData.Name == AllocatedTargetName)
                     {

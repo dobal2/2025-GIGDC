@@ -7,9 +7,9 @@ public class AttackController : MonoBehaviour
 
     private PlayerController player;
 
-    public SpearData spearData;
-    public BowData bowData;
-    public BombData bombData;
+    [HideInInspector] public SpearData spearData;
+    [HideInInspector] public BowData bowData;
+    [HideInInspector] public BombData bombData;
 
     public WeaponType CurrentWeapon { get; private set; }
 
@@ -20,24 +20,23 @@ public class AttackController : MonoBehaviour
     private float currentPushDistance = 0f;
     private float pushSpeedPerSecond = 0f;
     private float lastSkillTime = -999f;
-    private bool receivedNextInput = false;
     private bool airborneComboUsed = false;
 
     public bool HasReachedMaxCombo => comboStep >= GetMaxCombo();
-    public bool IsPushing => pushTimer > 0f && pushSpeedPerSecond != 0f;
+    public bool IsPushing =>
+    pushTimer > 0f &&
+    pushSpeedPerSecond != 0f &&
+    (
+        !player.isEdge ||
+        (pushSpeedPerSecond * player.facingDirection < 0 && player.isGroundedLeft) ||
+        (pushSpeedPerSecond * player.facingDirection > 0 && player.isGroundedRight)
+    );
     public bool IsInComboDelay => comboDelayTimer > 0f;
     public bool CanMove => !IsPushing && !IsInComboDelay;
     public bool CanComboInput => !IsPushing && !IsInComboDelay;
     public bool CanStartAirborneCombo => !player.isGrounded && !airborneComboUsed;
     public int ComboStep => comboStep;
     public bool CanUseSkill => Time.time >= lastSkillTime + GetSkillCooldown();
-
-    public bool ShouldEndCombo =>
-        comboStep > 0 &&
-        !receivedNextInput &&
-        !IsPushing &&
-        !IsInComboDelay &&
-        comboKeepTimer <= 0f;
 
     void Awake()
     {
@@ -87,14 +86,12 @@ public class AttackController : MonoBehaviour
         comboKeepTimer = 0f;
         currentPushDistance = 0f;
         pushSpeedPerSecond = 0f;
-        receivedNextInput = false;
         airborneComboUsed = false;
     }
 
     public void StartCombo()
     {
         comboStep = 1;
-        receivedNextInput = false;
 
         PlayCombo(comboStep);
     }
@@ -109,7 +106,6 @@ public class AttackController : MonoBehaviour
             comboKeepTimer = 0f;
             currentPushDistance = 0f;
             pushSpeedPerSecond = 0f;
-            receivedNextInput = false;
             if (player.isGrounded)
                 airborneComboUsed = false;
             return;
@@ -119,14 +115,8 @@ public class AttackController : MonoBehaviour
             return;
 
         comboStep++;
-        receivedNextInput = false;
 
         PlayCombo(comboStep);
-    }
-
-    public void MarkComboInputReceived()
-    {
-        receivedNextInput = true;
     }
 
     public void CancelPush()
@@ -183,6 +173,8 @@ public class AttackController : MonoBehaviour
                 pushTimer = spearData.GetDelay(step);
                 comboDelayTimer = spearData.GetComboDelay(step);
                 comboKeepTimer = spearData.GetComboKeep(step);
+                if (!player.isGrounded && spearData.MaxCombo == step)
+                    airborneComboUsed = true;
                 break;
 
             case WeaponType.Bow:
@@ -190,14 +182,13 @@ public class AttackController : MonoBehaviour
                 pushTimer = bowData.GetDelay(step);
                 comboDelayTimer = bowData.GetComboDelay(step);
                 comboKeepTimer = bowData.GetComboKeep(step);
+                if (!player.isGrounded && bowData.MaxCombo == step)
+                    airborneComboUsed = true;
                 break;
 
-                //case WeaponType.Bomb:
+             //case WeaponType.Bomb:
 
         }
-
-        if (!player.isGrounded && spearData.MaxCombo == step)
-            airborneComboUsed = true;
 
         pushSpeedPerSecond = pushTimer > 0f ? currentPushDistance / pushTimer : 0f;
 
@@ -215,7 +206,7 @@ public class AttackController : MonoBehaviour
         return CurrentWeapon switch
         {
             WeaponType.Spear => new SpearSkillState(player, stateMachine),
-            // WeaponType.Bow => new BowSkillState(player, stateMachine),
+            WeaponType.Bow => new BowSkillState(player, stateMachine),
             // WeaponType.Bomb => new BombSkillState(player, stateMachine),
             _ => null
         };

@@ -7,10 +7,9 @@ public class BowAttackState : PlayerState
     private float timer;
     private float pushTimer;
     private int currentArrowIndex;
-    private float pushSpeedPerSecond;
     private List<(Vector2 localOffset, float delay)> scheduledArrows;
 
-    private BowData bowData;
+    private readonly BowData bowData;
 
     public BowAttackState(PlayerController player, PlayerStateMachine stateMachine)
         : base(player, stateMachine)
@@ -27,23 +26,16 @@ public class BowAttackState : PlayerState
         if (!player.isGrounded)
             player.Rigidbody.constraints |= RigidbodyConstraints2D.FreezePositionY;
 
-        // 콤보 단계
-        int step = player.AttackController.ComboStep;
-
         // 화살 발사 스케줄 준비
-        var arrowInfos = bowData.GetArrowInfos(step);
+        var arrowInfos = bowData.GetArrowInfos(player.AttackController.ComboStep);
         scheduledArrows = arrowInfos?.Select(a => (a.localOffset, a.ShootDelay)).ToList() ?? new();
         currentArrowIndex = 0;
         timer = 0f;
+    }
 
-        // 밀림 설정
-        float distance = bowData.GetPush(step);
-        pushTimer = bowData.GetDelay(step);
-        pushSpeedPerSecond = pushTimer > 0f ? distance / pushTimer : 0f;
-
-        // 애니메이션 재생
-        string animName = player.isGrounded ? $"Bow_{step}" : $"Bow_Flying_{step}";
-        player.Animator.Play(animName);
+    public override void Exit()
+    {
+        player.Rigidbody.constraints &= ~RigidbodyConstraints2D.FreezePositionY;
     }
 
     public override void Update()
@@ -68,7 +60,6 @@ public class BowAttackState : PlayerState
         if (player.AttackBuffered && player.AttackController.CanComboInput)
         {
             player.ConsumeAttackBuffer();
-            player.AttackController.MarkComboInputReceived();
             player.AttackController.ContinueCombo();
             stateMachine.ChangeState(new BowAttackState(player, stateMachine));
             return;
@@ -76,22 +67,17 @@ public class BowAttackState : PlayerState
 
         if (player.AttackController.CanMove)
         {
-            stateMachine.ChangeState(new PlayerLocomotionState(player, stateMachine));
+            stateMachine.ChangeState(new LocomotionState(player, stateMachine));
         }
     }
 
     public override void FixedUpdate()
     {
-        if (pushTimer > 0f)
+        if (player.AttackController.IsPushing)
         {
-            float push = pushSpeedPerSecond * Time.fixedDeltaTime;
+            float push = player.AttackController.GetPushDelta(Time.fixedDeltaTime);
             player.Rigidbody.MovePosition(player.Rigidbody.position + new Vector2(push * player.facingDirection, 0f));
         }
-    }
-
-    public override void Exit()
-    {
-        player.Rigidbody.constraints &= ~RigidbodyConstraints2D.FreezePositionY;
     }
 
     private void FireArrow(Vector2 localOffset)
@@ -99,18 +85,11 @@ public class BowAttackState : PlayerState
         var arrowPrefab = bowData.normalArrowPrefab;
         if (arrowPrefab == null)
         {
-            Debug.LogWarning("[Bow] 화살 프리팹이 할당되지 않았습니다.");
+            Debug.LogError("[Bow] 화살 프리팹이 할당되지 않았습니다.");
             return;
         }
 
         Vector2 firePos = (Vector2)player.transform.position + new Vector2(localOffset.x * player.facingDirection, localOffset.y);
-        GameObject arrow = Object.Instantiate(arrowPrefab, firePos, Quaternion.identity);
-
-        Vector2 direction = new(player.facingDirection, 0f);
-        var rb = arrow.GetComponent<Rigidbody2D>();
-        if (rb)
-            rb.linearVelocity = direction * 20f;
-
-        Debug.Log($"[Bow] 화살 발사됨 at {firePos}");
+        Object.Instantiate(arrowPrefab, firePos, Quaternion.identity);
     }
 }

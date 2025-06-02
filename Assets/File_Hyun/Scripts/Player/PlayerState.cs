@@ -42,7 +42,7 @@ public abstract class PlayerState
             if (player.isGrounded || player.canAirDash)
             {
                 player.DashPressed = false;
-                stateMachine.ChangeState(new PlayerDashState(player, stateMachine));
+                stateMachine.ChangeState(new DashState(player, stateMachine));
                 return true;
             }
         }
@@ -72,7 +72,6 @@ public abstract class PlayerState
             player.AttackController.ComboStep > 0)
         {
             player.ConsumeAttackBuffer();
-            player.AttackController.MarkComboInputReceived();
             player.AttackController.ContinueCombo();
             stateMachine.ChangeState(player.AttackController.GetAttackState(stateMachine));
             return true;

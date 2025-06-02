@@ -24,7 +24,9 @@ public struct BowComboInfo
 public class BowData : ScriptableObject
 {
     [Header("특수공격 정보")]
-    public float BowskillDamage;
+    public float MinBowskillDamage;
+    public float MaxBowskillDamage;
+    public float ExtraBowskillDamage;
     public float Bowskillcooldown;
 
     [Header("Animator")]

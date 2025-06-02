@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: d0e02146574176847bfe7f8ce82b03c8
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - <Chapter>k__BackingField: {instanceID: 0}
+  - dialogCanvasPrefab: {fileID: 14877392211336722, guid: 9d8066f6b1339d448a9c3af430337e08, type: 3}
+  - dialogViewPrefab: {fileID: -4866824694219370121, guid: 00c1a6d394be09c40b11ce2d60b113d0, type: 3}
+  - keyData: {fileID: 11400000, guid: eef92708e559636479c30d47676bef1e, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
     public bool JumpHeld { get; set; }
     public bool DashPressed { get; set; }
     public bool SkillPressed { get; set; }
+    public bool SkillHeld { get; set; }
 
     public bool JumpPressed
     {
@@ -42,7 +43,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Movement Settings")]
     [SerializeField] private float moveSpeed = 10f;
-    [SerializeField] private float fastFallGravityScale = 18f;
+    [SerializeField] private float fastFallGravityScale = 20f;
     public float MoveSpeed => moveSpeed;
     public Vector2 CurrentVelocity => rb.linearVelocity;
 
@@ -68,7 +69,6 @@ public class PlayerController : MonoBehaviour
     [Header("Check Settings")]
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private LayerMask ceilingLayer;
-    [SerializeField] private float boxWidth = 0.99f;
     [SerializeField] private float boxHeight = 0.1f;
     [SerializeField] private float boxLowAirHeight = 3f;
     public LayerMask GroundLayer => groundLayer;
@@ -81,24 +81,31 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private BoxCollider2D boxCol;
 
+    [HideInInspector] public bool isNoClip = false; // 무적상태
+    [HideInInspector] public int facingDirection = 1;
+
     [HideInInspector] public bool isGrounded;
+    [HideInInspector] public bool isEdge;
     [HideInInspector] public bool isLowAir;
+    [HideInInspector] public bool isGroundedLeft;
+    [HideInInspector] public bool isGroundedCenter;
+    [HideInInspector] public bool isGroundedRight;
+
     [HideInInspector] public bool isJumping;
     [HideInInspector] public float jumpTimeCounter;
     [HideInInspector] public float jumpBufferTimer;
     [HideInInspector] public float coyoteTimer;
+
     [HideInInspector] public bool canAirDash = true;
     [HideInInspector] public float lastDashTime = -999f;
     [HideInInspector] public float dashTimer;
-    [HideInInspector] public int facingDirection = 1;
+
     [HideInInspector] public float normalGravityScale;
     [HideInInspector] public bool isTouchingCeiling;
 
     private Vector2 originalColliderSize;
     private Vector2 originalColliderOffset;
-
     private PlayerStateMachine stateMachine;
-
     private bool prevSkillAvailable = false;
 
     void Awake()
@@ -123,10 +130,10 @@ public class PlayerController : MonoBehaviour
     {
         InputManager.Instance.RegisterPlayer(this);
         InputManager.Instance.currentContext = InputManager.InputContext.Gameplay;
-
         AttackController.Initialize(WeaponType.Bow);
+        //AttackController.Initialize(WeaponType.Spear);
         stateMachine = new PlayerStateMachine();
-        stateMachine.Initialize(new PlayerLocomotionState(this, stateMachine));
+        stateMachine.Initialize(new LocomotionState(this, stateMachine));
         SetEffectState(PlayerEffectState.None);
     }
 
@@ -134,27 +141,16 @@ public class PlayerController : MonoBehaviour
     {
         UpdateGrounded();
         UpdateCeiling();
-
-        if (jumpBufferTimer > 0f)
-            jumpBufferTimer -= Time.deltaTime;
-
-        if (attackBufferTimer > 0f)
-            attackBufferTimer -= Time.deltaTime;
-
+        if (jumpBufferTimer > 0f) jumpBufferTimer -= Time.deltaTime;
+        if (attackBufferTimer > 0f) attackBufferTimer -= Time.deltaTime;
         bool nowAvailable = AttackController.CanUseSkill;
         if (!prevSkillAvailable && nowAvailable)
-        {
             Debug.Log("[Skill] 스킬 쿨타임 완료 - 사용 가능");
-        }
         prevSkillAvailable = nowAvailable;
-
         stateMachine.Update();
     }
 
-    void FixedUpdate()
-    {
-        stateMachine.FixedUpdate();
-    }
+    void FixedUpdate() => stateMachine.FixedUpdate();
 
     public void SetEffectState(PlayerEffectState newState)
     {
@@ -166,16 +162,27 @@ public class PlayerController : MonoBehaviour
     void UpdateGrounded()
     {
         bool wasGrounded = isGrounded;
+        Vector2 bottom = (Vector2)boxCol.bounds.center + Vector2.down * boxCol.bounds.extents.y;
+        Vector2 topAlignedY = bottom - Vector2.up * (boxHeight * 0.5f);
+        float totalWidth = boxCol.bounds.size.x;
+        float leftWidth = totalWidth * 0.3f;
+        float centerWidth = totalWidth * 0.4f;
+        float rightWidth = totalWidth * 0.3f;
 
-        Vector2 boxSize = new(boxCol.bounds.size.x * boxWidth, boxHeight);
-        Vector2 origin = (Vector2)boxCol.bounds.center + Vector2.down * boxCol.bounds.extents.y;
-        RaycastHit2D hit = Physics2D.BoxCast(origin, boxSize, 0f, Vector2.down, 0f, groundLayer);
+        Vector2 leftCenter = topAlignedY + Vector2.left * (centerWidth * 0.5f + leftWidth * 0.5f);
+        Vector2 centerCenter = topAlignedY;
+        Vector2 rightCenter = topAlignedY + Vector2.right * (centerWidth * 0.5f + rightWidth * 0.5f);
 
-        Vector2 lowAirSize = new(boxCol.bounds.size.x * boxWidth, boxLowAirHeight);
-        RaycastHit2D lowAirHit = Physics2D.BoxCast(origin + Vector2.down * 1f, lowAirSize, 0f, Vector2.down, 0f, groundLayer);
-        isLowAir = lowAirHit.collider != null;
+        isGroundedLeft = Physics2D.BoxCast(leftCenter, new Vector2(leftWidth, boxHeight), 0f, Vector2.down, 0f, groundLayer).collider != null;
+        isGroundedCenter = Physics2D.BoxCast(centerCenter, new Vector2(centerWidth, boxHeight), 0f, Vector2.down, 0f, groundLayer).collider != null;
+        isGroundedRight = Physics2D.BoxCast(rightCenter, new Vector2(rightWidth, boxHeight), 0f, Vector2.down, 0f, groundLayer).collider != null;
 
-        isGrounded = !isJumping && hit.collider != null;
+        isGrounded = !isJumping && (isGroundedLeft || isGroundedCenter || isGroundedRight);
+        isEdge = (isGroundedLeft || isGroundedRight) && !isGroundedCenter;
+
+        Vector2 lowAirSize = new(totalWidth, boxLowAirHeight);
+        Vector2 lowAirOrigin = bottom - Vector2.up * (boxLowAirHeight * 0.5f);
+        isLowAir = Physics2D.BoxCast(lowAirOrigin, lowAirSize, 0f, Vector2.down, 0f, groundLayer).collider != null;
 
         if (isGrounded) coyoteTimer = coyoteTime;
         else coyoteTimer -= Time.deltaTime;
@@ -187,33 +194,42 @@ public class PlayerController : MonoBehaviour
             AttackController.ResetAirborneCombo();
         }
 
-        if (wasGrounded && !isGrounded)
-        {
-            AttackController.ResetCombo();
-        }
+        if (wasGrounded && !isGrounded) AttackController.ResetCombo();
     }
 
     void UpdateCeiling()
     {
-        Vector2 boxSize = new(boxCol.bounds.size.x * boxWidth, boxHeight);
+        Vector2 boxSize = new(boxCol.bounds.size.x, boxHeight);
         Vector2 origin = (Vector2)boxCol.bounds.center + Vector2.up * boxCol.bounds.extents.y;
-        RaycastHit2D hit = Physics2D.BoxCast(origin, boxSize, 0f, Vector2.up, 0f, ceilingLayer);
-
-        isTouchingCeiling = hit.collider != null;
+        isTouchingCeiling = Physics2D.BoxCast(origin, boxSize, 0f, Vector2.up, 0f, ceilingLayer).collider != null;
     }
 
 #if UNITY_EDITOR
     [ContextMenu("박스캐스트 시각화")]
     private void DebugDrawBoxCastGizmos()
     {
-        if (boxCol == null)
-            boxCol = GetComponent<BoxCollider2D>();
+        if (boxCol == null) boxCol = GetComponent<BoxCollider2D>();
 
-        Vector2 origin = (Vector2)boxCol.bounds.center + Vector2.down * boxCol.bounds.extents.y;
+        Vector2 bottom = (Vector2)boxCol.bounds.center + Vector2.down * boxCol.bounds.extents.y;
+        Vector2 topAlignedY = bottom - Vector2.up * (boxHeight * 0.5f);
+        float totalWidth = boxCol.bounds.size.x;
+        float leftWidth = totalWidth * 0.3f;
+        float centerWidth = totalWidth * 0.4f;
+        float rightWidth = totalWidth * 0.3f;
 
-        DrawDebugBox(origin, boxCol.bounds.size.x * boxWidth, boxHeight, Color.green); // Ground
-        DrawDebugBox(origin + Vector2.down * 1f, boxCol.bounds.size.x * boxWidth, boxLowAirHeight, Color.cyan); // LowAir
-        DrawDebugBox((Vector2)boxCol.bounds.center + 0.5f * boxCol.bounds.size.y * Vector2.up, boxCol.bounds.size.x * boxWidth, boxHeight, Color.red); // Ceiling
+        Vector2 leftCenter = topAlignedY + Vector2.left * (centerWidth * 0.5f + leftWidth * 0.5f);
+        Vector2 centerCenter = topAlignedY;
+        Vector2 rightCenter = topAlignedY + Vector2.right * (centerWidth * 0.5f + rightWidth * 0.5f);
+
+        DrawDebugBox(leftCenter, leftWidth, boxHeight, Color.yellow);
+        DrawDebugBox(centerCenter, centerWidth, boxHeight, Color.white);
+        DrawDebugBox(rightCenter, rightWidth, boxHeight, Color.yellow);
+
+        Vector2 lowAirCenter = bottom - Vector2.up * (boxLowAirHeight * 0.5f);
+        DrawDebugBox(lowAirCenter, totalWidth, boxLowAirHeight, Color.cyan);
+
+        Vector2 ceilingCenter = (Vector2)boxCol.bounds.center + Vector2.up * (boxCol.bounds.extents.y + boxHeight * 0.5f);
+        DrawDebugBox(ceilingCenter, totalWidth, boxHeight, Color.red);
     }
 
     private void DrawDebugBox(Vector2 center, float width, float height, Color color)
@@ -267,15 +283,10 @@ public class PlayerController : MonoBehaviour
     {
         if (rb.linearVelocity.y > 0f)
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * 0.3f);
-
         jumpTimeCounter = maxJumpTime;
     }
 
-    public void ConsumeAttackBuffer()
-    {
-        attackBufferTimer = 0f;
-    }
-
+    public void ConsumeAttackBuffer() => attackBufferTimer = 0f;
     public Rigidbody2D Rigidbody => rb;
     public BoxCollider2D BoxCollider => boxCol;
     public Vector2 OriginalColliderSize => originalColliderSize;
