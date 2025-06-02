@@ -165,9 +165,9 @@ public class PlayerController : MonoBehaviour
         Vector2 bottom = (Vector2)boxCol.bounds.center + Vector2.down * boxCol.bounds.extents.y;
         Vector2 topAlignedY = bottom - Vector2.up * (boxHeight * 0.5f);
         float totalWidth = boxCol.bounds.size.x;
-        float leftWidth = totalWidth * 0.1f;
-        float centerWidth = totalWidth * 0.8f;
-        float rightWidth = totalWidth * 0.1f;
+        float leftWidth = totalWidth * 0.3f;
+        float centerWidth = totalWidth * 0.4f;
+        float rightWidth = totalWidth * 0.3f;
 
         Vector2 leftCenter = topAlignedY + Vector2.left * (centerWidth * 0.5f + leftWidth * 0.5f);
         Vector2 centerCenter = topAlignedY;
@@ -213,9 +213,9 @@ public class PlayerController : MonoBehaviour
         Vector2 bottom = (Vector2)boxCol.bounds.center + Vector2.down * boxCol.bounds.extents.y;
         Vector2 topAlignedY = bottom - Vector2.up * (boxHeight * 0.5f);
         float totalWidth = boxCol.bounds.size.x;
-        float leftWidth = totalWidth * 0.05f;
-        float centerWidth = totalWidth * 0.90f;
-        float rightWidth = totalWidth * 0.05f;
+        float leftWidth = totalWidth * 0.3f;
+        float centerWidth = totalWidth * 0.4f;
+        float rightWidth = totalWidth * 0.3f;
 
         Vector2 leftCenter = topAlignedY + Vector2.left * (centerWidth * 0.5f + leftWidth * 0.5f);
         Vector2 centerCenter = topAlignedY;

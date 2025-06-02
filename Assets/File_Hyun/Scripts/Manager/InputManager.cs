@@ -12,6 +12,7 @@ public class InputManager : MonoBehaviour
     public KeyData keyData;
 
     [HideInInspector] public GameObject lastSelectedButton;
+    [HideInInspector] public bool IsCapturingKey = false;
     private PlayerController _player;
 
     void Awake()
@@ -47,6 +48,7 @@ public class InputManager : MonoBehaviour
     #region UI 입력 처리
     void HandleUIInput()
     {
+
         GameObject selected = EventSystem.current.currentSelectedGameObject;
 
         if (selected == null && AnyUIKeyPressed())
@@ -60,8 +62,13 @@ public class InputManager : MonoBehaviour
         }
 
         if (selected == null) return;
+        if (IsCapturingKey) return;
 
-        if (!selected.TryGetComponent(out UIButtonController controller)) return;
+        if (!selected.TryGetComponent(out UIButtonController controller))
+        {
+            Debug.LogWarning("선택된 GameObject가 UIButtonController를 포함하지 않습니다: " + selected.name);
+            return;
+        }
 
         if (Input.GetKeyDown(keyData.Ui.UpKey)) TryMove(controller.upButton);
         else if (Input.GetKeyDown(keyData.Ui.DownKey)) TryMove(controller.downButton);
