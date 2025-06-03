@@ -1,26 +1,44 @@
-using System;
 using System.Collections;
 using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
+    public static PlayerHealth Instance { get; private set; }
+
     public float maxHealth;
-    public float health;
-    [SerializeField] private float invincibleTime = 1;
-    public bool isInvincible;
+    [SerializeField] private float invincibleTime = 1f;
+
+    private float health;
+    private bool isInvincible;
+
+    void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+
+        health = maxHealth;
+    }
 
     private void Die()
     {
+        Debug.Log("Player has died.");
         gameObject.SetActive(false);
     }
     
     public void TakeDamage(float damage)
     {
-        if(isInvincible)
+        if (isInvincible || PlayerController.Instance.isNoClip)
+        {
+            Debug.Log("Player is invincible. No damage taken.");
             return;
-        
+        }
+
         health -= damage;
-        Debug.Log("Now Player Health "+health);
+        Debug.Log("Now Player Health: "+health);
 
         if (health <= 0)
         {
