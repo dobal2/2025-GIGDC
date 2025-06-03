@@ -8,8 +8,8 @@ public class PlayerHealth : MonoBehaviour
     public float maxHealth;
     [SerializeField] private float invincibleTime = 1f;
 
+    [HideInInspector] public bool isInvincible;
     private float health;
-    private bool isInvincible;
 
     void Awake()
     {
