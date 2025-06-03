@@ -14,6 +14,10 @@ public class Bullet : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            if (other.GetComponent<PlayerController>().isNoClip)
+            {
+                return;
+            }
             other.GetComponent<PlayerHealth>().TakeDamage(damage);
             Destroy(gameObject);
         }
