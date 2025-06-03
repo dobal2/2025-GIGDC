@@ -613,11 +613,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1642936060641388505, guid: fca5e8c2bcbc60c4d849c1fca55c6f57, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.1455708
+      value: 4.78
       objectReference: {fileID: 0}
     - target: {fileID: 1642936060641388505, guid: fca5e8c2bcbc60c4d849c1fca55c6f57, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -6.186753
+      value: -6.84
       objectReference: {fileID: 0}
     - target: {fileID: 1642936060641388505, guid: fca5e8c2bcbc60c4d849c1fca55c6f57, type: 3}
       propertyPath: m_LocalPosition.z
@@ -654,6 +654,26 @@ PrefabInstance:
     - target: {fileID: 3079645770324588413, guid: fca5e8c2bcbc60c4d849c1fca55c6f57, type: 3}
       propertyPath: m_Name
       value: Sad
+      objectReference: {fileID: 0}
+    - target: {fileID: 3079645770324588413, guid: fca5e8c2bcbc60c4d849c1fca55c6f57, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6275964923115248274, guid: fca5e8c2bcbc60c4d849c1fca55c6f57, type: 3}
+      propertyPath: hp
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6275964923115248274, guid: fca5e8c2bcbc60c4d849c1fca55c6f57, type: 3}
+      propertyPath: maxHp
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6275964923115248274, guid: fca5e8c2bcbc60c4d849c1fca55c6f57, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1252394521286520684}
+    - target: {fileID: 6275964923115248274, guid: fca5e8c2bcbc60c4d849c1fca55c6f57, type: 3}
+      propertyPath: facingRight
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1016,7 +1036,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 5
   invincibleTime: 1
-  Currnthealth: 0
   isInvincible: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

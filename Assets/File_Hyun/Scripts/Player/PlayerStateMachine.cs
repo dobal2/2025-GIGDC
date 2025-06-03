@@ -21,13 +21,12 @@ public class PlayerStateMachine
         currentState?.Exit();
         previousState = currentState;
         currentState = newState;
-        UnityEngine.Debug.Log($"Changing state from {previousState?.StateType} to {currentState.StateType}");
+        //UnityEngine.Debug.Log($"Changing state from {previousState?.StateType} to {currentState.StateType}");
         currentState.Enter();
     }
 
     public void Update()
     {
-        //UnityEngine.Debug.Log($"Current State: {CurrentStateType}");
         currentState?.Update();
     }
 
