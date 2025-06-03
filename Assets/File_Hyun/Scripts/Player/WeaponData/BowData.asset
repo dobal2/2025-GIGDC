@@ -12,8 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64ba3782c4380e54ea28ff43ae15584d, type: 3}
   m_Name: BowData
   m_EditorClassIdentifier: 
-  BowskillDamage: 1
-  Bowskillcooldown: 1.5
+  minBowSkillDamage: 10
+  maxBowSkillDamage: 20
+  laserSkillDamage: 30
+  bowSkillcooldown: 2.5
+  fireOffset: {x: 0.7, y: 1.3}
   animatorController: {fileID: 9100000, guid: c2649cd78942c0e478cdb525a0297988, type: 2}
   normalArrowPrefab: {fileID: 7523045259425540334, guid: 342d4ae33c36d2a4892d12e3043635a7, type: 3}
   skillArrowPrefab: {fileID: 7523045259425540334, guid: 34ded610cd80a994da0e6e78263d4324, type: 3}

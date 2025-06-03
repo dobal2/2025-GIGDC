@@ -1,8 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
-using System.Collections;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -83,7 +81,6 @@ public class UIButtonController : MonoBehaviour, ISelectHandler, IDeselectHandle
         Gizmos.color = color;
         Gizmos.DrawLine(start, end);
 
-#if UNITY_EDITOR
         Handles.color = color;
 
         float arrowHeadLength = 0.15f;
@@ -95,7 +92,6 @@ public class UIButtonController : MonoBehaviour, ISelectHandler, IDeselectHandle
         Vector3 p3 = end - dir * arrowHeadLength - right * arrowHeadWidth;
 
         Handles.DrawAAConvexPolygon(p1, p2, p3);
-#endif
     }
 #endif
 }

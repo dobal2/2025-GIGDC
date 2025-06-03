@@ -24,10 +24,11 @@ public struct BowComboInfo
 public class BowData : ScriptableObject
 {
     [Header("특수공격 정보")]
-    public float MinBowskillDamage;
-    public float MaxBowskillDamage;
-    public float ExtraBowskillDamage;
-    public float Bowskillcooldown;
+    public float minBowSkillDamage;
+    public float maxBowSkillDamage;
+    public float laserSkillDamage;
+    public float bowSkillcooldown;
+    public Vector2 fireOffset;
 
     [Header("Animator")]
     public RuntimeAnimatorController animatorController;

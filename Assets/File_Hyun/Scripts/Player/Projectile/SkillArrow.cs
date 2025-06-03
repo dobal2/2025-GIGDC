@@ -1,22 +1,25 @@
 using UnityEngine;
+using static PlayerController;
 
 public class SkillArrow : MonoBehaviour
 {
-    [SerializeField] private float speed = 20f;
-    [SerializeField] private float maxDistance = 30f;
     [SerializeField] private LayerMask collisionMask;
     [SerializeField] private LayerMask enemyMask;
 
     private Vector2 direction;
     private Vector2 startPosition;
     private float projectileDamage;
+    private float speed;
+    private float maxDistance;
 
     private Animator Animator;
 
-    public void Initialize(Vector2 currentDirection, float damage)
+    public void Initialize(Vector2 currentDirection, float damage, float speed, float maxDistance)
     {
         direction = currentDirection.normalized;
         projectileDamage = damage;
+        this.speed = speed;
+        this.maxDistance = maxDistance;
         startPosition = transform.position;
         Animator = GetComponent<Animator>();
     }
@@ -26,7 +29,6 @@ public class SkillArrow : MonoBehaviour
         float moveDistance = speed * Time.deltaTime;
         transform.Translate(direction * moveDistance, Space.World);
 
-        // 최대 거리 초과 시 파괴
         if (Vector2.Distance(startPosition, transform.position) >= maxDistance)
         {
             Destroy(gameObject);
