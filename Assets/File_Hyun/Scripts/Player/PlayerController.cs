@@ -41,7 +41,7 @@ public class PlayerController : MonoBehaviour
 
     public PlayerStateType CurrentStateType => stateMachine.CurrentStateType;
 
-    public bool canTakeDamage => !isNoClip || !PlayerHealth.Instance.isInvincible
+    public bool canTakeDamage => !isNoClip || !PlayerHealth.Instance.isInvincible;
 
     [Header("Movement Settings")]
     [SerializeField] private float moveSpeed = 10f;

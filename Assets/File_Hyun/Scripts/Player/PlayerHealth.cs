@@ -31,7 +31,7 @@ public class PlayerHealth : MonoBehaviour
     
     public void TakeDamage(float damage)
     {
-        if (isInvincible || PlayerController.Instance.isNoClip)
+        if (!PlayerController.Instance.canTakeDamage)
         {
             Debug.Log("Player is invincible. No damage taken.");
             return;
