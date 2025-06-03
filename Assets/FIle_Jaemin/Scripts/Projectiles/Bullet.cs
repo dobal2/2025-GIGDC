@@ -14,7 +14,7 @@ public class Bullet : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            if (other.GetComponent<PlayerHealth>().isInvincible)
+            if (!other.GetComponent<PlayerController>().CanTakeDamage)
             {
                 return;
             }
