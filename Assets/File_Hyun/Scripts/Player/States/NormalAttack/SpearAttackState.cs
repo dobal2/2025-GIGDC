@@ -5,10 +5,7 @@ public class SpearAttackState : PlayerState
     private readonly SpearData spearData;
 
     public SpearAttackState(PlayerController player, PlayerStateMachine stateMachine)
-        : base(player, stateMachine)
-    {
-        spearData = player.AttackController.spearData;
-    }
+        : base(player, stateMachine) { spearData = player.AttackController.spearData; }
 
     public override PlayerStateType StateType => PlayerStateType.SpearAttack;
     public override bool IsCombatState => true;

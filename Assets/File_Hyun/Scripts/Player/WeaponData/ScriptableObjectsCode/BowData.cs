@@ -27,6 +27,7 @@ public class BowData : ScriptableObject
     public float minBowSkillDamage;
     public float maxBowSkillDamage;
     public float laserSkillDamage;
+    public float laserThickness;
     public float bowSkillcooldown;
     public Vector2 fireOffset;
 

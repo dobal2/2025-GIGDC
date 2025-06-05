@@ -238,7 +238,7 @@ public class AttackController : MonoBehaviour
     {
         return CurrentWeapon switch
         {
-            WeaponType.Spear => spearData.spearSkillcooldown,
+            WeaponType.Spear => spearData.spearSkillCooldown,
             WeaponType.Bow => bowData.bowSkillcooldown,
             // WeaponType.Bomb => bombData.Bombskillcooldown,
             _ => 1f

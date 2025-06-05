@@ -13,6 +13,10 @@ MonoBehaviour:
   m_Name: SpearData
   m_EditorClassIdentifier: 
   spearSkillDamage: 1
+  spearSkillRange: 0
+  jumpSpeed: 16
+  chargeDuration: 0.6
+  landingDuration: 0.83
   spearSkillcooldown: 1.5
   animatorController: {fileID: 9100000, guid: f793756eaf78bb04f9def9b2860a6fa2, type: 2}
   spearComboInfos:
@@ -21,13 +25,16 @@ MonoBehaviour:
     pushTime: 0.2653
     Combodelay: 0.1428
     ComboKeep: 0.6
+    range: 0
   - damage: 1
     pushDistance: 0.5
     pushTime: 0.2275
     Combodelay: 0.1225
     ComboKeep: 0.6
+    range: 0
   - damage: 1
     pushDistance: 1
     pushTime: 0.3038
     Combodelay: 0.1631
     ComboKeep: 0
+    range: 0

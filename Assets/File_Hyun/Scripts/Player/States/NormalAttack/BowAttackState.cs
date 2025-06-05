@@ -12,10 +12,7 @@ public class BowAttackState : PlayerState
     private readonly BowData bowData;
 
     public BowAttackState(PlayerController player, PlayerStateMachine stateMachine)
-        : base(player, stateMachine)
-    {
-        bowData = player.AttackController.bowData;
-    }
+        : base(player, stateMachine) { bowData = player.AttackController.bowData; }
 
     public override PlayerStateType StateType => PlayerStateType.BowAttack;
     public override bool IsCombatState => true;

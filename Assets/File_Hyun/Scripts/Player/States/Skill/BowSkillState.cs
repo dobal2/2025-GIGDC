@@ -5,16 +5,12 @@ public class BowSkillState : PlayerState
 {
     private float skillStartTime;
     private bool fired;
+    string prefix;
 
     private readonly BowData bowData;
 
-    string prefix;
-
     public BowSkillState(PlayerController player, PlayerStateMachine stateMachine)
-        : base(player, stateMachine)
-    {
-        bowData = player.AttackController.bowData;
-    }
+        : base(player, stateMachine) { bowData = player.AttackController.bowData; }
 
     public override PlayerStateType StateType => PlayerStateType.BowSkill;
     public override bool IsCombatState => true;
@@ -77,6 +73,7 @@ public class BowSkillState : PlayerState
         if (chargeTime < 1.5f)
         {
             float t = Mathf.Clamp01(chargeTime / 1.5f);
+
             float damage = Mathf.Lerp(bowData.minBowSkillDamage, bowData.maxBowSkillDamage, t);
             float speed = Mathf.Lerp(10f, 30f, t);
             float distance = Mathf.Lerp(10f, 30f, t);
@@ -87,8 +84,7 @@ public class BowSkillState : PlayerState
         }
         else
         {
-            float damage = bowData.laserSkillDamage;
-            float laserThickness = 4.5f;
+            float laserThickness = bowData.laserThickness;
             Vector2 boxSize = new(laserThickness, 1f);
 
             RaycastHit2D hit = Physics2D.BoxCast(
@@ -121,7 +117,7 @@ public class BowSkillState : PlayerState
             foreach (var h in hits)
             {
                 if (h.collider.TryGetComponent<Monster>(out var monster))
-                    monster.TakeDamage(damage);
+                    monster.TakeDamage(bowData.laserSkillDamage);
             }
         }
     }
