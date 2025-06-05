@@ -9,6 +9,7 @@ public struct SpearComboInfo
     public float pushTime;
     public float Combodelay;
     public float ComboKeep;
+    public float range;
 }
 
 [CreateAssetMenu(fileName = "SpearData", menuName = "Scriptable Objects/SpearData")]

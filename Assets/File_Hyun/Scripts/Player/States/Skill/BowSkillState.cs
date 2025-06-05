@@ -8,6 +8,8 @@ public class BowSkillState : PlayerState
 
     private readonly BowData bowData;
 
+    string prefix;
+
     public BowSkillState(PlayerController player, PlayerStateMachine stateMachine)
         : base(player, stateMachine)
     {
@@ -25,6 +27,8 @@ public class BowSkillState : PlayerState
         player.Rigidbody.constraints = RigidbodyConstraints2D.FreezeRotation |
                                        RigidbodyConstraints2D.FreezePositionX |
                                        RigidbodyConstraints2D.FreezePositionY;
+        prefix = player.isGrounded ? "Ground" : "Flying";
+        player.Animator.Play($"Bow_{prefix}_Charging");
         player.SetEffectState(PlayerEffectState.BowSkillCharging);
     }
 
@@ -40,21 +44,30 @@ public class BowSkillState : PlayerState
     {
         float chargeTime = Time.time - skillStartTime;
 
-        if (chargeTime < 1.5f)
+        if (chargeTime > 1.5f)
         {
-            // 파랗게 변하기
+            if (!fired) player.Animator.Play($"Bow_{prefix}_FullCharge");
         }
 
         if (!fired && (!player.SkillHeld || chargeTime >= 2f))
         {
             Fire(chargeTime);
-            stateMachine.ChangeState(new LocomotionState(player, stateMachine));
+        }
+
+        if (fired)
+        {
+            AnimatorStateInfo animInfo = player.Animator.GetCurrentAnimatorStateInfo(0);
+            if (animInfo.IsName($"Bow_{prefix}_Shoot") && animInfo.normalizedTime >= 1f)
+            {
+                stateMachine.ChangeState(new LocomotionState(player, stateMachine));
+            }
         }
     }
 
     private void Fire(float chargeTime)
     {
         fired = true;
+        player.Animator.Play($"Bow_{prefix}_Shoot");
         player.SetEffectState(PlayerEffectState.BowSkillRelease);
 
         Vector2 fireOffset = new(bowData.fireOffset.x * player.facingDirection, bowData.fireOffset.y);

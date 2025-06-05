@@ -133,7 +133,6 @@ public class PlayerController : MonoBehaviour
         InputManager.Instance.RegisterPlayer(this);
         InputManager.Instance.currentContext = InputManager.InputContext.Gameplay;
         AttackController.Initialize(WeaponType.Bow);
-        //AttackController.Initialize(WeaponType.Spear);
         stateMachine = new PlayerStateMachine();
         stateMachine.Initialize(new LocomotionState(this, stateMachine));
         SetEffectState(PlayerEffectState.None);
@@ -179,7 +178,7 @@ public class PlayerController : MonoBehaviour
         isGroundedCenter = Physics2D.BoxCast(centerCenter, new Vector2(centerWidth, boxHeight), 0f, Vector2.down, 0f, groundLayer).collider != null;
         isGroundedRight = Physics2D.BoxCast(rightCenter, new Vector2(rightWidth, boxHeight), 0f, Vector2.down, 0f, groundLayer).collider != null;
 
-        isGrounded = !isJumping && (isGroundedLeft || isGroundedCenter || isGroundedRight);
+        isGrounded = !isJumping && (isGroundedLeft || isGroundedCenter || isGroundedRight) && rb.linearVelocity.y == 0;
         isEdge = (isGroundedLeft || isGroundedRight) && !isGroundedCenter;
 
         Vector2 lowAirSize = new(totalWidth, boxLowAirHeight);
