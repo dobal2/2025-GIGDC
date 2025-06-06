@@ -1,7 +1,5 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -13,23 +11,22 @@ public class BossExcitement : Monster
     [SerializeField] private GameObject targetBoardPrefab;
     [SerializeField] private GameObject glassWallPrefab;
     [SerializeField] private GameObject glassBowlPrefab;
-    
+    [SerializeField] private GameObject clone;
+
     [Header("Transforms")]
     [SerializeField] private Transform missileSpawnPoint;
-    [SerializeField] private Transform[] teleportPositions; // 랜덤 텔레포트 위치들
+    [SerializeField] private Transform[] teleportPositions;
     [SerializeField] private Transform phase2Transform;
     [SerializeField] private Transform bombPos;
     [SerializeField] private Transform targetBoardPoint;
-    
+
     [Header("Values")]
     [SerializeField] private int phase = 1;
     [SerializeField] private float phase2Hp;
-    
-    
     [SerializeField] private float teleportCoolTime;
     private float teleportCoolTimer;
     private Vector3 lastTeleportedPos;
-    
+
     [SerializeField] private float minBombThrowForce;
     [SerializeField] private float maxBombThrowForce;
 
@@ -37,6 +34,7 @@ public class BossExcitement : Monster
 
     protected override void Start()
     {
+        clone.gameObject.SetActive(false);
         base.Start();
     }
 
@@ -61,50 +59,73 @@ public class BossExcitement : Monster
         }
     }
 
+    public override void TakeDamage(float amount)
+    {
+        //타겟에 활맞으면 댐지 입게 해야되는데 활이 뭔 레이어나 태그인지 모름
+    }
+
     private void Phase2()
     {
-        transform.position = phase2Transform.position + new Vector3(0,transform.localScale.y/2,0);
+        transform.position = phase2Transform.position + new Vector3(0, transform.localScale.y / 2, 0);
         phase = 2;
         maxHp = phase2Hp;
         hp = maxHp;
         isAttacking = false;
+        clone.gameObject.SetActive(true);
+
+        StartCoroutine(SpawnTargetBoardLoop()); // ⬅️ 상시 타겟 보드 루프 시작
     }
 
     private IEnumerator PatternRoutine()
     {
-        while (true)
-        {
-            isAttacking = true;
+        isAttacking = true;
 
-            if (phase == 1)
-            {
-                FireHomingMissile();
-            
-                ThrowBombAtPlayerPattern();
-            }
-            else if (phase == 2)
-            {
-                yield return StartCoroutine(SpawnTargetBoard());
-                yield return StartCoroutine(GlassWallPattern());
-                yield return StartCoroutine(GlassBowlPattern());
-            }
-            
-            yield return new WaitForSeconds(4f);
-            
-            isAttacking = false;
+        if (phase == 1)
+        {
+            yield return StartCoroutine(FireHomingMissileRoutine());
+            yield return StartCoroutine(ThrowBombAtPlayerRoutine());
         }
+        else if (phase == 2)
+        {
+            yield return StartCoroutine(GlassWallPattern());
+            yield return StartCoroutine(GlassBowlPattern());
+        }
+
+        yield return new WaitForSeconds(4f);
+        isAttacking = false;
     }
 
-    private void FireHomingMissile()
+    private IEnumerator FireHomingMissileRoutine()
     {
         GameObject missile = Instantiate(homingMissilePrefab, missileSpawnPoint.position, Quaternion.identity);
         missile.GetComponent<HomingMissile>().SetTarget(player);
+        yield return new WaitForSeconds(0.5f);
+    }
+
+    private IEnumerator ThrowBombAtPlayerRoutine()
+    {
+        int bombCount = Random.Range(4, 7);
+
+        for (int i = 0; i < bombCount; i++)
+        {
+            GameObject bomb = Instantiate(bombPrefab, bombPos.position, Quaternion.identity);
+            Rigidbody2D rb = bomb.GetComponent<Rigidbody2D>();
+            if (rb != null)
+            {
+                Vector3 toTarget = (player.position - bombPos.position).normalized;
+                Vector3 upward = Vector3.up * Random.Range(0.3f, 1.2f);
+                Vector3 throwDir = (toTarget + upward).normalized;
+                float throwForce = Random.Range(minBombThrowForce, maxBombThrowForce);
+                rb.linearVelocity = throwDir * throwForce;
+            }
+        }
+
+        yield return new WaitForSeconds(1f);
     }
 
     public void TakeDamage(int damage)
     {
         base.TakeDamage(damage);
-
         TeleportRoutine();
     }
 
@@ -121,8 +142,7 @@ public class BossExcitement : Monster
             } while (randomPos == lastTeleportedPos);
 
             lastTeleportedPos = randomPos;
-            randomPos += new Vector3(0, transform.localScale.y / 2, 0);
-            transform.position = randomPos;
+            transform.position = randomPos + new Vector3(0, transform.localScale.y / 2, 0);
         }
         else if (teleportPositions.Length == 1)
         {
@@ -130,66 +150,33 @@ public class BossExcitement : Monster
             lastTeleportedPos = onlyPos;
             transform.position = onlyPos + new Vector3(0, transform.localScale.y / 2, 0);
         }
-        
     }
 
-    public void ThrowBombAtPlayerPattern()
+    private IEnumerator SpawnTargetBoardLoop()
     {
-        if (player == null) return;
-
-        int bombCount = Random.Range(4, 7);
-
-        for (int i = 0; i < bombCount; i++)
+        while (phase == 2)
         {
-            
-            GameObject bomb = Instantiate(bombPrefab,bombPos.position,Quaternion.identity);
-            Rigidbody2D rb = bomb.GetComponent<Rigidbody2D>();
-            if (rb != null)
-            {
-                Vector3 toTarget = (player.position - bombPos.position).normalized;
-                Vector3 upward = Vector3.up * Random.Range(0f,1f);
-                Vector3 throwDir = (toTarget + upward).normalized;
-
-                float throwForce = Random.Range(minBombThrowForce, maxBombThrowForce);
-                
-                rb.linearVelocity = throwDir * throwForce;
-            }
-            else
-            {
-                Debug.Log("bomb rigid null");
-            }
+            GameObject board = Instantiate(targetBoardPrefab, targetBoardPoint.position, Quaternion.identity);
+            board.GetComponent<TargetBoard>().SetBoss(this);
+            yield return new WaitForSeconds(2f);
+            if (board != null)
+                Destroy(board);
+            yield return new WaitForSeconds(1f);
         }
     }
-    
-    
-    //phase2 pattern
-    IEnumerator SpawnTargetBoard()
-    {
-        yield return new WaitForSeconds(3);
 
-        GameObject newTargetBoard = Instantiate(targetBoardPrefab,targetBoardPoint.position,Quaternion.identity);
-        
-        yield return new WaitForSeconds(2);
-        
-        Destroy(newTargetBoard);
-        
-    }
-
-    IEnumerator GlassWallPattern()
+    private IEnumerator GlassWallPattern()
     {
         for (int i = 0; i < 5; i++)
         {
-            GameObject newGlassWall = Instantiate(glassWallPrefab, targetBoardPoint.position, Quaternion.identity);
-            
-            yield return new WaitForSeconds(1);
-            
-            
+            Instantiate(glassWallPrefab, targetBoardPoint.position, Quaternion.identity);
+            yield return new WaitForSeconds(1f);
         }
     }
-    
-    IEnumerator GlassBowlPattern()
+
+    private IEnumerator GlassBowlPattern()
     {
-        int bubbleCount = Random.Range(4, 6); // 4~5
+        int bubbleCount = Random.Range(4, 6);
         float radius = 4f;
         Vector2 center = transform.position;
 
@@ -197,7 +184,7 @@ public class BossExcitement : Monster
 
         for (int i = 0; i < bubbleCount; i++)
         {
-            float angleDeg = -90f + (180f * i / (bubbleCount - 1)); // -90도~+90도
+            float angleDeg = -90f + (180f * i / (bubbleCount - 1));
             float angleRad = Mathf.Deg2Rad * angleDeg;
 
             Vector2 offset = new Vector2(Mathf.Cos(angleRad), Mathf.Sin(angleRad)) * radius;
@@ -206,7 +193,7 @@ public class BossExcitement : Monster
             GameObject newGlassBowl = Instantiate(glassBowlPrefab, spawnPos, Quaternion.identity);
             newGlassBowls.Add(newGlassBowl);
 
-            yield return new WaitForSeconds(0.1f); // 생성 간격
+            yield return new WaitForSeconds(0.1f);
         }
 
         foreach (var newGlassBowl in newGlassBowls)
@@ -222,18 +209,18 @@ public class BossExcitement : Monster
                 rb.linearVelocity = direction * speed;
             }
 
-            yield return new WaitForSeconds(1f); // 발사 간격
+            yield return new WaitForSeconds(1f);
         }
     }
 
-
-
-    
     private void Update()
     {
         if (hp <= 0) Die();
-        
-        Attack();
+
+        if (!isAttacking)
+        {
+            Attack();
+        }
 
         if (phase == 1)
         {
@@ -241,7 +228,7 @@ public class BossExcitement : Monster
             if (teleportCoolTime <= teleportCoolTimer)
             {
                 TeleportRoutine();
-            }   
+            }
         }
     }
 }

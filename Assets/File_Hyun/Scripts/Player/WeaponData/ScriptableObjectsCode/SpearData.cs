@@ -9,6 +9,8 @@ public struct SpearComboInfo
     public float pushTime;
     public float Combodelay;
     public float ComboKeep;
+    public float range;
+    public Vector2 localOffset;
 }
 
 [CreateAssetMenu(fileName = "SpearData", menuName = "Scriptable Objects/SpearData")]
@@ -16,7 +18,12 @@ public class SpearData : ScriptableObject
 {
     [Header("특수공격 정보")]
     public float spearSkillDamage;
-    public float spearSkillcooldown;
+    public float spearSkillRange;
+    public Vector2 spearSkillOffset;
+    public float jumpSpeed;
+    public float chargeDuration;
+    public float landingDuration;
+    public float spearSkillCooldown;
 
     [Header("Animator")]
     public RuntimeAnimatorController animatorController;

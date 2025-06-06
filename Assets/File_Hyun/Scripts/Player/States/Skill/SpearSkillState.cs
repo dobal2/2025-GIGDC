@@ -11,15 +11,14 @@ public class SpearSkillState : PlayerState
 
     private float timer;
     private float dashSpeed;
-    private float jumpSpeed = 16f;
-    private float chargeDuration = 0.6f;
-    private float landingDuration = 0.83f;
 
     private bool landingTriggered = false;
     private bool forceGroundedIgnore = false;
 
+    private readonly SpearData spearData;
+
     public SpearSkillState(PlayerController player, PlayerStateMachine stateMachine)
-        : base(player, stateMachine) { }
+        : base(player, stateMachine) { spearData = player.AttackController.spearData; }
 
     public override PlayerStateType StateType => PlayerStateType.SpearSkill;
     public override bool IsCombatState => true;
@@ -37,7 +36,7 @@ public class SpearSkillState : PlayerState
             phase = SkillPhase.Moving;
             player.isNoClip = true;
             dashSpeed = 20f;
-            Vector2 vel = new(player.facingDirection * dashSpeed, jumpSpeed);
+            Vector2 vel = new(player.facingDirection * dashSpeed, spearData.jumpSpeed);
             player.Rigidbody.linearVelocity = vel;
         }
         else if (player.isLowAir)
@@ -46,7 +45,7 @@ public class SpearSkillState : PlayerState
             mode = SkillMode.LowAir;
             phase = SkillPhase.Moving;
             dashSpeed = 30f;
-            Vector2 vel = new(player.facingDirection * dashSpeed, jumpSpeed * 0.5f);
+            Vector2 vel = new(player.facingDirection * dashSpeed, spearData.jumpSpeed * 0.5f);
             player.Rigidbody.linearVelocity = vel;
         }
         else
@@ -79,7 +78,7 @@ public class SpearSkillState : PlayerState
 
         if (phase == SkillPhase.Charging)
         {
-            if (timer >= chargeDuration)
+            if (timer >= spearData.chargeDuration)
             {
                 Vector2 boxSize = new(player.BoxCollider.bounds.size.x * 0.99f, 0.1f);
                 Vector2 origin = player.BoxCollider.bounds.center;
@@ -114,7 +113,7 @@ public class SpearSkillState : PlayerState
             // TODO: 착지 이펙트, 광역 타격 처리
         }
 
-        if (phase == SkillPhase.Landing && timer >= landingDuration)
+        if (phase == SkillPhase.Landing && timer >= spearData.landingDuration)
         {
             stateMachine.ChangeState(new LocomotionState(player, stateMachine));
         }
