@@ -1,3 +1,4 @@
+// SpearSkillState.cs
 using UnityEngine;
 using static PlayerController;
 
@@ -104,9 +105,8 @@ public class SpearSkillState : PlayerState
             else if (phase == SkillPhase.WaitingForLanding)
                 player.Animator.Play("Spear_Flying_Land");
 
+            ApplyLandingDamage();
             phase = SkillPhase.Landing;
-
-            // TODO: 착지 이펙트, 광역 타격 처리
         }
 
         if (phase == SkillPhase.Landing)
@@ -134,5 +134,30 @@ public class SpearSkillState : PlayerState
     {
         yield return new WaitForSeconds(0.1f);
         forceGroundedIgnore = false;
+    }
+
+    private void ApplyLandingDamage()
+    {
+        Vector2 center = (Vector2)player.transform.position;
+        if (phase == SkillPhase.Moving) center += new Vector2(player.facingDirection * 0.5f, 0f);
+        float radius = spearData.spearSkillRange;
+
+        Collider2D[] hits = Physics2D.OverlapCircleAll(center, radius, LayerMask.GetMask("Enemy"));
+        foreach (var hit in hits)
+        {
+            if (hit.TryGetComponent<Monster>(out var monster))
+                monster.TakeDamage(spearData.spearSkillDamage);
+        }
+
+        DebugDrawCrossX(center, radius, 0.3f);
+    }
+
+    private void DebugDrawCrossX(Vector2 center, float radius, float duration)
+    {
+#if UNITY_EDITOR
+        Color color = Color.red;
+        Debug.DrawLine(center + new Vector2(-radius, 0), center + new Vector2(radius, 0), color, duration);
+        Debug.DrawLine(center + new Vector2(0, -radius), center + new Vector2(0, radius), color, duration);
+#endif
     }
 }

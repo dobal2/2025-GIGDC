@@ -100,11 +100,9 @@ public class BowSkillState : PlayerState
             float baseDistance = hit.collider ? hit.distance : 50f;
             float hitDistance = baseDistance + (boxSize.x * 0.5f);
 
-#if UNITY_EDITOR
             Vector2 boxCenter = firePosition + fireDirection.normalized * (hitDistance * 0.5f);
             float angle = Mathf.Atan2(fireDirection.y, fireDirection.x) * Mathf.Rad2Deg;
             DrawBoxCastBox(boxCenter, new Vector2(hitDistance, laserThickness), angle, Color.red, 0.5f);
-#endif
 
             RaycastHit2D[] hits = Physics2D.BoxCastAll(
                 firePosition,
@@ -123,9 +121,9 @@ public class BowSkillState : PlayerState
         }
     }
 
-#if UNITY_EDITOR
     void DrawBoxCastBox(Vector2 center, Vector2 size, float angle, Color color, float duration)
     {
+#if UNITY_EDITOR
         Quaternion rot = Quaternion.Euler(0, 0, angle);
         Vector2 half = size * 0.5f;
 
@@ -138,6 +136,6 @@ public class BowSkillState : PlayerState
         Debug.DrawLine(topRight, bottomRight, color, duration);
         Debug.DrawLine(bottomRight, bottomLeft, color, duration);
         Debug.DrawLine(bottomLeft, topLeft, color, duration);
-    }
 #endif
+    }
 }
