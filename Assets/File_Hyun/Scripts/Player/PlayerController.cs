@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
         SpearAirSkill, // 창 내려찍기
         BowSkillCharging, // 활 스킬 차징중
         BowSkillRelease, // 활 스킬 발사
+        BowSkillFullChargeRelease, // 활 스킬 풀차징
         // 필요 시 추가
     }
     public event Action<PlayerEffectState> OnEffectStateChanged;
@@ -132,7 +133,7 @@ public class PlayerController : MonoBehaviour
     {
         InputManager.Instance.RegisterPlayer(this);
         InputManager.Instance.currentContext = InputManager.InputContext.Gameplay;
-        AttackController.Initialize(WeaponType.Bow);
+        AttackController.Initialize(WeaponType.Spear);
         stateMachine = new PlayerStateMachine();
         stateMachine.Initialize(new LocomotionState(this, stateMachine));
         SetEffectState(PlayerEffectState.None);

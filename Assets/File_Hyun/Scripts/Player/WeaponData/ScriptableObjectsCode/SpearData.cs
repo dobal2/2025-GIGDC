@@ -22,7 +22,6 @@ public class SpearData : ScriptableObject
     public Vector2 spearSkillOffset;
     public float jumpSpeed;
     public float chargeDuration;
-    public float landingDuration;
     public float spearSkillCooldown;
 
     [Header("Animator")]

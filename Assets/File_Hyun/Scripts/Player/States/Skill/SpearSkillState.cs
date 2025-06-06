@@ -9,8 +9,8 @@ public class SpearSkillState : PlayerState
     private SkillMode mode;
     private SkillPhase phase;
 
-    private float timer;
     private float dashSpeed;
+    private float chargeStartTime;
 
     private bool landingTriggered = false;
     private bool forceGroundedIgnore = false;
@@ -53,12 +53,14 @@ public class SpearSkillState : PlayerState
             player.Animator.Play("Spear_Flying_Charge");
             mode = SkillMode.HighAir;
             phase = SkillPhase.Charging;
+            chargeStartTime = Time.time;
             player.Rigidbody.constraints = RigidbodyConstraints2D.FreezePositionX |
                                            RigidbodyConstraints2D.FreezePositionY;
         }
 
         forceGroundedIgnore = true;
-        timer = 0f;
+        landingTriggered = false;
+        player.StartCoroutine(ResetForceGroundedIgnore());
     }
 
     public override void Exit()
@@ -71,14 +73,9 @@ public class SpearSkillState : PlayerState
 
     public override void Update()
     {
-        timer += Time.deltaTime;
-
-        if (timer > 0.1f)
-            forceGroundedIgnore = false;
-
         if (phase == SkillPhase.Charging)
         {
-            if (timer >= spearData.chargeDuration)
+            if (Time.time >= chargeStartTime + spearData.chargeDuration)
             {
                 Vector2 boxSize = new(player.BoxCollider.bounds.size.x * 0.99f, 0.1f);
                 Vector2 origin = player.BoxCollider.bounds.center;
@@ -108,14 +105,18 @@ public class SpearSkillState : PlayerState
                 player.Animator.Play("Spear_Flying_Land");
 
             phase = SkillPhase.Landing;
-            timer = 0f;
 
             // TODO: 착지 이펙트, 광역 타격 처리
         }
 
-        if (phase == SkillPhase.Landing && timer >= spearData.landingDuration)
+        if (phase == SkillPhase.Landing)
         {
-            stateMachine.ChangeState(new LocomotionState(player, stateMachine));
+            AnimatorStateInfo animInfo = player.Animator.GetCurrentAnimatorStateInfo(0);
+            if (animInfo.IsName("Spear_Ground_Land") || animInfo.IsName("Spear_Flying_Land"))
+            {
+                if (animInfo.normalizedTime >= 1f)
+                    stateMachine.ChangeState(new LocomotionState(player, stateMachine));
+            }
         }
     }
 
@@ -127,5 +128,11 @@ public class SpearSkillState : PlayerState
             vel.x = player.facingDirection * dashSpeed;
             player.Rigidbody.linearVelocity = vel;
         }
+    }
+
+    private System.Collections.IEnumerator ResetForceGroundedIgnore()
+    {
+        yield return new WaitForSeconds(0.1f);
+        forceGroundedIgnore = false;
     }
 }
