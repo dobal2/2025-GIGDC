@@ -2,21 +2,23 @@ using UnityEngine;
 
 public class NormalArrow : MonoBehaviour
 {
-    [SerializeField] private float speed = 20f;
-    [SerializeField] private float maxDistance = 30f;
     [SerializeField] private LayerMask collisionMask;
     [SerializeField] private LayerMask enemyMask;
 
     private Vector2 direction;
     private Vector2 startPosition;
     private float projectileDamage;
+    private float speed;
+    private float maxDistance;
 
     private Animator Animator;
 
-    public void Initialize(Vector2 currentDirection, float damage)
+    public void Initialize(Vector2 currentDirection, float damage, float arrowSpeed, float arrowDistance)
     {
         direction = currentDirection.normalized;
         projectileDamage = damage;
+        speed = arrowSpeed;
+        maxDistance = arrowDistance;
         startPosition = transform.position;
         Animator = GetComponent<Animator>();
     }

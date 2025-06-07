@@ -38,7 +38,10 @@ public class BowData : ScriptableObject
     public GameObject normalArrowPrefab;
     public GameObject skillArrowPrefab;
 
+
     [Header("콤보 단계별 정보")]
+    public float speed;
+    public float maxDistance;
     public BowComboInfo[] bowComboInfos;
 
     public int MaxCombo => bowComboInfos?.Length ?? 0;
