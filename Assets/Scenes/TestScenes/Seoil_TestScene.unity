@@ -339,7 +339,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ScriptData: {fileID: 11400000, guid: 2df25f3abffdee0498f7d25d5c425f7b, type: 2}
-  AllocatedChapterName: "\uD14C\uC2A4\uD2B8 - \uC2DC\uD2B81 (1)"
+  AllocatedChapterName: ScaleTest
   AllocatedTargetName: "\uC635\uC158 1"
 --- !u!4 &134336072
 Transform:
@@ -683,7 +683,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ScriptData: {fileID: 11400000, guid: 2df25f3abffdee0498f7d25d5c425f7b, type: 2}
-  AllocatedChapterName: "\uD14C\uC2A4\uD2B8 - \uC2DC\uD2B81 (1)"
+  AllocatedChapterName: ScaleTest
   AllocatedTargetName: "\uC635\uC158 2"
 --- !u!4 &782373307
 Transform:
@@ -1055,7 +1055,7 @@ PrefabInstance:
     - target: {fileID: 2746624463736531373, guid: beb22f009eb4ba148bf8634754296f5b, type: 3}
       propertyPath: <Chapter>k__BackingField
       value: 
-      objectReference: {fileID: 11400000, guid: e70441e1546adca43af661e5d3c1ddb4, type: 2}
+      objectReference: {fileID: 11400000, guid: 382950d80a1d11a43b7a940721d72c61, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

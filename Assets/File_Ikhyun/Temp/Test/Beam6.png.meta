@@ -1,0 +1,967 @@
+fileFormatVersion: 2
+guid: 9e936e4f0e64c354e981788efc2b602a
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -8129179307611384884
+    second: Beam6_0
+  - first:
+      213: -8406719790943170020
+    second: Beam6_1
+  - first:
+      213: -1174147556247050138
+    second: Beam6_2
+  - first:
+      213: 6393876622910618466
+    second: Beam6_3
+  - first:
+      213: 1774215879137871876
+    second: Beam6_4
+  - first:
+      213: 2076971132486234553
+    second: Beam6_5
+  - first:
+      213: -7995258259018024612
+    second: Beam6_6
+  - first:
+      213: 7136804467687733249
+    second: Beam6_7
+  - first:
+      213: 6740852705014192792
+    second: Beam6_8
+  - first:
+      213: -8735337588588892125
+    second: Beam6_9
+  - first:
+      213: -586670937893098503
+    second: Beam6_10
+  - first:
+      213: 4618568009958135288
+    second: Beam6_11
+  - first:
+      213: 1417500520578158693
+    second: Beam6_12
+  - first:
+      213: -8125303649980961693
+    second: Beam6_13
+  - first:
+      213: 2323821974253295873
+    second: Beam6_14
+  - first:
+      213: 1952491265612937887
+    second: Beam6_15
+  - first:
+      213: -6993052338054574795
+    second: Beam6_16
+  - first:
+      213: 5782652658483683966
+    second: Beam6_17
+  - first:
+      213: -6750731900891866494
+    second: Beam6_18
+  - first:
+      213: 1287266090067663806
+    second: Beam6_19
+  - first:
+      213: -2206608111719656385
+    second: Beam6_20
+  - first:
+      213: -6847071129448827702
+    second: Beam6_21
+  - first:
+      213: 28267418756413395
+    second: Beam6_22
+  - first:
+      213: -1707321865462186639
+    second: Beam6_23
+  - first:
+      213: -2078096990951395544
+    second: Beam6_24
+  - first:
+      213: 1551631421205211634
+    second: Beam6_25
+  - first:
+      213: 4709011749372518446
+    second: Beam6_26
+  - first:
+      213: -711502903841104041
+    second: Beam6_27
+  - first:
+      213: -8011624128611034280
+    second: Beam6_28
+  - first:
+      213: 4504501008344717461
+    second: Beam6_29
+  - first:
+      213: -2439908673893235543
+    second: Beam6_30
+  - first:
+      213: -8781745635282034026
+    second: Beam6_31
+  - first:
+      213: 6495510764096274212
+    second: Beam6_32
+  - first:
+      213: -8486281605373731260
+    second: Beam6_33
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 0
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Beam6_0
+      rect:
+        serializedVersion: 2
+        x: 2003
+        y: 1658
+        width: 22
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc31e5e6d7a5f2f80800000000000000
+      internalID: -8129179307611384884
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Beam6_1
+      rect:
+        serializedVersion: 2
+        x: 674
+        y: 1631
+        width: 11
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c12169e04e4555b80800000000000000
+      internalID: -8406719790943170020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Beam6_2
+      rect:
+        serializedVersion: 2
+        x: 793
+        y: 1631
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 668600cb40794bfe0800000000000000
+      internalID: -1174147556247050138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Beam6_3
+      rect:
+        serializedVersion: 2
+        x: 976
+        y: 1638
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 26bf24e89ec9bb850800000000000000
+      internalID: 6393876622910618466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Beam6_4
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 1615
+        width: 18
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 408cede11f74f9810800000000000000
+      internalID: 1774215879137871876
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Beam6_5
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 1614
+        width: 16
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9b13590ad32e2dc10800000000000000
+      internalID: 2076971132486234553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Beam6_6
+      rect:
+        serializedVersion: 2
+        x: 233
+        y: 1624
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c59f8bf59f22b0190800000000000000
+      internalID: -7995258259018024612
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Beam6_7
+      rect:
+        serializedVersion: 2
+        x: 619
+        y: 1602
+        width: 16
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 108b2f7d9d50b0360800000000000000
+      internalID: 7136804467687733249
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Beam6_8
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 1594
+        width: 15
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89a1a9512d15c8d50800000000000000
+      internalID: 6740852705014192792
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Beam6_9
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 1587
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 320ba07beb8d5c680800000000000000
+      internalID: -8735337588588892125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Beam6_10
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 1601
+        width: 20
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9fb26dae3e9bbd7f0800000000000000
+      internalID: -586670937893098503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Beam6_11
+      rect:
+        serializedVersion: 2
+        x: 247
+        y: 1592
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f599848223781040800000000000000
+      internalID: 4618568009958135288
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Beam6_12
+      rect:
+        serializedVersion: 2
+        x: 439
+        y: 1601
+        width: 12
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5601ef59639fba310800000000000000
+      internalID: 1417500520578158693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Beam6_13
+      rect:
+        serializedVersion: 2
+        x: 505
+        y: 1591
+        width: 15
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36c23ba416f1d3f80800000000000000
+      internalID: -8125303649980961693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Beam6_14
+      rect:
+        serializedVersion: 2
+        x: 555
+        y: 1586
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1095d9006cfdf3020800000000000000
+      internalID: 2323821974253295873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Beam6_15
+      rect:
+        serializedVersion: 2
+        x: 565
+        y: 1599
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f9a79e91674a81b10800000000000000
+      internalID: 1952491265612937887
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Beam6_16
+      rect:
+        serializedVersion: 2
+        x: 639
+        y: 1597
+        width: 15
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 53dca8603ffa3fe90800000000000000
+      internalID: -6993052338054574795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Beam6_17
+      rect:
+        serializedVersion: 2
+        x: 718
+        y: 1576
+        width: 31
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e72636084fb104050800000000000000
+      internalID: 5782652658483683966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Beam6_18
+      rect:
+        serializedVersion: 2
+        x: 793
+        y: 1594
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 28a51716a159052a0800000000000000
+      internalID: -6750731900891866494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Beam6_19
+      rect:
+        serializedVersion: 2
+        x: 1094
+        y: 1587
+        width: 8
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ebb93ed40b94dd110800000000000000
+      internalID: 1287266090067663806
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Beam6_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 456
+        width: 2048
+        height: 1142
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f34547e0d9d8061e0800000000000000
+      internalID: -2206608111719656385
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Beam6_21
+      rect:
+        serializedVersion: 2
+        x: 1260
+        y: 447
+        width: 14
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac4be59c5115af0a0800000000000000
+      internalID: -6847071129448827702
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Beam6_22
+      rect:
+        serializedVersion: 2
+        x: 1308
+        y: 450
+        width: 8
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d771bd411d646000800000000000000
+      internalID: 28267418756413395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Beam6_23
+      rect:
+        serializedVersion: 2
+        x: 1529
+        y: 450
+        width: 16
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 17d7ed32fcf5e48e0800000000000000
+      internalID: -1707321865462186639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Beam6_24
+      rect:
+        serializedVersion: 2
+        x: 531
+        y: 438
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82fa8850ccd1923e0800000000000000
+      internalID: -2078096990951395544
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Beam6_25
+      rect:
+        serializedVersion: 2
+        x: 1337
+        y: 431
+        width: 7
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f965438e80888510800000000000000
+      internalID: 1551631421205211634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Beam6_26
+      rect:
+        serializedVersion: 2
+        x: 1357
+        y: 437
+        width: 6
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e206d749c35c95140800000000000000
+      internalID: 4709011749372518446
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Beam6_27
+      rect:
+        serializedVersion: 2
+        x: 1384
+        y: 441
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 75f54efe0eb3026f0800000000000000
+      internalID: -711502903841104041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Beam6_28
+      rect:
+        serializedVersion: 2
+        x: 1788
+        y: 428
+        width: 11
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 85bd03c6d4ef0d090800000000000000
+      internalID: -8011624128611034280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Beam6_29
+      rect:
+        serializedVersion: 2
+        x: 1867
+        y: 428
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 59896cc1dc3338e30800000000000000
+      internalID: 4504501008344717461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Beam6_30
+      rect:
+        serializedVersion: 2
+        x: 1307
+        y: 407
+        width: 7
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a403300df3b32ed0800000000000000
+      internalID: -2439908673893235543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Beam6_31
+      rect:
+        serializedVersion: 2
+        x: 1452
+        y: 408
+        width: 12
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6926d255fd8f02680800000000000000
+      internalID: -8781745635282034026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Beam6_32
+      rect:
+        serializedVersion: 2
+        x: 1912
+        y: 420
+        width: 11
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 42f3fa010a0b42a50800000000000000
+      internalID: 6495510764096274212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Beam6_33
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 296
+        width: 185
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 44e54c797dbaa3a80800000000000000
+      internalID: -8486281605373731260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable: {}
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

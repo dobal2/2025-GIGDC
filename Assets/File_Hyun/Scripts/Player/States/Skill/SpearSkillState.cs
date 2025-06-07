@@ -9,17 +9,15 @@ public class SpearSkillState : PlayerState
     private SkillMode mode;
     private SkillPhase phase;
 
-    private float timer;
     private float dashSpeed;
-    private float jumpSpeed = 16f;
-    private float chargeDuration = 0.6f;
-    private float landingDuration = 0.83f;
 
     private bool landingTriggered = false;
     private bool forceGroundedIgnore = false;
 
+    private readonly SpearData spearData;
+
     public SpearSkillState(PlayerController player, PlayerStateMachine stateMachine)
-        : base(player, stateMachine) { }
+        : base(player, stateMachine) { spearData = player.AttackController.spearData; }
 
     public override PlayerStateType StateType => PlayerStateType.SpearSkill;
     public override bool IsCombatState => true;
@@ -27,6 +25,7 @@ public class SpearSkillState : PlayerState
     public override void Enter()
     {
         player.Rigidbody.linearVelocity = Vector2.zero;
+        player.isNoClip = true;
         player.AttackController.MarkSkillUsed();
         Debug.Log("[Skill] 스킬 사용됨 - 쿨타임 시작");
 
@@ -35,9 +34,8 @@ public class SpearSkillState : PlayerState
             player.Animator.Play("Spear_Ground_Jump");
             mode = SkillMode.Ground;
             phase = SkillPhase.Moving;
-            player.isNoClip = true;
             dashSpeed = 20f;
-            Vector2 vel = new(player.facingDirection * dashSpeed, jumpSpeed);
+            Vector2 vel = new(player.facingDirection * dashSpeed, spearData.jumpSpeed);
             player.Rigidbody.linearVelocity = vel;
         }
         else if (player.isLowAir)
@@ -46,7 +44,7 @@ public class SpearSkillState : PlayerState
             mode = SkillMode.LowAir;
             phase = SkillPhase.Moving;
             dashSpeed = 30f;
-            Vector2 vel = new(player.facingDirection * dashSpeed, jumpSpeed * 0.5f);
+            Vector2 vel = new(player.facingDirection * dashSpeed, spearData.jumpSpeed * 0.5f);
             player.Rigidbody.linearVelocity = vel;
         }
         else
@@ -59,7 +57,8 @@ public class SpearSkillState : PlayerState
         }
 
         forceGroundedIgnore = true;
-        timer = 0f;
+        landingTriggered = false;
+        player.StartCoroutine(ResetForceGroundedIgnore());
     }
 
     public override void Exit()
@@ -72,14 +71,10 @@ public class SpearSkillState : PlayerState
 
     public override void Update()
     {
-        timer += Time.deltaTime;
-
-        if (timer > 0.1f)
-            forceGroundedIgnore = false;
-
         if (phase == SkillPhase.Charging)
         {
-            if (timer >= chargeDuration)
+            AnimatorStateInfo animInfo = player.Animator.GetCurrentAnimatorStateInfo(0);
+            if (animInfo.IsName("Spear_Flying_Charge") && animInfo.normalizedTime >= 1f)
             {
                 Vector2 boxSize = new(player.BoxCollider.bounds.size.x * 0.99f, 0.1f);
                 Vector2 origin = player.BoxCollider.bounds.center;
@@ -108,15 +103,18 @@ public class SpearSkillState : PlayerState
             else if (phase == SkillPhase.WaitingForLanding)
                 player.Animator.Play("Spear_Flying_Land");
 
+            ApplyLandingDamage();
             phase = SkillPhase.Landing;
-            timer = 0f;
-
-            // TODO: 착지 이펙트, 광역 타격 처리
         }
 
-        if (phase == SkillPhase.Landing && timer >= landingDuration)
+        if (phase == SkillPhase.Landing)
         {
-            stateMachine.ChangeState(new LocomotionState(player, stateMachine));
+            AnimatorStateInfo animInfo = player.Animator.GetCurrentAnimatorStateInfo(0);
+            if (animInfo.IsName("Spear_Ground_Land") || animInfo.IsName("Spear_Flying_Land"))
+            {
+                if (animInfo.normalizedTime >= 1f)
+                    stateMachine.ChangeState(new LocomotionState(player, stateMachine));
+            }
         }
     }
 
@@ -128,5 +126,36 @@ public class SpearSkillState : PlayerState
             vel.x = player.facingDirection * dashSpeed;
             player.Rigidbody.linearVelocity = vel;
         }
+    }
+
+    private System.Collections.IEnumerator ResetForceGroundedIgnore()
+    {
+        yield return new WaitForSeconds(0.1f);
+        forceGroundedIgnore = false;
+    }
+
+    private void ApplyLandingDamage()
+    {
+        Vector2 center = (Vector2)player.transform.position;
+        if (phase == SkillPhase.Moving) center += new Vector2(player.facingDirection * 0.5f, 0f);
+        float radius = spearData.spearSkillRange;
+
+        Collider2D[] hits = Physics2D.OverlapCircleAll(center, radius, LayerMask.GetMask("Enemy"));
+        foreach (var hit in hits)
+        {
+            if (hit.TryGetComponent<Monster>(out var monster))
+                monster.TakeDamage(spearData.spearSkillDamage);
+        }
+
+        DebugDrawCrossX(center, radius, 0.3f);
+    }
+
+    private void DebugDrawCrossX(Vector2 center, float radius, float duration)
+    {
+#if UNITY_EDITOR
+        Color color = Color.red;
+        Debug.DrawLine(center + new Vector2(-radius, 0), center + new Vector2(radius, 0), color, duration);
+        Debug.DrawLine(center + new Vector2(0, -radius), center + new Vector2(0, radius), color, duration);
+#endif
     }
 }

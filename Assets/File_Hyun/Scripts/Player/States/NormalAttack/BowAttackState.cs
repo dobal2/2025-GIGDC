@@ -12,10 +12,7 @@ public class BowAttackState : PlayerState
     private readonly BowData bowData;
 
     public BowAttackState(PlayerController player, PlayerStateMachine stateMachine)
-        : base(player, stateMachine)
-    {
-        bowData = player.AttackController.bowData;
-    }
+        : base(player, stateMachine) { bowData = player.AttackController.bowData; }
 
     public override PlayerStateType StateType => PlayerStateType.BowAttack;
     public override bool IsCombatState => true;
@@ -90,6 +87,8 @@ public class BowAttackState : PlayerState
         }
 
         Vector2 firePos = (Vector2)player.transform.position + new Vector2(localOffset.x * player.facingDirection, localOffset.y);
-        Object.Instantiate(arrowPrefab, firePos, Quaternion.identity);
+        GameObject arrow = Object.Instantiate(arrowPrefab, firePos, Quaternion.identity);
+        Vector2 direction = new(PlayerController.Instance.facingDirection, 0);
+        arrow.GetComponent<NormalArrow>().Initialize(direction, bowData.GetDamage(player.AttackController.ComboStep));
     }
 }

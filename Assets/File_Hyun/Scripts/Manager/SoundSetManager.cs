@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class SettingsManager : MonoBehaviour
+public class SoundSetManager : MonoBehaviour
 {
     public Slider bgmSlider;
     public Slider vfxSlider;
@@ -22,11 +22,6 @@ public class SettingsManager : MonoBehaviour
 
         bgmSlider.onValueChanged.AddListener(SetBGMVolume);
         vfxSlider.onValueChanged.AddListener(SetVFXVolume);
-    }
-
-    public void CloseSettings()
-    {
-        gameObject.SetActive(false);
     }
 
     public void SetBGMVolume(float value)

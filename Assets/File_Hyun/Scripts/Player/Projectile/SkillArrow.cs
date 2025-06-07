@@ -1,60 +1,55 @@
 using UnityEngine;
+using static PlayerController;
 
 public class SkillArrow : MonoBehaviour
 {
-    [SerializeField] private float speed = 20f;
-    [SerializeField] private float maxDistance = 30f;
     [SerializeField] private LayerMask collisionMask;
     [SerializeField] private LayerMask enemyMask;
 
     private Vector2 direction;
     private Vector2 startPosition;
+    private float projectileDamage;
+    private float speed;
+    private float maxDistance;
 
     private Animator Animator;
 
-    void Start()
+    public void Initialize(Vector2 currentDirection, float damage, float speed, float maxDistance)
     {
-        Animator = GetComponent<Animator>();
-
-        direction = Vector2.right * PlayerController.Instance.facingDirection;
+        direction = currentDirection.normalized;
+        projectileDamage = damage;
+        this.speed = speed;
+        this.maxDistance = maxDistance;
         startPosition = transform.position;
+        Animator = GetComponent<Animator>();
     }
 
     void Update()
     {
         float moveDistance = speed * Time.deltaTime;
-        Vector2 currentPosition = (Vector2)transform.position;
-
-        // 충돌 체크: 적
-        RaycastHit2D hitEnemy = Physics2D.Raycast(currentPosition, direction, moveDistance, enemyMask);
-        if (hitEnemy.collider != null)
-        {
-            OnHitEnemy(hitEnemy.collider);
-            Destroy(gameObject);
-            return;
-        }
-
-        // 충돌 체크: 벽, 땅 등
-        RaycastHit2D hit = Physics2D.Raycast(currentPosition, direction, moveDistance, collisionMask);
-        if (hit.collider != null)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        // 이동
         transform.Translate(direction * moveDistance, Space.World);
 
-        // 최대 거리 초과 시 파괴
         if (Vector2.Distance(startPosition, transform.position) >= maxDistance)
         {
             Destroy(gameObject);
         }
     }
 
-    private void OnHitEnemy(Collider2D enemy)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log($"[Arrow] 적 명중: {enemy.name}");
-        // TODO: 애니메이션 또는 데미지 처리 추가
+        int otherLayer = other.gameObject.layer;
+
+        if (((1 << otherLayer) & enemyMask) != 0)
+        {
+            if (other.TryGetComponent<Monster>(out var monster))
+            {
+                monster.TakeDamage(projectileDamage);
+                Destroy(gameObject);
+            }
+        }
+        else if (((1 << otherLayer) & collisionMask) != 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }

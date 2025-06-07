@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Text;
+using DG.Tweening;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -20,6 +22,8 @@ public class DialogView : MonoBehaviour
 
     private Dialog allocatedDialog = null;
     private Coroutine currentDialogCoroutine = null;
+
+    private float additionalDelay = 0;
 
     private static Dictionary<string, MethodInfo> commandDatas = new();
 
@@ -54,20 +58,45 @@ public class DialogView : MonoBehaviour
         dialogText.text = "";        
         UpdateBackGround();
 
+        int sizeTagNumber = 0;
+
         for (int index = 0; index < line.Length; index++)
         {
             string commandTag = InspectCommandTag(line, index);
-            if(commandTag != null)
+
+            if (commandTag != null)
             {
-                if(ProcessCommandTag(commandTag))
+                if (ProcessCommandTag(commandTag))
                 {
                     line = line.Remove(index, commandTag.Length + 2);
                     index--;
                     continue;
                 }
+                else index += commandTag.Length + 1;
             }
 
-            dialogText.text = line.Substring(0, index + 1) ?? "";
+            if (additionalDelay != 0)
+            {
+                yield return new WaitForSeconds(additionalDelay);
+                additionalDelay = 0;
+            }
+
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.Append(line, 0, index + 1);
+
+            if(commandTag != null)
+            {
+                if (commandTag.Contains("size="))
+                    sizeTagNumber++;
+                else if (commandTag.Contains("/size"))
+                    sizeTagNumber--;
+            }
+
+            for (int i = 0; i < sizeTagNumber; i++)
+                stringBuilder.Append("</size>");
+
+            dialogText.text = stringBuilder.ToString();
+
             UpdateBackGround();
 
             if (!SkipProcessingText) yield return new WaitForSeconds(dialogWritingDelay);
@@ -119,7 +148,7 @@ public class DialogView : MonoBehaviour
         if (paramEndIndex == -1) return false;
 
         string commandName = commandTag.Substring(0, paramStartIndex);
-        string commandParams = commandTag.Substring(paramStartIndex, paramEndIndex - paramStartIndex);
+        string commandParams = commandTag.Substring(paramStartIndex + 1, paramEndIndex - paramStartIndex - 1);
 
         if (commandDatas.ContainsKey(commandName))
         {
@@ -148,22 +177,52 @@ public class DialogView : MonoBehaviour
 
     }
 
-    [DialogCommand("ChangeWritingScale")]
-    private void ChangeWritingScale(string[] lines)
-    {
-
-    }
-
     [DialogCommand("DelayWriting")]
     private void DelayWriting(string[] lines)
     {
+        if (lines.Length != 1)
+        {
+            Debug.LogWarning("Invalid DelayWriting Parameters: " + lines);
+            return;
+        }
 
+        try
+        {
+            float delayTime = Convert.ToSingle(lines[0]);
+            additionalDelay += delayTime;
+        }
+        catch(FormatException)
+        {
+            Debug.LogWarning("Invalid DelayWriting Parameters: " + lines[0]);
+            return;
+        }
     }
 
     [DialogCommand("ShakeCamera")]
     private void ShakeCamera(string[] lines)
     {
+        if(lines.Length != 1)
+        {
+            Debug.LogWarning("Invalid ShakeCamera Parameters: " + lines);
+            return;
+        }
+        float duration = 0;
 
+        try
+        {
+            duration = Convert.ToSingle(lines[0]);
+        }
+        catch (FormatException)
+        {
+            Debug.LogWarning("Invalid ShakeCamera Parameters: " + lines);
+            return;
+        }
+
+        CameraUtility.FindTopMostCamera().transform
+            .DOShakePosition(
+                duration: duration, 
+                strength: 0.5f
+                );
     }
 
     [DialogCommand("ScaleCamera")]
