@@ -2,20 +2,18 @@ using UnityEngine;
 
 public class ToggleTarget : MonoBehaviour
 {
-    public GameObject targetObject;
-
     public void TurnOn()
     {
-        targetObject.SetActive(true);
+        this.gameObject.SetActive(true);
     }
 
     public void TurnOff()
     {
-        targetObject.SetActive(false);
+        this.gameObject.SetActive(false);
     }
 
     public void Toggle()
     {
-        targetObject.SetActive(!targetObject.activeSelf);
+        this.gameObject.SetActive(!this.gameObject.activeSelf);
     }
 }

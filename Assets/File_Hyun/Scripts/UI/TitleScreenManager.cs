@@ -3,8 +3,6 @@ using UnityEngine.SceneManagement;
 
 public class TitleScreenManager : MonoBehaviour
 {
-    public GameObject settingsPanel;
-
     void Start()
     {
         SaveKey.Instance.LoadKeyBindings();
@@ -13,14 +11,6 @@ public class TitleScreenManager : MonoBehaviour
     public void StartGame()
     {
         SceneManager.LoadScene("Hyun_TestScene");
-    }
-
-    public void OpenSettings()
-    {
-        if (settingsPanel != null)
-        {
-            settingsPanel.SetActive(true);
-        }
     }
 
     public void QuitGame()
