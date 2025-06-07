@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: abc6c1a4caf7d524392823dfecf27e55
+guid: ef494ffeed905b846a14be6a66a79c4f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 159359105631612711
-    second: Beam3_0
-  - first:
-      213: -8268087522702495229
-    second: Beam3_1
+      213: -1140753577893174564
+    second: starlight1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -43,9 +40,9 @@ TextureImporter:
     filterMode: 0
     aniso: 1
     mipBias: 0
-    wrapU: 0
-    wrapV: 0
-    wrapW: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -103,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Beam3_0
+      name: starlight1_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 414
-        width: 2048
-        height: 1168
+        x: 251
+        y: 304
+        width: 1492
+        height: 1553
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -118,30 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 72f65e22348263200800000000000000
-      internalID: 159359105631612711
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Beam3_1
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 296
-        width: 185
-        height: 74
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3027a7d443ad14d80800000000000000
-      internalID: -8268087522702495229
+      spriteID: cd2eb653aaa3b20f0800000000000000
+      internalID: -1140753577893174564
       vertices: []
       indices: 
       edges: []
