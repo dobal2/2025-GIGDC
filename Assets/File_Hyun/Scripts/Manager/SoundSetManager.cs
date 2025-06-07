@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class SoundManager : MonoBehaviour
+public class SoundSetManager : MonoBehaviour
 {
     public Slider bgmSlider;
     public Slider vfxSlider;
