@@ -20,6 +20,7 @@ public class LowMonster_Rare_interest : Monster
     private bool isDashing;
     private bool canEffect = true;
     private bool canFlip = true;
+    private bool isGrounded;
 
     protected override void Start()
     {
@@ -43,7 +44,7 @@ public class LowMonster_Rare_interest : Monster
 
         yield return new WaitForSeconds(0.5f);
 
-        rigid.linearVelocity = Vector2.zero;
+        rigid.linearVelocity = new Vector2(0, rigid.linearVelocity.y);
         anim.SetBool("Dashing", false);
         StartCoroutine(WaitToAttack(attackCoolDown));
 
@@ -55,6 +56,9 @@ public class LowMonster_Rare_interest : Monster
 
     private void FixedUpdate()
     {
+        // 바닥 체크
+        isGrounded = Physics2D.Raycast(transform.position, Vector2.down, 1.1f, groundLayer);
+
         float distanceX = player.position.x - transform.position.x;
         float absDistanceX = Mathf.Abs(distanceX);
         float distanceY = player.position.y - transform.position.y;
@@ -69,8 +73,8 @@ public class LowMonster_Rare_interest : Monster
                 Attack();
         }
 
-        // 이동
-        if (!isDashing && canFlip && absDistanceX > stopDistance)
+        // 바닥에 있을 때만 이동
+        if (!isDashing && canFlip && isGrounded && absDistanceX > stopDistance)
         {
             Move();
         }
@@ -78,21 +82,23 @@ public class LowMonster_Rare_interest : Monster
         {
             anim.SetBool("Walking", false);
         }
-        
+
+        // 대시 중 히트박스 체크
         if (isDashing)
         {
             CheckDashHitbox();
         }
     }
 
+
     private void Update()
     {
         Effect();
     }
-    
+
     private void FacePlayer()
     {
-        if (!isDashing && canFlip)
+        if (!isDashing && canFlip && isGrounded)
         {
             bool shouldFaceRight = player.position.x > transform.position.x;
             if (shouldFaceRight != facingRight)
@@ -102,23 +108,19 @@ public class LowMonster_Rare_interest : Monster
             }
         }
     }
-    
+
     private void CheckDashHitbox()
     {
-        // 방향에 따라 오프셋 방향 결정
-    
-        // OverlapBox로 범위 감지
-        Collider2D[] collidersEnemies = Physics2D.OverlapBoxAll(attackTransform.position,attackSize,0);
-        for (int i = 0; i < collidersEnemies.Length; i++)
+        Collider2D[] collidersEnemies = Physics2D.OverlapBoxAll(attackTransform.position, attackSize, 0);
+        foreach (var collider in collidersEnemies)
         {
-            if (collidersEnemies[i].gameObject.tag == "Player")
+            if (collider.CompareTag("Player"))
             {
-                collidersEnemies[i].GetComponent<PlayerHealth>().TakeDamage(damage);
+                collider.GetComponent<PlayerHealth>()?.TakeDamage(damage);
             }
         }
     }
 
-    
     private void Move()
     {
         if (!canFlip) return;
@@ -129,9 +131,6 @@ public class LowMonster_Rare_interest : Monster
         DetectGroundAndWalls();
     }
 
-    /// <summary>
-    /// 낭떠러지와 벽 감지 후 방향 반전
-    /// </summary>
     private void DetectGroundAndWalls()
     {
         Vector2 groundCheckPos = rigid.position + new Vector2(nextMove, 1f);
@@ -143,7 +142,7 @@ public class LowMonster_Rare_interest : Monster
         bool noGround = !Physics2D.Raycast(groundCheckPos, Vector2.down, 1.5f, groundLayer);
         bool hitWall = Physics2D.Raycast(wallCheckPos, Vector2.right * nextMove, 1.0f, wallLayer);
 
-        if ((noGround || hitWall) && !isDashing)
+        if ((noGround || hitWall) && !isDashing && isGrounded)
         {
             nextMove *= -1;
             if (canFlip)
@@ -153,9 +152,6 @@ public class LowMonster_Rare_interest : Monster
         }
     }
 
-    /// <summary>
-    /// 대시 중 이펙트 생성
-    /// </summary>
     private void Effect()
     {
         if (isDashing && canEffect)
@@ -175,19 +171,18 @@ public class LowMonster_Rare_interest : Monster
         yield return new WaitForSeconds(0.1f);
         canEffect = true;
     }
-    
+
     protected override void Die()
     {
         gameObject.SetActive(false);
     }
-    
+
     private void OnDrawGizmosSelected()
     {
         if (attackTransform != null)
         {
             Gizmos.color = new Color(1f, 0f, 0f, 0.5f);
-            Gizmos.DrawCube(attackTransform.position,attackSize);
+            Gizmos.DrawCube(attackTransform.position, attackSize);
         }
-        
     }
 }

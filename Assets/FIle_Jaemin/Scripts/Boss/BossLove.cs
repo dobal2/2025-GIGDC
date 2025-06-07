@@ -30,7 +30,6 @@ public class BossLove : Monster
     [SerializeField] private float bressDamage;
 
     [SerializeField] private AnimatorOverrideController phase2Anim;
-    [SerializeField] private Transform bressTransform;
     
     private SpriteRenderer spriteRenderer;
     private Collider2D collider;
@@ -113,13 +112,13 @@ public class BossLove : Monster
         while (transform.position.y < normalY)
         {
             transform.position += new Vector3(0, 0.1f, 0);
-            yield return new WaitForSeconds(0.001f);
+            yield return new WaitForSeconds(0.005f);
         }
         
         collider.isTrigger = false;
         rigid.gravityScale = 1;
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.3f);
 
         yield return StartCoroutine(BubblePattern());
     }
@@ -162,31 +161,41 @@ public class BossLove : Monster
     
     IEnumerator BressPattern()
     {
-        GameObject newBress = Instantiate(bressPrefab, bressTransform.position, Quaternion.identity);
-        newBress.transform.parent = bressTransform;
-        newBress.GetComponent<Bress>().damage = bressDamage;
-        newBress.transform.rotation *= Quaternion.Euler(new Vector3(0, 0, -60f));
-
-        while (Mathf.DeltaAngle(0, newBress.transform.eulerAngles.z) < 60)
-        {
-            newBress.transform.rotation *= Quaternion.Euler(new Vector3(0, 0, 0.4f));
-            yield return new WaitForSeconds(0.001f);
-        }
-        
-        yield return new WaitForSeconds(0.5f);
-        
-        while (Mathf.DeltaAngle(0, newBress.transform.eulerAngles.z) > -60f)
-        {
-            newBress.transform.rotation *= Quaternion.Euler(new Vector3(0, 0, -0.4f));
-            yield return new WaitForSeconds(0.001f);
-        }
-        
-        yield return new WaitForSeconds(0.5f);
-        
-        Destroy(newBress);
+        anim.SetTrigger("Bress");
         
         yield return new WaitForSeconds(2f);
     }
+    
+    // public void TriggerBress()
+    // {
+    //     StartCoroutine(Bress());
+    // }
+    //
+    // IEnumerator Bress()
+    // {
+    //     GameObject newBress = Instantiate(bressPrefab, bressTransform.position, Quaternion.identity);
+    //     newBress.transform.parent = bressTransform;
+    //     newBress.GetComponent<Bress>().damage = bressDamage;
+    //     newBress.transform.rotation *= Quaternion.Euler(new Vector3(0, 0, -60f));
+    //
+    //     while (Mathf.DeltaAngle(0, newBress.transform.eulerAngles.z) < 60)
+    //     {
+    //         newBress.transform.rotation *= Quaternion.Euler(new Vector3(0, 0, 0.4f));
+    //         yield return new WaitForSeconds(0.01f);
+    //     }
+    //     
+    //     yield return new WaitForSeconds(0.5f);
+    //     
+    //     while (Mathf.DeltaAngle(0, newBress.transform.eulerAngles.z) > -60f)
+    //     {
+    //         newBress.transform.rotation *= Quaternion.Euler(new Vector3(0, 0, -0.4f));
+    //         yield return new WaitForSeconds(0.01f);
+    //     }
+    //     
+    //     yield return new WaitForSeconds(0.5f);
+    //     
+    //     Destroy(newBress);
+    // }
 
     IEnumerator PatternRoutine()
     {
