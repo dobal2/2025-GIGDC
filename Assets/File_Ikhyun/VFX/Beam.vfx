@@ -2002,7 +2002,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Color, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"r":0.0,"g":0.8389447927474976,"b":17.42112922668457,"a":1.0}'
+      m_SerializableObject: '{"r":0.0,"g":0.5659842491149902,"b":23.258577346801759,"a":1.0}'
     m_Space: -1
   m_Property:
     name: _Color
@@ -2238,7 +2238,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Vector2, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"x":-4.0,"y":0.0}'
+      m_SerializableObject: '{"x":-3.0,"y":0.0}'
     m_Space: -1
   m_Property:
     name: _MainTexSpeed
@@ -2338,7 +2338,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 0.391
+      m_SerializableObject: 0.25
     m_Space: -1
   m_Property:
     name: _MAlphaClip
@@ -2374,7 +2374,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Vector2, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"x":-3.0,"y":0.0}'
+      m_SerializableObject: '{"x":-2.0,"y":0.0}'
     m_Space: -1
   m_Property:
     name: _DistortionSpeed
@@ -2474,7 +2474,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 0.309
+      m_SerializableObject: 0.618
     m_Space: -1
   m_Property:
     name: _DistortionAmount
@@ -3142,7 +3142,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Vector2, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"x":-4.0,"y":0.0}'
+      m_SerializableObject: '{"x":-3.0,"y":0.0}'
     m_Space: -1
   m_Property:
     name: _MainTexSpeed
@@ -3242,7 +3242,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 0.205
+      m_SerializableObject: 0.863
     m_Space: -1
   m_Property:
     name: _MAlphaClip
@@ -3278,7 +3278,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Vector2, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"x":-3.0,"y":0.0}'
+      m_SerializableObject: '{"x":-2.0,"y":0.0}'
     m_Space: -1
   m_Property:
     name: _DistortionSpeed
@@ -3378,7 +3378,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 0.306
+      m_SerializableObject: 0.929
     m_Space: -1
   m_Property:
     name: _DistortionAmount
@@ -4662,7 +4662,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 0
+      m_SerializableObject: 0.018
     m_Space: -1
   m_Property:
     name: _MAlphaClip
@@ -4798,7 +4798,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 0.046
+      m_SerializableObject: 0.16
     m_Space: -1
   m_Property:
     name: _DistortionAmount
@@ -9783,7 +9783,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"x":0.0,"y":0.27953383326530459,"z":1.9056603908538819}'
+      m_SerializableObject: '{"x":0.0,"y":0.08802250027656555,"z":1.9056605100631714}'
     m_Space: -1
   m_Property:
     name: _Color

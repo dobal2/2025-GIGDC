@@ -1,16 +1,24 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
 using static PlayerController;
 
 public class VFXController : MonoBehaviour {
-    [SerializeField] private List<VisualEffect> VFXList; 
+    [SerializeField] private List<VisualEffect> VFXList;
+
+    private Transform child;
     
     void Start()
     {
+        child = transform.Find("Arrow_Charge");
         Instance.OnEffectStateChanged += HandleEffectChange;
     }
-    
+
+    private void Update() {
+        VFXList[1].SetVector3("Attractor", child.position);
+    }
+
     void HandleEffectChange(PlayerEffectState state)
     {
         switch (state)
