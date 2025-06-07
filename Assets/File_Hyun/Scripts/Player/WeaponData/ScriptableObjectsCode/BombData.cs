@@ -4,7 +4,8 @@ using UnityEngine;
 public class BombData : ScriptableObject
 {
     [Header("기본정보")]
-    public GameObject bombPrefab;
+    public GameObject normalBombPrefab;
+    public GameObject skillBombPrefab;
     public Vector2 localOffset;
     public float bombExplosionRadius;
 
@@ -22,7 +23,8 @@ public class BombData : ScriptableObject
     public RuntimeAnimatorController animatorController;
 
     [Header("일반공격 정보")]
-    public float Damage;
-    public float ThrowAngle;
-    public float ThrowSpeed;
+    public float damage;
+    public float throwAngle;
+    public float throwSpeed;
+    public float throwDelay;
 }

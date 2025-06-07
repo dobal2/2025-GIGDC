@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3598730338549925500}
   - component: {fileID: 8034038059214260135}
   - component: {fileID: 5527187012777177025}
+  - component: {fileID: -2856650041889123342}
   m_Layer: 0
   m_Name: SkillBomb
   m_TagString: Untagged
@@ -152,3 +153,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
+--- !u!114 &-2856650041889123342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2813914100002012482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb2d30996c23e5a4fbb0e4edccd081d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyMask:
+    serializedVersion: 2
+    m_Bits: 512

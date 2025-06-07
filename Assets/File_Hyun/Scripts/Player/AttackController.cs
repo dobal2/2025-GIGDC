@@ -64,10 +64,10 @@ public class AttackController : MonoBehaviour
                 player.Animator.runtimeAnimatorController = bowData.animatorController;
                 break;
 
-                // case WeaponType.Bomb:
-                //     bombData = weaponDatabase.GetData<BombData>(WeaponType.Bomb);
-                //     player.Animator.runtimeAnimatorController = bombData.animatorController;
-                //     break;
+            case WeaponType.Bomb:
+                bombData = weaponDatabase.GetData<BombData>(WeaponType.Bomb);
+                player.Animator.runtimeAnimatorController = bombData.animatorController;
+                break;
         }
 
         ResetCombo();
@@ -186,7 +186,10 @@ public class AttackController : MonoBehaviour
                     airborneComboUsed = true;
                 break;
 
-             //case WeaponType.Bomb:
+            case WeaponType.Bomb:
+                if (!player.isGrounded)
+                    airborneComboUsed = true;
+                break;
 
         }
 
@@ -218,7 +221,7 @@ public class AttackController : MonoBehaviour
         {
             WeaponType.Spear => new SpearAttackState(player, stateMachine),
             WeaponType.Bow => new BowAttackState(player, stateMachine),
-            // WeaponType.Bomb => new BombAttackState(player, stateMachine),
+            WeaponType.Bomb => new BombAttackState(player, stateMachine),
             _ => null
         };
     }
@@ -229,7 +232,7 @@ public class AttackController : MonoBehaviour
         {
             WeaponType.Spear => spearData.MaxCombo,
             WeaponType.Bow => bowData.MaxCombo,
-            // WeaponType.Bomb => bombData.MaxCombo,
+            WeaponType.Bomb => 1,
             _ => 0
         };
     }
@@ -251,7 +254,6 @@ public class AttackController : MonoBehaviour
         {
             WeaponType.Spear => spearData.GetComboKeep(step),
             WeaponType.Bow => bowData.GetComboKeep(step),
-            // WeaponType.Bomb => bombData.GetComboKeep(step),
             _ => 0f
         };
     }

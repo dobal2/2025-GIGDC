@@ -1,31 +1,35 @@
 using UnityEngine;
 
-public class NormalBomb : MonoBehaviour
+public class SkillBomb : MonoBehaviour
 {
-    [SerializeField] private LayerMask collisionMask;
     [SerializeField] private LayerMask enemyMask;
 
     private float bombDamage;
     private float bombThrowAngle;
     private float bombThrowSpeed;
     private float bombExplosionRadius;
+    private float fuseTime;
 
     private Vector2 Direction;
     private Rigidbody2D rb;
     private Animator animator;
+    private float timer;
 
-    public void Initialize(Vector2 currentDirection, float damage, float throwAngle, float throwSpeed, float explosionRadius)
+    void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+    }
+
+    public void Initialize(Vector2 currentDirection, float damage, float throwAngle, float throwSpeed, float explosionRadius, float timeToExplode)
     {
         bombDamage = damage;
         bombThrowAngle = throwAngle;
         bombThrowSpeed = throwSpeed;
         bombExplosionRadius = explosionRadius;
-
-        rb = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
+        fuseTime = timeToExplode;
 
         float angleInRadians = bombThrowAngle * Mathf.Deg2Rad;
-
         float directionX = Mathf.Sign(currentDirection.x);
         float adjustedAngle = directionX >= 0 ? angleInRadians : Mathf.PI - angleInRadians;
 
@@ -33,19 +37,23 @@ public class NormalBomb : MonoBehaviour
         rb.linearVelocity = Direction * bombThrowSpeed;
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    void Update()
     {
-        int otherLayer = other.gameObject.layer;
-
-        if (((1 << otherLayer) & enemyMask) != 0 || ((1 << otherLayer) & collisionMask) != 0)
-        {
+        timer += Time.deltaTime;
+        if (timer >= fuseTime)
             Explode();
-        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        int otherLayer = collision.gameObject.layer;
+        if (((1 << otherLayer) & enemyMask) != 0)
+            Explode();
     }
 
     void Explode()
     {
-        DebugDrawDiameter(transform.position, PlayerController.Instance.AttackController.bombData.bombExplosionRadius, 0.3f);
+        DebugDrawDiameter(transform.position, PlayerController.Instance.AttackController.bombData.bombExplosionRadius ,0.3f);
 
         Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, bombExplosionRadius, enemyMask);
         foreach (var hit in hitColliders)
