@@ -86,7 +86,7 @@ public class SpearAttackState : PlayerState
         if (step < 1 || step > spearData.MaxCombo)
             return;
 
-        var info = spearData.spearComboInfos[step - 1];
+        SpearComboInfo info = spearData.spearComboInfos[step - 1];
         Vector2 offset = info.localOffset;
         offset.x *= player.facingDirection;
         Vector2 hitCenter = (Vector2)player.transform.position + offset;
