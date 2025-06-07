@@ -21,7 +21,6 @@ public class SpearData : ScriptableObject
     public float spearSkillDamage;
     public float spearSkillRange;
     public float jumpSpeed;
-    public float chargeDuration;
     public float spearSkillCooldown;
 
     [Header("Animator")]

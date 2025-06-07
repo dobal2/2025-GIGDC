@@ -1,4 +1,3 @@
-// SpearSkillState.cs
 using UnityEngine;
 using static PlayerController;
 
@@ -11,7 +10,6 @@ public class SpearSkillState : PlayerState
     private SkillPhase phase;
 
     private float dashSpeed;
-    private float chargeStartTime;
 
     private bool landingTriggered = false;
     private bool forceGroundedIgnore = false;
@@ -27,6 +25,7 @@ public class SpearSkillState : PlayerState
     public override void Enter()
     {
         player.Rigidbody.linearVelocity = Vector2.zero;
+        player.isNoClip = true;
         player.AttackController.MarkSkillUsed();
         Debug.Log("[Skill] 스킬 사용됨 - 쿨타임 시작");
 
@@ -35,7 +34,6 @@ public class SpearSkillState : PlayerState
             player.Animator.Play("Spear_Ground_Jump");
             mode = SkillMode.Ground;
             phase = SkillPhase.Moving;
-            player.isNoClip = true;
             dashSpeed = 20f;
             Vector2 vel = new(player.facingDirection * dashSpeed, spearData.jumpSpeed);
             player.Rigidbody.linearVelocity = vel;
@@ -54,7 +52,6 @@ public class SpearSkillState : PlayerState
             player.Animator.Play("Spear_Flying_Charge");
             mode = SkillMode.HighAir;
             phase = SkillPhase.Charging;
-            chargeStartTime = Time.time;
             player.Rigidbody.constraints = RigidbodyConstraints2D.FreezePositionX |
                                            RigidbodyConstraints2D.FreezePositionY;
         }
@@ -76,7 +73,8 @@ public class SpearSkillState : PlayerState
     {
         if (phase == SkillPhase.Charging)
         {
-            if (Time.time >= chargeStartTime + spearData.chargeDuration)
+            AnimatorStateInfo animInfo = player.Animator.GetCurrentAnimatorStateInfo(0);
+            if (animInfo.IsName("Spear_Flying_Charge") && animInfo.normalizedTime >= 1f)
             {
                 Vector2 boxSize = new(player.BoxCollider.bounds.size.x * 0.99f, 0.1f);
                 Vector2 origin = player.BoxCollider.bounds.center;
