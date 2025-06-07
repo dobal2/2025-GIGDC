@@ -6,8 +6,6 @@ using UnityEngine.Rendering.Universal;
 public class PlayerGhostTrail : MonoBehaviour
 {
     public GameObject ghostPrefab;
-    public float ghostSpawnInterval = 0.01f;
-    public KeyCode ghostKey = KeyCode.LeftShift;
 
     [SerializeField] private SpriteRenderer spriteRenderer;
     private Coroutine ghostRoutine;
