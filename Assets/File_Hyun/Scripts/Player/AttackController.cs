@@ -243,7 +243,7 @@ public class AttackController : MonoBehaviour
         {
             WeaponType.Spear => spearData.spearSkillCooldown,
             WeaponType.Bow => bowData.bowSkillcooldown,
-            // WeaponType.Bomb => bombData.Bombskillcooldown,
+            WeaponType.Bomb => bombData.Bombskillcooldown,
             _ => 1f
         };
     }
