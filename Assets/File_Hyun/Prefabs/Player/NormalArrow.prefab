@@ -103,8 +103,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bc6e95b2a1179945bdb5c141ab1de76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
-  maxDistance: 15
   collisionMask:
     serializedVersion: 2
     m_Bits: 192
@@ -121,7 +119,7 @@ Animator:
   m_GameObject: {fileID: 7523045259425540334}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c2649cd78942c0e478cdb525a0297988, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

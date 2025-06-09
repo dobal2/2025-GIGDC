@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class BombAttackState : PlayerState
 {
-    private float timer;
     private bool bombThrown;
 
     private readonly BombData bombData;
@@ -19,9 +18,8 @@ public class BombAttackState : PlayerState
         if (!player.isGrounded)
             player.Rigidbody.constraints |= RigidbodyConstraints2D.FreezePositionY;
 
-        player.AttackController.StartCombo(); // 콤보 1단계 강제 시작 → 애니메이션 재생됨
+        player.AttackController.StartCombo();
 
-        timer = 0f;
         bombThrown = false;
     }
 
@@ -32,21 +30,15 @@ public class BombAttackState : PlayerState
 
     public override void Update()
     {
-        timer += Time.deltaTime;
         player.AttackController.UpdateComboTimer();
-
-        if (!bombThrown && timer >= bombData.throwDelay)
-        {
-            ThrowBomb();
-            bombThrown = true;
-        }
 
         if (TryHandleDash()) return;
         if (TryHandleSkillInput()) return;
 
         AnimatorStateInfo animInfo = player.Animator.GetCurrentAnimatorStateInfo(0);
-        if (animInfo.IsName("1") || animInfo.IsName("Flying_1"))
+        if (animInfo.IsName("End") || animInfo.IsName("Flying_End"))
         {
+            ThrowBomb();
             if (animInfo.normalizedTime >= 1f)
                 stateMachine.ChangeState(new LocomotionState(player, stateMachine));
         }
@@ -60,6 +52,9 @@ public class BombAttackState : PlayerState
             return;
         }
 
+        if (bombThrown) return;
+
+        bombThrown = true;
         Vector2 offset = bombData.localOffset;
         offset.x *= player.facingDirection;
         Vector2 spawnPos = (Vector2)player.transform.position + offset;
@@ -74,5 +69,6 @@ public class BombAttackState : PlayerState
             bombData.throwSpeed,
             bombData.bombExplosionRadius
         );
+        player.AttackController.MarkBombThrown();
     }
 }

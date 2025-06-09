@@ -20,6 +20,7 @@ public class AttackController : MonoBehaviour
     private float currentPushDistance = 0f;
     private float pushSpeedPerSecond = 0f;
     private float lastSkillTime = -999f;
+    private float lastBombThrowTime = -999f;
     private bool airborneComboUsed = false;
 
     public bool HasReachedMaxCombo => comboStep >= GetMaxCombo();
@@ -76,6 +77,16 @@ public class AttackController : MonoBehaviour
     public void MarkSkillUsed()
     {
         lastSkillTime = Time.time;
+    }
+
+    public void MarkBombThrown()
+    {
+        lastBombThrowTime = Time.time;
+    }
+
+    public bool CanThrowBomb()
+    {
+        return Time.time >= lastBombThrowTime + bombData.throwDelay;
     }
 
     public void ResetCombo()
