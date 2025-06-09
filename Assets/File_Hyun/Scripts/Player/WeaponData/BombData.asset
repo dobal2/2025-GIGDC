@@ -15,7 +15,7 @@ MonoBehaviour:
   normalBombPrefab: {fileID: 2813914100002012482, guid: 0d13301f235dc03459872cd96907ee0f, type: 3}
   skillBombPrefab: {fileID: 2813914100002012482, guid: e514315bb49db8b428857ca833e2f4ed, type: 3}
   localOffset: {x: 1.5, y: 1.5}
-  bombExplosionRadius: 1.5
+  bombExplosionRadius: 2
   bombSkillDamage: 0
   bombSkillMaxNumber: 0
   bombSkillMinNumber: 0
@@ -28,4 +28,4 @@ MonoBehaviour:
   damage: 1
   throwAngle: 50
   throwSpeed: 10
-  throwDelay: 3
+  throwDelay: 0.5

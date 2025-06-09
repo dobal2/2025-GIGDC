@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class SkillBomb : MonoBehaviour
 {
@@ -15,12 +16,6 @@ public class SkillBomb : MonoBehaviour
     private Animator animator;
     private float timer;
 
-    void Awake()
-    {
-        rb = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
-    }
-
     public void Initialize(Vector2 currentDirection, float damage, float throwAngle, float throwSpeed, float explosionRadius, float timeToExplode)
     {
         bombDamage = damage;
@@ -29,9 +24,15 @@ public class SkillBomb : MonoBehaviour
         bombExplosionRadius = explosionRadius;
         fuseTime = timeToExplode;
 
+        rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+
+
+        animator.Play("Bomb");
         float angleInRadians = bombThrowAngle * Mathf.Deg2Rad;
         float directionX = Mathf.Sign(currentDirection.x);
         float adjustedAngle = directionX >= 0 ? angleInRadians : Mathf.PI - angleInRadians;
+        rb.AddTorque(Random.Range(-10f, 10f), ForceMode2D.Impulse);
 
         Direction = new Vector2(Mathf.Cos(adjustedAngle), Mathf.Sin(adjustedAngle)).normalized;
         rb.linearVelocity = Direction * bombThrowSpeed;
@@ -55,6 +56,14 @@ public class SkillBomb : MonoBehaviour
     {
         DebugDrawDiameter(transform.position, PlayerController.Instance.AttackController.bombData.bombExplosionRadius ,0.3f);
 
+        rb.linearVelocity = Vector2.zero;
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation |
+                         RigidbodyConstraints2D.FreezePositionX |
+                         RigidbodyConstraints2D.FreezePositionY;
+
+        rb.rotation = 0;
+        StartCoroutine(Destroy());
+        animator.Play("Boom");
         Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, bombExplosionRadius, enemyMask);
         foreach (var hit in hitColliders)
         {
@@ -62,6 +71,15 @@ public class SkillBomb : MonoBehaviour
                 monster.TakeDamage(bombDamage);
         }
 
+        Destroy(gameObject);
+    }
+
+    IEnumerator Destroy()
+    {
+        yield return null;
+        AnimatorStateInfo state = animator.GetCurrentAnimatorStateInfo(0);
+        float waitTime = state.length;
+        yield return new WaitForSeconds(waitTime);
         Destroy(gameObject);
     }
 
