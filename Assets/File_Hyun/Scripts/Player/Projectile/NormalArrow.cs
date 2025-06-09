@@ -21,6 +21,7 @@ public class NormalArrow : MonoBehaviour
         maxDistance = arrowDistance;
         startPosition = transform.position;
         Animator = GetComponent<Animator>();
+        Animator.Play("Arrow");
     }
 
     void Update()

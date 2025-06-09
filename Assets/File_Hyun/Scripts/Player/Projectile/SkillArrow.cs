@@ -22,6 +22,7 @@ public class SkillArrow : MonoBehaviour
         this.maxDistance = maxDistance;
         startPosition = transform.position;
         Animator = GetComponent<Animator>();
+        Animator.Play("Arrow");
     }
 
     void Update()
