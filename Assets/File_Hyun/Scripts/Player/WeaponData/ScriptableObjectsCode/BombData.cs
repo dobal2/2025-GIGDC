@@ -11,8 +11,8 @@ public class BombData : ScriptableObject
 
     [Header("특수공격 정보")]
     public float bombSkillDamage;
-    public float bombSkillMaxNumber;
-    public float bombSkillMinNumber;
+    public int bombSkillMaxNumber;
+    public int bombSkillMinNumber;
     public float bombSkillMaxExplosionTime;
     public float bombSkillMinExplosionTime;
     public float bombSkillMaxThrowAngle;
