@@ -14,6 +14,7 @@ public class NormalBomb : MonoBehaviour
     private Vector2 Direction;
     private Rigidbody2D rb;
     private Animator animator;
+    private bool isExploded = false;
 
     public void Initialize(Vector2 currentDirection, float damage, float throwAngle, float throwSpeed, float explosionRadius)
     {
@@ -21,6 +22,7 @@ public class NormalBomb : MonoBehaviour
         bombThrowAngle = throwAngle;
         bombThrowSpeed = throwSpeed;
         bombExplosionRadius = explosionRadius;
+        isExploded = false;
 
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
@@ -47,6 +49,8 @@ public class NormalBomb : MonoBehaviour
 
     void Explode()
     {
+        if (isExploded) return;
+        isExploded = true;
         DebugDrawDiameter(transform.position, PlayerController.Instance.AttackController.bombData.bombExplosionRadius, 0.3f);
 
         rb.linearVelocity = Vector2.zero;
@@ -62,7 +66,6 @@ public class NormalBomb : MonoBehaviour
             if (hit.TryGetComponent<Monster>(out var monster))
                 monster.TakeDamage(bombDamage);
         }
-
     }
 
     IEnumerator Destroy()

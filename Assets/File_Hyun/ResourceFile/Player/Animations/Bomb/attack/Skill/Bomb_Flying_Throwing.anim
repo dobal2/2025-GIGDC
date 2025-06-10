@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Arrow
+  m_Name: Bomb_Flying_Throwing
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,7 +21,11 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: -4346244404228752641, guid: 2aabfa4f218b9124fa55f2f8146283d2, type: 3}
+      value: {fileID: 6096350156392175430, guid: 406fea3b0bbc67849a76807fe2bdacc2, type: 3}
+    - time: 0.083333336
+      value: {fileID: 3313660960959390146, guid: 406fea3b0bbc67849a76807fe2bdacc2, type: 3}
+    - time: 0.16666667
+      value: {fileID: 3078005371159852843, guid: 406fea3b0bbc67849a76807fe2bdacc2, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -44,13 +48,15 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: -4346244404228752641, guid: 2aabfa4f218b9124fa55f2f8146283d2, type: 3}
+    - {fileID: 6096350156392175430, guid: 406fea3b0bbc67849a76807fe2bdacc2, type: 3}
+    - {fileID: 3313660960959390146, guid: 406fea3b0bbc67849a76807fe2bdacc2, type: 3}
+    - {fileID: 3078005371159852843, guid: 406fea3b0bbc67849a76807fe2bdacc2, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.083333336
+    m_StopTime: 0.25
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0

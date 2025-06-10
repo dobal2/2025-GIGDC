@@ -2,7 +2,7 @@ using UnityEngine;
 
 public enum PlayerStateType
 {
-    Missing,
+    Missing, // isfucked = true;
     Locomotion,
     Dash,
     SpearAttack,
