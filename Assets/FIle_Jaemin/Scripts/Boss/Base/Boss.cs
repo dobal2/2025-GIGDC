@@ -11,6 +11,7 @@ public abstract class Boss : MonoBehaviour
     protected int currentPhase = 1;
     
     [SerializeField] protected Transform player;
+    [SerializeField] protected RuntimeAnimatorController phase2Anim;
     protected Rigidbody2D rigid;
     protected Animator anim;
     public bool facingRight = false;

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class BossExcitement : Monster
+public class BossExcitement : Boss
 {
     [Header("Prefabs")]
     [SerializeField] private GameObject homingMissilePrefab;
@@ -21,8 +21,6 @@ public class BossExcitement : Monster
     [SerializeField] private Transform targetBoardPoint;
 
     [Header("Values")]
-    [SerializeField] private int phase = 1;
-    [SerializeField] private float phase2Hp;
     [SerializeField] private float teleportCoolTime;
     private float teleportCoolTimer;
     private Vector3 lastTeleportedPos;
@@ -37,19 +35,11 @@ public class BossExcitement : Monster
         clone.gameObject.SetActive(false);
         base.Start();
     }
-
-    protected override void Attack()
-    {
-        if (!isAttacking)
-        {
-            StartCoroutine(PatternRoutine());
-        }
-    }
-
+    
     protected override void Die()
     {
         StopAllCoroutines();
-        if (phase == 1)
+        if (currentPhase == 1)
         {
             Phase2();
         }
@@ -66,26 +56,27 @@ public class BossExcitement : Monster
 
     private void Phase2()
     {
+        anim.runtimeAnimatorController = phase2Anim;
         transform.position = phase2Transform.position + new Vector3(0, transform.localScale.y / 2, 0);
-        phase = 2;
+        currentPhase = 2;
         maxHp = phase2Hp;
         hp = maxHp;
         isAttacking = false;
         clone.gameObject.SetActive(true);
 
-        StartCoroutine(SpawnTargetBoardLoop()); // ⬅️ 상시 타겟 보드 루프 시작
+        StartCoroutine(SpawnTargetBoardLoop());
     }
 
     private IEnumerator PatternRoutine()
     {
         isAttacking = true;
 
-        if (phase == 1)
+        if (currentPhase == 1)
         {
             yield return StartCoroutine(FireHomingMissileRoutine());
             yield return StartCoroutine(ThrowBombAtPlayerRoutine());
         }
-        else if (phase == 2)
+        else if (currentPhase == 2)
         {
             yield return StartCoroutine(GlassWallPattern());
             yield return StartCoroutine(GlassBowlPattern());
@@ -97,6 +88,7 @@ public class BossExcitement : Monster
 
     private IEnumerator FireHomingMissileRoutine()
     {
+        anim.SetTrigger("HomingMissile");
         GameObject missile = Instantiate(homingMissilePrefab, missileSpawnPoint.position, Quaternion.identity);
         missile.GetComponent<HomingMissile>().SetTarget(player);
         yield return new WaitForSeconds(0.5f);
@@ -104,6 +96,8 @@ public class BossExcitement : Monster
 
     private IEnumerator ThrowBombAtPlayerRoutine()
     {
+        anim.SetTrigger("HomingMissile");
+        
         int bombCount = Random.Range(4, 7);
 
         for (int i = 0; i < bombCount; i++)
@@ -135,14 +129,14 @@ public class BossExcitement : Monster
 
         if (teleportPositions.Length > 1)
         {
-            Vector3 randomPos;
+            GameObject randomPlatform;
             do
             {
-                randomPos = teleportPositions[Random.Range(0, teleportPositions.Length)].position;
-            } while (randomPos == lastTeleportedPos);
+                randomPlatform = teleportPositions[Random.Range(0, teleportPositions.Length)].gameObject;
+            } while (randomPlatform.transform.position == lastTeleportedPos);
 
-            lastTeleportedPos = randomPos;
-            transform.position = randomPos + new Vector3(0, transform.localScale.y / 2, 0);
+            lastTeleportedPos = randomPlatform.transform.position;
+            transform.position = randomPlatform.transform.position + new Vector3(0, randomPlatform.transform.localScale.y / 2, 0);
         }
         else if (teleportPositions.Length == 1)
         {
@@ -154,7 +148,7 @@ public class BossExcitement : Monster
 
     private IEnumerator SpawnTargetBoardLoop()
     {
-        while (phase == 2)
+        while (currentPhase == 2)
         {
             GameObject board = Instantiate(targetBoardPrefab, targetBoardPoint.position, Quaternion.identity);
             board.GetComponent<TargetBoard>().SetBoss(this);
@@ -213,16 +207,16 @@ public class BossExcitement : Monster
         }
     }
 
-    private void Update()
+    protected override void Update()
     {
         if (hp <= 0) Die();
-
+        
         if (!isAttacking)
         {
-            Attack();
+            StartCoroutine(PatternRoutine());
         }
-
-        if (phase == 1)
+        
+        if (currentPhase == 1)
         {
             teleportCoolTimer += Time.deltaTime;
             if (teleportCoolTime <= teleportCoolTimer)

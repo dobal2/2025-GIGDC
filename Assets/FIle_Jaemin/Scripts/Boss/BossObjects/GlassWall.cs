@@ -4,6 +4,7 @@ public class GlassWall : MonoBehaviour
 {
     [SerializeField] private float hp = 15;
     [SerializeField] private float speed = 1;
+    [SerializeField] private float damage = 1;
     
     void Start()
     {
@@ -24,8 +25,22 @@ public class GlassWall : MonoBehaviour
         hp -= damage;
     }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            if (!other.GetComponent<PlayerController>().CanTakeDamage)
+            {
+                return;
+            }
+            other.GetComponent<PlayerHealth>().TakeDamage(damage);
+        }
+    }
+    
     private void Die()
     {
         Destroy(gameObject);
     }
+    
+    
 }

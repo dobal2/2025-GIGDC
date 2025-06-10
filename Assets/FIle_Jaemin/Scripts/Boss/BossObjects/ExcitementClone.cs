@@ -9,6 +9,7 @@ public class ExcitementClone : MonoBehaviour
     
     [SerializeField] private float moveSpeed = 3f;
 
+    [SerializeField] private bool facingRight;
     private bool movingRight = true;
 
     void Update()
@@ -17,6 +18,8 @@ public class ExcitementClone : MonoBehaviour
         
         if (movingRight)
         {
+            if(!facingRight)
+                Flip();
             pos.x += moveSpeed * Time.deltaTime;
             if (pos.x >= endXPos)
             {
@@ -26,6 +29,8 @@ public class ExcitementClone : MonoBehaviour
         }
         else
         {
+            if(facingRight)
+                Flip();
             pos.x -= moveSpeed * Time.deltaTime;
             if (pos.x <= startXPos)
             {
@@ -35,6 +40,13 @@ public class ExcitementClone : MonoBehaviour
         }
 
         transform.position = pos;
+    }
+    
+    private void Flip()
+    {
+        facingRight = !facingRight;
+        
+        transform.rotation = Quaternion.Euler(0f, transform.eulerAngles.y + 180f, 0f);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
