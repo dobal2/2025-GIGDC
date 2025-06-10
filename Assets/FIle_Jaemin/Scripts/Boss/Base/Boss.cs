@@ -1,22 +1,21 @@
 using System;
-using System.Collections;
 using UnityEngine;
 
-public abstract class Monster : MonoBehaviour
+public abstract class Boss : MonoBehaviour
 {
     [Header("Stats")] 
     [SerializeField] protected float maxHp;
     [SerializeField] protected float hp;
+    [SerializeField] protected float phase2Hp;
     [SerializeField] protected float damage;
-    [SerializeField] protected float speed;
-    [SerializeField] protected float attackCoolDown;
-
+    protected int currentPhase = 1;
+    
     [SerializeField] protected Transform player;
     protected Rigidbody2D rigid;
     protected Animator anim;
     public bool facingRight = false;
     protected bool canAttack = true;
-
+    
     protected virtual void Start()
     {
         rigid = GetComponent<Rigidbody2D>();
@@ -39,39 +38,19 @@ public abstract class Monster : MonoBehaviour
         }
     }
 
-    protected abstract void Attack();
-    protected abstract void Die();
+    protected virtual void Update()
+    {
+        if (hp <= 0) Die();
+    }
 
+    protected abstract void Die();
+    
     public virtual void TakeDamage(float amount)
     {
         hp -= amount;
         if (hp <= 0) Die();
     }
     
-    public void KnockBack(bool isRightAttack, float knockBackForce,bool doTakeDamageAnimation)
-    {
-        if (doTakeDamageAnimation)
-        {
-            TakeDamageAnimation();
-        }
-        
-        rigid.linearVelocity = Vector2.zero;
-        
-        if (isRightAttack)
-        {
-            rigid.AddForce(new Vector2(knockBackForce, 0),ForceMode2D.Impulse);
-        }
-        else
-        {
-            rigid.AddForce(new Vector2(-knockBackForce, 0),ForceMode2D.Impulse);
-        }
-    }
-
-    public void TakeDamageAnimation()
-    {
-        anim.SetTrigger("Hit");
-    }
-
     protected void Flip()
     {
         facingRight = !facingRight;
@@ -80,11 +59,4 @@ public abstract class Monster : MonoBehaviour
     }
 
 
-    protected IEnumerator WaitToAttack(float time)
-    {
-        canAttack = false;
-        yield return new WaitForSeconds(time);
-        canAttack = true;
-    }
-    
 }

@@ -1,29 +1,26 @@
+using System;
 using UnityEngine;
 using System.Collections;
 
 public class Finger : MonoBehaviour
 {
-    [SerializeField] private float fallDuration = 1.5f;
-    [SerializeField] private float fallDistance = 5f;
-
+    public float fallSpeed;
     void Start()
     {
-        StartCoroutine(Fall());
+        
     }
 
-    IEnumerator Fall()
+    private void Update()
     {
-        Vector3 start = transform.position;
-        Vector3 end = start + Vector3.down * fallDistance;
-        float elapsed = 0f;
+        transform.Translate(new Vector3(0,-fallSpeed,0) * Time.deltaTime);
+    }
 
-        while (elapsed < fallDuration)
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Platform") || other.CompareTag("Ground"))
         {
-            transform.position = Vector3.Lerp(start, end, elapsed / fallDuration);
-            elapsed += Time.deltaTime;
-            yield return null;
+            fallSpeed = 0;
+            Destroy(gameObject,2);
         }
-
-        transform.position = end;
     }
 }

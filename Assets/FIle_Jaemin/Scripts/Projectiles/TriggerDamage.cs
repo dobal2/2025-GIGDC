@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class Bress : MonoBehaviour
+public class TriggerDamage : MonoBehaviour
 {
     public float damage;
 
