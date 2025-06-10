@@ -221,7 +221,7 @@ public class AttackController : MonoBehaviour
         {
             WeaponType.Spear => new SpearSkillState(player, stateMachine),
             WeaponType.Bow => new BowSkillState(player, stateMachine),
-            // WeaponType.Bomb => new BombSkillState(player, stateMachine),
+            WeaponType.Bomb => new BombSkillState(player, stateMachine),
             _ => null
         };
     }

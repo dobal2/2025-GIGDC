@@ -134,7 +134,7 @@ public class PlayerController : MonoBehaviour
         InputManager.Instance.RegisterPlayer(this);
         InputManager.Instance.currentContext = InputManager.InputContext.Gameplay;
         AttackController.Initialize(WeaponType.Spear);
-        AttackController.Initialize(WeaponType.Bow);
+        AttackController.Initialize(WeaponType.Bomb);
         stateMachine = new PlayerStateMachine();
         stateMachine.Initialize(new LocomotionState(this, stateMachine));
         SetEffectState(PlayerEffectState.None);

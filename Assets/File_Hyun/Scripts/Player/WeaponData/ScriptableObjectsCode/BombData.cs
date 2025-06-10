@@ -17,6 +17,8 @@ public class BombData : ScriptableObject
     public float bombSkillMinExplosionTime;
     public float bombSkillMaxThrowAngle;
     public float bombSkillMinThrowAngle;
+    public float bombSkillMaxThrowSpeed;
+    public float bombSkillMinThrowSpeed;
     public float Bombskillcooldown;
 
     [Header("Animator")]
