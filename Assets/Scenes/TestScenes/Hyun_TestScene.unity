@@ -1179,11 +1179,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6275964923115248274, guid: fca5e8c2bcbc60c4d849c1fca55c6f57, type: 3}
       propertyPath: hp
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6275964923115248274, guid: fca5e8c2bcbc60c4d849c1fca55c6f57, type: 3}
       propertyPath: maxHp
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6275964923115248274, guid: fca5e8c2bcbc60c4d849c1fca55c6f57, type: 3}
       propertyPath: player
@@ -1376,6 +1376,7 @@ MonoBehaviour:
   jumpHeightMultiplier: 2
   jumpBufferTime: 0.1
   coyoteTime: 0.1
+  dropPlatformDuration: 0.3
   dashSpeed: 50
   dashDuration: 0.1
   dashCooldown: 0.8
@@ -1385,6 +1386,9 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 192
+  platformPassLayer:
+    serializedVersion: 2
+    m_Bits: 128
   ceilingLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -1489,9 +1493,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1252394521286520684}
   - component: {fileID: 5028477998089189781}
-  - component: {fileID: 5918730046746740479}
   - component: {fileID: 727137108348619991}
   - component: {fileID: 5918730046746740477}
+  - component: {fileID: 5918730046746740479}
   - component: {fileID: 145162027325183794}
   - component: {fileID: 391269722744936413}
   - component: {fileID: 5918730046746740478}

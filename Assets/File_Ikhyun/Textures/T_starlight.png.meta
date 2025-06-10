@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: a4a090d05c9a86444812f034fb088d97
+guid: b47e1b02407b6694984d7a73b0b21d45
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3183834608835035403
-    second: starlight3_0
+      213: 3965702385029701656
+    second: starlight7_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: starlight3_0
+      name: starlight7_0
       rect:
         serializedVersion: 2
-        x: 20
-        y: 48
-        width: 2008
-        height: 2000
+        x: 6
+        y: 6
+        width: 2036
+        height: 2036
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b01053345b04f2c20800000000000000
-      internalID: 3183834608835035403
+      spriteID: 8106d98de41090730800000000000000
+      internalID: 3965702385029701656
       vertices: []
       indices: 
       edges: []

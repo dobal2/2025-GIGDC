@@ -12,8 +12,6 @@ public class SkillArrow : MonoBehaviour
     private float speed;
     private float maxDistance;
 
-    private Animator Animator;
-
     public void Initialize(Vector2 currentDirection, float damage, float speed, float maxDistance)
     {
         direction = currentDirection.normalized;
@@ -21,7 +19,7 @@ public class SkillArrow : MonoBehaviour
         this.speed = speed;
         this.maxDistance = maxDistance;
         startPosition = transform.position;
-        Animator = GetComponent<Animator>();
+        transform.rotation = Quaternion.Euler(0f, direction.x == -1 ? 180f : 0f, 0f);
     }
 
     void Update()

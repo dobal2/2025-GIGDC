@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(BoxCollider2D))]
@@ -57,6 +58,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float jumpHeightMultiplier = 1f;
     [SerializeField] private float jumpBufferTime = 0.1f;
     [SerializeField] private float coyoteTime = 0.1f;
+    [SerializeField] private float dropPlatformDuration = 0.3f;
     public float MaxJumpTime => maxJumpTime;
 
     [Header("Dash Settings")]
@@ -71,6 +73,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Check Settings")]
     [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private LayerMask platformPassLayer;
     [SerializeField] private LayerMask ceilingLayer;
     [SerializeField] private float boxHeight = 0.1f;
     [SerializeField] private float boxLowAirHeight = 3f;
@@ -110,6 +113,8 @@ public class PlayerController : MonoBehaviour
     private Vector2 originalColliderOffset;
     private PlayerStateMachine stateMachine;
     private bool prevSkillAvailable = false;
+    private bool isDroppingPlatform = false;
+    private bool wasDownKeyHeldLastFrame = false;
 
     void Awake()
     {
@@ -150,6 +155,12 @@ public class PlayerController : MonoBehaviour
         if (!prevSkillAvailable && nowAvailable)
             Debug.Log("[Skill] 스킬 쿨타임 완료 - 사용 가능");
         prevSkillAvailable = nowAvailable;
+
+        if (isGrounded && !wasDownKeyHeldLastFrame && DownHeld && !isDroppingPlatform)
+            StartCoroutine(DropThroughPlatform());
+
+        wasDownKeyHeldLastFrame = DownHeld;
+
         stateMachine.Update();
     }
 
@@ -287,6 +298,29 @@ public class PlayerController : MonoBehaviour
         if (rb.linearVelocity.y > 0f)
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * 0.3f);
         jumpTimeCounter = maxJumpTime;
+    }
+
+    private IEnumerator DropThroughPlatform()
+    {
+        isDroppingPlatform = true;
+
+        // overlap으로 현재 접촉 중인 플랫폼 찾기
+        Collider2D[] hits = Physics2D.OverlapBoxAll(transform.position, boxCol.size, 0f, platformPassLayer);
+        foreach (Collider2D hit in hits)
+        {
+            if (hit.TryGetComponent<PlatformEffector2D>(out _))
+                Physics2D.IgnoreCollision(boxCol, hit, true);
+        }
+
+        yield return new WaitForSeconds(dropPlatformDuration);
+
+        foreach (Collider2D hit in hits)
+        {
+            if (hit != null)
+                Physics2D.IgnoreCollision(boxCol, hit, false);
+        }
+
+        isDroppingPlatform = false;
     }
 
     public void ConsumeAttackBuffer() => attackBufferTimer = 0f;
