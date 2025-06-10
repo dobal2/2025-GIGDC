@@ -34,7 +34,7 @@ public class SkillBomb : MonoBehaviour
         float angleInRadians = bombThrowAngle * Mathf.Deg2Rad;
         float directionX = Mathf.Sign(currentDirection.x);
         float adjustedAngle = directionX >= 0 ? angleInRadians : Mathf.PI - angleInRadians;
-        rb.AddTorque(Random.Range(-9f, 9f), ForceMode2D.Impulse);
+        rb.AddTorque(Random.Range(-3f, 3f), ForceMode2D.Impulse);
 
         Direction = new Vector2(Mathf.Cos(adjustedAngle), Mathf.Sin(adjustedAngle)).normalized;
         rb.linearVelocity = Direction * bombThrowSpeed;
