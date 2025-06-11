@@ -52,9 +52,6 @@ public class AttackController : MonoBehaviour
 
     public void TrySwitchWeapon()
     {
-        if (player.CurrentStateType != PlayerStateType.Locomotion || player.isJumping)
-            return;
-
         if (!player.CanChangeWeapon)
             return;
 
