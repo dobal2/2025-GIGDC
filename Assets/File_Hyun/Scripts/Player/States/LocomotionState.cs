@@ -31,6 +31,8 @@ public class LocomotionState : PlayerState
         if (TryHandleComboStart()) return;
         if (TryHandleDash()) return;
 
+        if (player.ChangePressed && !player.isJumping) player.AttackController.TrySwitchWeapon();
+
         if (!player.isJumping && player.jumpBufferTimer > 0f && (player.isGrounded || player.coyoteTimer > 0f))
         {
             shouldJump = true;
