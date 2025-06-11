@@ -3,7 +3,8 @@ using UnityEngine;
 
 public static class CameraUtility
 {
-    public static Camera GetTopCamera()
+    public static Camera TopCamera => GetTopCamera();
+    private static Camera GetTopCamera()
     {
         Camera[] cams = Camera.allCameras;
         Camera topCamera = null;
@@ -25,14 +26,10 @@ public static class CameraUtility
     }
 
     public static void ShakeCamera(
-        float duration = 0.3f,
-        float strength = 1,
-        int vibrato = 10,
-        int randomness = 90,
-        bool fadeOut = true
-        )
-    {
-        Camera topCamera = GetTopCamera();
-        topCamera.DOShakePosition(duration, strength, vibrato, randomness, fadeOut);
-    }
+        float duration = 0.3f, 
+        float strength = 1, 
+        int vibrato = 10, 
+        int randomness = 90, 
+        bool fadeOut = true) => 
+        TopCamera.DOShakePosition(duration, strength, vibrato, randomness, fadeOut);
 }
