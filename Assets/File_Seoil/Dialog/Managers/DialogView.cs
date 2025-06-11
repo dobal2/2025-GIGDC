@@ -218,7 +218,7 @@ public class DialogView : MonoBehaviour
             return;
         }
 
-        CameraUtility.FindTopMostCamera().transform
+        CameraUtility.GetTopCamera().transform
             .DOShakePosition(
                 duration: duration, 
                 strength: 0.5f
