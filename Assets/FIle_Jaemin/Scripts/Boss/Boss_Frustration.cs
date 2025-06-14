@@ -159,6 +159,7 @@ IEnumerator CastFingerAttack()
     //Phase2 Pattern
     IEnumerator DashAttack()
     {
+        anim.SetTrigger("Rush");
         Debug.Log("Dash");
         canFlip = false;
         if (player.transform.position.x < transform.position.x)
@@ -181,6 +182,7 @@ IEnumerator CastFingerAttack()
 
     private void StretchFingerAttack()
     {
+        anim.SetTrigger("Attack");
         Collider2D[] collidersEnemies = Physics2D.OverlapBoxAll(fingerStretchPos.position, fingerStretchAttackSize, 0);
         foreach (var collider in collidersEnemies)
         {
@@ -222,6 +224,7 @@ IEnumerator CastFingerAttack()
 
     IEnumerator LightAttack()
     {
+        anim.SetTrigger("Charge");
         canFlip = false;
         
         SummonBattery();
@@ -257,6 +260,7 @@ IEnumerator CastFingerAttack()
     
     private void Phase2()
     {
+        anim.runtimeAnimatorController = phase2Anim;
         takeDamageCount = 0;
         phase1Map.SetActive(false);
         phase2Map.SetActive(true);

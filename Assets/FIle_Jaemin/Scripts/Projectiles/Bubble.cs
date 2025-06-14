@@ -28,13 +28,18 @@ public class Bubble : MonoBehaviour
         Collider2D[] collidersEnemies = Physics2D.OverlapCircleAll(transform.position, attackRadius);
         for (int i = 0; i < collidersEnemies.Length; i++)
         {
-            if (collidersEnemies[i].gameObject.tag == "Player")
+            if (collidersEnemies[i].gameObject.CompareTag("Player"))
             {
                 Debug.Log("Explosion");
                 collidersEnemies[i].GetComponent<PlayerHealth>().TakeDamage(damage);
             }
         }
         
+        Destroy(gameObject);
+    }
+
+    public void TakeHit(float damage)
+    {
         Destroy(gameObject);
     }
 }

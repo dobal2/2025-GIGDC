@@ -1,7 +1,8 @@
 using System.Collections;
+using System.Transactions;
 using UnityEngine;
 
-public class Boss_Love : Monster
+public class Boss_Love : Boss
 {
     [Header("Prefabs")]
     [SerializeField] private GameObject noticeDangerPrefab;
@@ -18,6 +19,8 @@ public class Boss_Love : Monster
     [SerializeField] private float fieldYRangeMax;
     [SerializeField] private float normalY;
     [SerializeField] private float digY;
+
+    private bool isTransforming;
     
     [Header("Ink Setting")]
     [SerializeField] private float inkDamage;
@@ -42,14 +45,6 @@ public class Boss_Love : Monster
         base.Start();
     }
 
-    protected override void Attack()
-    {
-        if (!isAttacking)
-        {
-            StartCoroutine(PatternRoutine());
-        }
-    }
-
     protected override void Die()
     {
         StopAllCoroutines();
@@ -65,6 +60,10 @@ public class Boss_Love : Monster
 
     private void Phase2()
     {
+        anim.SetTrigger("Transform");
+
+        isTransforming = true;
+        
         phase = 2;
         maxHp = phase2Hp;
         hp = maxHp;
@@ -76,6 +75,11 @@ public class Boss_Love : Monster
 
         isAttacking = false;
         collider.isTrigger = false;
+    }
+
+    public void EndTransforming()
+    {
+        isTransforming = false;
     }
 
     private void MoveUpInk()
@@ -209,18 +213,24 @@ public class Boss_Love : Monster
         }
         else if (phase == 2)
         {
-            yield return StartCoroutine(BressPattern());
-            yield return StartCoroutine(SpawnAroundBubblePattern());
+            if (!isTransforming)
+            {
+                yield return StartCoroutine(BressPattern());
+                yield return StartCoroutine(SpawnAroundBubblePattern());   
+            }
         }
         
         yield return new WaitForSeconds(0.5f);
         isAttacking = false;
     }
-    
-    void Update()
+
+    protected override void Update()
     {
-        if (hp <= 0) Die();
+        base.Update();
         
-        Attack();
+        if (!isAttacking)
+        {
+            StartCoroutine(PatternRoutine());
+        }
     }
 }

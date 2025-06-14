@@ -369,7 +369,7 @@ Transform:
   m_GameObject: {fileID: 197438597}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14.5, y: 14.76, z: 0}
+  m_LocalPosition: {x: -14.5, y: 12.6, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -422,8 +422,9 @@ MonoBehaviour:
   phase2Hp: 400
   damage: 0
   player: {fileID: 0}
-  phase2Anim: {fileID: 0}
+  phase2Anim: {fileID: 22100000, guid: b1409939ee90c024db884ba5f64dbad1, type: 2}
   facingRight: 0
+  takeDamageCount: 0
   windPrefab: {fileID: 5563773724012091181, guid: 611fa9d28fba14d49b5a173c490edf11, type: 3}
   fingerPrefab: {fileID: 309181425161857137, guid: 995b87068d7e61c489bda91215098c42, type: 3}
   bossPositions:
@@ -497,10 +498,10 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 1.58}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5, y: 0}
     oldSize: {x: 4, y: 3.1875}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
@@ -1281,7 +1282,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 908b547062346904684b8a4e0c5ed28f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 1972
+  Currenthealth: 0
   invincibleTime: 1
   isInvincible: 0
 --- !u!50 &1549056372
