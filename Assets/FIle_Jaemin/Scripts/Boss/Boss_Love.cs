@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class BossLove : Monster
+public class Boss_Love : Monster
 {
     [Header("Prefabs")]
     [SerializeField] private GameObject noticeDangerPrefab;

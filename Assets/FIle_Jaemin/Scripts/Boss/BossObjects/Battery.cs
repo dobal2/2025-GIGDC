@@ -20,7 +20,7 @@ public class Battery : MonoBehaviour
         {
             if (collidersEnemies[i].gameObject.tag == "Boss")
             {
-                Frustration frustration = collidersEnemies[i].GetComponent<Frustration>();
+                Boss_Frustration frustration = collidersEnemies[i].GetComponent<Boss_Frustration>();
                 if (frustration)
                 {
                     Debug.Log("Explosion");   

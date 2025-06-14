@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class BossExcitement : Boss
+public class Boss_Excitement : Boss
 {
     [Header("Prefabs")]
     [SerializeField] private GameObject homingMissilePrefab;
@@ -161,10 +161,10 @@ public class BossExcitement : Boss
 
     private IEnumerator GlassWallPattern()
     {
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 3; i++)
         {
             Instantiate(glassWallPrefab, targetBoardPoint.position, Quaternion.identity);
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(2f);
         }
     }
 

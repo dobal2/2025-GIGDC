@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class TargetBoard : MonoBehaviour
 {
-    private BossExcitement boss;
+    private Boss boss;
     private int damage;
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -17,7 +17,7 @@ public class TargetBoard : MonoBehaviour
         // }
     }
 
-    public void SetBoss(BossExcitement be)
+    public void SetBoss(Boss be)
     {
         boss = be;
     }

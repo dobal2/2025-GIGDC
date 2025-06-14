@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Frustration : Boss
+public class Boss_Frustration : Boss
 {
     private int takeDamageCount = 0;
     private bool canFlip = true;
