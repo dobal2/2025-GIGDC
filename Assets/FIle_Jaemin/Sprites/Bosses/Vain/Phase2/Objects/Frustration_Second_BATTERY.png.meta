@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Frustration_Second_BATTERY_0: -7808250141622463913
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

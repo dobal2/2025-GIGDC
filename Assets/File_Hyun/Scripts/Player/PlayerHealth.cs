@@ -5,7 +5,8 @@ public class PlayerHealth : MonoBehaviour
 {
     public static PlayerHealth Instance { get; private set; }
 
-    public float Currenthealth;
+    public float MaxHealth;
+    public float CurrentHealth;
     [SerializeField] private float invincibleTime = 1f;
 
     [HideInInspector] public bool isInvincible;
@@ -33,10 +34,10 @@ public class PlayerHealth : MonoBehaviour
             return;
         }
 
-        Currenthealth -= damage;
-        Debug.Log("Now Player Health: "+Currenthealth);
+        CurrentHealth -= damage;
+        Debug.Log("Now Player Health: "+CurrentHealth);
 
-        if (Currenthealth <= 0)
+        if (CurrentHealth <= 0)
         {
             Die();
             return;
