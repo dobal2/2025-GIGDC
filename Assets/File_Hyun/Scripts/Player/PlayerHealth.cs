@@ -20,13 +20,8 @@ public class PlayerHealth : MonoBehaviour
         }
         Instance = this;
     }
-
-    private void Die()
-    {
-        PlayerController.Instance.Die();
-    }
     
-    public void TakeDamage(float damage)
+    public void TakeDamage(float amount)
     {
         if (!PlayerController.Instance.CanTakeDamage)
         {
@@ -34,17 +29,27 @@ public class PlayerHealth : MonoBehaviour
             return;
         }
 
-        CurrentHealth -= damage;
+        CurrentHealth -= amount;
         Debug.Log("Now Player Health: "+CurrentHealth);
 
         if (CurrentHealth <= 0)
         {
-            Die();
+            PlayerController.Instance.Die();
             return;
         }
 
         isInvincible = true;
         StartCoroutine(ResetInvincible());
+    }
+
+    public void TakeHeal(float amount)
+    {
+        if (CurrentHealth + amount > MaxHealth)
+            CurrentHealth = MaxHealth;
+        else
+            CurrentHealth += amount;
+
+        Debug.Log("Now Player Health: " + CurrentHealth);
     }
 
     private IEnumerator ResetInvincible()

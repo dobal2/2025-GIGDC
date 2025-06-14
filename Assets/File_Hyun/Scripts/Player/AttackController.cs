@@ -1,4 +1,5 @@
 using System;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 [RequireComponent(typeof(PlayerController))]
@@ -38,7 +39,8 @@ public class AttackController : MonoBehaviour
     public bool CanComboInput => !IsPushing && !IsInComboDelay;
     public bool CanStartAirborneCombo => !player.isGrounded && !airborneComboUsed;
     public int ComboStep => comboStep;
-    public bool CanUseSkill => Time.time >= lastSkillTime + GetSkillCooldown();
+    public float SkillCooldownProgress => Mathf.Clamp01((Time.time - lastSkillTime) / GetSkillCooldown());
+    public bool CanUseSkill => SkillCooldownProgress >= 1f;
 
     void Awake()
     {
