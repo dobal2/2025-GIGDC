@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
         BowSkillCharging, // 활 스킬 차징중
         BowSkillRelease, // 활 스킬 발사
         BowSkillFullChargeRelease, // 활 스킬 풀차징 발사
+        Dying, // 죽는 중
         // 필요 시 추가
     }
     public event Action<PlayerEffectState> OnEffectStateChanged;
@@ -91,6 +92,7 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D rb;
     private BoxCollider2D boxCol;
+    private SpriteRenderer spriteRenderer;
 
     [HideInInspector] public bool isNoClip = false; // 무적상태
     [HideInInspector] public int facingDirection = 1;
@@ -126,6 +128,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         boxCol = GetComponent<BoxCollider2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         Animator = GetComponent<Animator>();
         AttackController = GetComponent<AttackController>();
         originalColliderSize = boxCol.size;
@@ -305,6 +308,11 @@ public class PlayerController : MonoBehaviour
         jumpTimeCounter = maxJumpTime;
     }
 
+    public void Die()
+    {
+        stateMachine.ChangeState(new DieState(this, stateMachine));
+    }
+
     private IEnumerator DropThroughPlatform()
     {
         isDroppingPlatform = true;
@@ -331,6 +339,7 @@ public class PlayerController : MonoBehaviour
     public void ConsumeAttackBuffer() => attackBufferTimer = 0f;
     public Rigidbody2D Rigidbody => rb;
     public BoxCollider2D BoxCollider => boxCol;
+    public SpriteRenderer SpriteRenderer => spriteRenderer;
     public Vector2 OriginalColliderSize => originalColliderSize;
     public Vector2 OriginalColliderOffset => originalColliderOffset;
 }

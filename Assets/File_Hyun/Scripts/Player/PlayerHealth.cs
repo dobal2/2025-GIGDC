@@ -5,10 +5,9 @@ public class PlayerHealth : MonoBehaviour
 {
     public static PlayerHealth Instance { get; private set; }
 
-    public float maxHealth = 5;
+    public float Currenthealth;
     [SerializeField] private float invincibleTime = 1f;
 
-    private float Currnthealth;
     [HideInInspector] public bool isInvincible;
 
     void Awake()
@@ -19,14 +18,11 @@ public class PlayerHealth : MonoBehaviour
             return;
         }
         Instance = this;
-
-        Currnthealth = maxHealth;
     }
 
     private void Die()
     {
-        Debug.Log("Player has died.");
-        gameObject.SetActive(false);
+        PlayerController.Instance.Die();
     }
     
     public void TakeDamage(float damage)
@@ -37,10 +33,10 @@ public class PlayerHealth : MonoBehaviour
             return;
         }
 
-        Currnthealth -= damage;
-        Debug.Log("Now Player Health: "+Currnthealth);
+        Currenthealth -= damage;
+        Debug.Log("Now Player Health: "+Currenthealth);
 
-        if (Currnthealth <= 0)
+        if (Currenthealth <= 0)
         {
             Die();
             return;

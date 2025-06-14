@@ -11,6 +11,7 @@ public enum PlayerStateType
     BowSkill,
     BombAttack,
     BombSkill,
+    Death,
     // 필요 시 추가
 }
 
