@@ -4,26 +4,29 @@ using UnityEngine;
 
 public class Boss_Frustration : Boss
 {
-    private int takeDamageCount = 0;
+    [SerializeField] private int takeDamageCount = 0;
     private bool canFlip = true;
 
-    [Header("Phase1")]
-    public GameObject windPrefab;
-    public GameObject fingerPrefab;
-    public Transform[] bossPositions;
+    [Header("Phase1")] [SerializeReference]
+    private GameObject windPrefab;
+
+    [SerializeField] private GameObject fingerPrefab;
+    [SerializeField] private Transform[] bossPositions;
+    [SerializeField] private Transform windPos;
+    [SerializeField] private float windForce;
 
     private int currentPosIndex = 0;
 
-    [Header("Finger Attack Area")]
-    [SerializeField] private float fingerMinX;
+    [Header("Finger Attack Area")] [SerializeField]
+    private float fingerMinX;
+
     [SerializeField] private float fingerMaxX;
     [SerializeField] private float fingerY;
-    
+
     private float windTimer = 0f;
     private float fingerTimer = 0f;
-    
-    [Header("Phase2")]
-    [SerializeField] private float dashForce;
+
+    [Header("Phase2")] [SerializeField] private float dashForce;
 
     [SerializeField] private Transform fingerStretchPos;
     [SerializeField] private Vector2 fingerStretchAttackSize;
@@ -33,9 +36,8 @@ public class Boss_Frustration : Boss
 
     private float dashTimer;
     private float lightTimer;
-    
-    [Header("Maps")] 
-    [SerializeField] private GameObject phase1Map;
+
+    [Header("Maps")] [SerializeField] private GameObject phase1Map;
     [SerializeField] private GameObject phase2Map;
 
     protected override void Start()
@@ -48,9 +50,9 @@ public class Boss_Frustration : Boss
     protected override void Update()
     {
         base.Update();
-        
+
         FlipToPlayerDirection();
-        
+
         if (currentPhase == 1)
         {
             windTimer += Time.deltaTime;
@@ -72,36 +74,36 @@ public class Boss_Frustration : Boss
             {
                 MoveBossRandomly();
                 takeDamageCount = 0;
-            }   
+            }
         }
         else if (currentPhase == 2)
         {
             dashTimer += Time.deltaTime;
             lightTimer += Time.deltaTime;
-            
+
             if (dashTimer >= 5f)
             {
-                if(!canFlip)
+                if (!canFlip)
                     return;
                 dashTimer = 0f;
                 StartCoroutine(DashAttack());
             }
-            
+
             if (lightTimer >= 7f)
             {
                 lightTimer = 0f;
                 StartCoroutine(LightAttack());
             }
-            
+
             if (takeDamageCount >= 4)
             {
                 takeDamageCount = 0;
                 StretchFingerAttack();
-            }   
+            }
         }
     }
-    
-    
+
+
 
     //Phase1 pattern
     IEnumerator CastWindAttack()
@@ -110,21 +112,27 @@ public class Boss_Frustration : Boss
         {
             if (player == null) yield break;
 
-            Vector3 dir = (player.position - transform.position).normalized;
-            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-
-            GameObject wind = Instantiate(windPrefab, transform.position, Quaternion.Euler(0, 0, angle));
-            Rigidbody2D rb = wind.GetComponent<Rigidbody2D>();
-            if (rb != null)
-            {
-                rb.linearVelocity = dir * 5f;
-            }
+            anim.SetTrigger("Attack");
 
             yield return new WaitForSeconds(0.6f);
         }
     }
 
-    IEnumerator CastFingerAttack()
+    public void WindAttack()
+    {
+        Vector3 dir = (player.position - transform.position).normalized;
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+
+        GameObject wind = Instantiate(windPrefab, windPos.position, Quaternion.Euler(0, 0, angle + 90));
+        Rigidbody2D rb = wind.GetComponent<Rigidbody2D>();
+        if (rb != null)
+        {
+            rb.linearVelocity = dir * windForce;
+        }
+
+    }
+
+IEnumerator CastFingerAttack()
     {
         int count = Random.Range(5, 9);
         for (int i = 0; i < count; i++)

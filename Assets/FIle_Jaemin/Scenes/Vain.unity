@@ -119,6 +119,37 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &9429535
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9429536}
+  m_Layer: 0
+  m_Name: TentaclePos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9429536
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9429535}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -19.29, y: -0.35, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 777946012}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &197438597
 GameObject:
   m_ObjectHideFlags: 0
@@ -204,12 +235,12 @@ Transform:
   m_GameObject: {fileID: 197438597}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15.0404, y: -4.2, z: 0}
-  m_LocalScale: {x: 9.0808, y: 9.706507, z: 1}
+  m_LocalPosition: {x: 15.94, y: -4.2, z: 0}
+  m_LocalScale: {x: 7.9929204, y: 8.906691, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 805002823}
-  - {fileID: 1812004334}
+  - {fileID: 2014059660}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &197438600
@@ -280,6 +311,15 @@ MonoBehaviour:
   player: {fileID: 0}
   phase2Anim: {fileID: 0}
   facingRight: 0
+  tentaclePrefab: {fileID: 5331678253676693848, guid: 85c58e7a4acd9b348a5abbffcfc62c1e, type: 3}
+  goldToothPrefab: {fileID: 1525002796418532205, guid: b1ea7bbad234fb3458fc2fac10c9a7a6, type: 3}
+  wormAttackHitbox: {fileID: 5923420635201894806, guid: 66b8585deda61d04c98d38f6346b0214, type: 3}
+  tentacleSpawnPoints:
+  - {fileID: 9429536}
+  - {fileID: 1388938059}
+  - {fileID: 1611200758}
+  goldToothSpawnPoint: {fileID: 805002823}
+  wormAttackPoint: {fileID: 2014059660}
 --- !u!61 &197438605
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -495,6 +535,9 @@ Transform:
   - {fileID: 1970411843}
   - {fileID: 1947364474}
   - {fileID: 1770784668}
+  - {fileID: 9429536}
+  - {fileID: 1388938059}
+  - {fileID: 1611200758}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &805002822
@@ -507,7 +550,7 @@ GameObject:
   m_Component:
   - component: {fileID: 805002823}
   m_Layer: 9
-  m_Name: FingerAttackPos
+  m_Name: GoldToothSpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -522,11 +565,42 @@ Transform:
   m_GameObject: {fileID: 805002822}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.11, y: -0.02, z: 0}
+  m_LocalPosition: {x: -0.65, y: 0.625, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 197438599}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1388938058
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1388938059}
+  m_Layer: 0
+  m_Name: TentaclePos (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1388938059
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1388938058}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.78, y: -0.35, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 777946012}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1538048546
 GameObject:
@@ -750,7 +824,7 @@ Transform:
   m_GameObject: {fileID: 1549056367}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.96, y: -0.47, z: 0}
+  m_LocalPosition: {x: 2.45, y: -0.47, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -800,7 +874,7 @@ MonoBehaviour:
   boxHeight: 0.1
   boxLowAirHeight: 3
   attackBufferTime: 0.1
-  attackBufferTimer: 0
+  weaponChangeCooldown: 0.6
   isNoClip: 0
   facingDirection: 1
   isGrounded: 0
@@ -816,8 +890,40 @@ MonoBehaviour:
   canAirDash: 1
   lastDashTime: -999
   dashTimer: 0
+  attackBufferTimer: 0
   normalGravityScale: 0
   isTouchingCeiling: 0
+--- !u!1 &1611200757
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1611200758}
+  m_Layer: 0
+  m_Name: TentaclePos (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1611200758
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1611200757}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 9.17, y: -0.35, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 777946012}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1770784665
 GameObject:
   m_ObjectHideFlags: 0
@@ -952,84 +1058,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 777946012}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1812004333
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 197438599}
-    m_Modifications:
-    - target: {fileID: 1375830898119513489, guid: 8b87d9a2db585554aa93b4b7d46aaf47, type: 3}
-      propertyPath: damage
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1954227363754423042, guid: 8b87d9a2db585554aa93b4b7d46aaf47, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.33333334
-      objectReference: {fileID: 0}
-    - target: {fileID: 1954227363754423042, guid: 8b87d9a2db585554aa93b4b7d46aaf47, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 11.59
-      objectReference: {fileID: 0}
-    - target: {fileID: 1954227363754423042, guid: 8b87d9a2db585554aa93b4b7d46aaf47, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.34
-      objectReference: {fileID: 0}
-    - target: {fileID: 1954227363754423042, guid: 8b87d9a2db585554aa93b4b7d46aaf47, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.32
-      objectReference: {fileID: 0}
-    - target: {fileID: 1954227363754423042, guid: 8b87d9a2db585554aa93b4b7d46aaf47, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1954227363754423042, guid: 8b87d9a2db585554aa93b4b7d46aaf47, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.46174863
-      objectReference: {fileID: 0}
-    - target: {fileID: 1954227363754423042, guid: 8b87d9a2db585554aa93b4b7d46aaf47, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1954227363754423042, guid: 8b87d9a2db585554aa93b4b7d46aaf47, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1954227363754423042, guid: 8b87d9a2db585554aa93b4b7d46aaf47, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.8870109
-      objectReference: {fileID: 0}
-    - target: {fileID: 1954227363754423042, guid: 8b87d9a2db585554aa93b4b7d46aaf47, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1954227363754423042, guid: 8b87d9a2db585554aa93b4b7d46aaf47, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1954227363754423042, guid: 8b87d9a2db585554aa93b4b7d46aaf47, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 125
-      objectReference: {fileID: 0}
-    - target: {fileID: 5670720847636786518, guid: 8b87d9a2db585554aa93b4b7d46aaf47, type: 3}
-      propertyPath: m_Name
-      value: Light
-      objectReference: {fileID: 0}
-    - target: {fileID: 5670720847636786518, guid: 8b87d9a2db585554aa93b4b7d46aaf47, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 8b87d9a2db585554aa93b4b7d46aaf47, type: 3}
---- !u!4 &1812004334 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1954227363754423042, guid: 8b87d9a2db585554aa93b4b7d46aaf47, type: 3}
-  m_PrefabInstance: {fileID: 1812004333}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1947364473
 GameObject:
   m_ObjectHideFlags: 0
@@ -1057,7 +1085,7 @@ Transform:
   m_GameObject: {fileID: 1947364473}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.16, y: -1.16, z: 0}
+  m_LocalPosition: {x: -12.36, y: -1.19, z: 0}
   m_LocalScale: {x: 7.4391704, y: 0.478, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1191,7 +1219,7 @@ Transform:
   m_GameObject: {fileID: 1970411842}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8.6335, y: -1.16, z: 0}
+  m_LocalPosition: {x: 2.47, y: -1.23, z: 0}
   m_LocalScale: {x: 7.4391704, y: 0.478, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1298,6 +1326,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &2014059659
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2014059660}
+  m_Layer: 9
+  m_Name: WormAttackPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2014059660
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2014059659}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.571, y: 0.625, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 197438599}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

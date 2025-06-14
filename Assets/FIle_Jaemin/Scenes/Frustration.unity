@@ -119,6 +119,37 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &2144568
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2144569}
+  m_Layer: 9
+  m_Name: WindPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2144569
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2144568}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.74, y: 0.53, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 197438599}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &176711161
 GameObject:
   m_ObjectHideFlags: 0
@@ -344,6 +375,7 @@ Transform:
   m_Children:
   - {fileID: 805002823}
   - {fileID: 1812004334}
+  - {fileID: 2144569}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &197438600
@@ -397,6 +429,8 @@ MonoBehaviour:
   bossPositions:
   - {fileID: 1919243055}
   - {fileID: 1541430229}
+  windPos: {fileID: 2144569}
+  windForce: 10
   fingerMinX: -9
   fingerMaxX: 9
   fingerY: 30
@@ -1391,7 +1425,7 @@ MonoBehaviour:
   boxHeight: 0.1
   boxLowAirHeight: 3
   attackBufferTime: 0.1
-  attackBufferTimer: 0
+  weaponChangeCooldown: 0.6
   isNoClip: 0
   facingDirection: 1
   isGrounded: 0
@@ -1407,6 +1441,7 @@ MonoBehaviour:
   canAirDash: 1
   lastDashTime: -999
   dashTimer: 0
+  attackBufferTimer: 0
   normalGravityScale: 0
   isTouchingCeiling: 0
 --- !u!1 &1770784665
