@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(BoxCollider2D))]
@@ -30,6 +31,7 @@ public class PlayerController : MonoBehaviour
     public bool DashPressed { get; set; }
     public bool SkillPressed { get; set; }
     public bool SkillHeld { get; set; }
+    public bool ChangePressed { get; set; }
 
     public bool JumpPressed
     {
@@ -81,7 +83,10 @@ public class PlayerController : MonoBehaviour
 
     [Header("Attack Settings")]
     [SerializeField] private float attackBufferTime = 0.1f;
-    [HideInInspector] public float attackBufferTimer = 0f;
+    [SerializeField] private float weaponChangeCooldown = 0.6f;
+    private float lastWeaponChangeTime = -999f;
+    public bool CanChangeWeapon => Time.time >= lastWeaponChangeTime + weaponChangeCooldown;
+    public void MarkWeaponChanged() => lastWeaponChangeTime = Time.time;
     public bool AttackBuffered => attackBufferTimer > 0f;
 
     private Rigidbody2D rb;
@@ -106,6 +111,7 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public float lastDashTime = -999f;
     [HideInInspector] public float dashTimer;
 
+    [HideInInspector] public float attackBufferTimer = 0f;
     [HideInInspector] public float normalGravityScale;
     [HideInInspector] public bool isTouchingCeiling;
 
@@ -139,7 +145,6 @@ public class PlayerController : MonoBehaviour
         InputManager.Instance.RegisterPlayer(this);
         InputManager.Instance.currentContext = InputManager.InputContext.Gameplay;
         AttackController.Initialize(WeaponType.Spear);
-        AttackController.Initialize(WeaponType.Bomb);
         stateMachine = new PlayerStateMachine();
         stateMachine.Initialize(new LocomotionState(this, stateMachine));
         SetEffectState(PlayerEffectState.None);

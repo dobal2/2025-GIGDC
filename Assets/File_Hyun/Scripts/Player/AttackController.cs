@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(PlayerController))]
@@ -47,6 +48,29 @@ public class AttackController : MonoBehaviour
     public void Initialize(WeaponType initialWeapon)
     {
         SetWeapon(initialWeapon);
+    }
+
+    public void TrySwitchWeapon()
+    {
+        if (!player.CanChangeWeapon)
+            return;
+
+        WeaponType[] weaponCycle = { WeaponType.Spear, WeaponType.Bow, WeaponType.Bomb };
+        int currentIndex = Array.IndexOf(weaponCycle, CurrentWeapon);
+
+        for (int i = 1; i <= weaponCycle.Length; i++)
+        {
+            int nextIndex = (currentIndex + i) % weaponCycle.Length;
+            WeaponType candidate = weaponCycle[nextIndex];
+
+            if (player.AttackController.weaponDatabase.IsWeaponUnlocked(candidate))
+            {
+                SetWeapon(candidate);
+                player.MarkWeaponChanged();
+                Debug.Log($"[Weapon] 무기 변경: {CurrentWeapon}");
+                return;
+            }
+        }
     }
 
     public void SetWeapon(WeaponType weapon)

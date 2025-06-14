@@ -15,3 +15,7 @@ MonoBehaviour:
   spearData: {fileID: 11400000, guid: 1ed84a4341f1eb34da53b4227098d1ad, type: 2}
   bowData: {fileID: 11400000, guid: ec3f2d0d78e40f648a481e241ce0b514, type: 2}
   bombData: {fileID: 11400000, guid: feeec036d93b68a489ca849ac49d15f9, type: 2}
+  unlockedWeapons:
+    Spear: 1
+    Bow: 1
+    Bomb: 1
