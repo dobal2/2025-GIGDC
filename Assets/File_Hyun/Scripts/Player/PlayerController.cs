@@ -147,6 +147,7 @@ public class PlayerController : MonoBehaviour
     {
         InputManager.Instance.RegisterPlayer(this);
         InputManager.Instance.currentContext = InputManager.InputContext.Gameplay;
+
         AttackController.Initialize(WeaponType.Spear);
         stateMachine = new PlayerStateMachine();
         stateMachine.Initialize(new LocomotionState(this, stateMachine));
@@ -317,7 +318,6 @@ public class PlayerController : MonoBehaviour
     {
         isDroppingPlatform = true;
 
-        // overlap으로 현재 접촉 중인 플랫폼 찾기
         Collider2D[] hits = Physics2D.OverlapBoxAll(transform.position, boxCol.size, 0f, platformPassLayer);
         foreach (Collider2D hit in hits)
         {

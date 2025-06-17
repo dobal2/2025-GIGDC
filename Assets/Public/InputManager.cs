@@ -6,7 +6,7 @@ public class InputManager : MonoBehaviour
 {
     public static InputManager Instance { get; private set; }
 
-    public enum InputContext { None, UI, Gameplay }
+    public enum InputContext { None, UI, Gameplay, Lobby }
     public InputContext currentContext = InputContext.UI;
 
     public KeyData keyData;
@@ -26,11 +26,6 @@ public class InputManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public void RegisterPlayer(PlayerController player)
-    {
-        _player = player;
-    }
-
     void Update()
     {
         switch (currentContext)
@@ -41,6 +36,10 @@ public class InputManager : MonoBehaviour
 
             case InputContext.Gameplay:
                 HandleGameplayInput();
+                break;
+
+            case InputContext.Lobby:
+                HandleLobbyInput();
                 break;
         }
     }
@@ -137,6 +136,22 @@ public class InputManager : MonoBehaviour
         _player.SkillPressed = Input.GetKeyDown(keyData.Player.SkillKey);
         _player.SkillHeld = Input.GetKey(keyData.Player.SkillKey);
         _player.ChangePressed = Input.GetKeyDown(keyData.Player.WeaponchangeKey);
+    }
+
+    public void RegisterPlayer(PlayerController player)
+    {
+        _player = player;
+    }
+    #endregion
+
+    #region 로비 입력 처리
+    public void HandleLobbyInput()
+    {
+        float horizontal = 0f;
+        if (Input.GetKey(keyData.Player.LeftMoveKey)) horizontal -= 1f;
+        if (Input.GetKey(keyData.Player.RightMoveKey)) horizontal += 1f;
+
+        //if (Input.GetKeyDown(keyData.Player.InteractionKey))
     }
     #endregion
 }

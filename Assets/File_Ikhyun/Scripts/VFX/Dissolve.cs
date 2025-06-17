@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.VFX;
 
 public class Dissolve : MonoBehaviour {
-    [SerializeField] private float _dissolveTIme = 0.75f;
+    [SerializeField] private float _dissolveTIme = 1.5f;
     [SerializeField] private VisualEffect VFX;
     
     private SpriteRenderer _spriteRenderers;

@@ -8,15 +8,14 @@ public class PlayerHealthBar : MonoBehaviour
     public TextMeshPro healthText;
     public Transform player;
 
-    public float baseAcceleration = 300f;
-    public float damping = 0.91f;
-    public float verticalOffset = 1.5f;
-    public float horizontalOffset = 1.2f;
+    public float baseAcceleration = 500f;
+    public float damping = 0.9f;
+    public float verticalOffset = 2.6f;
+    public float horizontalOffset = 0f;
     public float fadeSpeed = 10f;
 
     private int displayedHealth = 5;
     private float targetAlpha = 0f;
-    private bool isVisible = false;
 
     private Vector2 velocity;
 
@@ -41,7 +40,7 @@ public class PlayerHealthBar : MonoBehaviour
 
         if (distance > 0.01f)
         {
-            Vector2 acceleration = direction.normalized * baseAcceleration * distance;
+            Vector2 acceleration = baseAcceleration * distance * direction.normalized;
             velocity += acceleration * Time.deltaTime;
         }
 
@@ -81,7 +80,6 @@ public class PlayerHealthBar : MonoBehaviour
     private void Show()
     {
         targetAlpha = 1f;
-        isVisible = true;
 
         Vector2 pos = GetTargetWorldPosition();
         transform.position = new Vector3(pos.x, pos.y, transform.position.z);
@@ -91,7 +89,6 @@ public class PlayerHealthBar : MonoBehaviour
     private void Hide()
     {
         targetAlpha = 0f;
-        isVisible = false;
     }
 
     private void SetAlpha(float a)

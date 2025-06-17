@@ -42,6 +42,6 @@ Material:
     m_Ints: []
     m_Floats: []
     m_Colors:
-    - _PixelationResolution: {r: 512, g: 288, b: 0, a: 0}
+    - _PixelationResolution: {r: 640, g: 360, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

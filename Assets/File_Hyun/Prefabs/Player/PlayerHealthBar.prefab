@@ -234,10 +234,10 @@ MonoBehaviour:
   - {fileID: -7394287313421600774, guid: f9852a26eacec254f8726ba40320f74c, type: 3}
   healthText: {fileID: 8313938453526400458}
   player: {fileID: 0}
-  baseAcceleration: 300
-  damping: 0.91
-  verticalOffset: 1.5
-  horizontalOffset: 1.2
+  baseAcceleration: 500
+  damping: 0.9
+  verticalOffset: 2.6
+  horizontalOffset: 0
   fadeSpeed: 10
 --- !u!1 &8283885801218793429
 GameObject:
