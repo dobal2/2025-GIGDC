@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.VFX;
 using static PlayerController;
 
+
+
 public class VFXController : MonoBehaviour {
     [SerializeField] private List<VisualEffect> VFXList;
 
