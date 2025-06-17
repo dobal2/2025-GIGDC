@@ -885,6 +885,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas_Pixelation
       objectReference: {fileID: 0}
+    - target: {fileID: 6327016941681666938, guid: 82a9a3304b053a64fa74e0abb34c63c4, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6327016941681666938, guid: 82a9a3304b053a64fa74e0abb34c63c4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6578425171097870864, guid: 82a9a3304b053a64fa74e0abb34c63c4, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6528,7 +6540,7 @@ GameObject:
   - component: {fileID: 1824100445}
   - component: {fileID: 1824100444}
   - component: {fileID: 1824100446}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8315,9 +8327,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28eb5b9b0d4dc4f4da421d246d415bce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healAmount: 2
-  floatAmplitude: 1
-  floatSpeed: 2
+  healAmount: 6974
+  floatAmplitude: 0.3
+  floatSpeed: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
