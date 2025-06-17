@@ -440,6 +440,7 @@ MonoBehaviour:
   fingerStretchAttackSize: {x: 0, y: 0}
   batteryPrefab: {fileID: 9173791747483525207, guid: ed2393ad4f406ee409f893867a7e4802, type: 3}
   lightObject: {fileID: 715790706}
+  phase2Pos: {fileID: 1195404564}
   phase1Map: {fileID: 777946011}
   phase2Map: {fileID: 1993555470}
 --- !u!95 &197438603
@@ -1123,6 +1124,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1195404563
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1195404564}
+  m_Layer: 0
+  m_Name: Phase2Pos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1195404564
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1195404563}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -14.27, y: 5.57, z: -0.04597757}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1538048546
 GameObject:
   m_ObjectHideFlags: 0
@@ -1282,7 +1314,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 908b547062346904684b8a4e0c5ed28f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Currenthealth: 0
+  MaxHealth: 0
+  CurrentHealth: 0
   invincibleTime: 1
   isInvincible: 0
 --- !u!50 &1549056372
@@ -1735,11 +1768,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1954227363754423042, guid: 8b87d9a2db585554aa93b4b7d46aaf47, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.34
+      value: -0.09
       objectReference: {fileID: 0}
     - target: {fileID: 1954227363754423042, guid: 8b87d9a2db585554aa93b4b7d46aaf47, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.32
+      value: 3.67
       objectReference: {fileID: 0}
     - target: {fileID: 1954227363754423042, guid: 8b87d9a2db585554aa93b4b7d46aaf47, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2134,3 +2167,4 @@ SceneRoots:
   - {fileID: 1541430229}
   - {fileID: 777946012}
   - {fileID: 1993555471}
+  - {fileID: 1195404564}

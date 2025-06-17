@@ -32,6 +32,7 @@ public class Boss_Frustration : Boss
     [SerializeField] private Vector2 fingerStretchAttackSize;
     [SerializeField] private GameObject batteryPrefab;
     [SerializeField] private GameObject lightObject;
+    [SerializeField] private Transform phase2Pos;
     float direction = 1;
 
     private float dashTimer;
@@ -171,12 +172,24 @@ IEnumerator CastFingerAttack()
             direction = 1;
         }
         
+
+        yield return new WaitForSeconds(1f);
+    }
+
+    public void Dash()
+    {
         rigid.AddForce(new Vector2(dashForce * direction,0),ForceMode2D.Impulse);
-
-        yield return new WaitForSeconds(0.7f);
-        
+    }
+    
+    public void EndDash()
+    {
         rigid.linearVelocity = Vector2.zero;
+        StartCoroutine(WaitToCanFlip());
+    }
 
+    IEnumerator WaitToCanFlip()
+    {
+        yield return new WaitForSeconds(1);
         canFlip = true;
     }
 
@@ -224,7 +237,7 @@ IEnumerator CastFingerAttack()
 
     IEnumerator LightAttack()
     {
-        anim.SetTrigger("Charge");
+        anim.SetBool("Charging",true);
         canFlip = false;
         
         SummonBattery();
@@ -233,6 +246,7 @@ IEnumerator CastFingerAttack()
 
         yield return new WaitForSeconds(2f);
         
+        anim.SetBool("Charging",false);
         anim.SetTrigger("LightAttack");
 
     }
@@ -267,6 +281,7 @@ IEnumerator CastFingerAttack()
         currentPhase = 2;
         maxHp = phase2Hp;
         hp = maxHp;
+        transform.position = phase2Pos.position;
         //anim.runtimeAnimatorController = phase2Anim;
 
         //transform.position = new Vector2(0, 7);
