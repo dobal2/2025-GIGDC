@@ -1,3 +1,4 @@
+using UnityEditor.Tilemaps;
 using UnityEngine;
 using static PlayerController;
 
@@ -77,9 +78,10 @@ public class SpearSkillState : PlayerState
             if (animInfo.IsName("Spear_Flying_Charge") && animInfo.normalizedTime >= 1f)
             {
                 Vector2 boxSize = new(player.BoxCollider.bounds.size.x * 0.99f, 0.1f);
-                Vector2 origin = player.BoxCollider.bounds.center;
+                Vector2 origin = (Vector2)player.BoxCollider.bounds.center + Vector2.down * player.BoxCollider.bounds.extents.y;
 
-                RaycastHit2D hit = Physics2D.BoxCast(origin, boxSize, 0f, Vector2.down, 100f, player.GroundLayer);
+
+                RaycastHit2D hit = Physics2D.BoxCast(origin, boxSize, 0f, Vector2.down, Mathf.Infinity, player.GroundLayer);
 
                 if (hit.collider) player.transform.position = hit.point;
 
