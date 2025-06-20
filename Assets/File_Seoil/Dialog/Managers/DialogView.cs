@@ -13,6 +13,8 @@ public class DialogView : MonoBehaviour
 {
     [HideInInspector] public bool SkipProcessingText = false;
 
+    public bool IsCompleted { get; private set; }
+
     [SerializeField] private TextMeshProUGUI dialogText;
     [SerializeField] private RectTransform backGroundRect;
 
@@ -44,12 +46,17 @@ public class DialogView : MonoBehaviour
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
+        IsCompleted = false;
     }
     public void Dialog(Dialog dialog, Canvas dialogCanvas)
     {
         allocatedDialog = dialog;
         SetPosition(allocatedDialog, dialogCanvas);
         currentDialogCoroutine = StartCoroutine(ProcessText());
+    }
+    public void CompleteDialog()
+    {
+        SkipProcessingText = true;
     }
     private IEnumerator ProcessText()
     {
@@ -77,7 +84,7 @@ public class DialogView : MonoBehaviour
 
             if (additionalDelay != 0)
             {
-                yield return new WaitForSeconds(additionalDelay);
+                if(!SkipProcessingText) yield return new WaitForSeconds(additionalDelay);
                 additionalDelay = 0;
             }
 
@@ -102,7 +109,7 @@ public class DialogView : MonoBehaviour
             if (!SkipProcessingText) yield return new WaitForSeconds(dialogWritingDelay);
         }
 
-        if(SkipProcessingText) SkipProcessingText = false;
+        IsCompleted = true;
     }
     private void UpdateBackGround()
     {

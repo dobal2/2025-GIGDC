@@ -36,9 +36,18 @@ public class DialogGenerator : MonoBehaviour
         if (currentDialogIndex + 1 >= Chapter.Dialogs.Length)
             return;
 
-        currentDialog = Chapter.Dialogs[++currentDialogIndex];
-        currentDialogView = Instantiate(dialogViewPrefab, dialogCanvas.transform);
-        
-        currentDialogView.Dialog(currentDialog, dialogCanvas);
+        if(currentDialogView != null && !currentDialogView.IsCompleted)
+        {
+            currentDialogView.CompleteDialog();
+        }
+        else
+        {
+            if(currentDialogView != null) Destroy(currentDialogView.gameObject);
+
+            currentDialog = Chapter.Dialogs[++currentDialogIndex];
+            currentDialogView = Instantiate(dialogViewPrefab, dialogCanvas.transform);
+
+            currentDialogView.Dialog(currentDialog, dialogCanvas);
+        }
     }
 }
