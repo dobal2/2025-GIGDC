@@ -180,10 +180,10 @@ public class LowMonster_Rare_interest : Monster
         gameObject.SetActive(false);
     }
 
-    public override void TakeDamage(float amount, Vector2 knockBackDir)
-    {
-        base.TakeDamage(amount, knockBackDir);
-    }
+    // public override void TakeDamage(float amount, Vector2 knockBackDir)
+    // {
+    //     base.TakeDamage(amount, knockBackDir);
+    // }
 
     private void OnDrawGizmosSelected()
     {

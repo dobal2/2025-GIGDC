@@ -46,7 +46,7 @@ public abstract class Monster : MonoBehaviour
     protected abstract void Attack();
     protected abstract void Die();
 
-    public virtual void TakeDamage(float amount, Vector2 knockBackDir)
+    public virtual void TakeDamage(float amount)
     {
         hp -= amount;
 
@@ -65,7 +65,7 @@ public abstract class Monster : MonoBehaviour
         stunCoroutine = StartCoroutine(DoStun(0.5f)); // 예: 0.5초 경직
 
         TakeDamageAnimation();
-        KnockBack(knockBackDir);
+        //KnockBack(knockBackDir);
 
         if (hp <= 0) Die();
     }
@@ -85,11 +85,11 @@ public abstract class Monster : MonoBehaviour
 
     protected virtual void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            Debug.Log("TakeDamage 테스트");
-            TakeDamage(10f, new Vector2(-1f, 1f)); // 왼쪽 위 방향 넉백
-        }
+        // if (Input.GetMouseButtonDown(0))
+        // {
+        //     Debug.Log("TakeDamage 테스트");
+        //     TakeDamage(10f, new Vector2(-1f, 1f)); // 왼쪽 위 방향 넉백
+        // }
     }
 
 
