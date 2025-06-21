@@ -46,8 +46,9 @@ public class LowMonster_Rare_inferior : Monster
         gameObject.SetActive(false);
     }
 
-    private void Update()
+    protected override void Update()
     {
+        base.Update();
         if (canAttack)
         {
             Attack();
@@ -124,9 +125,15 @@ public class LowMonster_Rare_inferior : Monster
     }
 
 
+    public override void TakeDamage(float amount, Vector2 knockBackDir)
+    {
+        hp -= amount;
+        
+        if (hp <= 0) Die();
+        Debug.Log("inferior 넉백,경직 무시됨");
+    }
 
 
-    
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))

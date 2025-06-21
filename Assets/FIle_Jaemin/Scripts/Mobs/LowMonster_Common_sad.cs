@@ -17,6 +17,8 @@ public class LowMonster_Common_sad : Monster
 
     private void FixedUpdate()
     {
+        if (isStunned) return;
+        
         FacePlayer();
         
         if (canAttack)

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class LowMonster_Common_regret : Monster
@@ -20,7 +21,6 @@ public class LowMonster_Common_regret : Monster
 
     private void FixedUpdate()
     {
-        // 바닥 체크
         isGrounded = Physics2D.Raycast(transform.position, Vector2.down, 1.1f, groundLayer);
 
         Move();
@@ -31,17 +31,16 @@ public class LowMonster_Common_regret : Monster
         {
             canMove = false;
 
-            if (canAttack)
+            if (canAttack && !isStunned)
             {
-                // 땅에 있을 때만 방향 전환
                 if (isGrounded)
                 {
-                    if (player.transform.position.x > transform.position.x && !facingRight)
+                    if (player.position.x > transform.position.x && !facingRight)
                     {
                         Flip();
                         nextMove = 1;
                     }
-                    else if (player.transform.position.x < transform.position.x && facingRight)
+                    else if (player.position.x < transform.position.x && facingRight)
                     {
                         Flip();
                         nextMove = -1;
@@ -56,37 +55,22 @@ public class LowMonster_Common_regret : Monster
             canMove = true;
         }
 
-        // 이동 중 방향 보정 (공중에 있을 때는 제외)
         if (isGrounded)
         {
-            if (nextMove == -1 && facingRight)
-            {
-                Flip();
-            }
-            else if (nextMove == 1 && !facingRight)
-            {
-                Flip();
-            }
+            if (nextMove == -1 && facingRight) Flip();
+            else if (nextMove == 1 && !facingRight) Flip();
         }
     }
 
     private void SetRandomMoveDirection()
     {
         nextMove = Random.Range(-1, 2);
-        if (nextMove == 0)
-        {
-            SetRandomMoveDirection();
-        }
-    }
-
-    private void Update()
-    {
-        // nothing
+        if (nextMove == 0) SetRandomMoveDirection();
     }
 
     private void Move()
     {
-        if (canMove && isGrounded)
+        if (canMove && isGrounded && !isStunned)
         {
             rigid.linearVelocity = new Vector2(speed * nextMove, rigid.linearVelocity.y);
             anim.SetBool("isWalking", true);
@@ -105,10 +89,10 @@ public class LowMonster_Common_regret : Monster
 
     private void GroundDetector()
     {
-        Vector2 frontVec = new Vector2((rigid.position.x + nextMove), rigid.position.y);
-        Debug.DrawRay(frontVec, Vector3.down, new Color(0, 1, 0));
-        RaycastHit2D groundRayHit = Physics2D.Raycast(frontVec, Vector3.down, 1f, groundLayer);
-        if (groundRayHit.collider == null)
+        Vector2 frontVec = new Vector2(rigid.position.x + nextMove, rigid.position.y);
+        Debug.DrawRay(frontVec, Vector2.down, Color.green);
+        RaycastHit2D hit = Physics2D.Raycast(frontVec, Vector2.down, 1f, groundLayer);
+        if (hit.collider == null)
         {
             Debug.Log("NoGround Detected");
             nextMove *= -1;
@@ -119,9 +103,8 @@ public class LowMonster_Common_regret : Monster
     {
         Vector2 frontVec = rigid.position + new Vector2(nextMove, 0);
         Debug.DrawRay(frontVec, new Vector2(nextMove, 0), Color.blue);
-        RaycastHit2D wallRayHit = Physics2D.Raycast(frontVec, new Vector2(nextMove, 0), 1f, wallLayer);
-
-        if (wallRayHit.collider != null)
+        RaycastHit2D hit = Physics2D.Raycast(frontVec, new Vector2(nextMove, 0), 1f, wallLayer);
+        if (hit.collider != null)
         {
             Debug.Log("Wall Detected");
             nextMove *= -1;
@@ -130,15 +113,24 @@ public class LowMonster_Common_regret : Monster
 
     protected override void Attack()
     {
+        if (attackCoroutine != null || isStunned) return;
+
         rigid.linearVelocity = Vector2.zero;
         anim.SetTrigger("Attack");
-        StartCoroutine(WaitToAttack(attackCoolDown));
+
+        attackCoroutine = StartCoroutine(AttackRoutine());
+    }
+
+    private IEnumerator AttackRoutine()
+    {
+        yield return new WaitForSeconds(attackCoolDown);
+        attackCoroutine = null;
     }
 
     public void AttackOverlapCircle()
     {
-        Collider2D[] collidersEnemies = Physics2D.OverlapCircleAll(attackCheck.position, attackRadius);
-        foreach (var target in collidersEnemies)
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(attackCheck.position, attackRadius);
+        foreach (var target in colliders)
         {
             if (target.CompareTag("Player"))
             {

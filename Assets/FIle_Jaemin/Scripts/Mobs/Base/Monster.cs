@@ -10,6 +10,10 @@ public abstract class Monster : MonoBehaviour
     [SerializeField] protected float damage;
     [SerializeField] protected float speed;
     [SerializeField] protected float attackCoolDown;
+    protected bool isStunned = false; // 경직 상태
+    protected Coroutine attackCoroutine;
+    protected Coroutine stunCoroutine;
+
 
     [SerializeField] protected Transform player;
     protected Rigidbody2D rigid;
@@ -42,32 +46,66 @@ public abstract class Monster : MonoBehaviour
     protected abstract void Attack();
     protected abstract void Die();
 
-    public virtual void TakeDamage(float amount)
+    public virtual void TakeDamage(float amount, Vector2 knockBackDir)
     {
         hp -= amount;
+
+        // 공격 중이라면 끊기
+        if (attackCoroutine != null)
+        {
+            StopCoroutine(attackCoroutine);
+            attackCoroutine = null;
+
+            anim.ResetTrigger("Attack");
+            anim.Play("Idle");
+        }
+
+        // 경직 시작
+        if (stunCoroutine != null) StopCoroutine(stunCoroutine);
+        stunCoroutine = StartCoroutine(DoStun(0.5f)); // 예: 0.5초 경직
+
+        TakeDamageAnimation();
+        KnockBack(knockBackDir);
+
         if (hp <= 0) Die();
     }
-    
-    public void KnockBack(bool isRightAttack, float knockBackForce,bool doTakeDamageAnimation)
+
+    protected IEnumerator DoStun(float duration)
     {
-        if (doTakeDamageAnimation)
-        {
-            TakeDamageAnimation();
-        }
-        
+        isStunned = true;
+        canAttack = false;
+        anim.SetBool("isWalking", false);
         rigid.linearVelocity = Vector2.zero;
-        
-        if (isRightAttack)
+
+        yield return new WaitForSeconds(duration);
+
+        isStunned = false;
+        canAttack = true;
+    }
+
+    protected virtual void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
         {
-            rigid.AddForce(new Vector2(knockBackForce, 0),ForceMode2D.Impulse);
-        }
-        else
-        {
-            rigid.AddForce(new Vector2(-knockBackForce, 0),ForceMode2D.Impulse);
+            Debug.Log("TakeDamage 테스트");
+            TakeDamage(10f, new Vector2(-1f, 1f)); // 왼쪽 위 방향 넉백
         }
     }
 
-    public void TakeDamageAnimation()
+
+    
+    protected void KnockBack(Vector2 direction)
+    {
+        rigid.linearVelocity = Vector2.zero;
+
+        float knockBackForce = 5f;
+        Vector2 force = direction.normalized * knockBackForce;
+
+        rigid.AddForce(force, ForceMode2D.Impulse);
+    }
+
+
+    protected void TakeDamageAnimation()
     {
         anim.SetTrigger("Hit");
     }

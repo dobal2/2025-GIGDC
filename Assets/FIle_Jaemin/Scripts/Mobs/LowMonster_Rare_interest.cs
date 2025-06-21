@@ -69,12 +69,14 @@ public class LowMonster_Rare_interest : Monster
         {
             FacePlayer();
 
-            if (canAttack)
+            if (canAttack && !isStunned)
+            {
                 Attack();
+            }
+
         }
 
-        // 바닥에 있을 때만 이동
-        if (!isDashing && canFlip && isGrounded && absDistanceX > stopDistance)
+        if (!isDashing && canFlip && isGrounded && absDistanceX > stopDistance && !isStunned)
         {
             Move();
         }
@@ -91,8 +93,9 @@ public class LowMonster_Rare_interest : Monster
     }
 
 
-    private void Update()
+    protected override void Update()
     {
+        base.Update();
         Effect();
     }
 
@@ -175,6 +178,11 @@ public class LowMonster_Rare_interest : Monster
     protected override void Die()
     {
         gameObject.SetActive(false);
+    }
+
+    public override void TakeDamage(float amount, Vector2 knockBackDir)
+    {
+        base.TakeDamage(amount, knockBackDir);
     }
 
     private void OnDrawGizmosSelected()
