@@ -15,6 +15,9 @@ public class InputManager : MonoBehaviour
     [HideInInspector] public bool IsCapturingKey = false;
     private PlayerController _player;
 
+    private float _lastClickTime = -999f;
+    [SerializeField] private float ClickCooldown = 0.3f;
+
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -24,6 +27,11 @@ public class InputManager : MonoBehaviour
         }
         Instance = this;
         DontDestroyOnLoad(gameObject);
+
+#if !UNITY_EDITOR
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Confined;
+#endif
     }
 
     void Update()
@@ -75,17 +83,14 @@ public class InputManager : MonoBehaviour
 
         if (Input.GetKeyDown(keyData.Ui.SelectKey))
         {
-            if (selected.TryGetComponent(out Button button)) button.onClick.Invoke();
+            if (Time.unscaledTime - _lastClickTime < ClickCooldown)
+                return;
 
-            if (controller.nextOnClick != null && controller.nextOnClick.activeInHierarchy)
-            {
-                EventSystem.current.SetSelectedGameObject(controller.nextOnClick);
-                lastSelectedButton = controller.nextOnClick;
-            }
-        }
+            _lastClickTime = Time.unscaledTime;
 
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
+            if (selected.TryGetComponent(out Button button))
+                button.onClick.Invoke();
+
             if (controller.nextOnClick != null && controller.nextOnClick.activeInHierarchy)
             {
                 EventSystem.current.SetSelectedGameObject(controller.nextOnClick);
