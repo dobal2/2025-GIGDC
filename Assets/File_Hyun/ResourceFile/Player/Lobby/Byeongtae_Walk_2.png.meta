@@ -115,7 +115,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Byeongtae_Walk_2_0
+      name: Walk_2_0
       rect:
         serializedVersion: 2
         x: 10
@@ -137,7 +137,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Byeongtae_Walk_2_1
+      name: Walk_2_1
       rect:
         serializedVersion: 2
         x: 44
@@ -159,7 +159,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Byeongtae_Walk_2_2
+      name: Walk_2_4
       rect:
         serializedVersion: 2
         x: 45
@@ -181,7 +181,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Byeongtae_Walk_2_3
+      name: Walk_2_2
       rect:
         serializedVersion: 2
         x: 77
@@ -203,7 +203,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Byeongtae_Walk_2_4
+      name: Walk_2_5
       rect:
         serializedVersion: 2
         x: 77
@@ -225,7 +225,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Byeongtae_Walk_2_5
+      name: Walk_2_3
       rect:
         serializedVersion: 2
         x: 12
@@ -260,12 +260,12 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Byeongtae_Walk_2_0: -1839048485217824095
-      Byeongtae_Walk_2_1: 6611039363010784079
-      Byeongtae_Walk_2_2: -8795112683664287090
-      Byeongtae_Walk_2_3: 3180983831017371496
-      Byeongtae_Walk_2_4: 2006424011154785819
-      Byeongtae_Walk_2_5: 2183368277551394385
+      Walk_2_0: -1839048485217824095
+      Walk_2_1: 6611039363010784079
+      Walk_2_2: 3180983831017371496
+      Walk_2_3: 2183368277551394385
+      Walk_2_4: -8795112683664287090
+      Walk_2_5: 2006424011154785819
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

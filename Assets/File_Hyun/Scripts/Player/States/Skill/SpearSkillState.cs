@@ -106,6 +106,13 @@ public class SpearSkillState : PlayerState
                 player.Animator.Play("Spear_Flying_Land");
 
             ApplyLandingDamage();
+            CameraUtility.ShakeCamera(
+                duration: 0.3f,
+                strength: 0.5f,
+                vibrato: 10,
+                randomness: 90,
+                fadeOut: true
+            );
             phase = SkillPhase.Landing;
         }
 

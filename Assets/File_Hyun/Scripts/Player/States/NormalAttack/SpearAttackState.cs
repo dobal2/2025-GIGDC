@@ -92,11 +92,26 @@ public class SpearAttackState : PlayerState
         Vector2 hitCenter = (Vector2)player.transform.position + offset;
         float radius = info.range;
 
+        bool hasHitMonster = false;
         Collider2D[] hits = Physics2D.OverlapCircleAll(hitCenter, radius, LayerMask.GetMask("Enemy"));
         foreach (var hit in hits)
         {
             if (hit.TryGetComponent<Monster>(out var monster))
+            {
                 monster.TakeDamage(info.damage);
+                hasHitMonster = true;
+            }
+        }
+
+        if (hasHitMonster)
+        {
+            CameraUtility.ShakeCamera(
+                duration: 0.3f,
+                strength: 0.2f,
+                vibrato: 10,
+                randomness: 90,
+                fadeOut: true
+            );
         }
 
         DebugDrawCrossX(hitCenter, radius, 0.2f);

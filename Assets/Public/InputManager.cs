@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class InputManager : MonoBehaviour
@@ -14,6 +15,7 @@ public class InputManager : MonoBehaviour
     [HideInInspector] public GameObject lastSelectedButton;
     [HideInInspector] public bool IsCapturingKey = false;
     private PlayerController _player;
+    private LobbyPlayerController _LobbyPlayer;
 
     private float _lastClickTime = -999f;
     [SerializeField] private float ClickCooldown = 0.3f;
@@ -156,7 +158,14 @@ public class InputManager : MonoBehaviour
         if (Input.GetKey(keyData.Player.LeftMoveKey)) horizontal -= 1f;
         if (Input.GetKey(keyData.Player.RightMoveKey)) horizontal += 1f;
 
+        _LobbyPlayer.MoveInput = horizontal;
+
         //if (Input.GetKeyDown(keyData.Player.InteractionKey))
+    }
+
+    public void RegisterLobby(LobbyPlayerController lobbyplayer)
+    {
+        _LobbyPlayer = lobbyplayer;
     }
     #endregion
 }

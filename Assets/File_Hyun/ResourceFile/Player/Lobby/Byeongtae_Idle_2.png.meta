@@ -109,7 +109,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Byeongtae_Idle_2_0
+      name: Idle_2_0
       rect:
         serializedVersion: 2
         x: 13
@@ -117,7 +117,7 @@ TextureImporter:
         width: 8
         height: 30
       alignment: 9
-      pivot: {x: 5, y: 0}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -131,7 +131,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Byeongtae_Idle_2_1
+      name: Idle_2_1
       rect:
         serializedVersion: 2
         x: 45
@@ -153,7 +153,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Byeongtae_Idle_2_2
+      name: Idle_2_3
       rect:
         serializedVersion: 2
         x: 45
@@ -175,7 +175,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Byeongtae_Idle_2_3
+      name: Idle_2_2
       rect:
         serializedVersion: 2
         x: 13
@@ -210,10 +210,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Byeongtae_Idle_2_0: -6232760565999879752
-      Byeongtae_Idle_2_1: 3343364742111216153
-      Byeongtae_Idle_2_2: 2402996089660966651
-      Byeongtae_Idle_2_3: 7479377292678630386
+      Idle_2_0: -6232760565999879752
+      Idle_2_1: 3343364742111216153
+      Idle_2_2: 7479377292678630386
+      Idle_2_3: 2402996089660966651
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

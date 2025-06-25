@@ -66,6 +66,13 @@ public class BowSkillState : PlayerState
         player.Animator.Play($"Bow_{prefix}_Shoot");
         if (chargeTime > 1.5f) player.SetEffectState(PlayerEffectState.BowSkillFullChargeRelease);
         else player.SetEffectState(PlayerEffectState.BowSkillRelease);
+        CameraUtility.ShakeCamera(
+            duration: 0.3f,
+            strength: Mathf.Lerp(0.05f, 0.5f, Mathf.Clamp01(chargeTime / 1.5f)),
+            vibrato: 10,
+            randomness: 90,
+            fadeOut: true
+        );
 
         Vector2 fireOffset = new(bowData.fireOffset.x * player.facingDirection, bowData.fireOffset.y);
         Vector2 firePosition = (Vector2)player.transform.position + fireOffset;

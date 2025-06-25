@@ -109,15 +109,15 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Byeongtae_Walk_4_0
+      name: Walk_4_0
       rect:
         serializedVersion: 2
-        x: 7
-        y: 31
-        width: 14
-        height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 8
+        y: 32
+        width: 12
+        height: 21
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -131,15 +131,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Byeongtae_Walk_4_1
+      name: Walk_4_1
       rect:
         serializedVersion: 2
-        x: 43
-        y: 31
-        width: 14
-        height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 44
+        y: 32
+        width: 12
+        height: 22
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -153,15 +153,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Byeongtae_Walk_4_2
+      name: Walk_4_2
       rect:
         serializedVersion: 2
-        x: 7
+        x: 8
         y: 0
-        width: 14
-        height: 22
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 12
+        height: 21
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -175,15 +175,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Byeongtae_Walk_4_3
+      name: Walk_4_3
       rect:
         serializedVersion: 2
-        x: 43
+        x: 44
         y: 0
-        width: 14
-        height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 12
+        height: 22
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -200,7 +200,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 3ee3a71e54d35f242965699b90ca4b2a
     internalID: 0
     vertices: []
     indices: 
@@ -210,10 +210,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Byeongtae_Walk_4_0: 8250762882872959159
-      Byeongtae_Walk_4_1: 4339425671078067456
-      Byeongtae_Walk_4_2: -7944728787220889987
-      Byeongtae_Walk_4_3: 8310369770740172027
+      Walk_4_0: 8250762882872959159
+      Walk_4_1: 4339425671078067456
+      Walk_4_2: -7944728787220889987
+      Walk_4_3: 8310369770740172027
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

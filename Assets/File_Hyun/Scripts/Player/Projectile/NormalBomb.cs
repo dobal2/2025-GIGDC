@@ -51,7 +51,13 @@ public class NormalBomb : MonoBehaviour
     {
         if (isExploded) return;
         isExploded = true;
-        CameraUtility.ShakeCamera();
+        CameraUtility.ShakeCamera(
+            duration: 0.3f,
+            strength: 0.3f,
+            vibrato: 10,
+            randomness: 90,
+            fadeOut: true
+        );
         DebugDrawDiameter(transform.position, PlayerController.Instance.AttackController.bombData.bombExplosionRadius, 0.3f);
 
         rb.linearVelocity = Vector2.zero;

@@ -115,7 +115,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Byeonhtae_Walk_1_0
+      name: Walk_1_0
       rect:
         serializedVersion: 2
         x: 10
@@ -123,7 +123,7 @@ TextureImporter:
         width: 14
         height: 29
       alignment: 9
-      pivot: {x: 0.5, y: 9}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -137,7 +137,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Byeonhtae_Walk_1_1
+      name: Walk_1_1
       rect:
         serializedVersion: 2
         x: 44
@@ -159,7 +159,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Byeonhtae_Walk_1_2
+      name: Walk_1_4
       rect:
         serializedVersion: 2
         x: 45
@@ -181,7 +181,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Byeonhtae_Walk_1_3
+      name: Walk_1_2
       rect:
         serializedVersion: 2
         x: 77
@@ -203,7 +203,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Byeonhtae_Walk_1_4
+      name: Walk_1_5
       rect:
         serializedVersion: 2
         x: 77
@@ -225,7 +225,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Byeonhtae_Walk_1_5
+      name: Walk_1_3
       rect:
         serializedVersion: 2
         x: 12
@@ -260,12 +260,12 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Byeonhtae_Walk_1_0: -1317223985437960853
-      Byeonhtae_Walk_1_1: -7208634883463011798
-      Byeonhtae_Walk_1_2: 8156394358845482823
-      Byeonhtae_Walk_1_3: -6420051245014673279
-      Byeonhtae_Walk_1_4: -4324514900607033676
-      Byeonhtae_Walk_1_5: 6056083585980555003
+      Walk_1_0: -1317223985437960853
+      Walk_1_1: -7208634883463011798
+      Walk_1_2: -6420051245014673279
+      Walk_1_3: 6056083585980555003
+      Walk_1_4: 8156394358845482823
+      Walk_1_5: -4324514900607033676
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -86,6 +86,17 @@ public class BowAttackState : PlayerState
             return;
         }
 
+        if(player.AttackController.ComboStep == 4)
+        {
+            CameraUtility.ShakeCamera(
+                duration: 0.3f,
+                strength: 0.2f,
+                vibrato: 10,
+                randomness: 90,
+                fadeOut: true
+            );
+        }
+
         Vector2 firePos = (Vector2)player.transform.position + new Vector2(localOffset.x * player.facingDirection, localOffset.y);
         GameObject arrow = Object.Instantiate(arrowPrefab, firePos, Quaternion.identity);
         Vector2 direction = new(PlayerController.Instance.facingDirection, 0);
