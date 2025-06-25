@@ -103,7 +103,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Byeongtae_Idle_4_0
+      name: Idle_4_0
       rect:
         serializedVersion: 2
         x: 8
@@ -125,7 +125,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Byeongtae_Idle_4_1
+      name: Idle_4_1
       rect:
         serializedVersion: 2
         x: 40
@@ -160,8 +160,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Byeongtae_Idle_4_0: -6249158752842113915
-      Byeongtae_Idle_4_1: -2204285859754485775
+      Idle_4_0: -6249158752842113915
+      Idle_4_1: -2204285859754485775
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 using UnityEditor;
 #endif
 
-public class UIButtonController : MonoBehaviour, ISelectHandler, IDeselectHandler, IPointerEnterHandler, IPointerClickHandler
+public class UIButtonController : MonoBehaviour, ISelectHandler, IDeselectHandler
 {
     [Header("이웃 버튼 지정")]
     public GameObject upButton;
@@ -38,27 +38,6 @@ public class UIButtonController : MonoBehaviour, ISelectHandler, IDeselectHandle
     public void OnDeselect(BaseEventData eventData)
     {
         onDeselect?.Invoke();
-    }
-
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        if (EventSystem.current.currentSelectedGameObject != gameObject)
-        {
-            EventSystem.current.SetSelectedGameObject(null);
-            EventSystem.current.SetSelectedGameObject(this.gameObject);
-        }
-
-        onSelect?.Invoke();
-    }
-
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        if (eventData.button != PointerEventData.InputButton.Left) return;
-
-        if (nextOnClick != null && nextOnClick.activeInHierarchy)
-        {
-            EventSystem.current.SetSelectedGameObject(nextOnClick);
-        }
     }
 
 #if UNITY_EDITOR

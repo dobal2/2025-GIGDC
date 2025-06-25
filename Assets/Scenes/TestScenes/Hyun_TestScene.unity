@@ -316,7 +316,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 18, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 21, z: 1}
+  m_LocalScale: {x: 1.5, y: 21, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 80726588}
@@ -778,7 +778,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -18, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 21, z: 1}
+  m_LocalScale: {x: 1.5, y: 21, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 80726588}
@@ -1302,6 +1302,7 @@ MonoBehaviour:
   keyData: {fileID: 11400000, guid: eef92708e559636479c30d47676bef1e, type: 2}
   lastSelectedButton: {fileID: 0}
   IsCapturingKey: 0
+  ClickCooldown: 0.3
 --- !u!4 &2109280169
 Transform:
   m_ObjectHideFlags: 0
@@ -1538,6 +1539,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerHealthBar
       objectReference: {fileID: 0}
+    - target: {fileID: 7379441040585030454, guid: edb197553d1ad1f4280c0a5bbbc9eb36, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8108509309757175980, guid: edb197553d1ad1f4280c0a5bbbc9eb36, type: 3}
       propertyPath: player
       value: 
@@ -1545,10 +1550,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3903628370917603880, guid: edb197553d1ad1f4280c0a5bbbc9eb36, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: edb197553d1ad1f4280c0a5bbbc9eb36, type: 3}
 --- !u!212 &5028477998089189781
 SpriteRenderer:
@@ -1627,7 +1629,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &5918730046746740477
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1701,6 +1703,10 @@ PrefabInstance:
     - target: {fileID: 7518913219925585886, guid: 807e8a1bc484e264491bf2537faa6573, type: 3}
       propertyPath: m_Name
       value: SkillCooldownGauge
+      objectReference: {fileID: 0}
+    - target: {fileID: 7518913219925585886, guid: 807e8a1bc484e264491bf2537faa6573, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9027384045653940569, guid: 807e8a1bc484e264491bf2537faa6573, type: 3}
       propertyPath: m_LocalPosition.x

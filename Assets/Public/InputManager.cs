@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class InputManager : MonoBehaviour
@@ -14,6 +15,10 @@ public class InputManager : MonoBehaviour
     [HideInInspector] public GameObject lastSelectedButton;
     [HideInInspector] public bool IsCapturingKey = false;
     private PlayerController _player;
+    private LobbyPlayerController _LobbyPlayer;
+
+    private float _lastClickTime = -999f;
+    [SerializeField] private float ClickCooldown = 0.3f;
 
     void Awake()
     {
@@ -24,6 +29,11 @@ public class InputManager : MonoBehaviour
         }
         Instance = this;
         DontDestroyOnLoad(gameObject);
+
+#if !UNITY_EDITOR
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Confined;
+#endif
     }
 
     void Update()
@@ -75,17 +85,14 @@ public class InputManager : MonoBehaviour
 
         if (Input.GetKeyDown(keyData.Ui.SelectKey))
         {
-            if (selected.TryGetComponent(out Button button)) button.onClick.Invoke();
+            if (Time.unscaledTime - _lastClickTime < ClickCooldown)
+                return;
 
-            if (controller.nextOnClick != null && controller.nextOnClick.activeInHierarchy)
-            {
-                EventSystem.current.SetSelectedGameObject(controller.nextOnClick);
-                lastSelectedButton = controller.nextOnClick;
-            }
-        }
+            _lastClickTime = Time.unscaledTime;
 
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
+            if (selected.TryGetComponent(out Button button))
+                button.onClick.Invoke();
+
             if (controller.nextOnClick != null && controller.nextOnClick.activeInHierarchy)
             {
                 EventSystem.current.SetSelectedGameObject(controller.nextOnClick);
@@ -151,7 +158,14 @@ public class InputManager : MonoBehaviour
         if (Input.GetKey(keyData.Player.LeftMoveKey)) horizontal -= 1f;
         if (Input.GetKey(keyData.Player.RightMoveKey)) horizontal += 1f;
 
+        _LobbyPlayer.MoveInput = horizontal;
+
         //if (Input.GetKeyDown(keyData.Player.InteractionKey))
+    }
+
+    public void RegisterLobby(LobbyPlayerController lobbyplayer)
+    {
+        _LobbyPlayer = lobbyplayer;
     }
     #endregion
 }

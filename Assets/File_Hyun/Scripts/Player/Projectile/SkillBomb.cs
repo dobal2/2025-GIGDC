@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using Unity.IO.LowLevel.Unsafe;
 
 public class SkillBomb : MonoBehaviour
 {
@@ -58,6 +59,14 @@ public class SkillBomb : MonoBehaviour
     {
         if (isExploded) return;
         isExploded = true;
+        CameraUtility.ShakeCamera(
+            duration: 0.3f,
+            strength: 0.1f,
+            vibrato: 10,
+            randomness: 90,
+            fadeOut: true
+        );
+
         DebugDrawDiameter(transform.position, PlayerController.Instance.AttackController.bombData.bombExplosionRadius ,0.3f);
 
         rb.linearVelocity = Vector2.zero;
@@ -66,8 +75,10 @@ public class SkillBomb : MonoBehaviour
                          RigidbodyConstraints2D.FreezePositionY;
 
         rb.rotation = 0;
+        
         StartCoroutine(Destroy());
         animator.Play("Boom");
+
         Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, bombExplosionRadius, enemyMask);
         foreach (var hit in hitColliders)
         {

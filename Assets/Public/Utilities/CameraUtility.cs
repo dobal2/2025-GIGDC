@@ -31,5 +31,5 @@ public static class CameraUtility
         int vibrato = 10, 
         int randomness = 90, 
         bool fadeOut = true) => 
-        TopCamera.DOShakePosition(duration, strength, vibrato, randomness, fadeOut);
+        TopCamera.DOShakePosition(duration, strength, vibrato, randomness, fadeOut).OnComplete(() => TopCamera.transform.position = new Vector3(0, 0, -10));
 }
