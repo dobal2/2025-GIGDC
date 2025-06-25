@@ -15,6 +15,7 @@ public class LowMonster_Rare_interest : Monster
     [SerializeField] private Transform effectPos;
     [SerializeField] private Transform attackTransform;
     [SerializeField] private Vector2 attackSize;
+    [SerializeField] private ParticleSystem inkTrail;
 
     private int nextMove = 1;
     private bool isDashing;
@@ -130,6 +131,11 @@ public class LowMonster_Rare_interest : Monster
 
         anim.SetBool("Walking", true);
         rigid.linearVelocity = new Vector2(speed * nextMove, rigid.linearVelocity.y);
+        
+        if (!inkTrail.isPlaying && !inkTrail.loop)
+        {
+            inkTrail.Play();
+        }
 
         DetectGroundAndWalls();
     }

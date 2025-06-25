@@ -8,6 +8,8 @@ public class LowMonster_Common_regret : Monster
     [SerializeField] private Transform attackCheck;
     [SerializeField] private float attackRadius;
     [SerializeField] private float stopDistance;
+    [SerializeField] private ParticleSystem inkTrail;
+
 
     private int nextMove;
     public bool canMove = true;
@@ -74,6 +76,10 @@ public class LowMonster_Common_regret : Monster
         {
             rigid.linearVelocity = new Vector2(speed * nextMove, rigid.linearVelocity.y);
             anim.SetBool("isWalking", true);
+            if (!inkTrail.isPlaying && !inkTrail.loop)
+            {
+                inkTrail.Play();
+            }
         }
         else
         {

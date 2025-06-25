@@ -74,7 +74,10 @@ public abstract class Monster : MonoBehaviour
     {
         isStunned = true;
         canAttack = false;
-        anim.SetBool("isWalking", false);
+        if (anim.GetBool("IsWalking"))
+        {
+            anim.SetBool("isWalking", false);   
+        }
         rigid.linearVelocity = Vector2.zero;
 
         yield return new WaitForSeconds(duration);

@@ -22,7 +22,7 @@ public class LowMonster_Rare_lethargy : Monster
 
     IEnumerator Explosion(float delayTime)
     {
-        anim.SetTrigger("Charge");
+        anim.SetBool("IsCharging",true);
         
         yield return new WaitForSeconds(delayTime);
         
@@ -45,7 +45,19 @@ public class LowMonster_Rare_lethargy : Monster
     {
         Attack();
     }
-    
+
+    public void DestroyObject()
+    {
+        Destroy(gameObject);
+    }
+
+    public override void TakeDamage(float amount)
+    {
+        hp -= amount;
+        TakeDamageAnimation();
+        if (hp <= 0) Die();
+    }
+
     private void OnDrawGizmosSelected()
     {
         if (explosionTransform != null)
