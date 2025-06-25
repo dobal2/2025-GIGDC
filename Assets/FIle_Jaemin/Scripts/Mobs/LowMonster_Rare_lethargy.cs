@@ -53,6 +53,8 @@ public class LowMonster_Rare_lethargy : Monster
 
     public override void TakeDamage(float amount)
     {
+        if(hp <= 0)
+            return;
         hp -= amount;
         TakeDamageAnimation();
         if (hp <= 0) Die();
