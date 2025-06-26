@@ -46,12 +46,19 @@ public class InputManager : MonoBehaviour
 
             case InputContext.Gameplay:
                 HandleGameplayInput();
+                HandlePause();
                 break;
 
             case InputContext.Lobby:
                 HandleLobbyInput();
+                HandlePause();
                 break;
         }
+    }
+
+    void HandlePause()
+    {
+        if (Input.GetKeyDown(keyData.Ui.PauseKey)) SettingWindow.Instance.OpenSetting();
     }
 
     #region UI 입력 처리

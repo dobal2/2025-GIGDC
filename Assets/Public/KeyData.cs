@@ -35,6 +35,7 @@ public class KeyData : ScriptableObject
         public KeyCode LeftKey;
         public KeyCode RightKey;
         public KeyCode SelectKey;
+        public KeyCode PauseKey;
     }
 
     [System.Serializable]
