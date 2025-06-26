@@ -229,7 +229,7 @@ public class LowMonster_Rare_interest : Monster
 
     protected override void Die()
     {
-        gameObject.SetActive(false);
+        base.Die();
     }
 
     // public override void TakeDamage(float amount, Vector2 knockBackDir)

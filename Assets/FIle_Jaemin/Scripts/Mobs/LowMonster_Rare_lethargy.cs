@@ -27,6 +27,8 @@ public class LowMonster_Rare_lethargy : Monster
         yield return new WaitForSeconds(delayTime);
         
         anim.SetTrigger("Explode");
+        GameObject newInkExplosion = Instantiate(inkExplosion, transform.position, Quaternion.identity);
+        Destroy(newInkExplosion,1);
         
         Collider2D[] collidersEnemies = Physics2D.OverlapCircleAll(explosionTransform.position, attackRadius);
         for (int i = 0; i < collidersEnemies.Length; i++)
@@ -38,7 +40,7 @@ public class LowMonster_Rare_lethargy : Monster
             }
         }
         yield return new WaitForSeconds(1);
-        gameObject.SetActive(false);
+
     }
 
     protected override void Die()
@@ -48,7 +50,7 @@ public class LowMonster_Rare_lethargy : Monster
 
     public void DestroyObject()
     {
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 
     public override void TakeDamage(float amount)

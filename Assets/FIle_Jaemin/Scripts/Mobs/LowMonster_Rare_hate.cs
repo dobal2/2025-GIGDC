@@ -61,6 +61,6 @@ public class LowMonster_Rare_hate : Monster
 
     protected override void Die()
     {
-        gameObject.SetActive(false);
+        base.Die();
     }
 }

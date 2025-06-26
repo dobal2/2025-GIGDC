@@ -10,6 +10,7 @@ public abstract class Monster : MonoBehaviour
     [SerializeField] protected float damage;
     [SerializeField] protected float speed;
     [SerializeField] protected float attackCoolDown;
+    [SerializeField] protected GameObject inkExplosion;
     protected bool isStunned = false; // 경직 상태
     protected Coroutine attackCoroutine;
     protected Coroutine stunCoroutine;
@@ -44,7 +45,13 @@ public abstract class Monster : MonoBehaviour
     }
 
     protected abstract void Attack();
-    protected abstract void Die();
+
+    protected virtual void Die()
+    {
+        GameObject newInkExplosion = Instantiate(inkExplosion, transform.position, Quaternion.identity);
+        gameObject.SetActive(false);
+        Destroy(newInkExplosion,2);
+    }
 
     public virtual void TakeDamage(float amount)
     {

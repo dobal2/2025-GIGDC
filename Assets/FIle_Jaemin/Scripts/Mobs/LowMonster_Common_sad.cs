@@ -103,6 +103,6 @@ public class LowMonster_Common_sad : Monster
     
     protected override void Die()
     {
-        gameObject.SetActive(false);
+        base.Die();
     }
 }

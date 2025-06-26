@@ -43,7 +43,7 @@ public class LowMonster_Rare_inferior : Monster
 
     protected override void Die()
     {
-        gameObject.SetActive(false);
+        base.Die();
     }
 
     protected override void Update()
