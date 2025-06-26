@@ -56,7 +56,11 @@ public class Boss_Excitement : Boss
 
     public override void TakeDamage(float amount)
     {
-        //타겟에 활맞으면 댐지 입게 해야되는데 활이 뭔 레이어나 태그인지 모름
+        if (currentPhase == 1)
+        {
+            hp -= amount;
+            TeleportRoutine();   
+        }
     }
 
     private void Phase2()
@@ -121,12 +125,7 @@ public class Boss_Excitement : Boss
 
         yield return new WaitForSeconds(1f);
     }
-
-    public void TakeDamage(int damage)
-    {
-        base.TakeDamage(damage);
-        TeleportRoutine();
-    }
+    
 
     private void TeleportRoutine()
     {

@@ -1,16 +1,18 @@
 using UnityEngine;
 
-public class GlassWall : MonoBehaviour
+public class GlassWall : Monster
 {
-    [SerializeField] private float hp = 15;
-    [SerializeField] private float speed = 1;
-    [SerializeField] private float damage = 1;
-    
+    [SerializeField] private GameObject glassEffectPrefab;
     void Start()
     {
         Destroy(gameObject,20);
     }
-    
+
+    protected override void Attack()
+    {
+        
+    }
+
     void Update()
     {
         if (hp <= 0)
@@ -36,9 +38,12 @@ public class GlassWall : MonoBehaviour
             other.GetComponent<PlayerHealth>().TakeDamage(damage);
         }
     }
-    
-    private void Die()
+
+    protected override void Die()
     {
+        ParticleSystem newGlassEffect = Instantiate(glassEffectPrefab, transform.position, Quaternion.Euler(-180f,90f,0f)).GetComponent<ParticleSystem>();
+        newGlassEffect.Play();
+        Destroy(newGlassEffect,3);
         Destroy(gameObject);
     }
     
