@@ -82,7 +82,7 @@ public class LocomotionState : PlayerState
                     player.Animator.Play("Fall");
             }
         }
-        else
+        else if (player.isGrounded)
         {
             PlayGroundedAnimation();
         }

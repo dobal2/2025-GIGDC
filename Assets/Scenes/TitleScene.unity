@@ -119,6 +119,128 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &6377451
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1110071967}
+    m_Modifications:
+    - target: {fileID: 3932711693203939244, guid: 18bc0a31e16d29841b4a335cfe9bbf33, type: 3}
+      propertyPath: m_Name
+      value: Setting Window
+      objectReference: {fileID: 0}
+    - target: {fileID: 4308119254196942753, guid: 18bc0a31e16d29841b4a335cfe9bbf33, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4308119254196942753, guid: 18bc0a31e16d29841b4a335cfe9bbf33, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4308119254196942753, guid: 18bc0a31e16d29841b4a335cfe9bbf33, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4308119254196942753, guid: 18bc0a31e16d29841b4a335cfe9bbf33, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4308119254196942753, guid: 18bc0a31e16d29841b4a335cfe9bbf33, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4308119254196942753, guid: 18bc0a31e16d29841b4a335cfe9bbf33, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4308119254196942753, guid: 18bc0a31e16d29841b4a335cfe9bbf33, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4308119254196942753, guid: 18bc0a31e16d29841b4a335cfe9bbf33, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4308119254196942753, guid: 18bc0a31e16d29841b4a335cfe9bbf33, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4308119254196942753, guid: 18bc0a31e16d29841b4a335cfe9bbf33, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4308119254196942753, guid: 18bc0a31e16d29841b4a335cfe9bbf33, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4308119254196942753, guid: 18bc0a31e16d29841b4a335cfe9bbf33, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4308119254196942753, guid: 18bc0a31e16d29841b4a335cfe9bbf33, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4308119254196942753, guid: 18bc0a31e16d29841b4a335cfe9bbf33, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4308119254196942753, guid: 18bc0a31e16d29841b4a335cfe9bbf33, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4308119254196942753, guid: 18bc0a31e16d29841b4a335cfe9bbf33, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4308119254196942753, guid: 18bc0a31e16d29841b4a335cfe9bbf33, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4308119254196942753, guid: 18bc0a31e16d29841b4a335cfe9bbf33, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4308119254196942753, guid: 18bc0a31e16d29841b4a335cfe9bbf33, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4308119254196942753, guid: 18bc0a31e16d29841b4a335cfe9bbf33, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4308119254196942753, guid: 18bc0a31e16d29841b4a335cfe9bbf33, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4308119254196942753, guid: 18bc0a31e16d29841b4a335cfe9bbf33, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4308119254196942753, guid: 18bc0a31e16d29841b4a335cfe9bbf33, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4308119254196942753, guid: 18bc0a31e16d29841b4a335cfe9bbf33, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9141454406762875100, guid: 18bc0a31e16d29841b4a335cfe9bbf33, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 18bc0a31e16d29841b4a335cfe9bbf33, type: 3}
+--- !u!224 &6377452 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 4308119254196942753, guid: 18bc0a31e16d29841b4a335cfe9bbf33, type: 3}
+  m_PrefabInstance: {fileID: 6377451}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &76092116
 GameObject:
   m_ObjectHideFlags: 0
@@ -2254,17 +2376,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f197cc4a2193a6b478420e0e01f65e67, type: 3}
---- !u!114 &679384424 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4334843078972867569, guid: f197cc4a2193a6b478420e0e01f65e67, type: 3}
-  m_PrefabInstance: {fileID: 679384423}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &688277273
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2957,8 +3068,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bgmSlider: {fileID: 860564846}
   vfxSlider: {fileID: 2002117621}
-  bgmLabel: {fileID: 679384424}
-  vfxLabel: {fileID: 1984694379}
+  bgmLabel: {fileID: 0}
+  vfxLabel: {fileID: 0}
 --- !u!1001 &846103424
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3295,7 +3406,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1f27e8a9470beb4cb9da06e2694495b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetText: {fileID: 679384424}
+  targetText: {fileID: 0}
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   hoverColer: {r: 1, g: 0.9647059, b: 0, a: 1}
   clickFlashInterval: 0.05
@@ -4090,6 +4201,7 @@ RectTransform:
   - {fileID: 688277274}
   - {fileID: 7384581581140435832}
   - {fileID: 1644356958}
+  - {fileID: 6377452}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -5950,7 +6062,7 @@ GameObject:
   - component: {fileID: 1644356962}
   - component: {fileID: 1644356963}
   m_Layer: 5
-  m_Name: Setting Window
+  m_Name: Setting Window(Only Title)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7163,17 +7275,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f197cc4a2193a6b478420e0e01f65e67, type: 3}
---- !u!114 &1984694379 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4334843078972867569, guid: f197cc4a2193a6b478420e0e01f65e67, type: 3}
-  m_PrefabInstance: {fileID: 1984694378}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1994032960
 GameObject:
   m_ObjectHideFlags: 0
@@ -7378,7 +7479,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1f27e8a9470beb4cb9da06e2694495b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetText: {fileID: 1984694379}
+  targetText: {fileID: 0}
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   hoverColer: {r: 1, g: 0.9647059, b: 0, a: 1}
   clickFlashInterval: 0.05
