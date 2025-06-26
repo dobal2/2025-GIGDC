@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 3077845751981478459}
   m_Layer: 0
   m_Name: SkillBomb
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

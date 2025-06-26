@@ -299,7 +299,7 @@ GameObject:
   - component: {fileID: 276724467}
   - component: {fileID: 276724469}
   - component: {fileID: 276724468}
-  m_Layer: 6
+  m_Layer: 10
   m_Name: Ground (3)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -761,7 +761,7 @@ GameObject:
   - component: {fileID: 1083672591}
   - component: {fileID: 1083672593}
   - component: {fileID: 1083672592}
-  m_Layer: 6
+  m_Layer: 10
   m_Name: Ground (2)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -1371,9 +1371,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7482379432391514785, guid: b5950281217e18446860e2bf359d78af, type: 3}
+      propertyPath: knockbackDuration
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 8766643447255310686, guid: b5950281217e18446860e2bf359d78af, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8766643447255310686, guid: b5950281217e18446860e2bf359d78af, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

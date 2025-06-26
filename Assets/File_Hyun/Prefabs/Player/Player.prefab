@@ -5228,6 +5228,7 @@ MonoBehaviour:
   boxLowAirHeight: 3
   attackBufferTime: 0.1
   weaponChangeCooldown: 0.6
+  knockbackDuration: 0.2
   isNoClip: 0
   facingDirection: 1
   isGrounded: 0
@@ -20464,7 +20465,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6008192533026303914}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}

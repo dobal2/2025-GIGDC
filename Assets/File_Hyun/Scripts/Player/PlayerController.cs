@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
         Dying, // 죽는 중
         // 필요 시 추가
     }
+
     public event Action<PlayerEffectState> OnEffectStateChanged;
 
     public PlayerEffectState CurrentEffectState { get; private set; }
@@ -89,6 +90,11 @@ public class PlayerController : MonoBehaviour
     public bool CanChangeWeapon => Time.time >= lastWeaponChangeTime + weaponChangeCooldown;
     public void MarkWeaponChanged() => lastWeaponChangeTime = Time.time;
     public bool AttackBuffered => attackBufferTimer > 0f;
+
+    [Header("Knockback Settings")]
+    [SerializeField] private float knockbackDuration = 0.1f;
+    private bool isKnockback = false;
+    private float knockbackTimer = 0f;
 
     private Rigidbody2D rb;
     private BoxCollider2D boxCol;
@@ -169,6 +175,13 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(DropThroughPlatform());
 
         wasDownKeyHeldLastFrame = DownHeld;
+
+        if (isKnockback)
+        {
+            knockbackTimer -= Time.deltaTime;
+            if (knockbackTimer <= 0f || isNoClip)
+                isKnockback = false;
+        }
 
         stateMachine.Update();
     }
@@ -267,7 +280,11 @@ public class PlayerController : MonoBehaviour
 
     public void HandleMove(float speed)
     {
+        if (isKnockback)
+            return;
+
         rb.linearVelocity = new Vector2(MoveInput * speed, rb.linearVelocity.y);
+
         if (MoveInput != 0)
         {
             facingDirection = MoveInput > 0 ? 1 : -1;
@@ -336,10 +353,22 @@ public class PlayerController : MonoBehaviour
         isDroppingPlatform = false;
     }
 
+    public void ApplyKnockback(Vector2 direction, float force)
+    {
+        if (!CanTakeDamage) return;
+
+        isKnockback = true;
+        knockbackTimer = knockbackDuration;
+
+        rb.AddForce(direction.normalized * force, ForceMode2D.Impulse);
+    }
+
     public void ConsumeAttackBuffer() => attackBufferTimer = 0f;
     public Rigidbody2D Rigidbody => rb;
     public BoxCollider2D BoxCollider => boxCol;
     public SpriteRenderer SpriteRenderer => spriteRenderer;
     public Vector2 OriginalColliderSize => originalColliderSize;
     public Vector2 OriginalColliderOffset => originalColliderOffset;
+
+    public bool IsKnockbackActive => isKnockback;
 }
