@@ -33,10 +33,14 @@ public class Boss_Frustration : Boss
     [SerializeField] private GameObject batteryPrefab;
     [SerializeField] private GameObject lightObject;
     [SerializeField] private Transform phase2Pos;
+    [SerializeField] private Transform dashAttackTransform;
+    [SerializeField] private Vector2 dashAttackSize;
     float direction = 1;
 
     private float dashTimer;
     private float lightTimer;
+    private bool isDashing;
+    private bool lightAttacking;
 
     [Header("Maps")] [SerializeField] private GameObject phase1Map;
     [SerializeField] private GameObject phase2Map;
@@ -46,6 +50,11 @@ public class Boss_Frustration : Boss
         lightObject.SetActive(false);
         base.Start();
         phase2Map.SetActive(false);
+    }
+
+    protected override void Attack()
+    {
+        
     }
 
     protected override void Update()
@@ -100,6 +109,35 @@ public class Boss_Frustration : Boss
             {
                 takeDamageCount = 0;
                 StretchFingerAttack();
+            }
+
+            if (isDashing)
+            {
+                CheckDashHitbox();
+            }
+        }
+    }
+    
+    private void CheckDashHitbox()
+    {
+        Collider2D[] collidersEnemies = Physics2D.OverlapBoxAll(dashAttackTransform.position, dashAttackSize, 0);
+        foreach (var collider in collidersEnemies)
+        {
+            if (collider.CompareTag("Player"))
+            {
+                collider.GetComponent<PlayerHealth>()?.TakeDamage(damage);
+            }
+        }
+    }
+    
+    private void CheckFingerStratchAttackHitbox()
+    {
+        Collider2D[] collidersEnemies = Physics2D.OverlapBoxAll(fingerStretchPos.position, fingerStretchAttackSize, 0);
+        foreach (var collider in collidersEnemies)
+        {
+            if (collider.CompareTag("Player"))
+            {
+                collider.GetComponent<PlayerHealth>()?.TakeDamage(damage);
             }
         }
     }
@@ -160,6 +198,9 @@ IEnumerator CastFingerAttack()
     //Phase2 Pattern
     IEnumerator DashAttack()
     {
+        if(lightAttacking)
+            yield break;
+        
         anim.SetTrigger("Rush");
         Debug.Log("Dash");
         canFlip = false;
@@ -178,32 +219,27 @@ IEnumerator CastFingerAttack()
 
     public void Dash()
     {
+        isDashing = true;
         rigid.AddForce(new Vector2(dashForce * direction,0),ForceMode2D.Impulse);
     }
     
     public void EndDash()
     {
+        isDashing = false;
         rigid.linearVelocity = Vector2.zero;
-        StartCoroutine(WaitToCanFlip());
+        StartCoroutine(WaitToCanFlip(2));
     }
 
-    IEnumerator WaitToCanFlip()
+    IEnumerator WaitToCanFlip(float delayTime)
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(delayTime);
         canFlip = true;
     }
 
     private void StretchFingerAttack()
     {
         anim.SetTrigger("Attack");
-        Collider2D[] collidersEnemies = Physics2D.OverlapBoxAll(fingerStretchPos.position, fingerStretchAttackSize, 0);
-        foreach (var collider in collidersEnemies)
-        {
-            if (collider.CompareTag("Player"))
-            {
-                collider.GetComponent<PlayerHealth>()?.TakeDamage(damage);
-            }
-        }
+        StartCoroutine(WaitToCanFlip(1));
     }
 
     private void SummonBattery()
@@ -237,6 +273,7 @@ IEnumerator CastFingerAttack()
 
     IEnumerator LightAttack()
     {
+        lightAttacking = true;
         anim.SetBool("Charging",true);
         canFlip = false;
         
@@ -269,6 +306,10 @@ IEnumerator CastFingerAttack()
         base.TakeDamage(explosionDamage);
         StopAllCoroutines();
         lightObject.SetActive(false);
+        anim.SetBool("Charging", false);
+        anim.ResetTrigger("LightAttack");
+        canFlip = true;
+        
         Debug.Log("ExplosionDamaged");
     }
     
@@ -303,8 +344,10 @@ IEnumerator CastFingerAttack()
 
     public void LightAnimEnd()
     {
+        
         lightObject.SetActive(false);
-        canFlip = true;
+        lightAttacking = false;
+        StartCoroutine(WaitToCanFlip(2));
     }
 
     protected override void Die()
@@ -327,5 +370,11 @@ IEnumerator CastFingerAttack()
                 Gizmos.color = new Color(1f, 0f, 0f, 0.5f);
                 Gizmos.DrawCube(fingerStretchPos.position, fingerStretchAttackSize);
             }
+            if (dashAttackTransform != null)
+            {
+                Gizmos.color = new Color(0f, 0f, 1f, 0.5f);
+                Gizmos.DrawCube(dashAttackTransform.position, dashAttackSize);
+            }
         }
+    
 }

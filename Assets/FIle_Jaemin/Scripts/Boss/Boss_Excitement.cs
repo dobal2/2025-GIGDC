@@ -35,7 +35,12 @@ public class Boss_Excitement : Boss
         clone.gameObject.SetActive(false);
         base.Start();
     }
-    
+
+    protected override void Attack()
+    {
+        
+    }
+
     protected override void Die()
     {
         StopAllCoroutines();

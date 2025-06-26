@@ -45,6 +45,11 @@ public class Boss_Love : Boss
         base.Start();
     }
 
+    protected override void Attack()
+    {
+        
+    }
+
     protected override void Die()
     {
         StopAllCoroutines();

@@ -1,21 +1,35 @@
 using System;
 using UnityEngine;
+using UnityEngine.VFX;
 
-public class Battery : MonoBehaviour
+public class Battery : Monster
 {
     [SerializeField] private float health;
     [SerializeField] private float attackRadius;
     [SerializeField] private Transform explosionTransform;
     [SerializeField] private float damage;
+    [SerializeField] private GameObject explosionEffectPrefab;
+    
 
-    public void TakeDamage(float damage)
+    public override void TakeDamage(float amount)
     {
         health -= damage;
     }
 
-    private void Die()
+    protected override void Attack()
     {
+        
+    }
+
+    protected override void Die()
+    {
+        GameObject newExplosionEffect = Instantiate(explosionEffectPrefab, transform.position, Quaternion.identity);
+        newExplosionEffect.GetComponent<VisualEffect>().Play();
+        
+        Destroy(newExplosionEffect,2);
+        
         Collider2D[] collidersEnemies = Physics2D.OverlapCircleAll(explosionTransform.position, attackRadius);
+        
         for (int i = 0; i < collidersEnemies.Length; i++)
         {
             if (collidersEnemies[i].gameObject.tag == "Boss")

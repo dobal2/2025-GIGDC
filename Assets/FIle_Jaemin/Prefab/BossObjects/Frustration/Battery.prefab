@@ -156,7 +156,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.004216075, y: 0.002108097}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -166,7 +166,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.6324141, y: 1.2403173}
   m_EdgeRadius: 0
 --- !u!114 &1029983104037298902
 MonoBehaviour:
@@ -180,10 +180,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3a2541fb5d0d3c4e9374ec0d3a7eb7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHp: 1
+  hp: 1
+  damage: 30
+  speed: 0
+  attackCoolDown: 0
+  inkExplosion: {fileID: 0}
+  player: {fileID: 0}
+  facingRight: 0
   health: 1
   attackRadius: 1
   explosionTransform: {fileID: 8672292512065485656}
   damage: 30
+  explosionEffectPrefab: {fileID: 8848863010715230971, guid: 0379ea270123bf24db377fda5e1d7a99, type: 3}
 --- !u!50 &550449209252684661
 Rigidbody2D:
   serializedVersion: 5

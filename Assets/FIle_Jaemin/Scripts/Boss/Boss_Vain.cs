@@ -53,6 +53,11 @@ public class BossVain : Boss
         StartCoroutine(VulnerableCycle());
     }
 
+    protected override void Attack()
+    {
+        
+    }
+
     protected override void Update()
     {
         base.Update();
