@@ -305,6 +305,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hate
       objectReference: {fileID: 0}
+    - target: {fileID: 3936880401952382698, guid: dfbf51101a4211040a2dd1bee8123259, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8348612115956997148, guid: dfbf51101a4211040a2dd1bee8123259, type: 3}
       propertyPath: windForce
       value: 20
@@ -462,7 +466,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4725185154100944832, guid: c1804f53450fb5a45a149e2ffd1a221a, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9102542144256734989, guid: c1804f53450fb5a45a149e2ffd1a221a, type: 3}
       propertyPath: m_LocalPosition.x

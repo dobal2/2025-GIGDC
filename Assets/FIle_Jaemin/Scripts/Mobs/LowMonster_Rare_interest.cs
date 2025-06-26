@@ -34,12 +34,20 @@ public class LowMonster_Rare_interest : Monster
 
     protected override void Attack()
     {
-        if (dashCoroutine != null) return;
+        if (dashCoroutine != null || isStunned) return;
         dashCoroutine = StartCoroutine(Dash());
     }
 
     private IEnumerator Dash()
     {
+        if (isStunned)
+        {
+            dashCoroutine = null;
+            yield break;
+        }
+        canFlip = false;
+        yield return new WaitForSeconds(1f);
+        
         anim.SetBool("Dashing", true);
         isDashing = true;
         canFlip = false;
@@ -53,12 +61,12 @@ public class LowMonster_Rare_interest : Monster
         anim.SetBool("Dashing", false);
 
         isDashing = false;
-        dashCoroutine = null;
 
         StartCoroutine(WaitToAttack(attackCoolDown));
 
         yield return new WaitForSeconds(0.5f);
         canFlip = true;
+        dashCoroutine = null;
     }
 
 
@@ -149,21 +157,19 @@ public class LowMonster_Rare_interest : Monster
     public override void TakeDamage(float amount)
     {
         // 👉 Dash 상태일 경우 중단
-        if (isDashing)
+        if (dashCoroutine != null)
         {
-            if (dashCoroutine != null)
-            {
-                StopCoroutine(dashCoroutine);
-                dashCoroutine = null;
-            }
-
-            isDashing = false;
-            anim.SetBool("Dashing", false);
-            rigid.linearVelocity = Vector2.zero;
-            canFlip = true;
+            StopCoroutine(dashCoroutine);
+            dashCoroutine = null;
         }
+
+        isDashing = false;
+        anim.SetBool("Dashing", false);
+        rigid.linearVelocity = Vector2.zero;
+        canFlip = true;
         
         hp -= amount;
+        isStunned = true;
 
         // 공격 중이라면 끊기
         if (attackCoroutine != null)
