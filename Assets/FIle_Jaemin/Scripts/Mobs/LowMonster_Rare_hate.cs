@@ -8,6 +8,9 @@ public class LowMonster_Rare_hate : Monster
     [SerializeField] private GameObject windParticle;
     [SerializeField] private Transform attackTransform;
     [SerializeField] private Vector2 attackSize;
+    private bool canFlip = true;
+    
+    private Coroutine delayCoroutine;
 
     private bool isAttacking;
 
@@ -18,7 +21,7 @@ public class LowMonster_Rare_hate : Monster
 
     protected void Update()
     {
-        if (canAttack && !isAttacking)
+        if (!isAttacking)
         {
             float distance = Vector3.Distance(transform.position, player.position);
             if (distance < playerNoticeDistance)
@@ -26,12 +29,16 @@ public class LowMonster_Rare_hate : Monster
                 Attack();   
             }
         }
-        
-        bool shouldFlip = (player.position.x > transform.position.x) != facingRight;
-        if (shouldFlip)
+
+        if (canFlip)
         {
-            Flip();
+            bool shouldFlip = (player.position.x > transform.position.x) != facingRight;
+            if (shouldFlip)
+            {
+                Flip();
+            }
         }
+        
 
         if (isAttacking)
         {
@@ -54,6 +61,7 @@ public class LowMonster_Rare_hate : Monster
                 windDirection = Vector2.left;
             playerRigid.linearVelocity = Vector2.zero;
             playerRigid.AddForce(windDirection.normalized * windForce,ForceMode2D.Impulse);
+            Debug.Log("ApplyWindEffect");
         }
         else
         {
@@ -63,12 +71,40 @@ public class LowMonster_Rare_hate : Monster
 
     protected override void Attack()
     {
+        if (attackCoroutine != null || isStunned) return;
+
+        canFlip = false;
+        anim.SetBool("IsAttacking",true);
+        
+        attackCoroutine = StartCoroutine(AttackRoutine());
+        
+        delayCoroutine =  StartCoroutine(DelayToDisableIsAttacking());
+    }
+    
+    private IEnumerator AttackRoutine()
+    {
+        yield return new WaitForSeconds(attackCoolDown);
+        attackCoroutine = null;
+    }
+
+    public void ActiveAttacking()
+    {
         isAttacking = true;
-        anim.SetTrigger("Attack");
         ParticleSystem particle = windParticle.GetComponent<ParticleSystem>();
         particle.Play();
-        
-        StartCoroutine(WaitToAttack(attackCoolDown));
+    }
+
+    IEnumerator DelayToDisableIsAttacking()
+    {
+        yield return new WaitForSeconds(2);
+        isAttacking = false;
+        ParticleSystem particle = windParticle.GetComponent<ParticleSystem>();
+        particle.Stop();
+        anim.SetBool("IsAttacking",false);
+        anim.SetTrigger("AttackEnd");
+
+        yield return new WaitForSeconds(0.5f);
+        canFlip = true;
     }
     
     private void CheckDashHitbox()
@@ -79,10 +115,26 @@ public class LowMonster_Rare_hate : Monster
             if (collider.CompareTag("Player"))
             {
                 collider.GetComponent<PlayerHealth>()?.TakeDamage(damage);
+                ApplyWindEffect();
             }
         }
     }
-    
+
+    public override void TakeDamage(float amount)
+    {
+        base.TakeDamage(amount);
+        anim.SetBool("IsAttacking",false);
+        if (delayCoroutine != null)
+        {
+            canFlip = true;
+            isAttacking = false;
+            StopCoroutine(delayCoroutine);
+            delayCoroutine = null;
+            ParticleSystem particle = windParticle.GetComponent<ParticleSystem>();
+            particle.Stop();
+        }
+    }
+
     protected override void Die()
     {
         base.Die();

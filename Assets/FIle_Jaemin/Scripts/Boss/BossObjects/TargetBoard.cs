@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class TargetBoard : MonoBehaviour
+public class TargetBoard : Monster
 {
     private Boss boss;
     private int damage;
@@ -25,5 +25,15 @@ public class TargetBoard : MonoBehaviour
     public void SetDamage(int dmg)
     {
         damage = dmg;
+    }
+
+    public override void TakeDamage(float amount)
+    {
+        boss.TakeDamage(amount);
+    }
+
+    protected override void Attack()
+    {
+        
     }
 }
