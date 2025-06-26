@@ -46,9 +46,8 @@ public class LowMonster_Rare_inferior : Monster
         base.Die();
     }
 
-    protected override void Update()
+    protected void Update()
     {
-        base.Update();
         if (canAttack)
         {
             Attack();

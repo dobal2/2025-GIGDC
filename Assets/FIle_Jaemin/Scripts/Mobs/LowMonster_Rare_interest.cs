@@ -101,9 +101,8 @@ public class LowMonster_Rare_interest : Monster
     }
 
 
-    protected override void Update()
+    protected void Update()
     {
-        base.Update();
         Effect();
     }
 

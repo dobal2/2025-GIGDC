@@ -5,15 +5,20 @@ public class LowMonster_Rare_hate : Monster
 {
     [SerializeField] private float playerNoticeDistance = 5f;
     [SerializeField] private float windForce = 10f;
+    [SerializeField] private GameObject windParticle;
+    [SerializeField] private Transform attackTransform;
+    [SerializeField] private Vector2 attackSize;
+
+    private bool isAttacking;
 
     protected override void Start()
     {
         base.Start();
     }
 
-    private void Update()
+    protected void Update()
     {
-        if (canAttack)
+        if (canAttack && !isAttacking)
         {
             float distance = Vector3.Distance(transform.position, player.position);
             if (distance < playerNoticeDistance)
@@ -26,6 +31,11 @@ public class LowMonster_Rare_hate : Monster
         if (shouldFlip)
         {
             Flip();
+        }
+
+        if (isAttacking)
+        {
+            CheckDashHitbox();
         }
     }
     
@@ -53,14 +63,37 @@ public class LowMonster_Rare_hate : Monster
 
     protected override void Attack()
     {
+        isAttacking = true;
         anim.SetTrigger("Attack");
-        //ApplyWindEffect();
+        ParticleSystem particle = windParticle.GetComponent<ParticleSystem>();
+        particle.Play();
+        
         StartCoroutine(WaitToAttack(attackCoolDown));
     }
     
-
+    private void CheckDashHitbox()
+    {
+        Collider2D[] collidersEnemies = Physics2D.OverlapBoxAll(attackTransform.position, attackSize, 0);
+        foreach (var collider in collidersEnemies)
+        {
+            if (collider.CompareTag("Player"))
+            {
+                collider.GetComponent<PlayerHealth>()?.TakeDamage(damage);
+            }
+        }
+    }
+    
     protected override void Die()
     {
         base.Die();
+    }
+    
+    private void OnDrawGizmosSelected()
+    {
+        if (attackTransform != null)
+        {
+            Gizmos.color = new Color(1f, 0f, 0f, 0.5f);
+            Gizmos.DrawCube(attackTransform.position, attackSize);
+        }
     }
 }

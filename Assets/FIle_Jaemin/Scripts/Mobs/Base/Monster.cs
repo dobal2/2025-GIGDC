@@ -93,16 +93,6 @@ public abstract class Monster : MonoBehaviour
         canAttack = true;
     }
 
-    protected virtual void Update()
-    {
-        // if (Input.GetMouseButtonDown(0))
-        // {
-        //     Debug.Log("TakeDamage 테스트");
-        //     TakeDamage(10f, new Vector2(-1f, 1f)); // 왼쪽 위 방향 넉백
-        // }
-    }
-
-
     
     protected void KnockBack()
     {
