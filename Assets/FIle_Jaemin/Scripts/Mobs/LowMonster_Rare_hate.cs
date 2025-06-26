@@ -49,24 +49,14 @@ public class LowMonster_Rare_hate : Monster
 
     private void ApplyWindEffect()
     {
-        player.GetComponent<PlayerHealth>().TakeDamage(damage);
-        Rigidbody2D playerRigid = player.GetComponent<Rigidbody2D>();
-        if (playerRigid != null)
-        {
-            Vector2 windDirection = Vector2.zero;
+        Vector2 windDirection = Vector2.zero;
             
-            if (facingRight)
-                windDirection = Vector2.right;
-            else
-                windDirection = Vector2.left;
-            playerRigid.linearVelocity = Vector2.zero;
-            playerRigid.AddForce(windDirection.normalized * windForce,ForceMode2D.Impulse);
-            Debug.Log("ApplyWindEffect");
-        }
+        if (facingRight)
+            windDirection = Vector2.right;
         else
-        {
-            Debug.Log("playerRigid null");
-        }
+            windDirection = Vector2.left;
+        PlayerController.Instance.ApplyKnockback(windDirection.normalized, windForce);
+        Debug.Log("ApplyWindEffect");
     }
 
     protected override void Attack()
@@ -114,8 +104,8 @@ public class LowMonster_Rare_hate : Monster
         {
             if (collider.CompareTag("Player"))
             {
-                collider.GetComponent<PlayerHealth>()?.TakeDamage(damage);
                 ApplyWindEffect();
+                collider.GetComponent<PlayerHealth>()?.TakeDamage(damage);
             }
         }
     }
