@@ -68,7 +68,7 @@ public class LowMonster_Common_sad : Monster
         stunCoroutine = StartCoroutine(DoStun(0.5f)); // 예: 0.5초 경직
 
         TakeDamageAnimation();
-        //KnockBack(knockBackDir);
+        KnockBack();
 
         if (hp <= 0) Die();
     }
@@ -103,6 +103,6 @@ public class LowMonster_Common_sad : Monster
     
     protected override void Die()
     {
-        gameObject.SetActive(false);
+        base.Die();
     }
 }

@@ -75,13 +75,15 @@ public class Boss_Love : Boss
 
         isAttacking = false;
         collider.isTrigger = false;
+
+        StartCoroutine(DelayEnableTransform());
     }
 
-    public void EndTransforming()
+    IEnumerator DelayEnableTransform()
     {
+        yield return new WaitForSeconds(2);
         isTransforming = false;
     }
-
     private void MoveUpInk()
     {
         int bossInkCount = Random.Range(6, 10);

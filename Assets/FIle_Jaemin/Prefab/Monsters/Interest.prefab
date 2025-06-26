@@ -5060,6 +5060,7 @@ MonoBehaviour:
   damage: 1
   speed: 3
   attackCoolDown: 2.5
+  inkExplosion: {fileID: 9197649491890668881, guid: 45dfe390eabaa2a4c8766a637185fcd1, type: 3}
   player: {fileID: 0}
   facingRight: 1
   groundLayer:

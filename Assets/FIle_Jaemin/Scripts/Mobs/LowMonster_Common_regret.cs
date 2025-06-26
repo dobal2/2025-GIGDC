@@ -147,7 +147,7 @@ public class LowMonster_Common_regret : Monster
 
     protected override void Die()
     {
-        gameObject.SetActive(false);
+        base.Die();
     }
 
     private void OnDrawGizmosSelected()

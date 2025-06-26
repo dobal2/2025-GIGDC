@@ -16,6 +16,9 @@ public class LowMonster_Rare_interest : Monster
     [SerializeField] private Transform attackTransform;
     [SerializeField] private Vector2 attackSize;
     [SerializeField] private ParticleSystem inkTrail;
+    
+    private Coroutine dashCoroutine;
+
 
     private int nextMove = 1;
     private bool isDashing;
@@ -31,7 +34,8 @@ public class LowMonster_Rare_interest : Monster
 
     protected override void Attack()
     {
-        StartCoroutine(Dash());
+        if (dashCoroutine != null) return;
+        dashCoroutine = StartCoroutine(Dash());
     }
 
     private IEnumerator Dash()
@@ -43,17 +47,20 @@ public class LowMonster_Rare_interest : Monster
         float dashDirection = facingRight ? 1f : -1f;
         rigid.linearVelocity = new Vector2(skilledSpeed * dashDirection, rigid.linearVelocity.y);
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.5f); // 대시 유지 시간
 
         rigid.linearVelocity = new Vector2(0, rigid.linearVelocity.y);
         anim.SetBool("Dashing", false);
-        StartCoroutine(WaitToAttack(attackCoolDown));
 
         isDashing = false;
+        dashCoroutine = null;
+
+        StartCoroutine(WaitToAttack(attackCoolDown));
 
         yield return new WaitForSeconds(0.5f);
         canFlip = true;
     }
+
 
     private void FixedUpdate()
     {
@@ -94,9 +101,8 @@ public class LowMonster_Rare_interest : Monster
     }
 
 
-    protected override void Update()
+    protected void Update()
     {
-        base.Update();
         Effect();
     }
 
@@ -138,6 +144,45 @@ public class LowMonster_Rare_interest : Monster
         }
 
         DetectGroundAndWalls();
+    }
+
+    public override void TakeDamage(float amount)
+    {
+        // 👉 Dash 상태일 경우 중단
+        if (isDashing)
+        {
+            if (dashCoroutine != null)
+            {
+                StopCoroutine(dashCoroutine);
+                dashCoroutine = null;
+            }
+
+            isDashing = false;
+            anim.SetBool("Dashing", false);
+            rigid.linearVelocity = Vector2.zero;
+            canFlip = true;
+        }
+        
+        hp -= amount;
+
+        // 공격 중이라면 끊기
+        if (attackCoroutine != null)
+        {
+            StopCoroutine(attackCoroutine);
+            attackCoroutine = null;
+
+            anim.ResetTrigger("Attack");
+            anim.Play("Idle");
+        }
+
+        // 경직 시작
+        if (stunCoroutine != null) StopCoroutine(stunCoroutine);
+        stunCoroutine = StartCoroutine(DoStun(0.5f)); // 예: 0.5초 경직
+
+        TakeDamageAnimation();
+        KnockBack();
+
+        if (hp <= 0) Die();
     }
 
     private void DetectGroundAndWalls()
@@ -183,7 +228,7 @@ public class LowMonster_Rare_interest : Monster
 
     protected override void Die()
     {
-        gameObject.SetActive(false);
+        base.Die();
     }
 
     // public override void TakeDamage(float amount, Vector2 knockBackDir)

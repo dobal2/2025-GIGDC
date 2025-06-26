@@ -10,6 +10,7 @@ public abstract class Monster : MonoBehaviour
     [SerializeField] protected float damage;
     [SerializeField] protected float speed;
     [SerializeField] protected float attackCoolDown;
+    [SerializeField] protected GameObject inkExplosion;
     protected bool isStunned = false; // 경직 상태
     protected Coroutine attackCoroutine;
     protected Coroutine stunCoroutine;
@@ -44,7 +45,13 @@ public abstract class Monster : MonoBehaviour
     }
 
     protected abstract void Attack();
-    protected abstract void Die();
+
+    protected virtual void Die()
+    {
+        GameObject newInkExplosion = Instantiate(inkExplosion, transform.position, Quaternion.identity);
+        gameObject.SetActive(false);
+        Destroy(newInkExplosion,2);
+    }
 
     public virtual void TakeDamage(float amount)
     {
@@ -65,7 +72,7 @@ public abstract class Monster : MonoBehaviour
         stunCoroutine = StartCoroutine(DoStun(0.5f)); // 예: 0.5초 경직
 
         TakeDamageAnimation();
-        //KnockBack(knockBackDir);
+        KnockBack();
 
         if (hp <= 0) Die();
     }
@@ -86,25 +93,35 @@ public abstract class Monster : MonoBehaviour
         canAttack = true;
     }
 
-    protected virtual void Update()
-    {
-        // if (Input.GetMouseButtonDown(0))
-        // {
-        //     Debug.Log("TakeDamage 테스트");
-        //     TakeDamage(10f, new Vector2(-1f, 1f)); // 왼쪽 위 방향 넉백
-        // }
-    }
-
-
     
-    protected void KnockBack(Vector2 direction)
+    protected void KnockBack()
     {
-        rigid.linearVelocity = Vector2.zero;
-
         float knockBackForce = 5f;
+        Vector2 direction = Vector2.zero;
+        
+        float yRotation = player.transform.eulerAngles.y;
+
+        if (Mathf.Approximately(yRotation, 0f))
+        {
+            direction = Vector2.right;
+        }
+        else if (Mathf.Approximately(yRotation, 180f))
+        {
+            direction = Vector2.left;
+        }
+        
+        rigid.linearVelocity = Vector2.zero;
         Vector2 force = direction.normalized * knockBackForce;
 
         rigid.AddForce(force, ForceMode2D.Impulse);
+
+        StartCoroutine(StopKnockBack());
+    }
+
+    IEnumerator StopKnockBack()
+    {
+        yield return new WaitForSeconds(0.2f);
+        rigid.linearVelocity = Vector2.zero;
     }
 
 
