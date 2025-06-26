@@ -65,7 +65,7 @@ public abstract class Monster : MonoBehaviour
         stunCoroutine = StartCoroutine(DoStun(0.5f)); // 예: 0.5초 경직
 
         TakeDamageAnimation();
-        //KnockBack(knockBackDir);
+        KnockBack();
 
         if (hp <= 0) Die();
     }
@@ -97,14 +97,34 @@ public abstract class Monster : MonoBehaviour
 
 
     
-    protected void KnockBack(Vector2 direction)
+    protected void KnockBack()
     {
-        rigid.linearVelocity = Vector2.zero;
-
         float knockBackForce = 5f;
+        Vector2 direction = Vector2.zero;
+        
+        float yRotation = player.transform.eulerAngles.y;
+
+        if (Mathf.Approximately(yRotation, 0f))
+        {
+            direction = Vector2.right;
+        }
+        else if (Mathf.Approximately(yRotation, 180f))
+        {
+            direction = Vector2.left;
+        }
+        
+        rigid.linearVelocity = Vector2.zero;
         Vector2 force = direction.normalized * knockBackForce;
 
         rigid.AddForce(force, ForceMode2D.Impulse);
+
+        StartCoroutine(StopKnockBack());
+    }
+
+    IEnumerator StopKnockBack()
+    {
+        yield return new WaitForSeconds(0.2f);
+        rigid.linearVelocity = Vector2.zero;
     }
 
 
