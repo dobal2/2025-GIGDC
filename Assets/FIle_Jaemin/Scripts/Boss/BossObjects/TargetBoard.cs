@@ -2,8 +2,7 @@ using UnityEngine;
 
 public class TargetBoard : Monster
 {
-    private Boss boss;
-    private int damage;
+    [SerializeField] private Boss_Excitement boss;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -16,8 +15,10 @@ public class TargetBoard : Monster
         //     }
         // }
     }
+    
+    
 
-    public void SetBoss(Boss be)
+    public void SetBoss(Boss_Excitement be)
     {
         boss = be;
     }
@@ -29,7 +30,7 @@ public class TargetBoard : Monster
 
     public override void TakeDamage(float amount)
     {
-        boss.TakeDamage(amount);
+        boss.TakeDamage(amount,true);
     }
 
     protected override void Attack()

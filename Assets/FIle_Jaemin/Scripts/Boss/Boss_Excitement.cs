@@ -62,6 +62,11 @@ public class Boss_Excitement : Boss
             TeleportRoutine();   
         }
     }
+    
+    public void TakeDamage(float amount,bool isTargetBoard)
+    {
+        hp -= amount;
+    }
 
     private void Phase2()
     {
