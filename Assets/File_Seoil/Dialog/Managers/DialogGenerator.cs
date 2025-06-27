@@ -20,18 +20,18 @@ public class DialogGenerator : MonoBehaviour
         dialogCanvas = Instantiate(dialogCanvasPrefab);
     }
 
-    private void Update()
+    private void Start()
     {
-        HandleInput();
+        SetDialog();
     }
 
-    private void HandleInput()
+    public void SetDialog()
     {
-        if(Input.GetKeyDown(keyData.Dialog.ProcessKey))
-            ProcessDialog();
+        InputManager.Instance.RegisterDialog(this);
+        InputManager.Instance.currentContext = InputManager.InputContext.Dialog;
     }
 
-    private void ProcessDialog()
+    public void ProcessDialog()
     {
         if (currentDialogIndex + 1 >= Chapter.Dialogs.Length)
             return;

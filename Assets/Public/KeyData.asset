@@ -29,5 +29,4 @@ MonoBehaviour:
     RightKey: 275
     SelectKey: 122
     PauseKey: 27
-  Dialog:
     ProcessKey: 32

@@ -3884,8 +3884,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bgmSlider: {fileID: 4910533548250584052}
   vfxSlider: {fileID: 2246498914187266465}
-  bgmLabel: {fileID: 0}
-  vfxLabel: {fileID: 0}
+  bgmLabel: {fileID: 7011959573882764443}
+  vfxLabel: {fileID: 2518506000535448747}
 --- !u!1 &2653664316280494052
 GameObject:
   m_ObjectHideFlags: 0
@@ -4147,7 +4147,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5527402193889504839}
         m_TargetAssemblyTypeName: SettingWindow, Assembly-CSharp
-        m_MethodName: BackTitle
+        m_MethodName: ToTitle
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5516,6 +5516,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settingPanel: {fileID: 9141454406762875100}
+  FirstButton: {fileID: 2203928181972789267}
 --- !u!1 &4083137518526456356
 GameObject:
   m_ObjectHideFlags: 0
@@ -9093,7 +9094,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1f27e8a9470beb4cb9da06e2694495b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetText: {fileID: 0}
+  targetText: {fileID: 2518506000535448747}
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   hoverColer: {r: 1, g: 0.9647059, b: 0, a: 1}
   clickFlashInterval: 0.05
@@ -10606,7 +10607,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1f27e8a9470beb4cb9da06e2694495b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetText: {fileID: 0}
+  targetText: {fileID: 7011959573882764443}
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   hoverColer: {r: 1, g: 0.9647059, b: 0, a: 1}
   clickFlashInterval: 0.05
@@ -12058,7 +12059,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1399524617073558917
 RectTransform:
   m_ObjectHideFlags: 0

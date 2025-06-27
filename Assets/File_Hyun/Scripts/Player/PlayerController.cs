@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Serialization;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(BoxCollider2D))]
@@ -151,13 +152,18 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        InputManager.Instance.RegisterPlayer(this);
-        InputManager.Instance.currentContext = InputManager.InputContext.Gameplay;
+        SetPlayer();
 
         AttackController.Initialize(WeaponType.Spear);
         stateMachine = new PlayerStateMachine();
         stateMachine.Initialize(new LocomotionState(this, stateMachine));
         SetEffectState(PlayerEffectState.None);
+    }
+
+    public void SetPlayer()
+    {
+        InputManager.Instance.RegisterPlayer(this);
+        InputManager.Instance.currentContext = InputManager.InputContext.Gameplay;
     }
 
     void Update()

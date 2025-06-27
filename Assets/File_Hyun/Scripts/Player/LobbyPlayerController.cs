@@ -36,6 +36,11 @@ public class LobbyPlayerController : MonoBehaviour
 
     private void Start()
     {
+        SetLobby();
+    }
+
+    public void SetLobby()
+    {
         InputManager.Instance.RegisterLobby(this);
         InputManager.Instance.currentContext = InputManager.InputContext.Lobby;
     }

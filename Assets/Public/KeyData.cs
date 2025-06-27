@@ -5,7 +5,6 @@ public class KeyData : ScriptableObject
 {
     public PlayerData Player;
     public UI Ui;
-    public DialogData Dialog;
 
     [System.Serializable]
     public class PlayerData
@@ -36,11 +35,6 @@ public class KeyData : ScriptableObject
         public KeyCode RightKey;
         public KeyCode SelectKey;
         public KeyCode PauseKey;
-    }
-
-    [System.Serializable]
-    public class DialogData
-    {
         public KeyCode ProcessKey;
     }
 }
