@@ -7,7 +7,7 @@ public class InputManager : MonoBehaviour
 {
     public static InputManager Instance { get; private set; }
 
-    public enum InputContext { None, UI, Gameplay, Lobby }
+    public enum InputContext { None, UI, Gameplay, Lobby, Dialog }
     public InputContext currentContext = InputContext.UI;
 
     public KeyData keyData;
@@ -16,6 +16,7 @@ public class InputManager : MonoBehaviour
     [HideInInspector] public bool IsCapturingKey = false;
     private PlayerController _player;
     private LobbyPlayerController _LobbyPlayer;
+    private DialogGenerator _dialogGenerator;
 
     private float _lastClickTime = -999f;
     [SerializeField] private float ClickCooldown = 0.3f;
@@ -45,12 +46,16 @@ public class InputManager : MonoBehaviour
                 break;
 
             case InputContext.Gameplay:
-                HandleGameplayInput();
+                HandlePlayerInput();
                 HandlePause();
                 break;
 
             case InputContext.Lobby:
                 HandleLobbyInput();
+                HandlePause();
+                break;
+                case InputContext.Dialog:
+                HandleDialogInput();
                 HandlePause();
                 break;
         }
@@ -131,7 +136,7 @@ public class InputManager : MonoBehaviour
     #endregion
 
     #region 인게임 입력 처리
-    void HandleGameplayInput()
+    void HandlePlayerInput()
     {
         if (_player == null) return;
 
@@ -159,8 +164,10 @@ public class InputManager : MonoBehaviour
     #endregion
 
     #region 로비 입력 처리
-    public void HandleLobbyInput()
+    void HandleLobbyInput()
     {
+        if (_LobbyPlayer == null) return;
+
         float horizontal = 0f;
         if (Input.GetKey(keyData.Player.LeftMoveKey)) horizontal -= 1f;
         if (Input.GetKey(keyData.Player.RightMoveKey)) horizontal += 1f;
@@ -173,6 +180,22 @@ public class InputManager : MonoBehaviour
     public void RegisterLobby(LobbyPlayerController lobbyplayer)
     {
         _LobbyPlayer = lobbyplayer;
+    }
+    #endregion
+
+    #region 대사 입력 처리
+    void HandleDialogInput()
+    {
+        if (_dialogGenerator == null) return;
+
+        if (Input.GetKeyDown(keyData.Ui.ProcessKey))
+            _dialogGenerator.ProcessDialog();
+
+    }
+
+    public void RegisterDialog(DialogGenerator dialog)
+    {
+        _dialogGenerator = dialog;
     }
     #endregion
 }
