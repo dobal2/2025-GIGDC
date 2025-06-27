@@ -263,6 +263,7 @@ MonoBehaviour:
   noticeDangerPrefab: {fileID: 47727939884314154, guid: 1021fd4d83d564a49a93956f77f023ee, type: 3}
   bossInkPrefab: {fileID: 9069091658686909327, guid: cf54ed00abf8a254fb24ba2f63ee5775, type: 3}
   bubblePrefab: {fileID: 2434027098245798612, guid: fc51ca48b682e5b449cc01a6b41e0adb, type: 3}
+  heartBubblePrefab: {fileID: 1622901308986451666, guid: 12ad4d37bae2d8544975ada59c609b99, type: 3}
   bressPrefab: {fileID: 5670720847636786518, guid: 8b87d9a2db585554aa93b4b7d46aaf47, type: 3}
   phase: 1
   fieldXRangeMin: -7
@@ -271,6 +272,7 @@ MonoBehaviour:
   fieldYRangeMax: -1
   normalY: -5.5
   digY: -11
+  phase2YPos: -1.5
   inkDamage: 1
   inkForce: 22
   bressDamage: 1
