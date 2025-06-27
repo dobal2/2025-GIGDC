@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3017479932061345769}
   - component: {fileID: 8128273712535993906}
   - component: {fileID: 6981222661362005855}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bubble
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -152,8 +152,8 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Radius: 0.5
+  m_Offset: {x: -0.0055448213, y: 0}
+  m_Radius: 1.5480072
 --- !u!114 &6981222661362005855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,8 +166,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ca2cdfdc099c1d469b290f2b55716e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRadius: 2
+  maxHp: 1
+  hp: 1
   damage: 1
+  speed: 0
+  attackCoolDown: 0
+  inkExplosion: {fileID: 0}
+  player: {fileID: 0}
+  facingRight: 0
+  attackRadius: 0.6
+  bubblePopEffect: {fileID: 2516175605883960523, guid: 01b2db88dfcb1624d8550f3ec203c2d0, type: 3}
 --- !u!1 &6506890065578698607
 GameObject:
   m_ObjectHideFlags: 0
@@ -178,6 +186,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6396397707607455919}
   - component: {fileID: 7358672237268070298}
+  - component: {fileID: 6524919479311259406}
+  - component: {fileID: 5635898092768695809}
   m_Layer: 0
   m_Name: Square
   m_TagString: Untagged
@@ -255,3 +265,51 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &6524919479311259406
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6506890065578698607}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0.00548919, y: 0}
+  m_Radius: 1.5341837
+--- !u!114 &5635898092768695809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6506890065578698607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79075a98a06a5624c814960f7bc1a111, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

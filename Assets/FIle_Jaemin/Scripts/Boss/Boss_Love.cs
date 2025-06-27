@@ -12,7 +12,6 @@ public class Boss_Love : Boss
 
     [Header("Values")] 
     [SerializeField] private int phase = 1;
-    [SerializeField] private float phase2Hp;
     [SerializeField] private float fieldXRangeMin;
     [SerializeField] private float fieldXRangeMax;
     [SerializeField] private float fieldYRangeMin;
@@ -25,14 +24,10 @@ public class Boss_Love : Boss
     [Header("Ink Setting")]
     [SerializeField] private float inkDamage;
     [SerializeField] private float inkForce;
-
-    [Header("Bubble Setting")] 
-    [SerializeField] private float bubbleDamage;
-
+    
     [Header("Bress Setting")] 
     [SerializeField] private float bressDamage;
-
-    [SerializeField] private AnimatorOverrideController phase2Anim;
+    
     
     private SpriteRenderer spriteRenderer;
     private Collider2D collider;
@@ -143,7 +138,6 @@ public class Boss_Love : Boss
             Vector2 randomPos = new Vector2(Random.Range(fieldXRangeMin, fieldXRangeMax),
                 Random.Range(fieldYRangeMin, fieldYRangeMax));
             GameObject newBubble = Instantiate(bubblePrefab, randomPos, Quaternion.identity);
-            newBubble.GetComponent<Bubble>().damage = bubbleDamage;
 
         }
         
@@ -163,7 +157,6 @@ public class Boss_Love : Boss
             Vector2 spawnPos = center + offset;
 
             GameObject newBubble = Instantiate(bubblePrefab, spawnPos, Quaternion.identity);
-            newBubble.GetComponent<Bubble>().damage = bubbleDamage;
         }
 
         yield return new WaitForSeconds(1f);

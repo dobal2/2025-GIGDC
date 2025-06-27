@@ -1,29 +1,30 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.VFX;
 
-public class Bubble : MonoBehaviour
+public class Bubble : Monster
 {
     [SerializeField] private float attackRadius;
-    public float damage;
+    [SerializeField] private GameObject bubblePopEffect;
 
-    private void Start()
+    protected override void Start()
     {
-        StartCoroutine(Explosion(5f));
+        Destroy(gameObject,5);
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    protected override void Attack()
     {
-        if (other.CompareTag("Player"))
-        {
-            StartCoroutine(Explosion(0.2f));
-        }
+        
     }
     
-    IEnumerator Explosion(float delayTime)
+    
+    public IEnumerator Explosion(float delayTime)
     {
         
         yield return new WaitForSeconds(delayTime);
+        
+        PlayBubblePopEffect();
         
         Collider2D[] collidersEnemies = Physics2D.OverlapCircleAll(transform.position, attackRadius);
         for (int i = 0; i < collidersEnemies.Length; i++)
@@ -38,8 +39,32 @@ public class Bubble : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void TakeHit(float damage)
+    private void PlayBubblePopEffect()
     {
+        VisualEffect newPop = Instantiate(bubblePopEffect, transform.position, Quaternion.identity).GetComponent<VisualEffect>();
+        
+        newPop.Play();
+        
+        Destroy(newPop,2);
+    }
+
+    public override void TakeDamage(float amount)
+    {
+        hp -= amount;
+        Die();
+    }
+
+    protected override void Die()
+    {
+        PlayBubblePopEffect();
         Destroy(gameObject);
     }
+    
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = new Color(1f, 0f, 0f, 0.5f);
+        Gizmos.DrawWireSphere(transform.position, attackRadius);
+    }
+    
+    
 }
