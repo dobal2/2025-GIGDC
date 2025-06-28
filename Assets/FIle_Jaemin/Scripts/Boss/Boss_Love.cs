@@ -8,6 +8,7 @@ public class Boss_Love : Boss
     [SerializeField] private GameObject noticeDangerPrefab;
     [SerializeField] private GameObject bossInkPrefab;
     [SerializeField] private GameObject bubblePrefab;
+    [SerializeField] private GameObject heartBubblePrefab;
     [SerializeField] private GameObject bressPrefab;
 
     [Header("Values")] 
@@ -20,6 +21,8 @@ public class Boss_Love : Boss
     [SerializeField] private float digY;
 
     private bool isTransforming;
+
+    [SerializeField] private float phase2YPos;
     
     [Header("Ink Setting")]
     [SerializeField] private float inkDamage;
@@ -71,7 +74,7 @@ public class Boss_Love : Boss
 
         rigid.gravityScale = 0;
 
-        transform.position = new Vector2(0, 7);
+        transform.position = new Vector2(0, phase2YPos);
 
         isAttacking = false;
         collider.isTrigger = false;

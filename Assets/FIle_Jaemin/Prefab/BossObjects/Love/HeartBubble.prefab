@@ -166,8 +166,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ca2cdfdc099c1d469b290f2b55716e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRadius: 2
+  maxHp: 1
+  hp: 1
   damage: 1
+  speed: 0
+  attackCoolDown: 0
+  inkExplosion: {fileID: 0}
+  player: {fileID: 0}
+  facingRight: 0
+  attackRadius: 2
+  bubblePopEffect: {fileID: 0}
 --- !u!1 &1626316139372012347
 GameObject:
   m_ObjectHideFlags: 0
