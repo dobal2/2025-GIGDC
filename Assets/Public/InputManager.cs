@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class InputManager : MonoBehaviour
@@ -47,23 +48,27 @@ public class InputManager : MonoBehaviour
 
             case InputContext.Gameplay:
                 HandlePlayerInput();
-                HandlePause();
                 break;
 
             case InputContext.Lobby:
                 HandleLobbyInput();
-                HandlePause();
                 break;
                 case InputContext.Dialog:
                 HandleDialogInput();
-                HandlePause();
                 break;
         }
+        HandlePause();
     }
 
     void HandlePause()
     {
-        if (Input.GetKeyDown(keyData.Ui.PauseKey)) SettingWindow.Instance.OpenSetting();
+        if (Input.GetKeyDown(keyData.Ui.PauseKey))
+        {
+            if (currentContext == InputContext.UI)
+                SettingWindow.Instance.CloseSetting();
+            else if (SceneManager.GetActiveScene().name != "TitleScene")
+                SettingWindow.Instance.OpenSetting();
+        }
     }
 
     #region UI 입력 처리
@@ -71,7 +76,7 @@ public class InputManager : MonoBehaviour
     {
         GameObject selected = EventSystem.current.currentSelectedGameObject;
 
-        if (selected == null && AnyUIKeyPressed())
+        if (selected == null)
         {
             if (lastSelectedButton != null && lastSelectedButton.activeInHierarchy)
             {
@@ -123,15 +128,6 @@ public class InputManager : MonoBehaviour
             EventSystem.current.SetSelectedGameObject(target);
             lastSelectedButton = target;
         }
-    }
-
-    bool AnyUIKeyPressed()
-    {
-        return Input.GetKeyDown(keyData.Ui.UpKey) ||
-               Input.GetKeyDown(keyData.Ui.DownKey) ||
-               Input.GetKeyDown(keyData.Ui.LeftKey) ||
-               Input.GetKeyDown(keyData.Ui.RightKey) ||
-               Input.GetKeyDown(keyData.Ui.SelectKey);
     }
     #endregion
 
@@ -188,7 +184,7 @@ public class InputManager : MonoBehaviour
     {
         if (_dialogGenerator == null) return;
 
-        if (Input.GetKeyDown(keyData.Ui.ProcessKey))
+        if (Input.GetKeyDown(keyData.Player.ProcessKey))
             _dialogGenerator.ProcessDialog();
 
     }

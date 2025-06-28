@@ -23,6 +23,7 @@ public class KeyData : ScriptableObject
         [Header("Interactions")]
         public KeyCode InteractionKey;
         public KeyCode WeaponchangeKey;
+        public KeyCode ProcessKey;
     }
 
     [System.Serializable]
@@ -35,6 +36,5 @@ public class KeyData : ScriptableObject
         public KeyCode RightKey;
         public KeyCode SelectKey;
         public KeyCode PauseKey;
-        public KeyCode ProcessKey;
     }
 }
