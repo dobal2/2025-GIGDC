@@ -11,7 +11,6 @@ public class SettingWindow : MonoBehaviour
     [SerializeField] private GameObject FirstButton;
     [SerializeField] private GameObject Buttons;
     [SerializeField] private GameObject[] Windows;
-
     [SerializeField] private GameObject NextOnClick;
 
     InputContext originalContext;
@@ -26,9 +25,15 @@ public class SettingWindow : MonoBehaviour
         Instance = this;
     }
 
+    void Start()
+    {
+        Initialize();
+        settingPanel.SetActive(false);
+        originalContext = InputManager.Instance.currentContext;
+    }
+
     void OnEnable()
     {
-        originalContext = InputManager.Instance.currentContext;
         SceneManager.activeSceneChanged += OnActiveSceneChanged;
     }
 

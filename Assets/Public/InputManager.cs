@@ -153,10 +153,7 @@ public class InputManager : MonoBehaviour
         _player.ChangePressed = Input.GetKeyDown(keyData.Player.WeaponchangeKey);
     }
 
-    public void RegisterPlayer(PlayerController player)
-    {
-        _player = player;
-    }
+    public void RegisterPlayer(PlayerController player) => _player = player;
     #endregion
 
     #region 로비 입력 처리
@@ -170,13 +167,10 @@ public class InputManager : MonoBehaviour
 
         _LobbyPlayer.MoveInput = horizontal;
 
-        //if (Input.GetKeyDown(keyData.Player.InteractionKey))
+        if (Input.GetKeyDown(keyData.Player.InteractionKey)) _LobbyPlayer.TryInteract();
     }
 
-    public void RegisterLobby(LobbyPlayerController lobbyplayer)
-    {
-        _LobbyPlayer = lobbyplayer;
-    }
+    public void RegisterLobby(LobbyPlayerController lobbyplayer) => _LobbyPlayer = lobbyplayer;
     #endregion
 
     #region 대사 입력 처리
@@ -189,9 +183,6 @@ public class InputManager : MonoBehaviour
 
     }
 
-    public void RegisterDialog(DialogGenerator dialog)
-    {
-        _dialogGenerator = dialog;
-    }
+    public void RegisterDialog(DialogGenerator dialog) => _dialogGenerator = dialog;
     #endregion
 }
