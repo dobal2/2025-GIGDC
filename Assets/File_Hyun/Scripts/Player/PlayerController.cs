@@ -1,7 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Xml.Serialization;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(BoxCollider2D))]
