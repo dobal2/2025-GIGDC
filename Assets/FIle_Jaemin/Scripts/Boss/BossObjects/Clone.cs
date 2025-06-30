@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Clone : Monster
@@ -5,6 +6,7 @@ public class Clone : Monster
     [SerializeField] private float attackRange = 1.5f;
     [SerializeField] private float attackDistance = 1.8f;
     [SerializeField] private Transform attackCheck;
+    private bool isBorn;
 
     private float lastAttackTime;
     private bool isAttacking = false;
@@ -12,11 +14,22 @@ public class Clone : Monster
     protected override void Start()
     {
         base.Start();
+        anim.SetTrigger("Born");
+        StartCoroutine(WaitToBorn());
+    }
+
+    IEnumerator WaitToBorn()
+    {
+        yield return new WaitForSeconds(1.5f);
+        isBorn = true;
+
     }
 
     protected void Update()
     {
-
+        if(!isBorn)
+            return;
+        
         if (player == null)
         {
             Debug.LogWarning("플레이어 없음");
@@ -58,6 +71,8 @@ public class Clone : Monster
         canAttack = false;
         anim.SetTrigger("Attack");
     }
+    
+    
 
     public void AttackOverlapCircle()
     {

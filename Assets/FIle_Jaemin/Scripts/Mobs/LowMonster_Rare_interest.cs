@@ -186,7 +186,6 @@ public class LowMonster_Rare_interest : Monster
         stunCoroutine = StartCoroutine(DoStun(0.5f)); // 예: 0.5초 경직
 
         TakeDamageAnimation();
-        //KnockBack();
 
         if (hp <= 0) Die();
     }

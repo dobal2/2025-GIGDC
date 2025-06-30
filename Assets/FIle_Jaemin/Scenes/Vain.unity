@@ -627,11 +627,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHp: 400
   hp: 400
-  phase2Hp: 800
   damage: 1
+  speed: 0
+  attackCoolDown: 0
+  inkExplosion: {fileID: 0}
   player: {fileID: 0}
-  phase2Anim: {fileID: 22100000, guid: a14dc40ca737624429d4384e5c094784, type: 2}
   facingRight: 1
+  phase2Hp: 800
+  phase2Anim: {fileID: 22100000, guid: a14dc40ca737624429d4384e5c094784, type: 2}
   tentaclePrefab: {fileID: 3108002754323573952, guid: 85c58e7a4acd9b348a5abbffcfc62c1e, type: 3}
   goldToothPrefab: {fileID: 1525002796418532205, guid: b1ea7bbad234fb3458fc2fac10c9a7a6, type: 3}
   wormAttackHitbox: {fileID: 5923420635201894806, guid: 66b8585deda61d04c98d38f6346b0214, type: 3}
@@ -1494,6 +1497,7 @@ MonoBehaviour:
   boxLowAirHeight: 3
   attackBufferTime: 0.1
   weaponChangeCooldown: 0.6
+  knockbackDuration: 0.1
   isNoClip: 0
   facingDirection: 1
   isGrounded: 0
@@ -2181,6 +2185,7 @@ MonoBehaviour:
   keyData: {fileID: 11400000, guid: eef92708e559636479c30d47676bef1e, type: 2}
   lastSelectedButton: {fileID: 0}
   IsCapturingKey: 0
+  ClickCooldown: 0.3
 --- !u!4 &2089296908
 Transform:
   m_ObjectHideFlags: 0

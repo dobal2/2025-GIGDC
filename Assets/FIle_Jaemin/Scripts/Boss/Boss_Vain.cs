@@ -212,18 +212,14 @@ public class BossVain : Boss
     public void TeleportToPlayerBack()
     {
         Vector3 playerPos = player.transform.position;
-
-        // 플레이어의 회전 방향으로 판단 (y값이 0이면 오른쪽, 180이면 왼쪽)
+        
         float playerRotY = player.transform.rotation.eulerAngles.y;
-
-        // 오른쪽을 보면 보스는 왼쪽 뒤, 왼쪽 보면 오른쪽 뒤
+        
         Vector3 backDirection = (playerRotY == 0f) ? Vector3.left : Vector3.right;
-
-        // 뒤로 2f만큼 떨어진 위치 계산 (y는 그대로 유지)
+        
         Vector3 teleportPosition = playerPos + backDirection * 2f;
         teleportPosition.y = transform.position.y;
-
-        // 위치 이동
+        
         transform.position = teleportPosition;
 
         if (backDirection == Vector3.left && !facingRight) Flip();  // 왼쪽인데 왼쪽 보고 있으면 반전 필요

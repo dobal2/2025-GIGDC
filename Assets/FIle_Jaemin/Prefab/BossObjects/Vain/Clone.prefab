@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 1774863707927253532}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15.46, y: 3.88, z: 0}
+  m_LocalPosition: {x: -5.815631, y: 4.0672216, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -81,7 +81,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 663490928035040636, guid: 3dc5e7b5a90afaa47aab3e9415ff5d45, type: 3}
+  m_Sprite: {fileID: -3479192414746859253, guid: 08368e5370f81654f964ea9469b2bc1c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -109,6 +109,7 @@ MonoBehaviour:
   damage: 1
   speed: 2
   attackCoolDown: 1
+  inkExplosion: {fileID: 0}
   player: {fileID: 0}
   facingRight: 0
   attackRange: 2
@@ -234,7 +235,7 @@ Transform:
   m_GameObject: {fileID: 6080147873596232186}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.77, y: -0.16, z: 0}
+  m_LocalPosition: {x: 1.02, y: -0.16, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
