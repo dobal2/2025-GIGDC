@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 45821240}
   m_Layer: 6
   m_Name: Ground
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -305,14 +305,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hate
       objectReference: {fileID: 0}
-    - target: {fileID: 3936880401952382698, guid: dfbf51101a4211040a2dd1bee8123259, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8348612115956997148, guid: dfbf51101a4211040a2dd1bee8123259, type: 3}
-      propertyPath: windForce
-      value: 20
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -331,7 +323,7 @@ GameObject:
   - component: {fileID: 342243145}
   m_Layer: 10
   m_Name: Wall
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -464,10 +456,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Interest
       objectReference: {fileID: 0}
-    - target: {fileID: 4725185154100944832, guid: c1804f53450fb5a45a149e2ffd1a221a, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 9102542144256734989, guid: c1804f53450fb5a45a149e2ffd1a221a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.58
@@ -564,10 +552,6 @@ PrefabInstance:
     - target: {fileID: 3079645770324588413, guid: fca5e8c2bcbc60c4d849c1fca55c6f57, type: 3}
       propertyPath: m_Name
       value: Sad
-      objectReference: {fileID: 0}
-    - target: {fileID: 3079645770324588413, guid: fca5e8c2bcbc60c4d849c1fca55c6f57, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -750,7 +734,7 @@ Transform:
   m_GameObject: {fileID: 1064009183}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.15, y: -2.19, z: 0}
+  m_LocalPosition: {x: -17.27, y: -2.19, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -1020,7 +1004,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1001 &1467499487
+--- !u!1001 &1325544653
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -1032,17 +1016,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Regret
       objectReference: {fileID: 0}
-    - target: {fileID: 877545979594178709, guid: 589d044712abc8e449dd37afcb68ba34, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2371538424994017105, guid: 589d044712abc8e449dd37afcb68ba34, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.13
+      value: 3.557183
       objectReference: {fileID: 0}
     - target: {fileID: 2371538424994017105, guid: 589d044712abc8e449dd37afcb68ba34, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.78
+      value: -4.004875
       objectReference: {fileID: 0}
     - target: {fileID: 2371538424994017105, guid: 589d044712abc8e449dd37afcb68ba34, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1132,10 +1112,6 @@ PrefabInstance:
     - target: {fileID: 6445134588560510209, guid: 18b4a80ca69acf743880a34b1372c6db, type: 3}
       propertyPath: m_Name
       value: inferior
-      objectReference: {fileID: 0}
-    - target: {fileID: 6445134588560510209, guid: 18b4a80ca69acf743880a34b1372c6db, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1290,10 +1266,6 @@ PrefabInstance:
     - target: {fileID: 2142208152570343838, guid: 146aeb8e2b9bd824a9e1f9aaeb83601c, type: 3}
       propertyPath: m_Name
       value: lethargy
-      objectReference: {fileID: 0}
-    - target: {fileID: 2142208152570343838, guid: 146aeb8e2b9bd824a9e1f9aaeb83601c, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7957728963560315300, guid: 146aeb8e2b9bd824a9e1f9aaeb83601c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1479,7 +1451,7 @@ SceneRoots:
   - {fileID: 1620056648}
   - {fileID: 1696002246}
   - {fileID: 473604346}
-  - {fileID: 1467499487}
+  - {fileID: 1325544653}
   - {fileID: 1064009184}
   - {fileID: 881832962}
   - {fileID: 1820677424}

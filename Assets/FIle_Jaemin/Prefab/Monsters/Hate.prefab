@@ -141,7 +141,7 @@ MonoBehaviour:
   player: {fileID: 0}
   facingRight: 0
   playerNoticeDistance: 4
-  windForce: 12
+  windForce: 20
   windParticle: {fileID: 4150984484791444737}
   attackTransform: {fileID: 6746550557834230568}
   attackSize: {x: 4.84, y: 2.43}

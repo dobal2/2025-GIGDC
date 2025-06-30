@@ -85,35 +85,29 @@ public class LowMonster_Common_regret : Monster
         {
             anim.SetBool("isWalking", false);
         }
-
+        
+        
         if (isGrounded)
         {
-            GroundDetector();
-            WallDetector();
+            DetectGroundAndWalls();
         }
     }
 
-    private void GroundDetector()
+    private void DetectGroundAndWalls()
     {
-        Vector2 frontVec = new Vector2(rigid.position.x + nextMove, rigid.position.y);
-        Debug.DrawRay(frontVec, Vector2.down, Color.green);
-        RaycastHit2D hit = Physics2D.Raycast(frontVec, Vector2.down, 1f, groundLayer);
-        if (hit.collider == null)
-        {
-            Debug.Log("NoGround Detected");
-            nextMove *= -1;
-        }
-    }
+        Vector2 groundCheckPos = rigid.position + new Vector2(nextMove, 1f);
+        Vector2 wallCheckPos = rigid.position + new Vector2(nextMove * 0.5f, transform.localScale.y/2);
 
-    private void WallDetector()
-    {
-        Vector2 frontVec = rigid.position + new Vector2(nextMove, 0);
-        Debug.DrawRay(frontVec, new Vector2(nextMove, 0), Color.blue);
-        RaycastHit2D hit = Physics2D.Raycast(frontVec, new Vector2(nextMove, 0), 1f, wallLayer);
-        if (hit.collider != null)
+        Debug.DrawRay(groundCheckPos, Vector2.down * 1.5f, Color.green);
+        Debug.DrawRay(wallCheckPos, Vector2.right * nextMove * 1.5f, Color.blue);
+
+        bool noGround = !Physics2D.Raycast(groundCheckPos, Vector2.down, 1.5f, groundLayer);
+        bool hitWall = Physics2D.Raycast(wallCheckPos, Vector2.right * nextMove, 1.5f, wallLayer);
+
+        if ((noGround || hitWall) && isGrounded)
         {
-            Debug.Log("Wall Detected");
             nextMove *= -1;
+            Flip();
         }
     }
 

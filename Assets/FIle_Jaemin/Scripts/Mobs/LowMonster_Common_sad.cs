@@ -67,8 +67,8 @@ public class LowMonster_Common_sad : Monster
         if (stunCoroutine != null) StopCoroutine(stunCoroutine);
         stunCoroutine = StartCoroutine(DoStun(0.5f)); // 예: 0.5초 경직
 
-        TakeDamageAnimation();
-        KnockBack();
+        //TakeDamageAnimation();
+        //KnockBack();
 
         if (hp <= 0) Die();
     }
