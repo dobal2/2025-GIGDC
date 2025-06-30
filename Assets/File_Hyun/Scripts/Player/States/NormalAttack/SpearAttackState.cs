@@ -99,6 +99,7 @@ public class SpearAttackState : PlayerState
             if (hit.TryGetComponent<Monster>(out var monster))
             {
                 monster.TakeDamage(info.damage);
+                //monster.KnockBack();
                 hasHitMonster = true;
             }
         }

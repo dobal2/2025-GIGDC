@@ -65,13 +65,6 @@ public class LowMonster_Common_sad : Monster
             anim.Play("Idle");
         }
 
-        // 경직 시작
-        if (stunCoroutine != null) StopCoroutine(stunCoroutine);
-        stunCoroutine = StartCoroutine(DoStun(0.5f)); // 예: 0.5초 경직
-
-        //TakeDamageAnimation();
-        //KnockBack();
-
         if (hp <= 0) Die();
     }
 
@@ -81,9 +74,6 @@ public class LowMonster_Common_sad : Monster
         attackCoroutine = null;
         isAttacking = false;
     }
-    
-    
-    
 
     public void Fire()
     {

@@ -134,7 +134,7 @@ public class LowMonster_Rare_interest : Monster
         {
             if (collider.CompareTag("Player"))
             {
-                collider.GetComponent<PlayerHealth>()?.TakeDamage(damage);
+                collider.GetComponent<PlayerHealth>().TakeDamage(damage);
             }
         }
     }
@@ -146,7 +146,7 @@ public class LowMonster_Rare_interest : Monster
         anim.SetBool("Walking", true);
         rigid.linearVelocity = new Vector2(speed * nextMove, rigid.linearVelocity.y);
         
-        if (!inkTrail.isPlaying && !inkTrail.loop)
+        if (!inkTrail.isPlaying && !inkTrail.main.loop)
         {
             inkTrail.Play();
         }
@@ -156,7 +156,7 @@ public class LowMonster_Rare_interest : Monster
 
     public override void TakeDamage(float amount)
     {
-        // 👉 Dash 상태일 경우 중단
+        // Dash 상태일 경우 중단
         if (dashCoroutine != null)
         {
             StopCoroutine(dashCoroutine);
@@ -184,10 +184,6 @@ public class LowMonster_Rare_interest : Monster
             anim.Play("Idle");
         }
 
-        // 경직 시작
-        if (stunCoroutine != null) StopCoroutine(stunCoroutine);
-        stunCoroutine = StartCoroutine(DoStun(0.5f)); // 예: 0.5초 경직
-
         TakeDamageAnimation();
 
         if (hp <= 0) Die();
@@ -199,7 +195,7 @@ public class LowMonster_Rare_interest : Monster
         Vector2 wallCheckPos = rigid.position + new Vector2(nextMove * 0.5f, 1f);
 
         Debug.DrawRay(groundCheckPos, Vector2.down * 1.5f, Color.green);
-        Debug.DrawRay(wallCheckPos, Vector2.right * nextMove * 1.0f, Color.blue);
+        Debug.DrawRay(wallCheckPos, 1.0f * nextMove * Vector2.right, Color.blue);
 
         bool noGround = !Physics2D.Raycast(groundCheckPos, Vector2.down, 1.5f, groundLayer);
         bool hitWall = Physics2D.Raycast(wallCheckPos, Vector2.right * nextMove, 1.0f, wallLayer);
@@ -221,7 +217,7 @@ public class LowMonster_Rare_interest : Monster
             GameObject effect = Instantiate(dashEffectPrefab, effectPos.position, Quaternion.identity);
 
             if (!facingRight)
-                effect.GetComponent<InterestEffect>()?.Flip();
+                effect.GetComponent<InterestEffect>().Flip();
 
             canEffect = false;
             StartCoroutine(ResetCanEffect());

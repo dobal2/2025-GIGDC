@@ -16,18 +16,18 @@ MonoBehaviour:
   skillBombPrefab: {fileID: 2813914100002012482, guid: e514315bb49db8b428857ca833e2f4ed, type: 3}
   localOffset: {x: 0, y: 1.9}
   bombExplosionRadius: 2
-  bombSkillDamage: 1
-  bombSkillMaxNumber: 9
-  bombSkillMinNumber: 5
+  bombSkillDamage: 20
+  bombSkillMaxNumber: 6
+  bombSkillMinNumber: 4
   bombSkillMaxExplosionTime: 0.3
   bombSkillMinExplosionTime: 1
   bombSkillMaxThrowAngle: 20
   bombSkillMinThrowAngle: 70
   bombSkillMaxThrowSpeed: 10
   bombSkillMinThrowSpeed: 20
-  Bombskillcooldown: 1
+  Bombskillcooldown: 5
   animatorController: {fileID: 9100000, guid: 467bc3eedbd11b448a262f1cded9a74b, type: 2}
-  damage: 1
+  damage: 30
   throwAngle: 50
   throwSpeed: 15
   throwDelay: 0.5

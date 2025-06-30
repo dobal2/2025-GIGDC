@@ -12,14 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 821eb68c798b0d44c96f5ca814be2c9a, type: 3}
   m_Name: SpearData
   m_EditorClassIdentifier: 
-  spearSkillDamage: 1
-  spearSkillRange: 3
+  spearSkillDamage: 30
+  spearSkillRange: 3.5
   jumpSpeed: 16
-  chargeDuration: 0.6
-  spearSkillCooldown: 1.5
+  spearSkillCooldown: 3
   animatorController: {fileID: 9100000, guid: f793756eaf78bb04f9def9b2860a6fa2, type: 2}
   spearComboInfos:
-  - damage: 1
+  - damage: 15
     pushDistance: 0.5
     pushTime: 0.2653
     comboDelay: 0.1428
@@ -27,7 +26,7 @@ MonoBehaviour:
     range: 0.9
     damageDelay: 0.15
     localOffset: {x: 1.7, y: 1.1}
-  - damage: 1
+  - damage: 15
     pushDistance: 0.5
     pushTime: 0.2275
     comboDelay: 0.1225
@@ -35,7 +34,7 @@ MonoBehaviour:
     range: 0.8
     damageDelay: 0.15
     localOffset: {x: 1.4, y: 1}
-  - damage: 1
+  - damage: 20
     pushDistance: 1
     pushTime: 0.3038
     comboDelay: 0.1631

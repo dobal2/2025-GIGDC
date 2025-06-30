@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: BowData
   m_EditorClassIdentifier: 
   minBowSkillDamage: 10
-  maxBowSkillDamage: 20
-  laserSkillDamage: 30
+  maxBowSkillDamage: 40
+  laserSkillDamage: 45
   laserThickness: 2
   bowSkillcooldown: 0.5
   fireOffset: {x: 0.73, y: 1.35}
@@ -24,7 +24,7 @@ MonoBehaviour:
   speed: 20
   maxDistance: 30
   bowComboInfos:
-  - damage: 1
+  - damage: 9
     pushDistance: -0.5
     pushTime: 0.1
     Combodelay: 0.413
@@ -32,7 +32,7 @@ MonoBehaviour:
     arrows:
     - localOffset: {x: 0.67, y: 1.4}
       ShootDelay: 0.235
-  - damage: 1
+  - damage: 9
     pushDistance: 1
     pushTime: 0.1
     Combodelay: 0.413
@@ -40,7 +40,7 @@ MonoBehaviour:
     arrows:
     - localOffset: {x: 0.8, y: 1.22}
       ShootDelay: 0.24
-  - damage: 1
+  - damage: 5
     pushDistance: -0.5
     pushTime: 0.605
     Combodelay: 0.1
@@ -50,7 +50,7 @@ MonoBehaviour:
       ShootDelay: 0.2
     - localOffset: {x: 0.63, y: 1.28}
       ShootDelay: 0.41
-  - damage: 1
+  - damage: 30
     pushDistance: -2.5
     pushTime: 0.354
     Combodelay: 1.01

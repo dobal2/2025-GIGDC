@@ -37,7 +37,7 @@ public abstract class Monster : MonoBehaviour
         }
 
         if (player == null)
-            player = GameObject.FindGameObjectWithTag("Player")?.transform;
+            player = GameObject.FindGameObjectWithTag("Player").transform;
 
         if (player == null)
         {
@@ -70,13 +70,24 @@ public abstract class Monster : MonoBehaviour
             anim.Play("Idle");
         }
 
-        // 경직 시작
-        if (stunCoroutine != null) StopCoroutine(stunCoroutine);
-        stunCoroutine = StartCoroutine(DoStun(0.5f)); // 예: 0.5초 경직
-
         TakeDamageAnimation();
 
         if (hp <= 0) Die();
+    }
+
+    public void KnockBack(Transform attacker, float knockBackForce, float knockBackAngle, float duration)
+    {
+        rigid.linearVelocity = Vector2.zero;
+
+        Vector2 baseDir = (transform.position - attacker.position).normalized;
+        Vector2 direction = Quaternion.Euler(0, 0, knockBackAngle) * baseDir;
+        Vector2 force = direction * knockBackForce;
+
+        rigid.AddForce(force, ForceMode2D.Impulse);
+        StartCoroutine(StopKnockBack(duration));
+
+        if (stunCoroutine != null) StopCoroutine(stunCoroutine);
+        stunCoroutine = StartCoroutine(DoStun(duration));
     }
 
     protected IEnumerator DoStun(float duration)
@@ -85,7 +96,7 @@ public abstract class Monster : MonoBehaviour
         canAttack = false;
         if (anim.GetBool("IsWalking"))
         {
-            anim.SetBool("isWalking", false);   
+            anim.SetBool("isWalking", false);
         }
         rigid.linearVelocity = Vector2.zero;
 
@@ -95,20 +106,9 @@ public abstract class Monster : MonoBehaviour
         canAttack = true;
     }
 
-    
-    public void KnockBack(Vector2 direction,float knockBackForce)
+    IEnumerator StopKnockBack(float duration)
     {
-        rigid.linearVelocity = Vector2.zero;
-        Vector2 force = direction.normalized * knockBackForce;
-    
-        rigid.AddForce(force, ForceMode2D.Impulse);
-    
-        StartCoroutine(StopKnockBack());
-    }
-
-    IEnumerator StopKnockBack()
-    {
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(duration);
         rigid.linearVelocity = Vector2.zero;
     }
 
