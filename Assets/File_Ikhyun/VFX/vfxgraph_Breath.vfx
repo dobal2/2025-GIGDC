@@ -6,7 +6,7 @@ VisualEffectResource:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Breath
+  m_Name: vfxgraph_Breath
   m_Graph: {fileID: 114350483966674976}
   m_Infos:
     m_RendererSettings:
@@ -33,7 +33,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d4c867f6b72b714dbb5fd1780afe208, type: 3}
-  m_Name: Breath
+  m_Name: vfxgraph_Breath
   m_EditorClassIdentifier: 
   m_UIIgnoredErrors: []
   m_Parent: {fileID: 0}
@@ -2002,7 +2002,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Color, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"r":23.258575439453126,"g":2.01357364654541,"b":0.0,"a":1.0}'
+      m_SerializableObject: '{"r":0.4875131845474243,"g":1.4536609649658204,"b":0.0,"a":1.0}'
     m_Space: -1
   m_Property:
     name: _Color
@@ -2338,7 +2338,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 0.068
+      m_SerializableObject: 0.13
     m_Space: -1
   m_Property:
     name: _MAlphaClip
@@ -2474,7 +2474,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 0.414
+      m_SerializableObject: 0.889
     m_Space: -1
   m_Property:
     name: _DistortionAmount
@@ -2906,7 +2906,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Color, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"r":0.5,"g":0.03431372344493866,"b":0.0,"a":1.0}'
+      m_SerializableObject: '{"r":0.2280101776123047,"g":0.6603773832321167,"b":0.11213954538106919,"a":1.0}'
     m_Space: -1
   m_Property:
     name: _Color
@@ -3242,7 +3242,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 0.065
+      m_SerializableObject: 1
     m_Space: -1
   m_Property:
     name: _MAlphaClip
@@ -3378,7 +3378,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 0.999
+      m_SerializableObject: 0.941
     m_Space: -1
   m_Property:
     name: _DistortionAmount
@@ -4326,7 +4326,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Color, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"r":0.6179245710372925,"g":0.18071377277374268,"b":0.19893082976341248,"a":1.0}'
+      m_SerializableObject: '{"r":0.18039213120937348,"g":0.6196078658103943,"b":0.351751446723938,"a":1.0}'
     m_Space: -1
   m_Property:
     name: _Color
@@ -4798,7 +4798,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 0.141
+      m_SerializableObject: 0.151
     m_Space: -1
   m_Property:
     name: _DistortionAmount
@@ -8389,7 +8389,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"x":15.547167778015137,"y":12.648778915405274,"z":0.24419590830802918}'
+      m_SerializableObject: '{"x":0.007631122134625912,"y":0.485848993062973,"z":0.06238629296422005}'
     m_Space: -1
   m_Property:
     name: _Color
