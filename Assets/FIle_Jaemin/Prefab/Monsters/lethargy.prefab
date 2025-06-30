@@ -136,7 +136,8 @@ MonoBehaviour:
   damage: 1
   speed: 0
   attackCoolDown: 2
-  inkExplosion: {fileID: 9197649491890668881, guid: 45dfe390eabaa2a4c8766a637185fcd1, type: 3}
+  inkHitEffect: {fileID: 7578627341079123367, guid: a952605a410321645abbff3391d7a9ac, type: 3}
+  inkDeathEffect: {fileID: 2311691554231423823, guid: 45dfe390eabaa2a4c8766a637185fcd1, type: 3}
   player: {fileID: 0}
   facingRight: 1
   attackRadius: 1

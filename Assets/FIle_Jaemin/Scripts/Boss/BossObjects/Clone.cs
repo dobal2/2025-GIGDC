@@ -36,6 +36,13 @@ public class Clone : Monster
             return;
         }
 
+        if (!isAttacking)
+        {
+            float dirX = player.position.x - transform.position.x;
+            if (dirX != 0)
+                transform.localScale = new Vector3(Mathf.Sign(dirX), 1f, 1f);
+        }
+        
         if (isAttacking || !canAttack) return;
 
         float distance = Vector2.Distance(transform.position, player.position);

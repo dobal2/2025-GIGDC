@@ -127,6 +127,8 @@ public class LowMonster_Rare_inferior : Monster
     public override void TakeDamage(float amount)
     {
         hp -= amount;
+        GameObject newInkExplosion = Instantiate(inkHitEffect, transform.position, Quaternion.identity);
+        Destroy(newInkExplosion,2);
         
         if (hp <= 0) Die();
         Debug.Log("inferior 넉백,경직 무시됨");

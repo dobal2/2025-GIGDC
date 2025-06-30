@@ -653,7 +653,7 @@ MonoBehaviour:
   aoeWarningPrefab: {fileID: 47727939884314154, guid: 1021fd4d83d564a49a93956f77f023ee, type: 3}
   aoeProjectilePrefab: {fileID: 8492340574275981203, guid: 85661997bb9b81b45bc6fdf2221a2c59, type: 3}
   moveSpeed: 3
-  basicAttackRange: 2
+  basicAttackRange: 2.2
   basicAttackCooldown: 2
   cloneCooldown: 8
   clonePrefab: {fileID: 1774863707927253532, guid: e70ea5967bb663a45bad2cf959d7176c, type: 3}
@@ -2132,7 +2132,7 @@ Transform:
   m_GameObject: {fileID: 1985293169}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.74, y: 0.42937142, z: 0}
+  m_LocalPosition: {x: 0.65, y: -0.23, z: 0}
   m_LocalScale: {x: 0.25, y: 0.25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

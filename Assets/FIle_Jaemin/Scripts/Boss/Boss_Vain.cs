@@ -130,6 +130,7 @@ public class BossVain : Boss
         currentWormHead = null;
 
         anim.SetBool("IsWormAttacking", false);
+        anim.ResetTrigger("Throw");
         currentPhase = 2;
         maxHp = phase2Hp;
         hp = maxHp;
@@ -204,9 +205,10 @@ public class BossVain : Boss
     private IEnumerator DoAmbushAttack()
     {
         anim.SetTrigger("Teleport");
-        yield return new WaitForSeconds(0.7f);
-        GetComponent<SpriteRenderer>().enabled = false;
         yield return new WaitForSeconds(1.0f);
+        GetComponent<SpriteRenderer>().enabled = false;
+        yield return new WaitForSeconds(0.9f);
+        GetComponent<SpriteRenderer>().enabled = true;
     }
 
     public void TeleportToPlayerBack()

@@ -170,6 +170,9 @@ public class LowMonster_Rare_interest : Monster
         
         hp -= amount;
         isStunned = true;
+        
+        GameObject newInkExplosion = Instantiate(inkHitEffect, transform.position, Quaternion.identity);
+        Destroy(newInkExplosion,2);
 
         // 공격 중이라면 끊기
         if (attackCoroutine != null)

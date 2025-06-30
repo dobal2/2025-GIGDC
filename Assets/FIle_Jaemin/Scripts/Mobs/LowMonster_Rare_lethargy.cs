@@ -27,7 +27,7 @@ public class LowMonster_Rare_lethargy : Monster
         yield return new WaitForSeconds(delayTime);
         
         anim.SetTrigger("Explode");
-        GameObject newInkExplosion = Instantiate(inkExplosion, transform.position, Quaternion.identity);
+        GameObject newInkExplosion = Instantiate(inkDeathEffect, transform.position, Quaternion.identity);
         Destroy(newInkExplosion,1);
         
         Collider2D[] collidersEnemies = Physics2D.OverlapCircleAll(explosionTransform.position, attackRadius);
@@ -57,6 +57,8 @@ public class LowMonster_Rare_lethargy : Monster
     {
         if(hp <= 0)
             return;
+        GameObject newInkExplosion = Instantiate(inkHitEffect, transform.position, Quaternion.identity);
+        Destroy(newInkExplosion,2);
         hp -= amount;
         //TakeDamageAnimation();
         if (hp <= 0) Die();

@@ -51,6 +51,8 @@ public class LowMonster_Common_sad : Monster
     public override void TakeDamage(float amount)
     {
         hp -= amount;
+        GameObject newInkExplosion = Instantiate(inkHitEffect, transform.position, Quaternion.identity);
+        Destroy(newInkExplosion,2);
 
         // 공격 중이라면 끊기
         if (attackCoroutine != null)

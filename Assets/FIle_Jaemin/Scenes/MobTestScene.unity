@@ -263,7 +263,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1996317592738271837, guid: dfbf51101a4211040a2dd1bee8123259, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.62
+      value: 3.72
       objectReference: {fileID: 0}
     - target: {fileID: 1996317592738271837, guid: dfbf51101a4211040a2dd1bee8123259, type: 3}
       propertyPath: m_LocalPosition.y
@@ -304,10 +304,6 @@ PrefabInstance:
     - target: {fileID: 3936880401952382698, guid: dfbf51101a4211040a2dd1bee8123259, type: 3}
       propertyPath: m_Name
       value: Hate
-      objectReference: {fileID: 0}
-    - target: {fileID: 3936880401952382698, guid: dfbf51101a4211040a2dd1bee8123259, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -460,10 +456,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Interest
       objectReference: {fileID: 0}
-    - target: {fileID: 4725185154100944832, guid: c1804f53450fb5a45a149e2ffd1a221a, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 9102542144256734989, guid: c1804f53450fb5a45a149e2ffd1a221a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.58
@@ -560,10 +552,6 @@ PrefabInstance:
     - target: {fileID: 3079645770324588413, guid: fca5e8c2bcbc60c4d849c1fca55c6f57, type: 3}
       propertyPath: m_Name
       value: Sad
-      objectReference: {fileID: 0}
-    - target: {fileID: 3079645770324588413, guid: fca5e8c2bcbc60c4d849c1fca55c6f57, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1125,10 +1113,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: inferior
       objectReference: {fileID: 0}
-    - target: {fileID: 6445134588560510209, guid: 18b4a80ca69acf743880a34b1372c6db, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1282,10 +1266,6 @@ PrefabInstance:
     - target: {fileID: 2142208152570343838, guid: 146aeb8e2b9bd824a9e1f9aaeb83601c, type: 3}
       propertyPath: m_Name
       value: lethargy
-      objectReference: {fileID: 0}
-    - target: {fileID: 2142208152570343838, guid: 146aeb8e2b9bd824a9e1f9aaeb83601c, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7957728963560315300, guid: 146aeb8e2b9bd824a9e1f9aaeb83601c, type: 3}
       propertyPath: m_LocalPosition.x

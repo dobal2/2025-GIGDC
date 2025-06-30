@@ -4,6 +4,7 @@ using UnityEngine;
 public class VainProjectile : MonoBehaviour
 {
     [SerializeField] private float damage;
+    public Transform vain;
     private Animator anim;
     private Rigidbody2D rb;
 

@@ -9,8 +9,7 @@ public class LowMonster_Common_regret : Monster
     [SerializeField] private float attackRadius;
     [SerializeField] private float stopDistance;
     [SerializeField] private ParticleSystem inkTrail;
-
-
+    
     private int nextMove;
     public bool canMove = true;
     private bool isGrounded;
