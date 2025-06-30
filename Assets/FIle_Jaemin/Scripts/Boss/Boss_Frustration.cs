@@ -227,7 +227,7 @@ IEnumerator CastFingerAttack()
     {
         isDashing = false;
         rigid.linearVelocity = Vector2.zero;
-        StartCoroutine(WaitToCanFlip(2));
+        StartCoroutine(WaitToCanFlip(1.3f));
     }
 
     IEnumerator WaitToCanFlip(float delayTime)
@@ -277,11 +277,13 @@ IEnumerator CastFingerAttack()
         anim.SetBool("Charging",true);
         canFlip = false;
         
+        yield return new WaitForSeconds(0.5f);
+        
         SummonBattery();
         lightObject.transform.rotation = Quaternion.Euler(0, 0, 125f);
         lightObject.SetActive(true);
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         
         anim.SetBool("Charging",false);
         anim.SetTrigger("LightAttack");
