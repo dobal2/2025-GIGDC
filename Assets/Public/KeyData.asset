@@ -22,6 +22,7 @@ MonoBehaviour:
     SkillKey: 99
     InteractionKey: 273
     WeaponchangeKey: 306
+    ProcessKey: 32
   Ui:
     UpKey: 273
     DownKey: 274
@@ -29,4 +30,3 @@ MonoBehaviour:
     RightKey: 275
     SelectKey: 122
     PauseKey: 27
-    ProcessKey: 32

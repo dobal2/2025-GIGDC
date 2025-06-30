@@ -101,7 +101,7 @@ public class BowSkillState : PlayerState
                 0f,
                 fireDirection,
                 Mathf.Infinity,
-                LayerMask.GetMask("Ground")
+                LayerMask.GetMask("Ground", "Wall")
             );
 
             float baseDistance = hit.collider ? hit.distance : 50f;

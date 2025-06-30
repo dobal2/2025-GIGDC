@@ -1,7 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Xml.Serialization;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(BoxCollider2D))]
@@ -160,12 +158,6 @@ public class PlayerController : MonoBehaviour
         SetEffectState(PlayerEffectState.None);
     }
 
-    public void SetPlayer()
-    {
-        InputManager.Instance.RegisterPlayer(this);
-        InputManager.Instance.currentContext = InputManager.InputContext.Gameplay;
-    }
-
     void Update()
     {
         UpdateGrounded();
@@ -193,6 +185,12 @@ public class PlayerController : MonoBehaviour
     }
 
     void FixedUpdate() => stateMachine.FixedUpdate();
+
+    public void SetPlayer()
+    {
+        InputManager.Instance.RegisterPlayer(this);
+        InputManager.Instance.currentContext = InputManager.InputContext.Gameplay;
+    }
 
     public void SetEffectState(PlayerEffectState newState)
     {
