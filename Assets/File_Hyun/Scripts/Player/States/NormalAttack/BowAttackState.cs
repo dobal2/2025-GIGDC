@@ -100,6 +100,6 @@ public class BowAttackState : PlayerState
         Vector2 firePos = (Vector2)player.transform.position + new Vector2(localOffset.x * player.facingDirection, localOffset.y);
         GameObject arrow = Object.Instantiate(arrowPrefab, firePos, Quaternion.identity);
         Vector2 direction = new(PlayerController.Instance.facingDirection, 0);
-        arrow.GetComponent<NormalArrow>().Initialize(direction, bowData.GetDamage(player.AttackController.ComboStep), bowData.speed, bowData.maxDistance);
+        arrow.GetComponent<NormalArrow>().Initialize(player.transform, direction, bowData.GetDamage(player.AttackController.ComboStep), bowData.speed, bowData.maxDistance);
     }
 }

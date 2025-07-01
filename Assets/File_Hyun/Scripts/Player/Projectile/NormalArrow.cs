@@ -10,9 +10,12 @@ public class NormalArrow : MonoBehaviour
     private float projectileDamage;
     private float speed;
     private float maxDistance;
+    private Transform Player;
 
-    public void Initialize(Vector2 currentDirection, float damage, float arrowSpeed, float arrowDistance)
+
+    public void Initialize(Transform player, Vector2 currentDirection, float damage, float arrowSpeed, float arrowDistance)
     {
+        Player = player;
         direction = currentDirection.normalized;
         projectileDamage = damage;
         speed = arrowSpeed;
@@ -42,6 +45,12 @@ public class NormalArrow : MonoBehaviour
             if (other.TryGetComponent<Monster>(out var monster))
             {
                 monster.TakeDamage(projectileDamage);
+                monster.KnockBack(
+                    attacker: player.transform,
+                    knockBackForce: 0.5f * projectileDamage,
+                    knockBackAngle: 0,
+                    duration: 0.06f
+                    );
                 Destroy(gameObject);
             }
         }

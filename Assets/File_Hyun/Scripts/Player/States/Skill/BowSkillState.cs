@@ -88,7 +88,7 @@ public class BowSkillState : PlayerState
 
             GameObject arrow = Object.Instantiate(bowData.skillArrowPrefab, firePosition, Quaternion.identity);
             if (arrow.TryGetComponent<SkillArrow>(out var arrowScript))
-                arrowScript.Initialize(fireDirection, damage, speed, distance);
+                arrowScript.Initialize(player.transform, fireDirection, damage, speed, distance);
         }
         else
         {

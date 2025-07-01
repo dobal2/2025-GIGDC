@@ -79,12 +79,15 @@ public abstract class Monster : MonoBehaviour
     {
         rigid.linearVelocity = Vector2.zero;
 
-        Vector2 baseDir = (transform.position - attacker.position).normalized;
-        Vector2 direction = Quaternion.Euler(0, 0, knockBackAngle) * baseDir;
+        bool isRight = transform.position.x > attacker.position.x;
+        float angle = isRight ? knockBackAngle : 180f - knockBackAngle;
+
+        Vector2 direction = Quaternion.Euler(0, 0, angle) * Vector2.right;
+        direction.Normalize();
+
         Vector2 force = direction * knockBackForce;
 
         rigid.AddForce(force, ForceMode2D.Impulse);
-        StartCoroutine(StopKnockBack(duration));
 
         if (stunCoroutine != null) StopCoroutine(stunCoroutine);
         stunCoroutine = StartCoroutine(DoStun(duration));
@@ -98,20 +101,12 @@ public abstract class Monster : MonoBehaviour
         {
             anim.SetBool("isWalking", false);
         }
-        rigid.linearVelocity = Vector2.zero;
 
         yield return new WaitForSeconds(duration);
 
         isStunned = false;
         canAttack = true;
     }
-
-    IEnumerator StopKnockBack(float duration)
-    {
-        yield return new WaitForSeconds(duration);
-        rigid.linearVelocity = Vector2.zero;
-    }
-
 
     protected void TakeDamageAnimation()
     {

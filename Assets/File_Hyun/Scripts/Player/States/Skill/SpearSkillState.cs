@@ -152,7 +152,15 @@ public class SpearSkillState : PlayerState
         foreach (var hit in hits)
         {
             if (hit.TryGetComponent<Monster>(out var monster))
+            {
                 monster.TakeDamage(spearData.spearSkillDamage);
+                monster.KnockBack(
+                    attacker: player.transform,
+                    knockBackForce: 20,
+                    knockBackAngle: 45,
+                    duration: 0.6f
+                    );
+            }
         }
 
         DebugDrawCrossX(center, radius, 0.3f);
