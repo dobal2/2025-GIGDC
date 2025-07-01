@@ -86,8 +86,8 @@ public class SkillBomb : MonoBehaviour
                 monster.TakeDamage(bombDamage);
                 monster.KnockBack(
                 attacker: this.transform,
-                knockBackForce: 0.5f * bombDamage,
-                knockBackAngle: 0,
+                knockBackForce: 0.6f * bombDamage,
+                knockBackAngle: 45,
                 duration: 0.15f
             );
             }

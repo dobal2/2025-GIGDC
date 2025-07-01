@@ -75,8 +75,8 @@ public class NormalBomb : MonoBehaviour
                 monster.TakeDamage(bombDamage);
                 monster.KnockBack(
                     attacker: this.transform,
-                    knockBackForce: 0.6f * bombDamage,
-                    knockBackAngle: 30,
+                    knockBackForce: 0.5f * bombDamage,
+                    knockBackAngle: 45,
                     duration: 0.2f
                 );
             }

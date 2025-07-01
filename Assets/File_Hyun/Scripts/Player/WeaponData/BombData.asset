@@ -19,8 +19,8 @@ MonoBehaviour:
   bombSkillDamage: 20
   bombSkillMaxNumber: 6
   bombSkillMinNumber: 4
-  bombSkillMaxExplosionTime: 0.3
-  bombSkillMinExplosionTime: 1
+  bombSkillMaxExplosionTime: 0.6
+  bombSkillMinExplosionTime: 1.3
   bombSkillMaxThrowAngle: 20
   bombSkillMinThrowAngle: 70
   bombSkillMaxThrowSpeed: 10
