@@ -71,7 +71,15 @@ public class NormalBomb : MonoBehaviour
         foreach (var hit in hitColliders)
         {
             if (hit.TryGetComponent<Monster>(out var monster))
+            {
                 monster.TakeDamage(bombDamage);
+                monster.KnockBack(
+                    attacker: this.transform,
+                    knockBackForce: 0.6f * bombDamage,
+                    knockBackAngle: 30,
+                    duration: 0.2f
+                );
+            }
         }
     }
 

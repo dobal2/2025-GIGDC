@@ -159,7 +159,7 @@ public class SpearSkillState : PlayerState
                     knockBackForce: 20,
                     knockBackAngle: 45,
                     duration: 0.6f
-                    );
+                );
             }
         }
 

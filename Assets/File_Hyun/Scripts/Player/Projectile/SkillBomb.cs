@@ -82,7 +82,15 @@ public class SkillBomb : MonoBehaviour
         foreach (var hit in hitColliders)
         {
             if (hit.TryGetComponent<Monster>(out var monster))
+            {
                 monster.TakeDamage(bombDamage);
+                monster.KnockBack(
+                attacker: this.transform,
+                knockBackForce: 0.5f * bombDamage,
+                knockBackAngle: 0,
+                duration: 0.15f
+            );
+            }
         }
     }
 

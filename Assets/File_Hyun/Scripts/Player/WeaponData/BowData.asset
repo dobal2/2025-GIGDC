@@ -16,7 +16,7 @@ MonoBehaviour:
   maxBowSkillDamage: 40
   laserSkillDamage: 45
   laserThickness: 2
-  bowSkillcooldown: 0.5
+  bowSkillcooldown: 4
   fireOffset: {x: 0.73, y: 1.35}
   animatorController: {fileID: 9100000, guid: c2649cd78942c0e478cdb525a0297988, type: 2}
   normalArrowPrefab: {fileID: 7523045259425540334, guid: 342d4ae33c36d2a4892d12e3043635a7, type: 3}

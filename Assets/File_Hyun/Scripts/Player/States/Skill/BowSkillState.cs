@@ -88,7 +88,7 @@ public class BowSkillState : PlayerState
 
             GameObject arrow = Object.Instantiate(bowData.skillArrowPrefab, firePosition, Quaternion.identity);
             if (arrow.TryGetComponent<SkillArrow>(out var arrowScript))
-                arrowScript.Initialize(player.transform, fireDirection, damage, speed, distance);
+                arrowScript.Initialize(fireDirection, damage, speed, distance);
         }
         else
         {
@@ -123,7 +123,15 @@ public class BowSkillState : PlayerState
             foreach (var h in hits)
             {
                 if (h.collider.TryGetComponent<Monster>(out var monster))
+                {
                     monster.TakeDamage(bowData.laserSkillDamage);
+                    monster.KnockBack(
+                        attacker: player.transform,
+                        knockBackForce: 0.5f * bowData.laserSkillDamage,
+                        knockBackAngle: 0,
+                        duration: 0.3f
+                    );
+                }
             }
         }
     }

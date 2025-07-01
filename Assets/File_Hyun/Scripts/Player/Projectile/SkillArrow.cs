@@ -11,11 +11,9 @@ public class SkillArrow : MonoBehaviour
     private float projectileDamage;
     private float speed;
     private float maxDistance;
-    private Transform Player;
 
-    public void Initialize(Transform player, Vector2 currentDirection, float damage, float speed, float maxDistance)
+    public void Initialize(Vector2 currentDirection, float damage, float speed, float maxDistance)
     {
-        Player = player;
         direction = currentDirection.normalized;
         projectileDamage = damage;
         this.speed = speed;
@@ -45,11 +43,11 @@ public class SkillArrow : MonoBehaviour
             {
                 monster.TakeDamage(projectileDamage);
                 monster.KnockBack(
-                    attacker: Player.transform,
+                    attacker: this.transform,
                     knockBackForce: 0.5f * projectileDamage,
                     knockBackAngle: 0,
-                    duration: 0.15f
-                    );
+                    duration: 0.1f
+                );
                 Destroy(gameObject);
             }
         }

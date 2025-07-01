@@ -104,7 +104,7 @@ public class SpearAttackState : PlayerState
                     knockBackForce: 10 * info.pushDistance,
                     knockBackAngle: 0,
                     duration: 1.2f * info.pushTime
-                    );
+                );
                 hasHitMonster = true;
             }
         }
