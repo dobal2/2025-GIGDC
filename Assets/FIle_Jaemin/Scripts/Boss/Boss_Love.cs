@@ -19,6 +19,7 @@ public class Boss_Love : Boss
     [SerializeField] private float fieldYRangeMax;
     [SerializeField] private float normalY;
     [SerializeField] private float digY;
+    [SerializeField] private float heartBubbleY;
 
     private bool isTransforming;
 
@@ -30,6 +31,8 @@ public class Boss_Love : Boss
     
     [Header("Bress Setting")] 
     [SerializeField] private float bressDamage;
+
+    private GameObject newDangerObject;
     
     
     private SpriteRenderer spriteRenderer;
@@ -63,7 +66,11 @@ public class Boss_Love : Boss
 
     private void Phase2()
     {
+        StopAllCoroutines();
         anim.SetTrigger("Transform");
+        
+        if(newDangerObject != null)
+            Destroy(newDangerObject);
 
         isTransforming = true;
         
@@ -108,29 +115,30 @@ public class Boss_Love : Boss
     {
         collider.isTrigger = true;
         rigid.gravityScale = 0;
-        
+
         transform.position = new Vector2(Random.Range(fieldXRangeMin, fieldXRangeMax), digY);
-        GameObject newDangerObject = Instantiate(noticeDangerPrefab, new Vector2(transform.position.x,normalY), Quaternion.identity);
-        
+        newDangerObject = Instantiate(noticeDangerPrefab, new Vector2(transform.position.x, normalY), Quaternion.identity);
+
         yield return new WaitForSeconds(1.5f);
         Destroy(newDangerObject);
-        
+
         MoveUpInk();
-        
-        
+
+        float moveSpeed = 13f; // 초당 y축 이동 속도
         while (transform.position.y < normalY)
         {
-            transform.position += new Vector3(0, 0.1f, 0);
-            yield return new WaitForSeconds(0.005f);
+            float step = moveSpeed * Time.deltaTime;
+            transform.position += new Vector3(0, step, 0);
+            yield return null;
         }
-        
+
         collider.isTrigger = false;
         rigid.gravityScale = 1;
 
         yield return new WaitForSeconds(0.3f);
-
         yield return StartCoroutine(BubblePattern());
     }
+
     
     IEnumerator BubblePattern()
     {
@@ -164,15 +172,31 @@ public class Boss_Love : Boss
 
         yield return new WaitForSeconds(1f);
     }
+    
+    
+    IEnumerator SpawnHeartBubblePattern()
+    {
+        // 하트버블을 화면 아래쪽 랜덤 위치에 소환
+        Vector2 randomPos = new Vector2(
+            Random.Range(fieldXRangeMin, fieldXRangeMax),
+            heartBubbleY // 아래쪽 Y 위치 (예: -3f)
+        );
+    
+        GameObject newBubble = Instantiate(heartBubblePrefab, randomPos, Quaternion.identity);
+    
+        yield return new WaitForSeconds(1f);
+    }
+
 
     
     IEnumerator BressPattern()
     {
         anim.SetTrigger("Bress");
         
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(4f);
     }
     
+
     // public void TriggerBress()
     // {
     //     StartCoroutine(Bress());
@@ -218,8 +242,10 @@ public class Boss_Love : Boss
         {
             if (!isTransforming)
             {
+                yield return StartCoroutine(SpawnHeartBubblePattern());   
                 yield return StartCoroutine(BressPattern());
-                yield return StartCoroutine(SpawnAroundBubblePattern());   
+                yield return StartCoroutine(SpawnAroundBubblePattern());
+                
             }
         }
         

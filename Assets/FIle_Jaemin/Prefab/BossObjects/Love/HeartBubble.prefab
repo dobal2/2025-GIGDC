@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 1971633620811371035}
   - component: {fileID: 6707844864785719409}
   - component: {fileID: 2011777097743429872}
-  - component: {fileID: 7736051114551784498}
-  m_Layer: 0
+  - component: {fileID: 4275860145148618508}
+  m_Layer: 9
   m_Name: HeartBubble
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -152,9 +152,9 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Radius: 0.5
---- !u!114 &7736051114551784498
+  m_Offset: {x: 0.0000003973643, y: 0}
+  m_Radius: 1.5436105
+--- !u!114 &4275860145148618508
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -163,7 +163,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1622901308986451666}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ca2cdfdc099c1d469b290f2b55716e1, type: 3}
+  m_Script: {fileID: 11500000, guid: cf506d446294fce48a751e837acd6cc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maxHp: 1
@@ -171,11 +171,15 @@ MonoBehaviour:
   damage: 1
   speed: 0
   attackCoolDown: 0
-  inkExplosion: {fileID: 0}
+  inkHitEffect: {fileID: 0}
+  inkDeathEffect: {fileID: 0}
   player: {fileID: 0}
   facingRight: 0
-  attackRadius: 2
-  bubblePopEffect: {fileID: 0}
+  boss: {fileID: 0}
+  attackRadius: 0.6
+  bubblePopEffect: {fileID: 2516175605883960523, guid: 01b2db88dfcb1624d8550f3ec203c2d0, type: 3}
+  bossTakeDamage: 0
+  shieldPrefab: {fileID: 47727939884314154, guid: b8a3f4b3126c57242b28babdfaa0dc66, type: 3}
 --- !u!1 &1626316139372012347
 GameObject:
   m_ObjectHideFlags: 0
@@ -186,6 +190,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3991206567708398016}
   - component: {fileID: 419310965575402400}
+  - component: {fileID: 8202922048616408795}
+  - component: {fileID: 1205814666563108639}
   m_Layer: 0
   m_Name: Image
   m_TagString: Untagged
@@ -263,3 +269,51 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &8202922048616408795
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1626316139372012347}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0.0000003973643, y: 0}
+  m_Radius: 1.5436105
+--- !u!114 &1205814666563108639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1626316139372012347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79075a98a06a5624c814960f7bc1a111, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

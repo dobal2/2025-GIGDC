@@ -5,12 +5,20 @@ using UnityEngine.VFX;
 
 public class Bubble : Monster
 {
-    [SerializeField] private float attackRadius;
-    [SerializeField] private GameObject bubblePopEffect;
+    [SerializeField] protected Boss_Love boss;
+    [SerializeField] protected float attackRadius;
+    [SerializeField] protected GameObject bubblePopEffect;
+    [SerializeField] protected float bossTakeDamage;
+
+
+    public void SetBoss(Boss_Love newBoss)
+    {
+        boss = newBoss;
+    }
 
     protected override void Start()
     {
-        Destroy(gameObject,5);
+        StartCoroutine(Explosion(5));
     }
 
     protected override void Attack()
@@ -39,7 +47,7 @@ public class Bubble : Monster
         Destroy(gameObject);
     }
 
-    private void PlayBubblePopEffect()
+    protected void PlayBubblePopEffect()
     {
         VisualEffect newPop = Instantiate(bubblePopEffect, transform.position, Quaternion.identity).GetComponent<VisualEffect>();
         
@@ -50,16 +58,26 @@ public class Bubble : Monster
 
     public override void TakeDamage(float amount)
     {
+        if (boss != null)
+        {
+            
+        }
         hp -= amount;
         Die();
     }
 
     protected override void Die()
     {
+        
         PlayBubblePopEffect();
         Destroy(gameObject);
     }
-    
+
+    public override void KnockBack(Transform attacker, float knockBackForce, float knockBackAngle, float duration)
+    {
+        
+    }
+
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = new Color(1f, 0f, 0f, 0.5f);

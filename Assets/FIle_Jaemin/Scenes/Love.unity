@@ -255,7 +255,8 @@ MonoBehaviour:
   damage: 1
   speed: 0
   attackCoolDown: 0
-  inkExplosion: {fileID: 0}
+  inkHitEffect: {fileID: 0}
+  inkDeathEffect: {fileID: 0}
   player: {fileID: 0}
   facingRight: 0
   phase2Hp: 250
@@ -272,6 +273,7 @@ MonoBehaviour:
   fieldYRangeMax: -1
   normalY: -5.5
   digY: -11
+  heartBubbleY: -4
   phase2YPos: -1.5
   inkDamage: 1
   inkForce: 22
@@ -426,7 +428,7 @@ Transform:
   m_GameObject: {fileID: 397537761}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.3136272, y: 9.530654, z: 0}
+  m_LocalPosition: {x: -10.71, y: 5.35, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

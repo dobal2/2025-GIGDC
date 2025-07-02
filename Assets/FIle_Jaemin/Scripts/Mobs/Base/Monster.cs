@@ -75,7 +75,7 @@ public abstract class Monster : MonoBehaviour
         if (hp <= 0) Die();
     }
 
-    public void KnockBack(Transform attacker, float knockBackForce, float knockBackAngle, float duration)
+    public virtual void KnockBack(Transform attacker, float knockBackForce, float knockBackAngle, float duration)
     {
         rigid.linearVelocity = Vector2.zero;
 
