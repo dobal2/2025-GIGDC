@@ -180,6 +180,7 @@ MonoBehaviour:
   bubblePopEffect: {fileID: 2516175605883960523, guid: 01b2db88dfcb1624d8550f3ec203c2d0, type: 3}
   bossTakeDamage: 0
   shieldPrefab: {fileID: 47727939884314154, guid: b8a3f4b3126c57242b28babdfaa0dc66, type: 3}
+  invincibleTime: 3
 --- !u!1 &1626316139372012347
 GameObject:
   m_ObjectHideFlags: 0
