@@ -9,11 +9,13 @@ public class Bubble : Monster
     [SerializeField] protected float attackRadius;
     [SerializeField] protected GameObject bubblePopEffect;
     [SerializeField] protected float bossTakeDamage;
+    private bool isSecondPhase;
 
 
-    public void SetBoss(Boss_Love newBoss)
+    public void SetBoss(Boss_Love newBoss,bool isSecondPhase)
     {
         boss = newBoss;
+        this.isSecondPhase = isSecondPhase;
     }
 
     protected override void Start()
@@ -29,7 +31,6 @@ public class Bubble : Monster
     
     public IEnumerator Explosion(float delayTime)
     {
-        
         yield return new WaitForSeconds(delayTime);
         
         PlayBubblePopEffect();
@@ -58,17 +59,17 @@ public class Bubble : Monster
 
     public override void TakeDamage(float amount)
     {
-        if (boss != null)
-        {
-            
-        }
         hp -= amount;
         Die();
     }
 
     protected override void Die()
     {
-        
+        Debug.Log(isSecondPhase);
+        if (isSecondPhase && boss != null)
+        {
+            boss.TakeDamage(bossTakeDamage);
+        }
         PlayBubblePopEffect();
         Destroy(gameObject);
     }

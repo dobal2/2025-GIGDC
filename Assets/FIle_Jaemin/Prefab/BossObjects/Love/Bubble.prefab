@@ -171,11 +171,15 @@ MonoBehaviour:
   damage: 1
   speed: 0
   attackCoolDown: 0
-  inkExplosion: {fileID: 0}
+  inkHitEffect: {fileID: 0}
+  inkDeathEffect: {fileID: 0}
   player: {fileID: 0}
   facingRight: 0
+  boss: {fileID: 0}
   attackRadius: 0.6
   bubblePopEffect: {fileID: 2516175605883960523, guid: 01b2db88dfcb1624d8550f3ec203c2d0, type: 3}
+  bossTakeDamage: 10
+  isSecondPhase: 0
 --- !u!1 &6506890065578698607
 GameObject:
   m_ObjectHideFlags: 0

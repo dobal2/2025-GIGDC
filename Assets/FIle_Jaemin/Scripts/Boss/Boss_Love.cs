@@ -149,6 +149,7 @@ public class Boss_Love : Boss
             Vector2 randomPos = new Vector2(Random.Range(fieldXRangeMin, fieldXRangeMax),
                 Random.Range(fieldYRangeMin, fieldYRangeMax));
             GameObject newBubble = Instantiate(bubblePrefab, randomPos, Quaternion.identity);
+            newBubble.GetComponent<Bubble>().SetBoss(this,false);
 
         }
         
@@ -168,6 +169,7 @@ public class Boss_Love : Boss
             Vector2 spawnPos = center + offset;
 
             GameObject newBubble = Instantiate(bubblePrefab, spawnPos, Quaternion.identity);
+            newBubble.GetComponent<Bubble>().SetBoss(this,true);
         }
 
         yield return new WaitForSeconds(1f);
@@ -182,7 +184,7 @@ public class Boss_Love : Boss
             heartBubbleY // 아래쪽 Y 위치 (예: -3f)
         );
     
-        GameObject newBubble = Instantiate(heartBubblePrefab, randomPos, Quaternion.identity);
+        GameObject newHeartBubble = Instantiate(heartBubblePrefab, randomPos, Quaternion.identity);
     
         yield return new WaitForSeconds(1f);
     }

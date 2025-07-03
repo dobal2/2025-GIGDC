@@ -11,6 +11,8 @@ public class PlayerHealth : MonoBehaviour
 
     [HideInInspector] public bool isInvincible;
 
+    private Coroutine resetInvincibleCoroutine;
+
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -39,7 +41,7 @@ public class PlayerHealth : MonoBehaviour
         }
 
         isInvincible = true;
-        StartCoroutine(ResetInvincible());
+        resetInvincibleCoroutine = StartCoroutine(ResetInvincible());
     }
 
     public void TakeHeal(float amount)
@@ -51,6 +53,24 @@ public class PlayerHealth : MonoBehaviour
 
         Debug.Log("Now Player Health: " + CurrentHealth);
     }
+    
+    public void SetInvincibleFor(float duration)
+    {
+        if (resetInvincibleCoroutine != null)
+        {
+            StopCoroutine(resetInvincibleCoroutine);
+            resetInvincibleCoroutine = null;
+        }
+        StartCoroutine(SetInvincibleCoroutine(duration));
+    }
+    
+    private IEnumerator SetInvincibleCoroutine(float duration)
+    {
+        isInvincible = true;
+        yield return new WaitForSeconds(duration);
+        isInvincible = false;
+    }
+
 
     private IEnumerator ResetInvincible()
     {
