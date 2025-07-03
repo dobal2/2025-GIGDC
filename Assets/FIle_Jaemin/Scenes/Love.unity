@@ -266,6 +266,7 @@ MonoBehaviour:
   bubblePrefab: {fileID: 2434027098245798612, guid: fc51ca48b682e5b449cc01a6b41e0adb, type: 3}
   heartBubblePrefab: {fileID: 1622901308986451666, guid: 12ad4d37bae2d8544975ada59c609b99, type: 3}
   bressPrefab: {fileID: 5670720847636786518, guid: 8b87d9a2db585554aa93b4b7d46aaf47, type: 3}
+  bressEffectPrefab: {fileID: 0}
   phase: 1
   fieldXRangeMin: -7
   fieldXRangeMax: 7

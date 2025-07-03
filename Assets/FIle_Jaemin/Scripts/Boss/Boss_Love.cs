@@ -10,6 +10,7 @@ public class Boss_Love : Boss
     [SerializeField] private GameObject bubblePrefab;
     [SerializeField] private GameObject heartBubblePrefab;
     [SerializeField] private GameObject bressPrefab;
+    [SerializeField] private GameObject bressEffectPrefab;
 
     [Header("Values")] 
     [SerializeField] private int phase = 1;
