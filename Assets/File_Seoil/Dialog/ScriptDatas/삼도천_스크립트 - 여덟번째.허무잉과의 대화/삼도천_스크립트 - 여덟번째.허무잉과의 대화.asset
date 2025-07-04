@@ -1,0 +1,79 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32222a1d106fc204fa1626112d98478a, type: 3}
+  m_Name: "\uC0BC\uB3C4\uCC9C_\uC2A4\uD06C\uB9BD\uD2B8 - \uC5EC\uB35F\uBC88\uC9F8.\uD5C8\uBB34\uC789\uACFC\uC758
+    \uB300\uD654"
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: "\uC0BC\uB3C4\uCC9C_\uC2A4\uD06C\uB9BD\uD2B8 - \uC5EC\uB35F\uBC88\uC9F8.\uD5C8\uBB34\uC789\uACFC\uC758
+    \uB300\uD654"
+  <DialogTargets>k__BackingField:
+  - {fileID: 11400000, guid: ea8f98830a398d348a2a933b2a1cf705, type: 2}
+  - {fileID: 11400000, guid: 3e036abae42814644891599bf8ecea5b, type: 2}
+  <Dialogs>k__BackingField:
+  - Target: {fileID: 11400000, guid: ea8f98830a398d348a2a933b2a1cf705, type: 2}
+    <Line>k__BackingField: "...\uD558\uD558"
+  - Target: {fileID: 11400000, guid: 3e036abae42814644891599bf8ecea5b, type: 2}
+    <Line>k__BackingField: "\uBB34\uC5C7\uC774 \uADF8\uB807\uAC8C \uC6C3\uAE34\uAC00?"
+  - Target: {fileID: 11400000, guid: 3e036abae42814644891599bf8ecea5b, type: 2}
+    <Line>k__BackingField: "\uBB34\uC5C7\uC774 \uADF8\uB807\uAC8C \uC7AC\uBC0C\uB294\uAC8C
+      \uC788\uB294\uAC00?"
+  - Target: {fileID: 11400000, guid: 3e036abae42814644891599bf8ecea5b, type: 2}
+    <Line>k__BackingField: "\uACB0\uAD6D\uC740 \uBAA8\uB4E0 \uAC8C \uB05D\uB098\uB294
+      \uB0A0\uC774 \uC624\uAE38 \uB9C8\uB828..."
+  - Target: {fileID: 11400000, guid: 3e036abae42814644891599bf8ecea5b, type: 2}
+    <Line>k__BackingField: "\uC544\uBB34\uAC83\uB3C4 \uC601\uC6D0\uD55C\uAC8C \uC5C6\uB294
+      \uC720\uD55C\uC801\uC778 \uC0B6... "
+  - Target: {fileID: 11400000, guid: 3e036abae42814644891599bf8ecea5b, type: 2}
+    <Line>k__BackingField: "\uACB0\uAD6D \uADF8 \uC0B6\uC774 \uB05D\uB098\uACE0 \uB098\uBA74
+      \uC544\uBB34\uAC83\uB3C4 \uC5C6\uB2E4\uB124... "
+  - Target: {fileID: 11400000, guid: 3e036abae42814644891599bf8ecea5b, type: 2}
+    <Line>k__BackingField: "\uB108\uBB34\uB098\uB3C4 \uD5C8\uBB34\uD55C \uAC83\uB4E4\uB85C
+      \uC774\uC5B4\uC9C4 \uC138\uC0C1 \uC544\uB2C8\uACA0\uB294\uAC00? \uC790\uB124\uB294
+      \uADF8\uB7F0 \uC0B6\uC774 \uD589\uBCF5\uD55C\uAC00?"
+  - Target: {fileID: 11400000, guid: 3e036abae42814644891599bf8ecea5b, type: 2}
+    <Line>k__BackingField: "\uC6B0\uB9B0 \uC65C \uD5C8\uBB34\uC778 \uC0B6 \uC18D\uC5D0\uC11C
+      \uC6B0\uB9AC\uB294 \uC65C \uB9E4\uC77C \uC81C\uC790\uB9AC\uAC78\uC74C\uC744
+      \uD558\uB294\uAC00?"
+  - Target: {fileID: 11400000, guid: 3e036abae42814644891599bf8ecea5b, type: 2}
+    <Line>k__BackingField: "\uACB0\uAD6D \uC790\uB124\uAC00 \uC0AC\uB791\uD558\uB358
+      \u2018\uC591\uD76C\uC21C\u2019\uB3C4 \uB05D\uC774\uB780 \uD5C8\uBB34\uC5D0
+      \uBA39\uD600\uBC84\uB9B0\uAC78\uC138"
+  - Target: {fileID: 11400000, guid: 3e036abae42814644891599bf8ecea5b, type: 2}
+    <Line>k__BackingField: "\uACB0\uAD6D \uB05D\uB098\uC11C \uD5C8\uBB34\uBC16\uC5D0
+      \uB0A8\uC9C0\uB294 \uC54A\uB294 \uC0B6\uC774 \uC790\uB124\uB294 \uC88B\uC740\uAC00?"
+  - Target: {fileID: 11400000, guid: 3e036abae42814644891599bf8ecea5b, type: 2}
+    <Line>k__BackingField: "\uC790\uB124\uB3C4 \uACB0\uAD6D \uC720\uD55C\uD55C \uC0B6\uC774
+      \uB05D\uB098\uACE0 \uD5C8\uBB34\uC5D0 \uC7A1\uC544 \uBA39\uD788\uAC8C \uB420\uAC78\uC138"
+  - Target: {fileID: 11400000, guid: 3e036abae42814644891599bf8ecea5b, type: 2}
+    <Line>k__BackingField: "\uADF8\uB807\uC9C0 \uC54A\uB294\uAC00?"
+  - Target: {fileID: 11400000, guid: ea8f98830a398d348a2a933b2a1cf705, type: 2}
+    <Line>k__BackingField: "<Selection({\uADF8\uB807\uAC8C \uC0DD\uAC01\uD560 \uC218\uB3C4
+      \uC788\uC9C0,3},{\uC544\uB2C8 \uD5C8\uBB34\uC5D0 \uBA39\uD788\uC9C0 \uC54A\uC744
+      \uAC70\uC57C,1})>"
+  - Target: {fileID: 11400000, guid: ea8f98830a398d348a2a933b2a1cf705, type: 2}
+    <Line>k__BackingField: "\uB9DE\uB294\uB9D0\uC774\uB77C\uACE0 \uC0DD\uAC01\uD560
+      \uC218 \uC788\uACA0\uC9C0\uB9CC"
+  - Target: {fileID: 11400000, guid: ea8f98830a398d348a2a933b2a1cf705, type: 2}
+    <Line>k__BackingField: "\uD5C8\uBB34\uC5D0 \uC7A1\uC544\uBA39\uD788\uC9C4 \uC54A\uC744
+      \uAC70\uC57C"
+  - Target: {fileID: 11400000, guid: ea8f98830a398d348a2a933b2a1cf705, type: 2}
+    <Line>k__BackingField: "\uC778\uC0DD\uC740 \uB05D\uB0AC\uC9C0\uB9CC \uC544\uC9C1
+      \uB098\uB294 \uB05D\uC774 \uB098\uC9C0 \uC54A\uC558\uC73C\uB2C8 \uD5C8\uBB34\uC5D0
+      \uBA39\uD788\uC9C4 \uC54A\uC744 \uAC70\uC57C"
+  - Target: {fileID: 11400000, guid: ea8f98830a398d348a2a933b2a1cf705, type: 2}
+    <Line>k__BackingField: "\uD5C8\uBB34\uC5D0 \uBA39\uD788\uC9C0 \uC54A\uC544...
+      \uB0B4 \uC778\uC0DD\uC740 \uB05D\uC774 \uB0AC\uB2E4\uACE0 \uD558\uB354\uB77C\uB3C4
+      \u2018\uB098\u2019\uB294 \uB05D\uC774\uC9C0 \uB098\uC9C0 \uC54A\uC558\uC5B4"
+  - Target: {fileID: 11400000, guid: ea8f98830a398d348a2a933b2a1cf705, type: 2}
+    <Line>k__BackingField: "\uB0B4\uAC00... \uBB34\uD55C\uD55C \uD5C8\uBB34\uB97C
+      \uBCF4\uC798\uAC83\uC5C6\uC5B4 \uBCF4\uC774\uB294 \uC720\uD55C\uD55C \uC778\uC0DD\uC774
+      \uC774\uACA8\uC8FC\uACA0\uC5B4"

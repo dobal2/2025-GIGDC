@@ -450,6 +450,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -3084,7 +3097,126 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      RealisticSmoke02_6x6_0: 5236644035197067049
+      RealisticSmoke02_6x6_1: -895725045617523180
+      RealisticSmoke02_6x6_10: 7831454229813139586
+      RealisticSmoke02_6x6_100: -4380274559852995621
+      RealisticSmoke02_6x6_101: -1148459048352324966
+      RealisticSmoke02_6x6_102: -585262199170339629
+      RealisticSmoke02_6x6_103: -1140279166923209252
+      RealisticSmoke02_6x6_104: -3102737047398019542
+      RealisticSmoke02_6x6_105: 3978878161018886677
+      RealisticSmoke02_6x6_106: 7870356772371987025
+      RealisticSmoke02_6x6_107: -6289410982149605936
+      RealisticSmoke02_6x6_108: 6180540443308382198
+      RealisticSmoke02_6x6_109: -4522805519610793747
+      RealisticSmoke02_6x6_11: -771077636755608335
+      RealisticSmoke02_6x6_110: -2858270045707542561
+      RealisticSmoke02_6x6_111: 1128204903121145056
+      RealisticSmoke02_6x6_112: -1119794203198407275
+      RealisticSmoke02_6x6_113: -726541481240068343
+      RealisticSmoke02_6x6_114: -5572924484512915460
+      RealisticSmoke02_6x6_115: -3980343955700925160
+      RealisticSmoke02_6x6_116: -6919590413710666542
+      RealisticSmoke02_6x6_117: -8605058542915046911
+      RealisticSmoke02_6x6_118: 8378455297950987185
+      RealisticSmoke02_6x6_12: -9018927995069541542
+      RealisticSmoke02_6x6_13: -275159429447723910
+      RealisticSmoke02_6x6_14: 4801709940016128774
+      RealisticSmoke02_6x6_15: -5025974410136109159
+      RealisticSmoke02_6x6_16: -2751492517676050929
+      RealisticSmoke02_6x6_17: -3657304525551275435
+      RealisticSmoke02_6x6_18: 3482249086843333581
+      RealisticSmoke02_6x6_19: -9079735052052025333
+      RealisticSmoke02_6x6_2: 4888936129523263388
+      RealisticSmoke02_6x6_20: 3325350532093833241
+      RealisticSmoke02_6x6_21: -4454454168901231821
+      RealisticSmoke02_6x6_22: -3630952335462113051
+      RealisticSmoke02_6x6_23: 2032228425821832534
+      RealisticSmoke02_6x6_24: 3152914175382980343
+      RealisticSmoke02_6x6_25: 2073698340973496732
+      RealisticSmoke02_6x6_26: -4908507075587645961
+      RealisticSmoke02_6x6_27: 1376828149062349284
+      RealisticSmoke02_6x6_28: 5875952394949233054
+      RealisticSmoke02_6x6_29: 5018961375496741087
+      RealisticSmoke02_6x6_3: 4406617094014312438
+      RealisticSmoke02_6x6_30: -1317201278401360472
+      RealisticSmoke02_6x6_31: -6406512383159944466
+      RealisticSmoke02_6x6_32: -9186398915246819058
+      RealisticSmoke02_6x6_33: 2446819090461071299
+      RealisticSmoke02_6x6_34: 3709219376571398360
+      RealisticSmoke02_6x6_35: -3560582932679261279
+      RealisticSmoke02_6x6_36: 8801234350921415077
+      RealisticSmoke02_6x6_37: 7374245185980690413
+      RealisticSmoke02_6x6_38: 1248584683343298604
+      RealisticSmoke02_6x6_39: 534727636202509522
+      RealisticSmoke02_6x6_4: -4914697411294141344
+      RealisticSmoke02_6x6_40: -2483190925516834031
+      RealisticSmoke02_6x6_41: 1594783242225325558
+      RealisticSmoke02_6x6_42: -483155664738588330
+      RealisticSmoke02_6x6_43: -4154900552142433346
+      RealisticSmoke02_6x6_44: -7380330810206894073
+      RealisticSmoke02_6x6_45: 5205159361649738840
+      RealisticSmoke02_6x6_46: -8092388763299601292
+      RealisticSmoke02_6x6_47: 3634674932757918841
+      RealisticSmoke02_6x6_48: -8505015690212675268
+      RealisticSmoke02_6x6_49: -1113062274825874578
+      RealisticSmoke02_6x6_5: -5630090669218977270
+      RealisticSmoke02_6x6_50: -4976657054949265636
+      RealisticSmoke02_6x6_51: 5808497411115710335
+      RealisticSmoke02_6x6_52: 6068184439251498214
+      RealisticSmoke02_6x6_53: -6829705257527201002
+      RealisticSmoke02_6x6_54: -4817817860576994391
+      RealisticSmoke02_6x6_55: -4545017941529978835
+      RealisticSmoke02_6x6_56: 2108784632672495484
+      RealisticSmoke02_6x6_57: 1406666326333481740
+      RealisticSmoke02_6x6_58: -718316703691383790
+      RealisticSmoke02_6x6_59: 8588315159518397529
+      RealisticSmoke02_6x6_6: -4138678417244863787
+      RealisticSmoke02_6x6_60: -8653975260377699567
+      RealisticSmoke02_6x6_61: 7961170686899177863
+      RealisticSmoke02_6x6_62: 1964643682606129922
+      RealisticSmoke02_6x6_63: -5883135929099088552
+      RealisticSmoke02_6x6_64: -2291522699856827225
+      RealisticSmoke02_6x6_65: -8153622547887396482
+      RealisticSmoke02_6x6_66: -1952188837467592277
+      RealisticSmoke02_6x6_67: -3340257971147811206
+      RealisticSmoke02_6x6_68: 8414260003832668268
+      RealisticSmoke02_6x6_69: -2105128240535312197
+      RealisticSmoke02_6x6_7: 7040930144061029028
+      RealisticSmoke02_6x6_70: 4817350630064367837
+      RealisticSmoke02_6x6_71: 2339129171369701177
+      RealisticSmoke02_6x6_72: -13583425553338882
+      RealisticSmoke02_6x6_73: 3901581961415078260
+      RealisticSmoke02_6x6_74: -5873267523514935435
+      RealisticSmoke02_6x6_75: -6533876238944915596
+      RealisticSmoke02_6x6_76: -3772110665295325872
+      RealisticSmoke02_6x6_77: -8945480765840856346
+      RealisticSmoke02_6x6_78: 2808904569991181486
+      RealisticSmoke02_6x6_79: -8757573325745265629
+      RealisticSmoke02_6x6_8: 8760487626540451086
+      RealisticSmoke02_6x6_80: -2006066193021165067
+      RealisticSmoke02_6x6_81: 8247716411837158542
+      RealisticSmoke02_6x6_82: -7947792780692168872
+      RealisticSmoke02_6x6_83: -7951260802979360
+      RealisticSmoke02_6x6_84: -3915550608445504992
+      RealisticSmoke02_6x6_85: -9163137378489820016
+      RealisticSmoke02_6x6_86: -3645396355986329074
+      RealisticSmoke02_6x6_87: 4675350085998012737
+      RealisticSmoke02_6x6_88: -5416496279876627870
+      RealisticSmoke02_6x6_89: -7869655265204201181
+      RealisticSmoke02_6x6_9: -1758081877127940211
+      RealisticSmoke02_6x6_90: -4825871625003915780
+      RealisticSmoke02_6x6_91: 7341955622783809845
+      RealisticSmoke02_6x6_92: 328076945563053593
+      RealisticSmoke02_6x6_93: 5435042219280558879
+      RealisticSmoke02_6x6_94: 8302078700401630279
+      RealisticSmoke02_6x6_95: -3642788980866699916
+      RealisticSmoke02_6x6_96: 6459460206309101577
+      RealisticSmoke02_6x6_97: -7111692293684938114
+      RealisticSmoke02_6x6_98: 4092438943827769038
+      RealisticSmoke02_6x6_99: -6451630452794314725
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
