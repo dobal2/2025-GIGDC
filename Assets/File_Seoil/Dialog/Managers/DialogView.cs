@@ -14,6 +14,7 @@ public class DialogView : MonoBehaviour
     [HideInInspector] public bool SkipProcessingText = false;
 
     public bool IsCompleted { get; private set; }
+    public int IndexSkipCount { get; private set; } = 0;
 
     [SerializeField] private TextMeshProUGUI dialogText;
     [SerializeField] private RectTransform backGroundRect;
@@ -54,9 +55,10 @@ public class DialogView : MonoBehaviour
         SetPosition(allocatedDialog, dialogCanvas);
         currentDialogCoroutine = StartCoroutine(ProcessText());
     }
-    public void CompleteDialog()
+    public int CompleteDialog()
     {
         SkipProcessingText = true;
+        return 0;
     }
     private IEnumerator ProcessText()
     {

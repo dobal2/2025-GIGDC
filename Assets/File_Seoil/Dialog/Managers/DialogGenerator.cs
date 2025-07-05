@@ -42,7 +42,11 @@ public class DialogGenerator : MonoBehaviour
         }
         else
         {
-            if(currentDialogView != null) Destroy(currentDialogView.gameObject);
+            if (currentDialogView != null)
+            {
+                currentDialogIndex += currentDialogView.IndexSkipCount;
+                Destroy(currentDialogView.gameObject);
+            }
 
             currentDialog = Chapter.Dialogs[++currentDialogIndex];
             currentDialogView = Instantiate(dialogViewPrefab, dialogCanvas.transform);
