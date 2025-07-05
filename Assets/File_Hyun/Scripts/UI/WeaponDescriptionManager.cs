@@ -9,13 +9,14 @@ public class WeaponDescriptionManager : MonoBehaviour
     [Header("¹«±â UI ºÎ¸ð")]
     [SerializeField] RectTransform weaponUIContainer;
 
-    [Header("°íÁ¤µÈ ¹«±â UI")]
+    [Header("¹«±â UI")]
     [SerializeField] GameObject spearUI;
     [SerializeField] GameObject bowUI;
     [SerializeField] GameObject bombUI;
 
-    [Header("½½·Ô X ÁÂÇ¥")]
+    [Header("½½·Ô ÁÂÇ¥")]
     [SerializeField] float[] slotXPositions = new float[3];
+    [SerializeField] float slotYPosition;
 
     Dictionary<WeaponType, GameObject> weaponUIs;
     List<WeaponType> unlockedWeapons = new();
@@ -34,14 +35,14 @@ public class WeaponDescriptionManager : MonoBehaviour
     void OnEnable()
     {
         SetupDisplay();
+        InputManager.OnUILeftKey += () => TryMove(-1);
+        InputManager.OnUIRightKey += () => TryMove(1);
     }
 
-    void Update()
+    void OnDisable()
     {
-        if (Input.GetKeyDown(KeyCode.RightArrow))
-            TryMove(1);
-        else if (Input.GetKeyDown(KeyCode.LeftArrow))
-            TryMove(-1);
+        InputManager.OnUILeftKey -= () => TryMove(-1);
+        InputManager.OnUIRightKey -= () => TryMove(1);
     }
 
     void SetupDisplay()
@@ -65,7 +66,7 @@ public class WeaponDescriptionManager : MonoBehaviour
 
             obj.SetActive(true);
             RectTransform rt = obj.GetComponent<RectTransform>();
-            rt.anchoredPosition = new Vector2(slotXPositions[i], 0);
+            rt.anchoredPosition = new Vector2(slotXPositions[i], slotYPosition);
         }
 
         currentIndex = 0;

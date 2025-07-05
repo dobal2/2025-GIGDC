@@ -1,10 +1,12 @@
 using UnityEngine;
+using UnityEngine.VFX;
 using static PlayerController;
 
 public class SkillArrow : MonoBehaviour
 {
     [SerializeField] private LayerMask collisionMask;
     [SerializeField] private LayerMask enemyMask;
+    [SerializeField] private VisualEffect Arrow;
 
     private Vector2 direction;
     private Vector2 startPosition;
@@ -20,6 +22,7 @@ public class SkillArrow : MonoBehaviour
         this.maxDistance = maxDistance;
         startPosition = transform.position;
         transform.rotation = Quaternion.Euler(0f, direction.x == -1 ? 180f : 0f, 0f);
+        Arrow.Play();
     }
 
     void Update()

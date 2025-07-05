@@ -1,3 +1,5 @@
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
@@ -11,6 +13,9 @@ public class InputManager : MonoBehaviour
     public InputContext currentContext = InputContext.UI;
 
     public KeyData keyData;
+
+    public static event Action OnUILeftKey;
+    public static event Action OnUIRightKey;
 
     [HideInInspector] public GameObject lastSelectedButton;
     [HideInInspector] public bool IsCapturingKey = false;
@@ -96,8 +101,17 @@ public class InputManager : MonoBehaviour
 
         if (Input.GetKeyDown(keyData.Ui.UpKey)) TryMove(controller.upButton);
         else if (Input.GetKeyDown(keyData.Ui.DownKey)) TryMove(controller.downButton);
-        else if (Input.GetKeyDown(keyData.Ui.LeftKey)) TryMove(controller.leftButton);
-        else if (Input.GetKeyDown(keyData.Ui.RightKey)) TryMove(controller.rightButton);
+        else if (Input.GetKeyDown(keyData.Ui.LeftKey))
+        {
+            TryMove(controller.leftButton);
+            OnUILeftKey?.Invoke();
+        }
+        else if (Input.GetKeyDown(keyData.Ui.RightKey))
+        {
+            TryMove(controller.rightButton);
+            OnUIRightKey?.Invoke();
+
+        }
 
         if (Input.GetKeyDown(keyData.Ui.SelectKey))
         {
