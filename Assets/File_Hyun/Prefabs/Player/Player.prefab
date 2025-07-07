@@ -5070,6 +5070,7 @@ GameObject:
   - component: {fileID: 1620900727999410019}
   - component: {fileID: 8277200883672534428}
   - component: {fileID: 504715249224008940}
+  - component: {fileID: 9218537721609975551}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -5228,7 +5229,7 @@ MonoBehaviour:
   boxLowAirHeight: 3
   attackBufferTime: 0.1
   weaponChangeCooldown: 0.6
-  knockbackDuration: 0.2
+  knockbackDuration: 0.1
   isNoClip: 0
   facingDirection: 1
   isGrounded: 0
@@ -5358,6 +5359,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &9218537721609975551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1894839190591287922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6ebd6c5f5670304c8d09c5baf00b13e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dissolveTIme: 1.5
+  VFX: {fileID: 3784581101981514354}
 --- !u!1 &5398814750929168332
 GameObject:
   m_ObjectHideFlags: 0

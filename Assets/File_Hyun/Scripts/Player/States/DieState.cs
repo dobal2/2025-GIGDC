@@ -50,9 +50,9 @@ public class DieState : PlayerState
 
     private IEnumerator Die()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(3f);
 
         Debug.Log("Player Died");
-        player.gameObject.SetActive(false);
+        StageManager.Instance.Fail();
     }
 }
