@@ -97,11 +97,17 @@ public class PlayerGhostTrail : MonoBehaviour
     private void SpawnGhost()
     {
         GameObject ghost = Instantiate(ghostPrefab);
+
+        // 정확한 위치와 스케일만 sprite 기준으로 전달
+        Vector3 ghostPosition = spriteRenderer.transform.position;
+        Quaternion ghostRotation = spriteRenderer.transform.rotation;
+        Vector3 ghostScale = spriteRenderer.transform.lossyScale;
+
         ghost.GetComponent<Ghost>().SetGhost(
             spriteRenderer.sprite,
-            transform.position,
-            transform.rotation,
-            transform.localScale,
+            ghostPosition,
+            ghostRotation,
+            ghostScale,
             new Color(1f, 1f, 1f, 0.2f),
             spriteRenderer.flipX
         );
