@@ -11,8 +11,8 @@ public class TitleScreenManager : MonoBehaviour
 
     public void StartGame()
     {
-        //SceneManager.LoadScene("Hyun_TestScene");
         Debug.Log("게임 시작 버튼 클릭됨");
+        SceneManager.LoadScene("Lobby_Over");
     }
 
     public void QuitGame()
