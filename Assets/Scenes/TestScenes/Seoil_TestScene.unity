@@ -643,7 +643,7 @@ GameObject:
   - component: {fileID: 1469280177}
   - component: {fileID: 1469280176}
   m_Layer: 0
-  m_Name: "\uBCD1\uD0DC (1)"
+  m_Name: "\uC120\uC7A5"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -717,9 +717,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ScriptData: {fileID: 11400000, guid: 2df25f3abffdee0498f7d25d5c425f7b, type: 2}
-  AllocatedChapterName: "\uC0BC\uB3C4\uCC9C_\uC2A4\uD06C\uB9BD\uD2B8 - \uB137\uC9F8.\uD30C\uB178\uB77C\uB9C8\uC5D0\uC11C
-    \uC124\uB808\uC789\uACFC\uC758 \uB300\uD654"
-  AllocatedTargetName: "\uC124\uB808\uC789"
+  AllocatedChapterName: "\uC0BC\uB3C4\uCC9C_\uC2A4\uD06C\uB9BD\uD2B8 - \uCCAB\uBC88\uC9F8.\uC120\uBC15\uC704\uC5D0\uC11C
+    \uB300\uD654 (2)"
+  AllocatedTargetName: "\uC120\uC7A5"
 --- !u!4 &1469280178
 Transform:
   m_ObjectHideFlags: 0
@@ -781,8 +781,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ScriptData: {fileID: 11400000, guid: 2df25f3abffdee0498f7d25d5c425f7b, type: 2}
-  AllocatedChapterName: "\uC0BC\uB3C4\uCC9C_\uC2A4\uD06C\uB9BD\uD2B8 - \uB137\uC9F8.\uD30C\uB178\uB77C\uB9C8\uC5D0\uC11C
-    \uC124\uB808\uC789\uACFC\uC758 \uB300\uD654"
+  AllocatedChapterName: "\uC0BC\uB3C4\uCC9C_\uC2A4\uD06C\uB9BD\uD2B8 - \uCCAB\uBC88\uC9F8.\uC120\uBC15\uC704\uC5D0\uC11C
+    \uB300\uD654 (2)"
   AllocatedTargetName: "\uBCD1\uD0DC"
 --- !u!212 &1685277234
 SpriteRenderer:
@@ -957,7 +957,7 @@ PrefabInstance:
     - target: {fileID: 2746624463736531373, guid: beb22f009eb4ba148bf8634754296f5b, type: 3}
       propertyPath: <Chapter>k__BackingField
       value: 
-      objectReference: {fileID: 11400000, guid: bd02961e11a70a94aac195d046f929c0, type: 2}
+      objectReference: {fileID: 11400000, guid: 766f4517ba620e348976460f7810ded6, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

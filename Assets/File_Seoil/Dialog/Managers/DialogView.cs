@@ -5,6 +5,8 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using DG.Tweening;
+using DG.Tweening.Plugins;
+using NUnit.Framework.Internal.Commands;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -14,7 +16,6 @@ public class DialogView : MonoBehaviour
     [HideInInspector] public bool SkipProcessingText = false;
 
     public bool IsCompleted { get; private set; }
-    public int IndexSkipCount { get; private set; } = 0;
 
     [SerializeField] private TextMeshProUGUI dialogText;
     [SerializeField] private RectTransform backGroundRect;
@@ -27,6 +28,11 @@ public class DialogView : MonoBehaviour
     private Coroutine currentDialogCoroutine = null;
 
     private float additionalDelay = 0;
+
+    private List<SelectionData> selectionDatas = new();
+    private int selectionIndex = 0;
+
+    private IDialogGenerator dialogGenerator = null;
 
     private static Dictionary<string, MethodInfo> commandDatas = new();
 
@@ -49,16 +55,50 @@ public class DialogView : MonoBehaviour
         rectTransform = GetComponent<RectTransform>();
         IsCompleted = false;
     }
-    public void Dialog(Dialog dialog, Canvas dialogCanvas)
+    private void Update()
+    {
+        if (selectionDatas.Count == 0) return;
+
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            if (selectionIndex <= 0)
+                selectionIndex = selectionDatas.Count - 1;
+            else selectionIndex--;
+
+            PrintSelection();
+        }
+        else if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            selectionIndex++;
+            if (selectionIndex >= selectionDatas.Count)
+                selectionIndex = 0;
+
+            PrintSelection();
+        }
+        else if(Input.GetKeyDown(KeyCode.Return))
+        {
+            IsCompleted = true;
+            dialogGenerator.SyncSelection(selectionDatas, selectionIndex);
+        }
+    }
+    public void Dialog(Dialog dialog, Canvas dialogCanvas, IDialogGenerator dialogGenerator)
     {
         allocatedDialog = dialog;
         SetPosition(allocatedDialog, dialogCanvas);
+        this.dialogGenerator = dialogGenerator;
         currentDialogCoroutine = StartCoroutine(ProcessText());
     }
-    public int CompleteDialog()
+    private void PrintSelection()
     {
+        dialogText.text = selectionDatas[selectionIndex].Line;
+        UpdateBackGround();
+    }
+    public void CompleteDialog()
+    {
+        if (selectionDatas.Count > 0)
+            return;
+
         SkipProcessingText = true;
-        return 0;
     }
     private IEnumerator ProcessText()
     {
@@ -111,7 +151,7 @@ public class DialogView : MonoBehaviour
             if (!SkipProcessingText) yield return new WaitForSeconds(dialogWritingDelay);
         }
 
-        IsCompleted = true;
+        if(selectionDatas.Count == 0) IsCompleted = true;
     }
     private void UpdateBackGround()
     {
@@ -161,69 +201,85 @@ public class DialogView : MonoBehaviour
 
         if (commandDatas.ContainsKey(commandName))
         {
-            commandDatas[commandName].Invoke(this, new object[] { commandParams
-                .Split(',')
-                .Select(item => item.Trim())
-                .ToArray() }
-            );
+            commandDatas[commandName].Invoke(this, new object[] { commandParams } );
 
             return true;
         }
         else return false;
     }
 
+    public struct SelectionData
+    {
+        public string Line;
+        public int Count;
+    }
+
     //============================================================== Commands
 
+    [DialogCommand("Selection")]
+    private void Selection(string line)
+    {
+         string[] lines = line.Split('}');
+        for(int index = 0; index < lines.Length - 1; index++)
+            lines[index] = lines[index].Substring(lines[index].IndexOf('{') + 1, lines[index].Length - lines[index].IndexOf('{') - 1);
+
+        foreach (var item in lines)
+        {
+            if(item.Length == 0) continue;
+
+            string[] selectionLine = item.Split(',');
+            SelectionData selection = new SelectionData();
+            
+            selection.Line = selectionLine[0];
+            selection.Count = int.Parse(selectionLine[1]);
+
+            selectionDatas.Add(selection);
+        }
+
+        if(currentDialogCoroutine != null) StopCoroutine(currentDialogCoroutine);
+        PrintSelection();
+    }
+
     [DialogCommand("MoveCharactor")]
-    private void MoveCharactor(string[] lines)
+    private void MoveCharactor(string line)
     {
         
     }
 
     [DialogCommand("AnimateCharactor")]
-    private void AnimateCharactor(string[] lines)
+    private void AnimateCharactor(string line)
     {
 
     }
 
     [DialogCommand("DelayWriting")]
-    private void DelayWriting(string[] lines)
+    private void DelayWriting(string line)
     {
-        if (lines.Length != 1)
-        {
-            Debug.LogWarning("Invalid DelayWriting Parameters: " + lines);
-            return;
-        }
 
         try
         {
-            float delayTime = Convert.ToSingle(lines[0]);
+            float delayTime = Convert.ToSingle(line);
             additionalDelay += delayTime;
         }
         catch(FormatException)
         {
-            Debug.LogWarning("Invalid DelayWriting Parameters: " + lines[0]);
+            Debug.LogWarning("Invalid DelayWriting Parameters: " + line);
             return;
         }
     }
 
     [DialogCommand("ShakeCamera")]
-    private void ShakeCamera(string[] lines)
+    private void ShakeCamera(string line)
     {
-        if(lines.Length != 1)
-        {
-            Debug.LogWarning("Invalid ShakeCamera Parameters: " + lines);
-            return;
-        }
         float duration = 0;
 
         try
         {
-            duration = Convert.ToSingle(lines[0]);
+            duration = Convert.ToSingle(line);
         }
         catch (FormatException)
         {
-            Debug.LogWarning("Invalid ShakeCamera Parameters: " + lines);
+            Debug.LogWarning("Invalid ShakeCamera Parameters: " + line);
             return;
         }
 
@@ -235,49 +291,49 @@ public class DialogView : MonoBehaviour
     }
 
     [DialogCommand("ScaleCamera")]
-    private void ScaleCamera(string[] lines)
+    private void ScaleCamera(string line)
     {
         
     }
 
     [DialogCommand("FadeCameraToDark")]
-    private void FadeCameraToDark(string[] lines)
+    private void FadeCameraToDark(string line)
     {
 
     }
 
     [DialogCommand("FadeCameraToBright")]
-    private void FadeCameraToBright(string[] lines)
+    private void FadeCameraToBright(string line)
     {
 
     }
 
     [DialogCommand("ChangeScene")]
-    private void ChangeScene(string[] lines)
+    private void ChangeScene(string line)
     {
 
     }
 
     [DialogCommand("GiveItem")]
-    private void GiveItem(string[] lines)
+    private void GiveItem(string line)
     {
 
     }
 
     [DialogCommand("PlaySound")]
-    private void PlaySound(string[] lines)
+    private void PlaySound(string line)
     {
 
     }
 
     [DialogCommand("MoveCamera")]
-    private void MoveCamera(string[] lines)
+    private void MoveCamera(string line)
     {
 
     }
 
     [DialogCommand("SetTimeScale")]
-    private void SetTimeScale(string[] lines)
+    private void SetTimeScale(string line)
     {
 
     }

@@ -9,8 +9,23 @@ public class StageManager : MonoBehaviour
 
     [SerializeField] private SceneController.SceneType moveSceneType;
 
+    public static StageManager Instance { get; private set; }
+
+    private static int objects = 0;
+
+    public static int Objects
+    {
+        get => objects;
+        set
+        {
+            objects = value;
+            if (objects == 0) Instance.Clear();
+        }
+    }
+
     private void Awake()
     {
+        Instance = this;
         map.SetActive(false);
     }
 

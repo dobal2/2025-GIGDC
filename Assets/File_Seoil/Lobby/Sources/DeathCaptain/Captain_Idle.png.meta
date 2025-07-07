@@ -1,22 +1,22 @@
 fileFormatVersion: 2
-guid: 6b8f0d8803646954db2c6f5808b1e5e3
+guid: 09512f8caabc08649a15adfd57c3733b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4305002088602419163
-    second: Captain_Idle_0
+      213: -2325755943388058321
+    second: Captain_Idle (1)_0
   - first:
-      213: -3137719416112633485
-    second: Captain_Idle_1
+      213: 4353734891779783455
+    second: Captain_Idle (1)_1
   - first:
-      213: -7263898952724076276
-    second: Captain_Idle_2
+      213: -1929060126381263587
+    second: Captain_Idle (1)_2
   - first:
-      213: -684480488157220108
-    second: Captain_Idle_3
+      213: -6977256195057363227
+    second: Captain_Idle (1)_3
   - first:
-      213: -120653365966629171
-    second: Captain_Idle_4
+      213: 3250032517238669555
+    second: Captain_Idle (1)_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -129,7 +129,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 40
+        y: 0
         width: 33
         height: 40
       alignment: 0
@@ -138,10 +138,10 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 520c987c86f8144c0800000000000000
-      internalID: -4305002088602419163
+      spriteID: abfaf6aba451432419fca5e9308bab30
+      internalID: -65386442
       vertices: []
       indices: 
       edges: []
@@ -151,7 +151,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 33
-        y: 40
+        y: 0
         width: 33
         height: 40
       alignment: 0
@@ -160,10 +160,10 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 379a2cdb0d49474d0800000000000000
-      internalID: -3137719416112633485
+      spriteID: 746e08b666c83f448853d3a2a6af5897
+      internalID: -988107785
       vertices: []
       indices: 
       edges: []
@@ -173,7 +173,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 66
-        y: 40
+        y: 0
         width: 33
         height: 40
       alignment: 0
@@ -182,10 +182,10 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c09ac866362713b90800000000000000
-      internalID: -7263898952724076276
+      spriteID: 71748da2dc9a9e84a97a535bce328a9a
+      internalID: -1010069816
       vertices: []
       indices: 
       edges: []
@@ -194,7 +194,7 @@ TextureImporter:
       name: Captain_Idle_3
       rect:
         serializedVersion: 2
-        x: 0
+        x: 99
         y: 0
         width: 33
         height: 40
@@ -204,10 +204,10 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 4f2f3bf5f9c3086f0800000000000000
-      internalID: -684480488157220108
+      spriteID: 8dc2333456c78244bb3cca9e5a67c2d5
+      internalID: -2086190977
       vertices: []
       indices: 
       edges: []
@@ -216,7 +216,7 @@ TextureImporter:
       name: Captain_Idle_4
       rect:
         serializedVersion: 2
-        x: 33
+        x: 132
         y: 0
         width: 33
         height: 40
@@ -226,10 +226,10 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: dc69a94276a535ef0800000000000000
-      internalID: -120653365966629171
+      spriteID: 56eac958588accd4fb4f2273c0a81439
+      internalID: -101829405
       vertices: []
       indices: 
       edges: []
@@ -238,7 +238,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 8642ebd9859e0a942a0a12ef3887b31a
+    spriteID: 79234d9d04c546e4d80eef338a399fc6
     internalID: 0
     vertices: []
     indices: 
@@ -248,11 +248,11 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Captain_Idle_0: -4305002088602419163
-      Captain_Idle_1: -3137719416112633485
-      Captain_Idle_2: -7263898952724076276
-      Captain_Idle_3: -684480488157220108
-      Captain_Idle_4: -120653365966629171
+      Captain_Idle_0: -65386442
+      Captain_Idle_1: -988107785
+      Captain_Idle_2: -1010069816
+      Captain_Idle_3: -2086190977
+      Captain_Idle_4: -101829405
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
