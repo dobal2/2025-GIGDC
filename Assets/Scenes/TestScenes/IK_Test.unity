@@ -228,7 +228,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!95 &52164937
 Animator:
   serializedVersion: 7
@@ -5497,7 +5497,7 @@ VFXRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 173725994}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -16055,7 +16055,7 @@ VFXRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 562523499}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -22641,7 +22641,6 @@ MonoBehaviour:
   - {fileID: 173725997}
   - {fileID: 1682743120}
   - {fileID: 562523502}
-  dissolveTime: 1.5
 --- !u!1 &1200496328
 GameObject:
   m_ObjectHideFlags: 0
@@ -23199,6 +23198,70 @@ VisualEffect:
       m_Array: []
     m_Bool:
       m_Array: []
+--- !u!1001 &1307489882
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1664025435681510371, guid: b5950281217e18446860e2bf359d78af, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 0655da5c5bbdc9b4aad96b9c0f46769c, type: 2}
+    - target: {fileID: 6008192533026303914, guid: b5950281217e18446860e2bf359d78af, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4.3419504
+      objectReference: {fileID: 0}
+    - target: {fileID: 6008192533026303914, guid: b5950281217e18446860e2bf359d78af, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.40248847
+      objectReference: {fileID: 0}
+    - target: {fileID: 6008192533026303914, guid: b5950281217e18446860e2bf359d78af, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6008192533026303914, guid: b5950281217e18446860e2bf359d78af, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6008192533026303914, guid: b5950281217e18446860e2bf359d78af, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6008192533026303914, guid: b5950281217e18446860e2bf359d78af, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6008192533026303914, guid: b5950281217e18446860e2bf359d78af, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6008192533026303914, guid: b5950281217e18446860e2bf359d78af, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6008192533026303914, guid: b5950281217e18446860e2bf359d78af, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6008192533026303914, guid: b5950281217e18446860e2bf359d78af, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8766643447255310686, guid: b5950281217e18446860e2bf359d78af, type: 3}
+      propertyPath: m_Name
+      value: Player (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2665475493642164825, guid: b5950281217e18446860e2bf359d78af, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+  m_SourcePrefab: {fileID: 100100000, guid: b5950281217e18446860e2bf359d78af, type: 3}
 --- !u!1 &1337764831
 GameObject:
   m_ObjectHideFlags: 0
@@ -28835,7 +28898,7 @@ VFXRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1682743117}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -48900,3 +48963,4 @@ SceneRoots:
   - {fileID: 434639046}
   - {fileID: 356061504}
   - {fileID: 930500552}
+  - {fileID: 1307489882}
