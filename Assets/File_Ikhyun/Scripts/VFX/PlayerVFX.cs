@@ -12,20 +12,17 @@ public class PlayerVFX : MonoBehaviour {
 
     //Charge
     private Transform _child;
-    
-    [Header("Crunkcy")]
-    [SerializeField] private float dissolveTime = 1.5f;
-    private int dissolveAmount = Shader.PropertyToID("_DissolveAmount");
-    private SpriteRenderer _spriteRenderers;
-    private Material _materials;
-    
+    private Dissolve dissolve;
+
+    private void Awake() {
+        dissolve = GetComponentInParent<Dissolve>();
+    }
+
     void Start()
     {
         _child = transform.Find("Arrow_Charge");
         Instance.OnEffectStateChanged += HandleEffectChange;
         
-        _spriteRenderers = GetComponent<SpriteRenderer>();
-        _materials = _spriteRenderers.material;
     }
 
     private void Update() {
@@ -47,7 +44,9 @@ public class PlayerVFX : MonoBehaviour {
                 VFXList[1].Reinit();
                 break;
             case PlayerEffectState.Dying:
-                StartCoroutine(Vanish());
+                VFXList[1].Reinit();
+                dissolve.DieEffect();
+                VFXList[2].Play();
                 break;
             case PlayerEffectState.Dash:
 
@@ -60,18 +59,4 @@ public class PlayerVFX : MonoBehaviour {
         }
     }
     
-    private IEnumerator Vanish() {
-        float elapsedTime = 0f;
-        VFXList[2].Play();
-        
-        while (elapsedTime < dissolveTime) {
-            elapsedTime += Time.deltaTime;
-
-            float learpedDissolve = Mathf.Lerp(0.2f, 1f, (elapsedTime / dissolveTime));
-            
-            _materials.SetFloat(dissolveAmount, learpedDissolve);
-            
-            yield return null;
-        }
-    }
 }
