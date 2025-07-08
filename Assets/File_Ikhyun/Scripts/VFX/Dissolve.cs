@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.VFX;
+using static PlayerController;
 
 public class Dissolve : MonoBehaviour {
     [SerializeField] private float _dissolveTIme = 1.5f;
@@ -17,17 +18,12 @@ public class Dissolve : MonoBehaviour {
     private void Start() {
         _spriteRenderers = GetComponent<SpriteRenderer>();
         _materials = _spriteRenderers.material;
-        
     }
 
-    private void Update() {
-        if (Input.GetKeyDown(KeyCode.R))
-            StartCoroutine(Vanish());
-        if (Input.GetKeyDown(KeyCode.T))
-            StartCoroutine(Appear());
+    public void DieEffect() {
+        StartCoroutine(Vanish());
     }
-
-
+    
     private IEnumerator Vanish() {
         float elapsedTime = 0f;
         VFX.Play();
