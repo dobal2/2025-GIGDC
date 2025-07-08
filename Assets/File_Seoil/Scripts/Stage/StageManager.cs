@@ -9,7 +9,7 @@ public class StageManager : MonoBehaviour
 
     [SerializeField] private SceneController.SceneType moveSceneType;
 
-    public static StageManager Instance { get; private set; }
+    private static StageManager Instance { get; set; }
 
     private static int objects = 0;
 
@@ -39,7 +39,9 @@ public class StageManager : MonoBehaviour
         viewAnimator.SetTrigger("OnClear");
     }
 
-    public void Fail()
+    public static void Fail() => Instance.FailByInstance();
+
+    public void FailByInstance()
     {
 
     }
