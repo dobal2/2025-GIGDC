@@ -54,6 +54,6 @@ public class DieState : PlayerState
         yield return new WaitForSeconds(3f);
 
         Debug.Log("Player Died");
-        StageManager.Instance.Fail();
+        StageManager.Fail();
     }
 }
