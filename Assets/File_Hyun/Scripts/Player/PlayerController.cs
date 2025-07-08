@@ -146,6 +146,7 @@ public class PlayerController : MonoBehaviour
             return;
         }
         Instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 
     void Start()

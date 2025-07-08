@@ -4,7 +4,7 @@ using static PlayerController;
 
 public class DieState : PlayerState
 {
-    private bool hasPlayedDeath;
+    private bool isWaitingForAnimation = false;
 
     public DieState(PlayerController player, PlayerStateMachine stateMachine)
         : base(player, stateMachine) { }
@@ -21,38 +21,39 @@ public class DieState : PlayerState
         {
             player.SetEffectState(PlayerEffectState.Dying);
             player.Animator.Play("Death");
+            player.StartCoroutine(WaitForAnimationAndDie("Death"));
         }
         else
         {
             player.Animator.Play("Fall");
+            isWaitingForAnimation = true;
         }
-
-        hasPlayedDeath = player.isGrounded;
     }
 
     public override void Update()
     {
-        if (!hasPlayedDeath && player.isGrounded)
+        if (isWaitingForAnimation && player.isGrounded)
         {
+            isWaitingForAnimation = false;
             player.SetEffectState(PlayerEffectState.Dying);
             player.Animator.Play("Death");
-            hasPlayedDeath = true;
-        }
-
-        if (hasPlayedDeath && player.Animator.GetCurrentAnimatorStateInfo(0).IsName("Death"))
-        {
-            if (player.Animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f)
-            {
-                player.StartCoroutine(Die());
-            }
+            player.StartCoroutine(WaitForAnimationAndDie("Death"));
         }
     }
 
-    private IEnumerator Die()
+    private IEnumerator WaitForAnimationAndDie(string animationName)
     {
-        yield return new WaitForSeconds(0.5f);
+        AnimatorStateInfo stateInfo;
+        do
+        {
+            yield return null;
+            stateInfo = player.Animator.GetCurrentAnimatorStateInfo(0);
+        }
+        while (!stateInfo.IsName(animationName) || stateInfo.normalizedTime < 1f);
+
+        yield return new WaitForSeconds(3f);
 
         Debug.Log("Player Died");
-        player.gameObject.SetActive(false);
+        StageManager.Instance.Fail();
     }
 }

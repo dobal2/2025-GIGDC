@@ -25,6 +25,8 @@ public class PlayerHealth : MonoBehaviour
     
     public void TakeDamage(float amount)
     {
+        if (CurrentHealth <= 0) return;
+
         if (!PlayerController.Instance.CanTakeDamage)
         {
             Debug.Log("Player is invincible. No damage taken.");
@@ -46,6 +48,8 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeHeal(float amount)
     {
+        if (CurrentHealth <= 0) return;
+
         if (CurrentHealth + amount > MaxHealth)
             CurrentHealth = MaxHealth;
         else
