@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class LobbyPlayerController : MonoBehaviour
 {
-    public LobbyPlayerController Instance { get; private set; }
+    public static LobbyPlayerController Instance { get; private set; }
 
     public enum LobbyplayerState
     {

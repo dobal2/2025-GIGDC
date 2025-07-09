@@ -23,15 +23,12 @@ public class DialogGenerator : MonoBehaviour, IDialogGenerator
     private int processingSelectionIndex = 0;
     private int selectionSkipIndex = 0;
 
-    private void Awake()
+    public void GenerateDialog()
     {
         currentDialog = null;
         currentDialogIndex = -1;
         dialogCanvas = Instantiate(dialogCanvasPrefab);
-    }
-
-    private void Start()
-    {
+        
         SetDialog();
     }
 

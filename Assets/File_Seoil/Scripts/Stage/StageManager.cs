@@ -1,5 +1,16 @@
 using UnityEngine;
 
+public static class Stage
+{
+    public static StageDataType Data => data;
+    private static StageDataType data;
+}
+
+public enum StageDataType
+{
+    Start, Stage1, Stage2, Stage3, Stage4
+}
+
 public class StageManager : MonoBehaviour
 {
     [SerializeField] private Animator viewAnimator;

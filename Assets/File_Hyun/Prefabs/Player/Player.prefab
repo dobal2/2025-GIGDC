@@ -5093,6 +5093,7 @@ Transform:
   m_Children:
   - {fileID: 8402703143688192166}
   - {fileID: 5156727573688273627}
+  - {fileID: 51474865338489421}
   m_Father: {fileID: 6008192533026303914}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1664025435681510371
@@ -5669,7 +5670,6 @@ MonoBehaviour:
   - {fileID: 8773188883861668861}
   - {fileID: 4248682353027422968}
   - {fileID: 3784581101981514354}
-  dissolveTime: 1.5
 --- !u!212 &6662191506940780572
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5844,6 +5844,105 @@ MonoBehaviour:
   spearSkill: {fileID: 8955822778329800363}
   dash: {fileID: 196425674362191684}
   postProcessingVolume: {fileID: 801926155068914623}
+--- !u!1 &6127386827883263761
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 51474865338489421}
+  - component: {fileID: 1086281231446632483}
+  - component: {fileID: 7456418685214639871}
+  - component: {fileID: 6711194806082346476}
+  - component: {fileID: 4524701489675969487}
+  m_Layer: 8
+  m_Name: Target Selector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &51474865338489421
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6127386827883263761}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 400136276575616118}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1086281231446632483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6127386827883263761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6317bfc1406e4814991daeec14a9af49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ScriptData: {fileID: 11400000, guid: 2df25f3abffdee0498f7d25d5c425f7b, type: 2}
+  AllocatedChapterName: "\uC0BC\uB3C4\uCC9C_\uC2A4\uD06C\uB9BD\uD2B8 - \uCCAB\uBC88\uC9F8.\uC120\uBC15\uC704\uC5D0\uC11C
+    \uB300\uD654 (2)"
+  AllocatedTargetName: "\uBCD1\uD0DC"
+--- !u!114 &7456418685214639871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6127386827883263761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6317bfc1406e4814991daeec14a9af49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ScriptData: {fileID: 11400000, guid: 2df25f3abffdee0498f7d25d5c425f7b, type: 2}
+  AllocatedChapterName: "\uC0BC\uB3C4\uCC9C_\uC2A4\uD06C\uB9BD\uD2B8 - \uC14B\uC9F8.\uC120\uBC15\uC704\uC5D0\uC11C
+    \uB300\uD654"
+  AllocatedTargetName: "\uBCD1\uD0DC"
+--- !u!114 &6711194806082346476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6127386827883263761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6317bfc1406e4814991daeec14a9af49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ScriptData: {fileID: 11400000, guid: 2df25f3abffdee0498f7d25d5c425f7b, type: 2}
+  AllocatedChapterName: "\uC0BC\uB3C4\uCC9C_\uC2A4\uD06C\uB9BD\uD2B8 - \uB2E4\uC12F\uC9F8.\uC120\uBC15\uC704\uC5D0\uC11C
+    \uB300\uD654"
+  AllocatedTargetName: "\uBCD1\uD0DC"
+--- !u!114 &4524701489675969487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6127386827883263761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6317bfc1406e4814991daeec14a9af49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ScriptData: {fileID: 11400000, guid: 2df25f3abffdee0498f7d25d5c425f7b, type: 2}
+  AllocatedChapterName: "\uC0BC\uB3C4\uCC9C_\uC2A4\uD06C\uB9BD\uD2B8 - \uCCAB\uBC88\uC9F8.\uC120\uBC15\uC704\uC5D0\uC11C
+    \uB300\uD654 (2)"
+  AllocatedTargetName: "\uBCD1\uD0DC"
 --- !u!1 &6366896817462895484
 GameObject:
   m_ObjectHideFlags: 0
