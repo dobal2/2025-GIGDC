@@ -1,5 +1,16 @@
 using UnityEngine;
 
+public static class Stage
+{
+    public static StageDataType Data => data;
+    private static StageDataType data;
+}
+
+public enum StageDataType
+{
+    Start, Stage1, Stage2, Stage3, Stage4
+}
+
 public class StageManager : MonoBehaviour
 {
     [SerializeField] private Animator viewAnimator;
@@ -9,7 +20,7 @@ public class StageManager : MonoBehaviour
 
     [SerializeField] private SceneController.SceneType moveSceneType;
 
-    public static StageManager Instance { get; private set; }
+    private static StageManager Instance { get; set; }
 
     private static int objects = 0;
 
@@ -39,7 +50,9 @@ public class StageManager : MonoBehaviour
         viewAnimator.SetTrigger("OnClear");
     }
 
-    public void Fail()
+    public static void Fail() => Instance.FailByInstance();
+
+    public void FailByInstance()
     {
 
     }

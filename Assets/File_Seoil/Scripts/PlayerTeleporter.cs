@@ -4,6 +4,9 @@ public class PlayerTeleporter : MonoBehaviour
 {
     private void Start()
     {
-        PlayerController.Instance.transform.position = transform.position;
+        if(PlayerController.Instance == null)
+            LobbyPlayerController.Instance.transform.position = transform.position;
+        else 
+            PlayerController.Instance.transform.position = transform.position;
     }
 }
