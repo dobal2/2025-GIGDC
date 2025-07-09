@@ -23,6 +23,8 @@ public class DialogGenerator : MonoBehaviour, IDialogGenerator
     private int processingSelectionIndex = 0;
     private int selectionSkipIndex = 0;
 
+    private InputManager.InputContext pastInputContext;
+
     public void GenerateDialog()
     {
         currentDialog = null;
@@ -35,13 +37,17 @@ public class DialogGenerator : MonoBehaviour, IDialogGenerator
     public void SetDialog()
     {
         InputManager.Instance.RegisterDialog(this);
+        pastInputContext = InputManager.Instance.currentContext;
         InputManager.Instance.currentContext = InputManager.InputContext.Dialog;
     }
 
     public void ProcessDialog()
     {
         if (currentDialogIndex + 1 >= Chapter.Dialogs.Length)
+        {
+            InputManager.Instance.currentContext = pastInputContext;
             return;
+        }
 
         if(currentDialogView != null && !currentDialogView.IsCompleted)
         {
