@@ -157,6 +157,7 @@ public class PlayerController : MonoBehaviour
 
         if (Instance != null && Instance != this)
         {
+            Debug.Log("Player Destroyed");
             Destroy(gameObject);
             return;
         }
