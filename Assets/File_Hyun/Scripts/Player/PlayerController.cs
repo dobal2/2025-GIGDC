@@ -95,9 +95,23 @@ public class PlayerController : MonoBehaviour
     private bool isKnockback = false;
     private float knockbackTimer = 0f;
 
+    [Header("Sound Settings")]
+    public AudioClip Walk;
+    public AudioClip jump;
+    public AudioClip dash;
+    public AudioClip Damage;
+    public AudioClip Death;
+    public AudioClip SpearNormal;
+    public AudioClip SpearSkill;
+    public AudioClip BowNormal;
+    public AudioClip BowSkillCharging;
+    public AudioClip BowSkillRelease;
+    public AudioClip BombBoom;
+
     private Rigidbody2D rb;
     private BoxCollider2D boxCol;
     private SpriteRenderer spriteRenderer;
+    private AudioSource audioSource;
 
     [HideInInspector] public bool isNoClip = false; // 무적상태
     [HideInInspector] public int facingDirection = 1;
@@ -135,6 +149,7 @@ public class PlayerController : MonoBehaviour
         boxCol = GetComponent<BoxCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         Animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
         AttackController = GetComponent<AttackController>();
         originalColliderSize = boxCol.size;
         originalColliderOffset = boxCol.offset;
@@ -198,6 +213,14 @@ public class PlayerController : MonoBehaviour
         if (CurrentEffectState == newState) return;
         CurrentEffectState = newState;
         OnEffectStateChanged?.Invoke(newState);
+    }
+
+    public void PlayClip(AudioClip clip)
+    {
+        if (clip == null)
+            return;
+
+        audioSource.PlayOneShot(clip);
     }
 
     void UpdateGrounded()

@@ -10,7 +10,20 @@ public class InputManager : MonoBehaviour
     public static InputManager Instance { get; private set; }
 
     public enum InputContext { None, UI, Gameplay, Lobby, Dialog }
-    public InputContext currentContext = InputContext.UI;
+
+    private InputContext _context = InputContext.UI;
+    public InputContext currentContext
+    {
+        get => _context;
+        set
+        {
+            if (_context != value)
+            {
+                _context = value;
+                ResetInput();
+            }
+        }
+    }
 
     public KeyData keyData;
 
@@ -57,7 +70,8 @@ public class InputManager : MonoBehaviour
             case InputContext.Lobby:
                 HandleLobbyInput();
                 break;
-                case InputContext.Dialog:
+
+            case InputContext.Dialog:
                 HandleDialogInput();
                 break;
         }
@@ -110,7 +124,6 @@ public class InputManager : MonoBehaviour
         {
             TryMove(controller.rightButton);
             OnUIRightKey?.Invoke();
-
         }
 
         if (Input.GetKeyDown(keyData.Ui.SelectKey))
@@ -152,8 +165,8 @@ public class InputManager : MonoBehaviour
         float horizontal = 0f;
         if (Input.GetKey(keyData.Player.LeftMoveKey)) horizontal -= 1f;
         if (Input.GetKey(keyData.Player.RightMoveKey)) horizontal += 1f;
-
         _player.MoveInput = horizontal;
+
         _player.JumpPressed = Input.GetKeyDown(keyData.Player.JumpKey);
         _player.JumpHeld = Input.GetKey(keyData.Player.JumpKey);
         if (Input.GetKeyUp(keyData.Player.JumpKey)) PlayerController.Instance.StopRising();
@@ -177,7 +190,6 @@ public class InputManager : MonoBehaviour
         float horizontal = 0f;
         if (Input.GetKey(keyData.Player.LeftMoveKey)) horizontal -= 1f;
         if (Input.GetKey(keyData.Player.RightMoveKey)) horizontal += 1f;
-
         _LobbyPlayer.MoveInput = horizontal;
 
         if (Input.GetKeyDown(keyData.Player.InteractionKey)) _LobbyPlayer.TryInteract();
@@ -193,9 +205,29 @@ public class InputManager : MonoBehaviour
 
         if (Input.GetKeyDown(keyData.Player.ProcessKey))
             _dialogGenerator.ProcessDialog();
-
     }
 
     public void RegisterDialog(DialogGenerator dialog) => _dialogGenerator = dialog;
     #endregion
+
+    void ResetInput()
+    {
+        if (_player != null)
+        {
+            _player.MoveInput = 0f;
+            _player.JumpPressed = false;
+            _player.JumpHeld = false;
+            _player.DashPressed = false;
+            _player.AttackPressed = false;
+            _player.SkillPressed = false;
+            _player.SkillHeld = false;
+            _player.ChangePressed = false;
+            _player.DownHeld = false;
+        }
+
+        if (_LobbyPlayer != null)
+        {
+            _LobbyPlayer.MoveInput = 0f;
+        }
+    }
 }
