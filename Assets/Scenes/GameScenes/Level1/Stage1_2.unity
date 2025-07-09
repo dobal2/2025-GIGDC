@@ -351,15 +351,15 @@ PrefabInstance:
     - target: {fileID: 593118294709161866, guid: 1ca83e73789255b438a946af2cf4aa12, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 8630fa096752a8f45a163198ba472871, type: 3}
+      objectReference: {fileID: 21300000, guid: b7a0c60b1af6a614ab8e512508c4d041, type: 3}
     - target: {fileID: 1271219196527123444, guid: 1ca83e73789255b438a946af2cf4aa12, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 12aec94d9c26b5a498ea9500c1a684cd, type: 3}
+      objectReference: {fileID: 21300000, guid: cc4fa2b4727c25649822a1a33b30a703, type: 3}
     - target: {fileID: 3728202701810506898, guid: 1ca83e73789255b438a946af2cf4aa12, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 8327acb589d6a0247a8e4ffd721a12d3, type: 3}
+      objectReference: {fileID: 21300000, guid: 1c3cb4359317ac04ea794dfdb62b0285, type: 3}
     - target: {fileID: 4465080666872081409, guid: 1ca83e73789255b438a946af2cf4aa12, type: 3}
       propertyPath: moveSceneType
       value: 5
@@ -407,7 +407,7 @@ PrefabInstance:
     - target: {fileID: 7572511368009081524, guid: 1ca83e73789255b438a946af2cf4aa12, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 6b9e1377f9555e14fb37cc31055f9f6b, type: 3}
+      objectReference: {fileID: 21300000, guid: a726ef1a6564fff4b9d712a4d29dd754, type: 3}
     - target: {fileID: 8410269963215146875, guid: 1ca83e73789255b438a946af2cf4aa12, type: 3}
       propertyPath: m_Name
       value: Stage Template
