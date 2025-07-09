@@ -23,6 +23,11 @@ public abstract class Monster : MonoBehaviour
     public bool facingRight = false;
     protected bool canAttack = true;
 
+    protected virtual void Awake()
+    {
+        StageManager.Objects++;
+    }
+
     protected virtual void Start()
     {
         rigid = GetComponent<Rigidbody2D>();
@@ -49,6 +54,7 @@ public abstract class Monster : MonoBehaviour
 
     protected virtual void Die()
     {
+        StageManager.Objects--;
         GameObject newInkExplosion = Instantiate(inkDeathEffect, transform.position, Quaternion.identity);
         gameObject.SetActive(false);
         Destroy(newInkExplosion,2);

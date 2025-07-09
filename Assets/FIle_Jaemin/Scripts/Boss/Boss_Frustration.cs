@@ -361,6 +361,7 @@ IEnumerator CastFingerAttack()
         }
         else
         {
+            StageManager.Objects--;
             gameObject.SetActive(false);
         }
     }

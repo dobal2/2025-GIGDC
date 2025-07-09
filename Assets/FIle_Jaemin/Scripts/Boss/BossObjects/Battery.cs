@@ -10,6 +10,11 @@ public class Battery : Monster
     [SerializeField] private float damage;
     [SerializeField] private GameObject explosionEffectPrefab;
     
+    protected override void Awake()
+    {
+        
+    }
+    
 
     public override void TakeDamage(float amount)
     {

@@ -10,6 +10,11 @@ public class Bubble : Monster
     [SerializeField] protected GameObject bubblePopEffect;
     [SerializeField] protected float bossTakeDamage;
     private bool isSecondPhase;
+    
+    protected override void Awake()
+    {
+        
+    }
 
 
     public void SetBoss(Boss_Love newBoss,bool isSecondPhase)

@@ -359,7 +359,11 @@ public class BossVain : Boss
         if (currentPhase == 1)
             Phase2();
         else
+        {
+            StageManager.Objects--;
             gameObject.SetActive(false);
+        }
+        
     }
     
     private void OnDrawGizmosSelected()

@@ -61,6 +61,7 @@ public class Boss_Love : Boss
         }
         else
         {
+            StageManager.Objects--;
             gameObject.SetActive(false);
         }
     }

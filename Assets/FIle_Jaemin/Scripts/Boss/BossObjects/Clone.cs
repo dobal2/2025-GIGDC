@@ -10,6 +10,11 @@ public class Clone : Monster
 
     private float lastAttackTime;
     private bool isAttacking = false;
+    
+    protected override void Awake()
+    {
+        
+    }
 
     protected override void Start()
     {

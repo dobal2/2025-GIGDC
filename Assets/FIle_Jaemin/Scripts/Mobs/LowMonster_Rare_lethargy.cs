@@ -50,6 +50,7 @@ public class LowMonster_Rare_lethargy : Monster
 
     public void DestroyObject()
     {
+        StageManager.Objects--;
         gameObject.SetActive(false);
     }
 
