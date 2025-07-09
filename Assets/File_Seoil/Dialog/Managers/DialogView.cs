@@ -159,7 +159,44 @@ public class DialogView : MonoBehaviour
 
         Vector2 newSize = new Vector2(dialogText.preferredWidth, backGroundRect.sizeDelta.y);
         backGroundRect.sizeDelta = newSize;
+
+        ClampUIInsideParent(rectTransform.parent.GetComponent<RectTransform>(), rectTransform);
     }
+
+    private void ClampUIInsideParent(RectTransform canvasRect, RectTransform uiRect)
+    {
+        Vector2 canvasSize = canvasRect.rect.size;
+
+        Vector2 uiSize = uiRect.rect.size;
+        uiSize.x += 50;
+        Vector2 pivot = uiRect.pivot;
+
+        Vector2 pos = uiRect.anchoredPosition;
+
+        float left = pos.x - (uiSize.x * pivot.x);
+        float right = pos.x + (uiSize.x * (1 - pivot.x));
+        float bottom = pos.y - (uiSize.y * pivot.y);
+        float top = pos.y + (uiSize.y * (1 - pivot.y));
+
+        float canvasLeft = -canvasSize.x / 2f;
+        float canvasRight = canvasSize.x / 2f;
+        float canvasBottom = -canvasSize.y / 2f;
+        float canvasTop = canvasSize.y / 2f;
+
+        if (left < canvasLeft)
+            pos.x += canvasLeft - left;
+        else if (right > canvasRight)
+            pos.x -= right - canvasRight;
+
+        if (bottom < canvasBottom)
+            pos.y += canvasBottom - bottom;
+        else if (top > canvasTop)
+            pos.y -= top - canvasTop;
+
+        uiRect.anchoredPosition = pos;
+    }
+
+
     private void SetPosition(Dialog dialog, Canvas dialogCanvas)
     {
         Vector3 worldPos = dialog.Target.Transform.position + baseDialogPosition.ToVector3();
@@ -311,7 +348,7 @@ public class DialogView : MonoBehaviour
     [DialogCommand("ChangeScene")]
     private void ChangeScene(string line)
     {
-
+        SceneController.Instance.LoadScene(line);
     }
 
     [DialogCommand("GiveItem")]
@@ -336,5 +373,11 @@ public class DialogView : MonoBehaviour
     private void SetTimeScale(string line)
     {
 
+    }
+
+    [DialogCommand("Progress")]
+    private void Progess()
+    {
+        Stage.Progress();
     }
 }

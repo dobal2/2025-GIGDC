@@ -2,13 +2,35 @@ using UnityEngine;
 
 public static class Stage
 {
-    public static StageDataType Data => data;
-    private static StageDataType data;
+    public static StageDataType Data;
+    public static void Progress()
+    {
+        switch (Stage.Data)
+        {
+            case StageDataType.Start:
+                Stage.Data = StageDataType.Tutorial;
+                break;
+            case StageDataType.Tutorial:
+                Stage.Data = StageDataType.Stage1;
+                break;
+            case StageDataType.Stage1:
+                Stage.Data = StageDataType.Stage2;
+                break;
+            case StageDataType.Stage2:
+                Stage.Data = StageDataType.Stage3;
+                break;
+            case StageDataType.Stage3:
+                Stage.Data = StageDataType.Stage4;
+                break;
+            case StageDataType.Stage4:
+                break;
+        }
+    }
 }
 
 public enum StageDataType
 {
-    Start, Stage1, Stage2, Stage3, Stage4
+    Start, Tutorial, Stage1, Stage2, Stage3, Stage4
 }
 
 public class StageManager : MonoBehaviour

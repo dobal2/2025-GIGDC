@@ -32,6 +32,7 @@ public class DialogGenerator : MonoBehaviour, IDialogGenerator
         dialogCanvas = Instantiate(dialogCanvasPrefab);
         
         SetDialog();
+        ProcessDialog();
     }
 
     public void SetDialog()
@@ -43,9 +44,10 @@ public class DialogGenerator : MonoBehaviour, IDialogGenerator
 
     public void ProcessDialog()
     {
-        if (currentDialogIndex + 1 >= Chapter.Dialogs.Length)
+        if (currentDialogIndex + 1 >= Chapter.Dialogs.Length && currentDialogView.IsCompleted)
         {
-            InputManager.Instance.currentContext = pastInputContext;
+            if(currentDialogView != null) Destroy(currentDialogView.gameObject);
+            if(InputManager.Instance.currentContext == InputManager.InputContext.Dialog) InputManager.Instance.currentContext = pastInputContext;
             return;
         }
 

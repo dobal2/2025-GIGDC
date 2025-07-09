@@ -36,6 +36,7 @@ public class LobbyPlayerController : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+        DontDestroyOnLoad(gameObject);
         Instance = this;
         Animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();

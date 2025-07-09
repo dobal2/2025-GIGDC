@@ -34,7 +34,7 @@ public class SceneController : MonoBehaviour
         LoadScene(GetSceneName(sceneType));
     }
 
-    private void LoadScene(string sceneName)
+    public void LoadScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
     }
@@ -75,6 +75,9 @@ public class SceneController : MonoBehaviour
 
     public enum SceneType
     {
+        TutorialScene,
+        Lobby_Over,
+        Lobby_Under,
         Stage1_1,
         Stage1_2, 
         Stage1_3, 
