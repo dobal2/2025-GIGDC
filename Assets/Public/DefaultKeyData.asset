@@ -28,5 +28,5 @@ MonoBehaviour:
     DownKey: 274
     LeftKey: 276
     RightKey: 275
-    SelectKey: 120
+    SelectKey: 13
     PauseKey: 27
