@@ -125,7 +125,7 @@ MonoBehaviour:
   - Target: {fileID: 11400000, guid: e9403990151f53d4391be713b28c8f91, type: 2}
     <Line>k__BackingField: "<Selection({\uC544\uAE4C \uCEE4\uB2E4\uB780 \uC789\uD06C
       \uAD34\uBB3C\uC774 \uB9D0\uD55C \u2018\uC724\uBCD1\uD0DC\u2019\uAC00 \uB3C4\uB300\uCCB4
-      \uB204\uAD6C\uC57C?),3},{\uC544\uAE4C \uCEE4\uB2E4\uB780 \uC789\uD06C \uAD34\uBB3C\uC774
+      \uB204\uAD6C\uC57C?,3},{\uC544\uAE4C \uCEE4\uB2E4\uB780 \uC789\uD06C \uAD34\uBB3C\uC774
       \uB9D0\uD55C \u2018\uC591\uD76C\uC21C\u2019\uC774 \uB3C4\uB300\uCCB4 \uB204\uAD6C\uC57C?,2})>"
   - Target: {fileID: 11400000, guid: e9403990151f53d4391be713b28c8f91, type: 2}
     <Line>k__BackingField: "\uC724\uBCD1\uD0DC\uB77C\uB294 \uC774\uB984 \uC790\uCCB4\uB97C
