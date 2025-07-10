@@ -44,6 +44,8 @@ public class DialogGenerator : MonoBehaviour, IDialogGenerator
 
     public void ProcessDialog()
     {
+        Debug.Log("ProcessDialog");
+
         if (currentDialogIndex + 1 >= Chapter.Dialogs.Length && currentDialogView.IsCompleted)
         {
             if(currentDialogView != null) Destroy(currentDialogView.gameObject);

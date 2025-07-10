@@ -76,11 +76,6 @@ public class StageManager : MonoBehaviour
         map.SetActive(false);
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space)) Clear();
-    }
-
     public void Clear()
     {
         viewAnimator.SetTrigger("OnClear");

@@ -44,4 +44,4 @@ MonoBehaviour:
       \uB290\uB07C\uC9C0 \uC54A\uC544\uB3C4 \uB418\uB294\uAC70 \uC544\uB2C8\uC57C?"
   - Target: {fileID: 11400000, guid: 085c5c79b994258449a2ee08d6bbc80f, type: 2}
     <Line>k__BackingField: "\uC88C\uC808\uC740 \uB410\uACE0, \uB0B4\uAC00 \uC9C0\uAE08
-      \uB0B4 \uACFC\uAC70\uB97C \uC815\uB9AC\uD558\uACA0\uC5B4"
+      \uB0B4 \uACFC\uAC70\uB97C \uC815\uB9AC\uD558\uACA0\uC5B4<StartBoss()>"
