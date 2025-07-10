@@ -6,8 +6,15 @@ public abstract class Boss : Monster
 
     [SerializeField] protected float phase2Hp;
     protected int currentPhase = 1;
+    protected bool battleStarted = false;
     
     [SerializeField] protected RuntimeAnimatorController phase2Anim;
+
+    public void StartBattle()
+    {
+        battleStarted = true;
+    }
+    
     
     protected override void Start()
     {
@@ -30,6 +37,12 @@ public abstract class Boss : Monster
             Debug.LogError("No Player");
         }
     }
+
+    public override void KnockBack(Transform attacker, float knockBackForce, float knockBackAngle, float duration)
+    {
+        
+    }
+
 
     protected virtual void Update()
     {

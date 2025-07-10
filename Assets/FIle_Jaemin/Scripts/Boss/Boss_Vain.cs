@@ -61,6 +61,9 @@ public class BossVain : Boss
     protected override void Update()
     {
         base.Update();
+        
+        if(!battleStarted)
+            return;
 
         if (currentPhase == 2 && !isPerformingSkill)
         {

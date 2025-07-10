@@ -60,6 +60,9 @@ public class Boss_Excitement : Boss
         if (currentPhase == 1)
         {
             hp -= amount;
+            if(!battleStarted)
+                return;
+            
             TeleportRoutine();   
         }
     }
@@ -220,6 +223,9 @@ public class Boss_Excitement : Boss
     protected override void Update()
     {
         if (hp <= 0) Die();
+        
+        if(!battleStarted)
+            return;
         
         if (!isAttacking)
         {

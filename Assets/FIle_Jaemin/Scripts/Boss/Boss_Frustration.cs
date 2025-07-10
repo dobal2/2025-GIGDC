@@ -59,6 +59,9 @@ public class Boss_Frustration : Boss
 
     protected override void Update()
     {
+        if(!battleStarted)
+            return;
+        
         base.Update();
 
         FlipToPlayerDirection();
