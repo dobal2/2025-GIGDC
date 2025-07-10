@@ -2,7 +2,21 @@ using UnityEngine;
 
 public static class Stage
 {
-    public static StageDataType Data;
+    private static readonly string DATA_SAVE_NAME = "StageData";
+    private static StageDataType data;
+    public static StageDataType Data
+    {
+        get => data;
+        set
+        {
+            data = value;
+            PlayerPrefs.SetInt(DATA_SAVE_NAME, (int)data);
+        }
+    }
+    public static void LoadData()
+    {
+        data = (StageDataType)PlayerPrefs.GetInt(DATA_SAVE_NAME);
+    }
     public static void Progress()
     {
         switch (Stage.Data)

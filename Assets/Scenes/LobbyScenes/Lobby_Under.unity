@@ -706,6 +706,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f6dbf7fc4dba874dbc8621c3e9411d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveContextPrefab: {fileID: 4397506523062074114, guid: 1850167a4f128ee409926a3a0a7cc51a, type: 3}
+  keyData: {fileID: 11400000, guid: eef92708e559636479c30d47676bef1e, type: 2}
 --- !u!1001 &896527496
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -3,10 +3,40 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider2D))]
 public class LobbySceneMover : MonoBehaviour
 {
+    [Header("Fixed Data")]
+    [SerializeField] private SpriteRenderer moveContextPrefab;
+    [SerializeField] private KeyData keyData;
+
+    private SpriteRenderer currentMoveContext = null;
+    private bool isEntered = false;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+        if (collision.gameObject.layer != LayerMask.NameToLayer("Player")) return;
+
+        if (currentMoveContext != null) Destroy(currentMoveContext.gameObject);
+
+        currentMoveContext = Instantiate(moveContextPrefab);
+        currentMoveContext.transform.position = transform.position + new Vector3(0, 2, 0);
+
+        isEntered = true;
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer != LayerMask.NameToLayer("Player")) return;
+
+        if (currentMoveContext != null) Destroy(currentMoveContext.gameObject);
+
+        isEntered = false;
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(keyData.Ui.SelectKey) && isEntered)
+        {
             LoadScene();
+        }
     }
 
     private void LoadScene()
@@ -26,6 +56,9 @@ public class LobbySceneMover : MonoBehaviour
                 SceneController.Instance.LoadScene(SceneController.SceneType.Stage4_1);
                 break;
             case StageDataType.Stage4:
+                break;
+            default:
+                SceneController.Instance.LoadScene(SceneController.SceneType.Stage1_1);
                 break;
         }
     }

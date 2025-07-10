@@ -10,6 +10,7 @@ using NUnit.Framework.Internal.Commands;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DialogView : MonoBehaviour
 {
@@ -19,6 +20,9 @@ public class DialogView : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI dialogText;
     [SerializeField] private RectTransform backGroundRect;
+
+    [SerializeField] private Image leftArrow;
+    [SerializeField] private Image rightArrow;
 
     private RectTransform rectTransform;
     private static readonly Vector2 baseDialogPosition = new Vector2(0, 2);
@@ -273,7 +277,10 @@ public class DialogView : MonoBehaviour
             selectionDatas.Add(selection);
         }
 
-        if(currentDialogCoroutine != null) StopCoroutine(currentDialogCoroutine);
+        leftArrow.color = Color.white;
+        rightArrow.color = Color.white;
+
+        if (currentDialogCoroutine != null) StopCoroutine(currentDialogCoroutine);
         PrintSelection();
     }
 

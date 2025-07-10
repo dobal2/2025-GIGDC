@@ -1,2 +1,13 @@
 fileFormatVersion: 2
 guid: 3a63ff6ba3211de4aaef32fb3bf3f5e9
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - contextViewPrefab: {fileID: 7329430874470693679, guid: dc4920080f40a464497ac9a236ebe8cb, type: 3}
+  - keyData: {fileID: 11400000, guid: eef92708e559636479c30d47676bef1e, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
