@@ -125,5 +125,6 @@ public class SceneController : MonoBehaviour
         Stage4_9,
         Stage4_10,
         Stage4_11,
+        EndingScene_1
     }
 }

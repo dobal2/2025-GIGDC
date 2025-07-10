@@ -256,6 +256,7 @@ GameObject:
   - component: {fileID: 7055997676609268488}
   - component: {fileID: 2793422261252479731}
   - component: {fileID: 3120650601706121210}
+  - component: {fileID: 194056520908871498}
   m_Layer: 8
   m_Name: Target Selector
   m_TagString: Untagged
@@ -342,3 +343,18 @@ MonoBehaviour:
   AllocatedChapterName: "\uC0BC\uB3C4\uCC9C_\uC2A4\uD06C\uB9BD\uD2B8 - \uCCAB\uBC88\uC9F8.\uC120\uBC15\uC704\uC5D0\uC11C
     \uB300\uD654 (2)"
   AllocatedTargetName: "\uBCD1\uD0DC"
+--- !u!114 &194056520908871498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7931564586543573343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6317bfc1406e4814991daeec14a9af49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ScriptData: {fileID: 11400000, guid: 2df25f3abffdee0498f7d25d5c425f7b, type: 2}
+  AllocatedChapterName: 
+  AllocatedTargetName: 
