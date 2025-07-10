@@ -261,7 +261,7 @@ public class Boss_Love : Boss
     {
         base.Update();
         
-        if (!isAttacking)
+        if (battleStarted && !isAttacking)
         {
             StartCoroutine(PatternRoutine());
         }
