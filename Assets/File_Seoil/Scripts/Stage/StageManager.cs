@@ -101,6 +101,9 @@ public class StageManager : MonoBehaviour
                 break;
             case StageDataType.Stage4:
                 break;
+            default:
+                SceneController.Instance.LoadScene(SceneController.SceneType.Lobby_Over);
+                break;
         }
     }
 
