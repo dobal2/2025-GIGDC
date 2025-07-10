@@ -11,6 +11,7 @@ public class RestorationFilm : MonoBehaviour
     void Start()
     {
         startPos = transform.position;
+        StageManager.Objects++;
     }
 
     void Update()
@@ -25,6 +26,7 @@ public class RestorationFilm : MonoBehaviour
             return;
 
         PlayerHealth.Instance.TakeHeal(healAmount);
+        StageManager.Objects--;
         Destroy(gameObject);
     }
 }

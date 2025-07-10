@@ -5238,11 +5238,11 @@ MonoBehaviour:
   Damage: {fileID: 8300000, guid: 2b20d5bac930bb349912561b4db82a85, type: 3}
   Death: {fileID: 8300000, guid: 3eb266e46619bc042bdffb0c58971217, type: 3}
   SpearNormal: {fileID: 8300000, guid: 7fda1c00e692da3468032f7bb82c3d1b, type: 3}
-  SpearSkill: {fileID: 0}
-  BowNormal: {fileID: 0}
-  BowSkillCharging: {fileID: 0}
-  BowSkillRelease: {fileID: 0}
-  BombBoom: {fileID: 0}
+  SpearSkill: {fileID: 8300000, guid: 0e54b066a22fc02408900d7954f44914, type: 3}
+  BowNormal: {fileID: 8300000, guid: d526a8999d13ac041bea020cf2d6cbe5, type: 3}
+  BowSkillCharging: {fileID: 8300000, guid: e5d895b020287d840be4449e49d8751a, type: 3}
+  BowSkillRelease: {fileID: 8300000, guid: 2746d0b72216dbe40bb98ec21f90105b, type: 3}
+  BombBoom: {fileID: 8300000, guid: 76af2d7c3e5adfa45aa73b2dea70dd43, type: 3}
   isNoClip: 0
   facingDirection: 1
   isGrounded: 0
