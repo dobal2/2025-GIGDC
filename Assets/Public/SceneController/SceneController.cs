@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
@@ -9,6 +10,9 @@ public class SceneController : MonoBehaviour
 {
     public static SceneController Instance { get; private set; }
     public static SceneType CurrentScene => GetSceneType(SceneManager.GetActiveScene().name);
+
+    [SerializeField] private FadeView fadeView;
+    [SerializeField] private InkView inkView;
 
     private void Awake()
     {
@@ -29,13 +33,40 @@ public class SceneController : MonoBehaviour
             .ToArray();
     }
 
-    public void LoadScene(SceneType sceneType)
+    public void LoadScene(SceneType sceneType, SceneChangeAnimation changeAnimation = SceneChangeAnimation.Fade)
     {
-        LoadScene(GetSceneName(sceneType));
+        Debug.Log("LoadScene =" + changeAnimation);
+        LoadScene(GetSceneName(sceneType), changeAnimation);
     }
 
-    public void LoadScene(string sceneName)
+    public void LoadScene(string sceneName, SceneChangeAnimation changeAnimation = SceneChangeAnimation.Fade)
     {
+        switch (changeAnimation)
+        {
+            case SceneChangeAnimation.None:
+                SceneManager.LoadScene(sceneName);
+                break;
+            case SceneChangeAnimation.Fade:
+                StartCoroutine(LoadSceneByFade(sceneName));
+                break;
+            case SceneChangeAnimation.Ink:
+                StartCoroutine(LoadSceneByInk(sceneName));
+                break;
+        }
+        
+    }
+
+    private IEnumerator LoadSceneByFade(string sceneName)
+    {
+        Instantiate(fadeView);
+        yield return new WaitForSeconds(0.5f);
+        SceneManager.LoadScene(sceneName);
+    }
+
+    private IEnumerator LoadSceneByInk(string sceneName)
+    {
+        Instantiate(inkView);
+        yield return new WaitForSeconds(6f);
         SceneManager.LoadScene(sceneName);
     }
 
@@ -71,6 +102,11 @@ public class SceneController : MonoBehaviour
 
         public SceneType Type;
         public string Name;
+    }
+
+    public enum SceneChangeAnimation
+    {
+        None, Fade, Ink
     }
 
     public enum SceneType

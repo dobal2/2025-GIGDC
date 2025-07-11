@@ -302,7 +302,7 @@ public class DialogView : MonoBehaviour
     {
         if(line == "Captain_Transform")
         {
-            allocatedDialog.Target.GetComponentInParent<Animator>().SetBool("IsReaper", true);
+            allocatedDialog.Target.Transform.GetComponentInParent<Animator>().SetBool("IsReaper", true);
         }
     }
 
@@ -371,7 +371,15 @@ public class DialogView : MonoBehaviour
     [DialogCommand("GiveItem")]
     private void GiveItem(string line)
     {
-
+        switch(line)
+        {
+            case "Bow":
+                WeaponDatabase.Instance.unlockedWeapons.Bow = true;
+                break;
+            case "Bomb":
+                WeaponDatabase.Instance.unlockedWeapons.Bomb = true;
+                break;
+        }
     }
 
     [DialogCommand("PlaySound")]

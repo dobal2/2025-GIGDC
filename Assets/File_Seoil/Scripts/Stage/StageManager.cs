@@ -63,6 +63,9 @@ public class StageManager : MonoBehaviour
     [SerializeField] private bool isProgress;
     [SerializeField] private StageDataType stageType;
 
+    [Header("Move Type")]
+    [SerializeField] private SceneController.SceneChangeAnimation sceneChangeAnimation;
+
     private static StageManager Instance { get; set; }
 
     private static int objects = 0;
@@ -73,7 +76,12 @@ public class StageManager : MonoBehaviour
         set
         {
             objects = value;
-            if (objects == 0) Instance.Clear();
+            Debug.Log("Left Objects : " + objects);
+            if (objects <= 0)
+            {
+                objects = 0;
+                Instance.Clear();
+            }
         }
     }
 
@@ -101,6 +109,7 @@ public class StageManager : MonoBehaviour
     public void FailByInstance()
     {
         SetObjects(0);
+        
 
         switch (Stage.Data)
         {
@@ -128,7 +137,7 @@ public class StageManager : MonoBehaviour
     [SerializeField]
     private void MoveScene()
     {
-        SceneController.Instance.LoadScene(moveSceneType);
+        SceneController.Instance.LoadScene(moveSceneType, sceneChangeAnimation);
     }
 
     [SerializeField]

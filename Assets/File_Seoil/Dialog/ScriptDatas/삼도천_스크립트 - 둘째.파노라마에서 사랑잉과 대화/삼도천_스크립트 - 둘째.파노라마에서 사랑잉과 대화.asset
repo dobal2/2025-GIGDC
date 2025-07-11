@@ -61,8 +61,8 @@ MonoBehaviour:
   - Target: {fileID: 11400000, guid: 1dc28490085cd944ab7225740b4da7ba, type: 2}
     <Line>k__BackingField: "\uCCAB\uC0AC\uB791..?"
   - Target: {fileID: 11400000, guid: 1dc28490085cd944ab7225740b4da7ba, type: 2}
-    <Line>k__BackingField: "<ChangeWritingScale(150%)>\uB9DD\uD560!!</size> \uC774\uC820
-      \uC544\uBB34\uAC83\uB3C4 \uAE30\uC5B5\uB098\uC9C8 \uC54A\uB294\uB2E4\uACE0...!!"
+    <Line>k__BackingField: "<size=150%>\uB9DD\uD560!!</size> \uC774\uC820 \uC544\uBB34\uAC83\uB3C4
+      \uAE30\uC5B5\uB098\uC9C8 \uC54A\uB294\uB2E4\uACE0...!!"
   - Target: {fileID: 11400000, guid: a78357a22e7053541a41164463ae84e4, type: 2}
     <Line>k__BackingField: "\uC774\uB7F0... \uC0AC\uB791\uC744 \uC783\uC5B4\uBC84\uB9B0
       \uAC83\uB9CC\uD07C \uC778\uC0DD\uC5D0\uC11C \uB354 \uC2AC\uD508 \uAC83\uC774

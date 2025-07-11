@@ -93,7 +93,7 @@ MonoBehaviour:
     <Line>k__BackingField: "\uC9D0\uC740 \uCC29\uD55C \uC0AC\uB78C\uC774\uB77C \uC77C\uC744
       \uC8FC\uAE30 \uC804\uC5D0 \uC120\uBB3C \uBD80\uD130 \uC8FC\uACA0\uB124"
   - Target: {fileID: 11400000, guid: 2dc7fb09e09f74e4fa2e6f299dc1edd3, type: 2}
-    <Line>k__BackingField: <GiveItem(Spear)>
+    <Line>k__BackingField: "<GiveItem(Spear)>\uC774 \uAC80\uC744 \uBC1B\uAC8C\uB098"
   - Target: {fileID: 11400000, guid: 2dc7fb09e09f74e4fa2e6f299dc1edd3, type: 2}
     <Line>k__BackingField: "\uC774\uC81C \uC120\uBB3C\uB3C4 \uBC1B\uC740 \uB9CC\uD07C
       \uC77C\uC744 \uD558\uB3C4\uB85D \uD558\uC138\uB098"

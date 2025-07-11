@@ -35,7 +35,7 @@ MonoBehaviour:
   - Target: {fileID: 11400000, guid: 56be499ad70d2f24b98f42e4bcb35e0e, type: 2}
     <Line>k__BackingField: "\uBB50\uB77C\uACE0?"
   - Target: {fileID: 11400000, guid: ee106c914fc5edc4ea4a7a54b1ee64f3, type: 2}
-    <Line>k__BackingField: "\uC644\uC804\uD788 <ChangeWritingScale(150%)>\uB9DD\uD574\uBC84\uB838\uB2E4\uACE0!!!!</size>"
+    <Line>k__BackingField: "\uC644\uC804\uD788 <size=150%>\uB9DD\uD574\uBC84\uB838\uB2E4\uACE0!!!!</size>"
   - Target: {fileID: 11400000, guid: ee106c914fc5edc4ea4a7a54b1ee64f3, type: 2}
     <Line>k__BackingField: "\uB2E4\uC2DC \uD55C \uBC88 \uB2C8 \uADD3\uAD6C\uBA4D\uC5D0
       \uBC15\uC544\uC904\uAE4C?"
@@ -158,7 +158,7 @@ MonoBehaviour:
   - Target: {fileID: 11400000, guid: acafed7d8d64ff445922c4aec338da49, type: 2}
     <Line>k__BackingField: "\uB9C8\uC9C0\uB9C9 \uC120\uBB3C\uC774\uB098 \uC904\uD14C\uB2C8"
   - Target: {fileID: 11400000, guid: acafed7d8d64ff445922c4aec338da49, type: 2}
-    <Line>k__BackingField: <GiveItem(ExplanationScene3)>
+    <Line>k__BackingField: <GiveItem(Bomb)>
   - Target: {fileID: 11400000, guid: acafed7d8d64ff445922c4aec338da49, type: 2}
     <Line>k__BackingField: "\uB9C8\uC9C0\uB9C9 \uD37C\uC990 \uC870\uAC01\uC744 \uCC3E\uC73C\uB7EC
       \uAC00\uBD05\uC138~"

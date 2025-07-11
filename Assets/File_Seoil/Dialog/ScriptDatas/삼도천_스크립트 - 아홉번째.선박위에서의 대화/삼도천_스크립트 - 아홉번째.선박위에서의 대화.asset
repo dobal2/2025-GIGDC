@@ -28,9 +28,10 @@ MonoBehaviour:
       \uC778\uC0DD\uC744 \uC0B0 \uAC83\uCC98\uB7FC \uB290\uAEF4\uC9C0\uB124\uC694..."
   - Target: {fileID: 11400000, guid: 35884024c28e1a64fb4dc6852291656d, type: 2}
     <Line>k__BackingField: "\uC800\uB294 \uC81C\uAC00 \uC0AC\uB791\uD588\uB358 \uC544\uB0B4\uB97C
-      \uBA3C\uC800 \uB5A0\uB098\uBCF4\uB0B4\uACE0... \uC81C \uC544\uC774\uB4E4\uB3C4
-      \uC5B4\uB514\uB85C \uAC14\uB294\uC9C0 \uB9C8\uC9C0\uB9C9\uC5D0 \uD55C \uBC88\uB3C4
-      \uBCF4\uC9C8 \uBABB\uD588\uB124\uC694..."
+      \uBA3C\uC800 \uB5A0\uB098\uBCF4\uB0B4\uACE0..."
+  - Target: {fileID: 11400000, guid: 35884024c28e1a64fb4dc6852291656d, type: 2}
+    <Line>k__BackingField: "\uC81C \uC544\uC774\uB4E4\uB3C4 \uC5B4\uB514\uB85C \uAC14\uB294\uC9C0
+      \uB9C8\uC9C0\uB9C9\uC5D0 \uD55C \uBC88\uB3C4 \uBCF4\uC9C8 \uBABB\uD588\uB124\uC694..."
   - Target: {fileID: 11400000, guid: 35884024c28e1a64fb4dc6852291656d, type: 2}
     <Line>k__BackingField: "\uC774\uC820 \uC5EC\uAE30\uAC00 \uC5B4\uB514\uC778\uC9C0\uB294
       \uC911\uC694\uD558\uC9C0 \uC54A\uC740 \uAC83 \uAC19\uC2B5\uB2C8\uB2E4..."
@@ -56,14 +57,20 @@ MonoBehaviour:
     <Line>k__BackingField: "\uADF8\uB7F0 \uAC70\uB77C\uBA74 \uC790\uB124\uB294 \uC18C\uC6D0\uC744
       \uC774\uB8F0\uAC78\uC138"
   - Target: {fileID: 11400000, guid: 7e499bf55ed0ae14ab01f9440e0de511, type: 2}
-    <Line>k__BackingField: "\uC5EC\uAE30\uB294 \uC0BC\uB3C4\uCC9C, \uC8FD\uC740 \uC601\uD63C\uB4E4\uC774
-      \uC774\uC2B9\uC5D0\uC11C \uC800\uC2B9\uC73C\uB85C \uAC00\uB294 \uACF3\uC73C\uB85C
-      \uC790\uB124\uB294 \uC774\uC2B9\uC5D0\uC11C \uC544\uC8FC \uBA40\uB9AC \uB5A0\uB098\uC640
-      \uBAA9\uC801\uC9C0\uC5D0 \uAC70\uC758 \uB3C4\uCC29\uD588\uB124"
+    <Line>k__BackingField: "\uC5EC\uAE30\uB294 \uC0BC\uB3C4\uCC9C,"
+  - Target: {fileID: 11400000, guid: 7e499bf55ed0ae14ab01f9440e0de511, type: 2}
+    <Line>k__BackingField: "\uC8FD\uC740 \uC601\uD63C\uB4E4\uC774 \uC774\uC2B9\uC5D0\uC11C
+      \uC800\uC2B9\uC73C\uB85C \uAC00\uB294 \uACF3\uC73C\uB85C"
+  - Target: {fileID: 11400000, guid: 7e499bf55ed0ae14ab01f9440e0de511, type: 2}
+    <Line>k__BackingField: "\uC790\uB124\uB294 \uC774\uC2B9\uC5D0\uC11C \uC544\uC8FC
+      \uBA40\uB9AC \uB5A0\uB098\uC640"
+  - Target: {fileID: 11400000, guid: 7e499bf55ed0ae14ab01f9440e0de511, type: 2}
+    <Line>k__BackingField: "\uBAA9\uC801\uC9C0\uC5D0 \uAC70\uC758 \uB3C4\uCC29\uD588\uB124"
   - Target: {fileID: 11400000, guid: 7e499bf55ed0ae14ab01f9440e0de511, type: 2}
     <Line>k__BackingField: "\uC790\uB124\uAC00 \uC0AC\uB791\uD588\uC5C8\uACE0 \uC0AC\uB791\uD558\uB294
-      \uC591\uD76C\uC21C\uB3C4 \uC798\uD558\uBA74 \uACE7 \uB9CC\uB0A0 \uC218 \uC788\uC744
-      \uAC78\uC138"
+      \uC591\uD76C\uC21C\uB3C4"
+  - Target: {fileID: 11400000, guid: 7e499bf55ed0ae14ab01f9440e0de511, type: 2}
+    <Line>k__BackingField: "\uACE7 \uB9CC\uB0A0 \uC218 \uC788\uC744 \uAC78\uC138"
   - Target: {fileID: 11400000, guid: 35884024c28e1a64fb4dc6852291656d, type: 2}
     <Line>k__BackingField: "\uD558\uC9C0\uB9CC \uADF8\uB140\uAC00 \uB098\uB97C \uC8FD\uB3C4\uB85D
       \uBBF8\uC6CC\uD558\uACE0 \uC788\uB2E4\uBA74 \uC5B4\uB5BB\uD558\uC8E0?"
@@ -74,16 +81,19 @@ MonoBehaviour:
     <Line>k__BackingField: "\uADF8\uAC83\uC740 \uB9CC\uB098\uBD10\uC57C \uC544\uB294
       \uAC83, \uC544\uB2C8\uACA0\uB294\uAC00?"
   - Target: {fileID: 11400000, guid: 7e499bf55ed0ae14ab01f9440e0de511, type: 2}
-    <Line>k__BackingField: "\uB05D\uC740 \uC2DC\uC791\uC774\uB780 \uB9D0\uC774 \uC788\uB4EF\uC774
-      \uC9C0\uAE08\uC774 \uB05D\uB0AC\uB2E4\uACE0 \uD574\uC11C \uC644\uC804\uD788
-      \uB05D \uB098\uB294 \uAC83\uC774 \uC544\uB2C8\uB124"
+    <Line>k__BackingField: "\uB05D\uC740 \uC2DC\uC791\uC774\uB780 \uB9D0\uC774 \uC788\uB4EF\uC774"
+  - Target: {fileID: 11400000, guid: 7e499bf55ed0ae14ab01f9440e0de511, type: 2}
+    <Line>k__BackingField: "\uC9C0\uAE08\uC774 \uB05D\uB0AC\uB2E4\uACE0 \uD574\uC11C
+      \uC644\uC804\uD788 \uB05D \uB098\uB294 \uAC83\uC774 \uC544\uB2C8\uB124"
   - Target: {fileID: 11400000, guid: 7e499bf55ed0ae14ab01f9440e0de511, type: 2}
     <Line>k__BackingField: "\uADF8\uB7EC\uB2C8 \uC9C0\uAE08 \uB9C8\uC74C\uC544\uD30C
       \uD558\uC9C0 \uB9D0\uAC8C\uB098~"
   - Target: {fileID: 11400000, guid: 7e499bf55ed0ae14ab01f9440e0de511, type: 2}
     <Line>k__BackingField: "\uBCD1\uD0DC... \uC790\uB124\uB294 \uAC00\uC871\uC744
-      \uC9C0\uD0A4\uB824\uACE0 \uB178\uB825\uD558\uACE0 \uB05D\uAE4C\uC9C0 \uC0AC\uB791\uD558\uB294\uB77C
-      \uC815\uB9D0 \uC218\uACE0 \uB9CE\uC558\uB124"
+      \uC9C0\uD0A4\uB824\uACE0 \uB178\uB825\uD558\uACE0"
+  - Target: {fileID: 11400000, guid: 7e499bf55ed0ae14ab01f9440e0de511, type: 2}
+    <Line>k__BackingField: "\uB05D\uAE4C\uC9C0 \uC0AC\uB791\uD558\uB294\uB77C \uC815\uB9D0
+      \uC218\uACE0 \uB9CE\uC558\uB124"
   - Target: {fileID: 11400000, guid: 7e499bf55ed0ae14ab01f9440e0de511, type: 2}
     <Line>k__BackingField: "\uB3C4\uCC29\uD558\uAE30 \uC804, "
   - Target: {fileID: 11400000, guid: 7e499bf55ed0ae14ab01f9440e0de511, type: 2}
@@ -96,4 +106,6 @@ MonoBehaviour:
   - Target: {fileID: 11400000, guid: 35884024c28e1a64fb4dc6852291656d, type: 2}
     <Line>k__BackingField: "...\uB0B4 \uACFC\uAC70"
   - Target: {fileID: 11400000, guid: 35884024c28e1a64fb4dc6852291656d, type: 2}
-    <Line>k__BackingField: "...\uB0B4 \uC778\uC0DD.....<ChangeScene(EndingScene_2)>"
+    <Line>k__BackingField: "...\uB0B4 \uC778\uC0DD....."
+  - Target: {fileID: 11400000, guid: 35884024c28e1a64fb4dc6852291656d, type: 2}
+    <Line>k__BackingField: <ChangeScene(EndingScene_2)>

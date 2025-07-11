@@ -146,7 +146,7 @@ MonoBehaviour:
     <Line>k__BackingField: "\uC790\uB124\uAC00 \uBC14\uB77C\uB358 \uC724\uBCD1\uD0DC\uC758
       \uC0B6, \uC790\uB124\uC758 \uC0B6\uC774 \uB9DE\uB124"
   - Target: {fileID: 11400000, guid: 03e91fe2159881e4c94fb45109e93381, type: 2}
-    <Line>k__BackingField: "\uBB50...<ChangeWritingScale(150%)>\uBB50\uB77C\uACE0!?</size>"
+    <Line>k__BackingField: "\uBB50...<size=150%>\uBB50\uB77C\uACE0!?</size>"
   - Target: {fileID: 11400000, guid: a7fc3039efef03744b37dbb9b68a99f5, type: 2}
     <Line>k__BackingField: "\uC790\uB124\uC758 \uC0B6\uC774 \uC724\uBCD1\uD0DC\uB77C\uACE0
       \uC790\uB124\uB3C4 \uC774\uBBF8 \uB290\uAF08\uC9C0 \uC54A\uB294\uAC00?"
