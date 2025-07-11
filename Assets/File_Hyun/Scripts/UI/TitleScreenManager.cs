@@ -9,9 +9,16 @@ public class TitleScreenManager : MonoBehaviour
         InputManager.Instance.currentContext = InputManager.InputContext.UI;
     }
 
-    public void StartGame()
+    public void Continue()
     {
-        Debug.Log("게임 시작 버튼 클릭됨");
+        Debug.Log("이어하기");
+        Stage.LoadData();
+        SceneManager.LoadScene("Lobby_Over");
+    }
+
+    public void NewGame()
+    {
+        Debug.Log("처음부터");
         SceneManager.LoadScene("Lobby_Over");
     }
 
