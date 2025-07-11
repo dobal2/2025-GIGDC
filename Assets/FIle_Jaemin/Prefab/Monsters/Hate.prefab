@@ -108,7 +108,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 6
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -142,7 +142,7 @@ MonoBehaviour:
   player: {fileID: 0}
   facingRight: 0
   playerNoticeDistance: 4
-  windForce: 20
+  windForce: 12
   windParticle: {fileID: 4150984484791444737}
   attackTransform: {fileID: 6746550557834230568}
   attackSize: {x: 4.84, y: 2.43}
