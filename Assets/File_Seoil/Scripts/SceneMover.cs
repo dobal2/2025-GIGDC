@@ -45,7 +45,7 @@ public class SceneMover : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(keyData.Ui.SelectKey) && isEntered)
+        if(Input.GetKeyDown(keyData.Player.InteractionKey) && isEntered)
         {
             LoadScene();
         }

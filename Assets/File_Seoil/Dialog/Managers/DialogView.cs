@@ -18,6 +18,10 @@ public class DialogView : MonoBehaviour
 
     public bool IsCompleted { get; private set; }
 
+    [Header("Fixed Data")]
+    [SerializeField] private KeyData keyData;
+
+    [Space]
     [SerializeField] private TextMeshProUGUI dialogText;
     [SerializeField] private RectTransform backGroundRect;
 
@@ -63,7 +67,7 @@ public class DialogView : MonoBehaviour
     {
         if (selectionDatas.Count == 0) return;
 
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        if (Input.GetKeyDown(keyData.Ui.LeftKey))
         {
             if (selectionIndex <= 0)
                 selectionIndex = selectionDatas.Count - 1;
@@ -71,7 +75,7 @@ public class DialogView : MonoBehaviour
 
             PrintSelection();
         }
-        else if (Input.GetKeyDown(KeyCode.RightArrow))
+        else if (Input.GetKeyDown(keyData.Ui.RightKey))
         {
             selectionIndex++;
             if (selectionIndex >= selectionDatas.Count)
@@ -79,7 +83,7 @@ public class DialogView : MonoBehaviour
 
             PrintSelection();
         }
-        else if(Input.GetKeyDown(KeyCode.Return))
+        else if(Input.GetKeyDown(keyData.Ui.SelectKey))
         {
             IsCompleted = true;
             dialogGenerator.SyncSelection(selectionDatas, selectionIndex);
