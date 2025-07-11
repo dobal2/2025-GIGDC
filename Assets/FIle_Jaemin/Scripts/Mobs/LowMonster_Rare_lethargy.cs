@@ -20,7 +20,7 @@ public class LowMonster_Rare_lethargy : Monster
         StartCoroutine(Explosion(attackCoolDown));
     }
 
-    IEnumerator Explosion(float delayTime)
+    public IEnumerator Explosion(float delayTime)
     {
         anim.SetBool("IsCharging",true);
         

@@ -40,6 +40,11 @@ public class LowMonster_Rare_inferior : Monster
         }
     }
 
+    public override void KnockBack(Transform attacker, float knockBackForce, float knockBackAngle, float duration)
+    {
+        
+    }
+
 
     protected override void Die()
     {
