@@ -172,7 +172,7 @@ public class DialogView : MonoBehaviour
         Vector2 canvasSize = canvasRect.rect.size;
 
         Vector2 uiSize = uiRect.rect.size;
-        uiSize.x += 50;
+        uiSize.x += 75;
         Vector2 pivot = uiRect.pivot;
 
         Vector2 pos = uiRect.anchoredPosition;
