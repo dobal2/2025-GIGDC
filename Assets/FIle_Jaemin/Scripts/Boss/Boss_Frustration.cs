@@ -32,7 +32,7 @@ public class Boss_Frustration : Boss
     [SerializeField] private Vector2 fingerStretchAttackSize;
     [SerializeField] private GameObject batteryPrefab;
     [SerializeField] private GameObject lightObject;
-    [SerializeField] private Transform phase2Pos;
+    //[SerializeField] private Transform phase2Pos;
     [SerializeField] private Transform dashAttackTransform;
     [SerializeField] private Vector2 dashAttackSize;
     float direction = 1;
@@ -42,14 +42,14 @@ public class Boss_Frustration : Boss
     private bool isDashing;
     private bool lightAttacking;
 
-    [Header("Maps")] [SerializeField] private GameObject phase1Map;
-    [SerializeField] private GameObject phase2Map;
+    // [Header("Maps")] [SerializeField] private GameObject phase1Map;
+    // [SerializeField] private GameObject phase2Map;
 
     protected override void Start()
     {
         lightObject.SetActive(false);
         base.Start();
-        phase2Map.SetActive(false);
+        //phase2Map.SetActive(false);
     }
 
     protected override void Attack()
@@ -324,12 +324,12 @@ IEnumerator CastFingerAttack()
     {
         anim.runtimeAnimatorController = phase2Anim;
         takeDamageCount = 0;
-        phase1Map.SetActive(false);
-        phase2Map.SetActive(true);
+        //phase1Map.SetActive(false);
+        //phase2Map.SetActive(true);
         currentPhase = 2;
         maxHp = phase2Hp;
         hp = maxHp;
-        transform.position = phase2Pos.position;
+        //transform.position = phase2Pos.position;
         //anim.runtimeAnimatorController = phase2Anim;
 
         //transform.position = new Vector2(0, 7);

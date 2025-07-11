@@ -16,7 +16,7 @@ public class Boss_Excitement : Boss
     [Header("Transforms")]
     [SerializeField] private Transform missileSpawnPoint;
     [SerializeField] private Transform[] teleportPositions;
-    [SerializeField] private Transform phase2Transform;
+    //[SerializeField] private Transform phase2Transform;
     [SerializeField] private Transform bombPos;
     [SerializeField] private Transform targetBoardPoint;
 
@@ -75,7 +75,7 @@ public class Boss_Excitement : Boss
     private void Phase2()
     {
         anim.runtimeAnimatorController = phase2Anim;
-        transform.position = phase2Transform.position + new Vector3(0, transform.localScale.y / 2, 0);
+        //transform.position = phase2Transform.position + new Vector3(0, transform.localScale.y / 2, 0);
         currentPhase = 2;
         maxHp = phase2Hp;
         hp = maxHp;
