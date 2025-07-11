@@ -96,7 +96,7 @@ MonoBehaviour:
     <Line>k__BackingField: "\uACB0\uAD6D \uC8FD\uC9C4 \uC54A\uACE0 \uC798 \uC0B4\uC544
       \uB3CC\uC544\uC654\uC9C0 \uC54A\uB294\uAC00?"
   - Target: {fileID: 11400000, guid: 780ff7812ed42474e9d4c2b4982cc385, type: 2}
-    <Line>k__BackingField: <GiveItem(ExplanationScene1)>
+    <Line>k__BackingField: <GiveItem(Bow)>
   - Target: {fileID: 11400000, guid: 780ff7812ed42474e9d4c2b4982cc385, type: 2}
     <Line>k__BackingField: "\uC790 \uC774\uAC70 \uBC1B\uACE0 \uB2E4\uC2DC \uC5F4\uC2EC\uD788
       \uCCAD\uC18C\uB098 \uD558\uACE0 \uC624\uAC8C\uB098"

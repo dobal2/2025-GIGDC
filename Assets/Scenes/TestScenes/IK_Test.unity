@@ -404,6 +404,17 @@ MonoBehaviour:
   attackBufferTime: 0.1
   weaponChangeCooldown: 0.6
   knockbackDuration: 0.1
+  Walk: {fileID: 0}
+  jump: {fileID: 0}
+  dash: {fileID: 0}
+  Damage: {fileID: 0}
+  Death: {fileID: 0}
+  SpearNormal: {fileID: 0}
+  SpearSkill: {fileID: 0}
+  BowNormal: {fileID: 0}
+  BowSkillCharging: {fileID: 0}
+  BowSkillRelease: {fileID: 0}
+  BombBoom: {fileID: 0}
   isNoClip: 0
   facingDirection: 1
   isGrounded: 0
@@ -525,7 +536,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!199 &102500581
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -5951,7 +5962,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d827af8ff51193a4da4210943612ce73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentContext: 1
   keyData: {fileID: 11400000, guid: eef92708e559636479c30d47676bef1e, type: 2}
   lastSelectedButton: {fileID: 0}
   IsCapturingKey: 0
@@ -16255,7 +16265,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &640513215
 MonoBehaviour:
   m_ObjectHideFlags: 0

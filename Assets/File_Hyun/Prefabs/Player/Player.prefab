@@ -5208,7 +5208,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   maxJumpTime: 0.4
   maxJumpForce: 20
-  jumpHeightMultiplier: 2
+  jumpHeightMultiplier: 1
   jumpBufferTime: 0.1
   coyoteTime: 0.1
   dropPlatformDuration: 0.3

@@ -26,10 +26,17 @@ public struct UnlockedWeapons
 [CreateAssetMenu(fileName = "WeaponDatabase", menuName = "Scriptable Objects/Weapon Database")]
 public class WeaponDatabase : ScriptableObject
 {
+    public static WeaponDatabase Instance { get; set; }
+
     public SpearData spearData;
     public BowData bowData;
     public BombData bombData;
     public UnlockedWeapons unlockedWeapons;
+
+    private void OnEnable()
+    {
+        Instance = this;
+    }
 
     public bool IsWeaponUnlocked(WeaponType type) => unlockedWeapons.IsUnlocked(type);
 
