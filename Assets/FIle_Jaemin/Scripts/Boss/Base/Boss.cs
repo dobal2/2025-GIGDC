@@ -10,6 +10,8 @@ public abstract class Boss : Monster
     
     [SerializeField] protected RuntimeAnimatorController phase2Anim;
 
+    public static Boss Instance { get; private set; }
+
     public void StartBattle()
     {
         battleStarted = true;
@@ -18,6 +20,7 @@ public abstract class Boss : Monster
     
     protected override void Start()
     {
+        Instance = this;
         rigid = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         if (anim != null)

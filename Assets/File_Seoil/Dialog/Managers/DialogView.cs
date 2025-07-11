@@ -204,7 +204,8 @@ public class DialogView : MonoBehaviour
     private void SetPosition(Dialog dialog, Canvas dialogCanvas)
     {
         Vector3 worldPos = dialog.Target.Transform.position + baseDialogPosition.ToVector3();
-        Vector2 screenPos = Camera.main.WorldToScreenPoint(worldPos);
+
+        Vector2 screenPos = CameraUtility.TopCamera.WorldToScreenPoint(worldPos);
 
         RectTransform canvasRect = dialogCanvas.GetComponent<RectTransform>();
 
@@ -282,6 +283,12 @@ public class DialogView : MonoBehaviour
 
         if (currentDialogCoroutine != null) StopCoroutine(currentDialogCoroutine);
         PrintSelection();
+    }
+
+    [DialogCommand("StartBoss")]
+    private void StartBoss(string line)
+    {
+        Boss.Instance.StartBattle();
     }
 
     [DialogCommand("MoveCharactor")]

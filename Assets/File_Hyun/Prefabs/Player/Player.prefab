@@ -5090,7 +5090,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8402703143688192166}
@@ -6063,6 +6063,11 @@ GameObject:
   - component: {fileID: 7456418685214639871}
   - component: {fileID: 6711194806082346476}
   - component: {fileID: 4524701489675969487}
+  - component: {fileID: 4105435682062100786}
+  - component: {fileID: 2152600022104796211}
+  - component: {fileID: 2531633685196574580}
+  - component: {fileID: 2519223986248165215}
+  - component: {fileID: 5375408107991696313}
   m_Layer: 8
   m_Name: Target Selector
   m_TagString: Untagged
@@ -6079,7 +6084,7 @@ Transform:
   m_GameObject: {fileID: 6127386827883263761}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.09, y: 1.06, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6134,6 +6139,86 @@ MonoBehaviour:
     \uB300\uD654"
   AllocatedTargetName: "\uBCD1\uD0DC"
 --- !u!114 &4524701489675969487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6127386827883263761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6317bfc1406e4814991daeec14a9af49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ScriptData: {fileID: 11400000, guid: 2df25f3abffdee0498f7d25d5c425f7b, type: 2}
+  AllocatedChapterName: "\uC0BC\uB3C4\uCC9C_\uC2A4\uD06C\uB9BD\uD2B8 - \uCCAB\uBC88\uC9F8.\uC120\uBC15\uC704\uC5D0\uC11C
+    \uB300\uD654 (2)"
+  AllocatedTargetName: "\uBCD1\uD0DC"
+--- !u!114 &4105435682062100786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6127386827883263761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6317bfc1406e4814991daeec14a9af49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ScriptData: {fileID: 11400000, guid: 2df25f3abffdee0498f7d25d5c425f7b, type: 2}
+  AllocatedChapterName: "\uC0BC\uB3C4\uCC9C_\uC2A4\uD06C\uB9BD\uD2B8 - \uB137\uC9F8.\uD30C\uB178\uB77C\uB9C8\uC5D0\uC11C
+    \uC124\uB808\uC789\uACFC\uC758 \uB300\uD654"
+  AllocatedTargetName: "\uBCD1\uD0DC"
+--- !u!114 &2152600022104796211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6127386827883263761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6317bfc1406e4814991daeec14a9af49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ScriptData: {fileID: 11400000, guid: 2df25f3abffdee0498f7d25d5c425f7b, type: 2}
+  AllocatedChapterName: "\uC0BC\uB3C4\uCC9C_\uC2A4\uD06C\uB9BD\uD2B8 - \uB458\uC9F8.\uD30C\uB178\uB77C\uB9C8\uC5D0\uC11C
+    \uC0AC\uB791\uC789\uACFC \uB300\uD654"
+  AllocatedTargetName: "\uBCD1\uD0DC"
+--- !u!114 &2531633685196574580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6127386827883263761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6317bfc1406e4814991daeec14a9af49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ScriptData: {fileID: 11400000, guid: 2df25f3abffdee0498f7d25d5c425f7b, type: 2}
+  AllocatedChapterName: "\uC0BC\uB3C4\uCC9C_\uC2A4\uD06C\uB9BD\uD2B8 - \uC5EC\uC12F\uC9F8.\uD30C\uB178\uB77C\uB9C8\uC5D0\uC11C
+    \uC88C\uC808\uC789\uACFC\uC758 \uB300\uD654"
+  AllocatedTargetName: 
+--- !u!114 &2519223986248165215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6127386827883263761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6317bfc1406e4814991daeec14a9af49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ScriptData: {fileID: 11400000, guid: 2df25f3abffdee0498f7d25d5c425f7b, type: 2}
+  AllocatedChapterName: "\uC0BC\uB3C4\uCC9C_\uC2A4\uD06C\uB9BD\uD2B8 - \uC5EC\uB35F\uBC88\uC9F8.\uD5C8\uBB34\uC789\uACFC\uC758
+    \uB300\uD654"
+  AllocatedTargetName: "\uBCD1\uD0DC"
+--- !u!114 &5375408107991696313
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

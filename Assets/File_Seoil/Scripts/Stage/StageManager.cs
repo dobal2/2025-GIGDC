@@ -1,3 +1,5 @@
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public static class Stage
@@ -42,6 +44,7 @@ public static class Stage
     }
 }
 
+[Serializable]
 public enum StageDataType
 {
     Start, Tutorial, Stage1, Stage2, Stage3, Stage4
@@ -55,6 +58,10 @@ public class StageManager : MonoBehaviour
     [SerializeField] private Effect boomEffectPrefab;
 
     [SerializeField] private SceneController.SceneType moveSceneType;
+
+    [Header("Progress")]
+    [SerializeField] private bool isProgress;
+    [SerializeField] private StageDataType stageType;
 
     private static StageManager Instance { get; set; }
 
@@ -76,20 +83,25 @@ public class StageManager : MonoBehaviour
         map.SetActive(false);
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space)) Clear();
-    }
+    public static void SetObjects(int _objects) =>
+        objects = _objects;
 
     public void Clear()
     {
-        viewAnimator.SetTrigger("OnClear");
+        if (isProgress)
+        {
+            Stage.Data = stageType;
+            MoveScene();
+        }
+        else viewAnimator.SetTrigger("OnClear");
     }
 
     public static void Fail() => Instance.FailByInstance();
 
     public void FailByInstance()
     {
+        SetObjects(0);
+
         switch (Stage.Data)
         {
             case StageDataType.Tutorial:
@@ -105,6 +117,9 @@ public class StageManager : MonoBehaviour
                 SceneController.Instance.LoadScene(SceneController.SceneType.Stage4_1);
                 break;
             case StageDataType.Stage4:
+                break;
+            default:
+                SceneController.Instance.LoadScene(SceneController.SceneType.Lobby_Over);
                 break;
         }
     }

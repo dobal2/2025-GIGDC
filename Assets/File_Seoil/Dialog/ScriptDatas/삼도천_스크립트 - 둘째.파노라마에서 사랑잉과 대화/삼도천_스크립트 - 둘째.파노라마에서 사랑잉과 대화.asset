@@ -69,4 +69,4 @@ MonoBehaviour:
       \uC788\uC744\uAE4C\uC694...?"
   - Target: {fileID: 11400000, guid: a78357a22e7053541a41164463ae84e4, type: 2}
     <Line>k__BackingField: "\uB108\uBB34\uB098\uB3C4 \uBD88\uC30D\uD55C \uB2F9\uC2E0,
-      \uC81C\uAC00 \uC0AC\uB791\uC73C\uB85C \uCC44\uC6CC\uB4DC\uB9AC\uC8E0~"
+      \uC81C\uAC00 \uC0AC\uB791\uC73C\uB85C \uCC44\uC6CC\uB4DC\uB9AC\uC8E0~<StartBoss()>"
