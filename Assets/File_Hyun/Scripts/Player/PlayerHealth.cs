@@ -49,8 +49,6 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeHeal(float amount)
     {
-        if (CurrentHealth <= 0) return;
-
         if (CurrentHealth + amount > MaxHealth)
             CurrentHealth = MaxHealth;
         else
