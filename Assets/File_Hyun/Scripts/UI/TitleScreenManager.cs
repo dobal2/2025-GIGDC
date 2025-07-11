@@ -19,6 +19,7 @@ public class TitleScreenManager : MonoBehaviour
     public void NewGame()
     {
         Debug.Log("처음부터");
+        Stage.Data = StageDataType.Start;
         SceneManager.LoadScene("Lobby_Over");
     }
 
