@@ -191,8 +191,6 @@ public class InputManager : MonoBehaviour
         if (Input.GetKey(keyData.Player.LeftMoveKey)) horizontal -= 1f;
         if (Input.GetKey(keyData.Player.RightMoveKey)) horizontal += 1f;
         _LobbyPlayer.MoveInput = horizontal;
-
-        if (Input.GetKeyDown(keyData.Player.InteractionKey)) _LobbyPlayer.TryInteract();
     }
 
     public void RegisterLobby(LobbyPlayerController lobbyplayer) => _LobbyPlayer = lobbyplayer;
