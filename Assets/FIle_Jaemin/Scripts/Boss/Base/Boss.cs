@@ -12,15 +12,19 @@ public abstract class Boss : Monster
 
     public static Boss Instance { get; private set; }
 
+    private void Awake()
+    {
+        Instance = this;
+    }
+
     public void StartBattle()
     {
         battleStarted = true;
     }
     
-    
     protected override void Start()
     {
-        Instance = this;
+        
         rigid = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         if (anim != null)

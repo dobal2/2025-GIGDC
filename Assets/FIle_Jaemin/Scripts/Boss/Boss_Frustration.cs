@@ -61,7 +61,7 @@ public class Boss_Frustration : Boss
     {
         if(!battleStarted)
             return;
-        
+
         base.Update();
 
         FlipToPlayerDirection();
@@ -295,6 +295,8 @@ IEnumerator CastFingerAttack()
 
     public override void TakeDamage(float amount)
     {
+        if (hp <= 0) Die();
+
         takeDamageCount++;
         if (currentPhase == 1)
         {
@@ -357,6 +359,7 @@ IEnumerator CastFingerAttack()
 
     protected override void Die()
     {
+        Debug.Log("Frustration Dead");
         StopAllCoroutines();
         if (currentPhase == 1)
         {
