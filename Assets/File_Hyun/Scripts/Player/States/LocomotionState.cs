@@ -52,6 +52,7 @@ public class LocomotionState : PlayerState
             shouldJump = false;
 
             player.Animator.Play("Jump");
+            player.PlayClip(player.Jump);
         }
 
         if (player.isJumping && (!player.JumpHeld || player.jumpTimeCounter >= player.MaxJumpTime || player.isTouchingCeiling))
@@ -94,11 +95,13 @@ public class LocomotionState : PlayerState
         {
             player.Animator.Play("Walk");
             player.SetEffectState(PlayerEffectState.GroundWalkDust);
+            player.Walk.Play();
         }
         else
         {
             player.Animator.Play("Idle");
             player.SetEffectState(PlayerEffectState.None);
+            player.Walk.Stop();
         }
     }
 }

@@ -77,7 +77,7 @@ public class SkillBomb : MonoBehaviour
         
         StartCoroutine(Destroy());
         animator.Play("Boom");
-
+        PlayerController.Instance.PlayClip(PlayerController.Instance.BombBoom);
         Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, bombExplosionRadius, enemyMask);
         foreach (var hit in hitColliders)
         {

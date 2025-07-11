@@ -12,6 +12,7 @@ public class DashState : PlayerState
     {
         player.SetEffectState(PlayerEffectState.Dash);
         player.Animator.Play("Dash");
+        player.PlayClip(player.Dash);
         player.isNoClip = true;
         player.dashTimer = player.DashDuration;
         player.lastDashTime = Time.time;

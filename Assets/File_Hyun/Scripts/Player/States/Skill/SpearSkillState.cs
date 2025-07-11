@@ -113,6 +113,7 @@ public class SpearSkillState : PlayerState
                 fadeOut: true
             );
             phase = SkillPhase.Landing;
+            player.PlayClip(player.SpearSkill);
         }
 
         if (phase == SkillPhase.Landing)

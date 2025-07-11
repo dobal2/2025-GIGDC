@@ -96,9 +96,9 @@ public class PlayerController : MonoBehaviour
     private float knockbackTimer = 0f;
 
     [Header("Sound Settings")]
-    public AudioClip Walk;
-    public AudioClip jump;
-    public AudioClip dash;
+    public AudioSource Walk;
+    public AudioClip Jump;
+    public AudioClip Dash;
     public AudioClip Damage;
     public AudioClip Death;
     public AudioClip SpearNormal;
@@ -162,7 +162,6 @@ public class PlayerController : MonoBehaviour
             return;
         }
         Instance = this;
-        DontDestroyOnLoad(gameObject);
     }
 
     void Start()

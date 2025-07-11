@@ -205,6 +205,7 @@ public class AttackController : MonoBehaviour
         switch (CurrentWeapon)
         {
             case WeaponType.Spear:
+                player.PlayClip(player.SpearNormal);
                 currentPushDistance = spearData.GetPush(step);
                 pushTimer = spearData.GetDelay(step);
                 comboDelayTimer = spearData.GetComboDelay(step);

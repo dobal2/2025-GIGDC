@@ -20,6 +20,7 @@ public class NormalArrow : MonoBehaviour
         maxDistance = arrowDistance;
         startPosition = transform.position;
         transform.rotation = Quaternion.Euler(0f, direction.x == -1 ? 180f : 0f, 0f);
+        PlayerController.Instance.PlayClip(PlayerController.Instance.BowNormal);
     }
 
     void Update()

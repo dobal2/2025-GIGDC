@@ -5,8 +5,8 @@ public class PlayerHealth : MonoBehaviour
 {
     public static PlayerHealth Instance { get; private set; }
 
-    public float MaxHealth;
-    public float CurrentHealth;
+    [HideInInspector] public float MaxHealth = 5;
+    public static float CurrentHealth = 5;
     [SerializeField] private float invincibleTime = 1f;
 
     [HideInInspector] public bool isInvincible;
@@ -42,6 +42,7 @@ public class PlayerHealth : MonoBehaviour
             return;
         }
 
+        PlayerController.Instance.PlayClip(PlayerController.Instance.Damage);
         isInvincible = true;
         resetInvincibleCoroutine = StartCoroutine(ResetInvincible());
     }
