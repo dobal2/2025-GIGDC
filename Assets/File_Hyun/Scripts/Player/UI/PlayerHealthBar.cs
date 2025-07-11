@@ -53,7 +53,7 @@ public class PlayerHealthBar : MonoBehaviour
         float newAlpha = Mathf.Lerp(currentAlpha, targetAlpha, Time.deltaTime * fadeSpeed);
         SetAlpha(newAlpha);
 
-        int currentHealth = Mathf.Clamp(Mathf.CeilToInt(PlayerHealth.Instance.CurrentHealth), 0, 5);
+        int currentHealth = Mathf.Clamp(Mathf.CeilToInt(PlayerHealth.CurrentHealth), 0, 5);
         if (currentHealth != displayedHealth)
             UpdateHealth(currentHealth);
     }

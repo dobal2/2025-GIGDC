@@ -25,6 +25,7 @@ public class BowSkillState : PlayerState
                                        RigidbodyConstraints2D.FreezePositionY;
         prefix = player.isGrounded ? "Ground" : "Flying";
         player.Animator.Play($"Bow_{prefix}_Charging");
+        player.PlayClip(player.BowSkillCharging);
         player.SetEffectState(PlayerEffectState.BowSkillCharging);
     }
 
@@ -64,6 +65,7 @@ public class BowSkillState : PlayerState
     {
         fired = true;
         player.Animator.Play($"Bow_{prefix}_Shoot");
+        player.PlayClip(player.BowSkillRelease);
         if (chargeTime > 1.5f) player.SetEffectState(PlayerEffectState.BowSkillFullChargeRelease);
         else player.SetEffectState(PlayerEffectState.BowSkillRelease);
         CameraUtility.ShakeCamera(

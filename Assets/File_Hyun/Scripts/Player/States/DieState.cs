@@ -16,6 +16,7 @@ public class DieState : PlayerState
         player.SpriteRenderer.color = new Color(0.2f, 0.2f, 0.2f, 1f);
         player.isNoClip = true;
         player.Rigidbody.linearVelocityX = 0f;
+        player.PlayClip(player.Death);
 
         if (player.isGrounded)
         {
