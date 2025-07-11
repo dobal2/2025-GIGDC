@@ -109,7 +109,7 @@ public class StageManager : MonoBehaviour
     public void FailByInstance()
     {
         SetObjects(0);
-        
+        PlayerHealth.Instance.TakeHeal(5);
 
         switch (Stage.Data)
         {

@@ -44,9 +44,10 @@ MonoBehaviour:
       \uC644\uC804\uD788 \uB9DD\uD574\uBC84\uB838\uB2E4\uACE0!!!!"
   - Target: {fileID: 11400000, guid: ee106c914fc5edc4ea4a7a54b1ee64f3, type: 2}
     <Line>k__BackingField: "\uC0AC\uB791\uD558\uB358 \uC0AC\uB78C\uB3C4 \uAC00\uC7A5
-      \uC18C\uC911\uD788 \uC5EC\uACBC\uB358 \uAC00\uC871\uB3C4, \uB0B4 \uC131\uACF5\uC758
-      \uC0C1\uC9D5\uC774 \uC774\uC600\uB358 \uC720\uB9AC\uADF8\uB987 \uD68C\uC0AC\uB3C4
-      \uBAA8\uB450! \uB9DD\uD574\uBC84\uB838\uB2E4\uACE0..."
+      \uC18C\uC911\uD788 \uC5EC\uACBC\uB358 \uAC00\uC871\uB3C4,"
+  - Target: {fileID: 11400000, guid: ee106c914fc5edc4ea4a7a54b1ee64f3, type: 2}
+    <Line>k__BackingField: "\uB0B4 \uC131\uACF5\uC758 \uC0C1\uC9D5\uC774 \uC774\uC600\uB358
+      \uC720\uB9AC\uADF8\uB987 \uD68C\uC0AC\uB3C4 \uBAA8\uB450! \uB9DD\uD574\uBC84\uB838\uB2E4\uACE0..."
   - Target: {fileID: 11400000, guid: ee106c914fc5edc4ea4a7a54b1ee64f3, type: 2}
     <Line>k__BackingField: "\uC2DC\uB300\uAC00 \uBB50\uB77C\uACE0... \uB9DD\uD560
       \uC2DC\uB300\uAC00 \uBB54\uB370!!"
@@ -74,7 +75,9 @@ MonoBehaviour:
   - Target: {fileID: 11400000, guid: 56be499ad70d2f24b98f42e4bcb35e0e, type: 2}
     <Line>k__BackingField: "\uADF8\uB798 \uBAA8\uB450\uAC00 \uB2E4 \uADF8\uB807\uB124,
       \uB0A8\uC774 \uBCF4\uAE30\uC5D4 \uC88B\uC740 \uC0B6\uCC98\uB7FC \uBCF4\uC774\uB294
-      \uC778\uC0DD\uB3C4 \uADF8 \uC0AC\uB78C\uC774 \uC790\uC2E0\uC758  \uC778\uC0DD\uC744
+      \uC778\uC0DD\uB3C4"
+  - Target: {fileID: 11400000, guid: 56be499ad70d2f24b98f42e4bcb35e0e, type: 2}
+    <Line>k__BackingField: "\uADF8 \uC0AC\uB78C\uC774 \uC790\uC2E0\uC758  \uC778\uC0DD\uC744
       \uB3CC\uC544\uBCFC \uB54C\uC5D0 \uD6C4\uD68C \uD558\uB098 \uC5C6\uB294 \uC0AC\uB78C\uC740
       \uC5C6\uC5B4"
   - Target: {fileID: 11400000, guid: 56be499ad70d2f24b98f42e4bcb35e0e, type: 2}
@@ -82,10 +85,11 @@ MonoBehaviour:
       \uADFC \uCC9C \uB144 \uB3D9\uC548 \uBCF8 \uC801\uC774 \uC5C6\uB124~!"
   - Target: {fileID: 11400000, guid: 56be499ad70d2f24b98f42e4bcb35e0e, type: 2}
     <Line>k__BackingField: "\uADF8 \uC0AC\uC9C4\uC774 \uC790\uC2E0\uC758 \uC778\uC0DD\uC774\uB77C\uB294
-      \uAC83\uC744 \uC54C\uC558\uC744 \uB54C, \uBAA8\uB450\uAC00 \uD37C\uC990\uC758
-      \uB9C8\uC9C0\uB9C9 \uC870\uAC01\uC774 \uC783\uC5B4\uBC84\uB9B0 \uAC83\uCC98\uB7FC
-      \uD5C8\uBB34\uD558\uACE0 \uD5C8\uB9DD\uD55C \uD45C\uC815\uC744 \uC9C0\uC744
-      \uBFD0\uC774\uC9C0"
+      \uAC83\uC744 \uC54C\uC558\uC744 \uB54C,"
+  - Target: {fileID: 11400000, guid: 56be499ad70d2f24b98f42e4bcb35e0e, type: 2}
+    <Line>k__BackingField: "\uBAA8\uB450\uAC00 \uD37C\uC990\uC758 \uB9C8\uC9C0\uB9C9
+      \uC870\uAC01\uC774 \uC783\uC5B4\uBC84\uB9B0 \uAC83\uCC98\uB7FC \uD5C8\uBB34\uD558\uACE0
+      \uD5C8\uB9DD\uD55C \uD45C\uC815\uC744 \uC9C0\uC744 \uBFD0\uC774\uC9C0"
   - Target: {fileID: 11400000, guid: 56be499ad70d2f24b98f42e4bcb35e0e, type: 2}
     <Line>k__BackingField: "\uADF8\uB7F0\uB370 \uADF8 \uB9C8\uC9C0\uB9C9 \uC870\uAC01\uC774\uB77C\uB294
       \uAC74 \uC0AC\uC2E4 \uC5B4\uB514\uC5D0 \uC788\uB294 \uC904 \uC544\uB098?"
@@ -93,9 +97,11 @@ MonoBehaviour:
     <Line>k__BackingField: ...
   - Target: {fileID: 11400000, guid: 56be499ad70d2f24b98f42e4bcb35e0e, type: 2}
     <Line>k__BackingField: "\uADF8\uC800 \uD37C\uC990 \uB9DE\uCD94\uB294 \uAC83\uC5D0
-      \uC9D1\uC911\uD55C \uB098\uBA38\uC9C0 \uB2E4\uB978 \uAC83\uC744 \uBCF4\uC9C0
-      \uBABB\uD558\uAC8C \uB418\uC5B4 \uBC84\uB9AC\uBA74\uC11C \uB2E4\uB978 \uC190\uC5D0
-      \uC788\uC5C8\uB2E4\uB294 \uAC83\uC744 \uAE4C\uBA39\uC5B4 \uBC84\uB9AC\uC9C0"
+      \uC9D1\uC911\uD55C \uB098\uBA38\uC9C0"
+  - Target: {fileID: 11400000, guid: 56be499ad70d2f24b98f42e4bcb35e0e, type: 2}
+    <Line>k__BackingField: "\uB2E4\uB978 \uAC83\uC744 \uBCF4\uC9C0 \uBABB\uD558\uAC8C
+      \uB418\uC5B4 \uBC84\uB9AC\uBA74\uC11C \uB2E4\uB978 \uC190\uC5D0 \uC788\uC5C8\uB2E4\uB294
+      \uAC83\uC744 \uAE4C\uBA39\uC5B4 \uBC84\uB9AC\uC9C0"
   - Target: {fileID: 11400000, guid: 56be499ad70d2f24b98f42e4bcb35e0e, type: 2}
     <Line>k__BackingField: "\uC774\uBBF8 \uB9C8\uC9C0\uB9C9 \uD37C\uC990\uC740 \uC790\uC2E0\uC758
       \uC190\uC5D0 \uAC00\uC9C0\uACE0 \uC788\uB294\uB370 \uB9D0\uC774\uC57C"

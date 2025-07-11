@@ -75,8 +75,9 @@ MonoBehaviour:
     <Line>k__BackingField: "\uC74C... \uC54C\uACA0\uC5B4<DelayWriting(0.4)>...\uC694..."
   - Target: {fileID: 11400000, guid: 2dc7fb09e09f74e4fa2e6f299dc1edd3, type: 2}
     <Line>k__BackingField: "\uADF8\uB798\uADF8\uB798~ \uC9C0\uAE08 \uC790\uB124\uB97C
-      \uC81C\uC77C \uC798 \uC54C\uACE0 \uC788\uB294 \uAC83\uC740 \uC774 \uBAB8\uC774\uB2C8
-      \uC790\uB124\uB294 \uC2DC\uD0A8 \uC77C\uC744 \uC798 \uB530\uB77C\uC900\uB2E4\uBA74
+      \uC81C\uC77C \uC798 \uC54C\uACE0 \uC788\uB294 \uAC83\uC740 \uC774 \uBAB8\uC774\uB2C8"
+  - Target: {fileID: 11400000, guid: 2dc7fb09e09f74e4fa2e6f299dc1edd3, type: 2}
+    <Line>k__BackingField: "\uC790\uB124\uB294 \uC2DC\uD0A8 \uC77C\uC744 \uC798 \uB530\uB77C\uC900\uB2E4\uBA74
       \uC790\uB124\uAC00 \uAD81\uAE08\uD574 \uD558\uB294 \uAC83\uC744 \uD558\uB098\uC529
       \uC54C\uB824\uC8FC\uACA0\uB124~"
   - Target: {fileID: 11400000, guid: 9b3d42fac6dcbc14cae48e9a79b4f1ef, type: 2}
