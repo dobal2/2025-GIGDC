@@ -20,7 +20,7 @@ public class SceneController : MonoBehaviour
         else Destroy(gameObject);
     }
 
-    [InitializeOnLoadMethod]
+    [RuntimeInitializeOnLoadMethod]
     private static void InitializeSceneLink()
     {
         sceneLinks ??=

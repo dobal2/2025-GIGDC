@@ -300,7 +300,10 @@ public class DialogView : MonoBehaviour
     [DialogCommand("AnimateCharactor")]
     private void AnimateCharactor(string line)
     {
-
+        if(line == "Captain_Transform")
+        {
+            allocatedDialog.Target.GetComponentInParent<Animator>().SetBool("IsReaper", true);
+        }
     }
 
     [DialogCommand("DelayWriting")]

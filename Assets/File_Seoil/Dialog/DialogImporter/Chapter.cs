@@ -22,6 +22,7 @@ public class Chapter : ScriptableObject
         return null;
     }
 
+#if UNITY_EDITOR
     public void SetUnallocatedDialogTargets(List<string> targetNames)
     {
         List<TargetData> targetDatas = new();
@@ -53,7 +54,7 @@ public class Chapter : ScriptableObject
 
         DialogTargets = targetDatas.ToArray();
     }
-
+#endif
 
     public void SetDialogs(Dialog[] dialogs) =>
         Dialogs = dialogs;
