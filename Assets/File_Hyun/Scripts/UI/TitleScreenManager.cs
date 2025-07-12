@@ -13,14 +13,14 @@ public class TitleScreenManager : MonoBehaviour
     {
         Debug.Log("이어하기");
         Stage.LoadData();
-        SceneManager.LoadScene("Lobby_Over");
+        SceneController.Instance.LoadScene("Lobby_Over");
     }
 
     public void NewGame()
     {
         Debug.Log("처음부터");
         Stage.Data = StageDataType.Start;
-        SceneManager.LoadScene("Lobby_Over");
+        SceneController.Instance.LoadScene("Lobby_Over");
     }
 
     public void QuitGame()

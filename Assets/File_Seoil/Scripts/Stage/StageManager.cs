@@ -133,6 +133,14 @@ public class StageManager : MonoBehaviour
         }
     }
 
+#if DEVELOPMENT_BUILD || UNITY_EDITOR
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+            Boss.Instance.TakeDamage(200);
+    }
+#endif
+
 
     [SerializeField]
     private void MoveScene()

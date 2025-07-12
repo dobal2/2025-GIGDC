@@ -41,6 +41,7 @@ public class LobbySceneMover : MonoBehaviour
 
     private void LoadScene()
     {
+        PlayerHealth.CurrentHealth = 5;
         switch(Stage.Data)
         {
             case StageDataType.Tutorial:
