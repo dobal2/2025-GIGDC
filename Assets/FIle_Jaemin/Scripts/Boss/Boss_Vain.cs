@@ -15,9 +15,7 @@ public class BossVain : Boss
     [SerializeField] private GameObject wormHeadPrefab;
     [SerializeField] private float wormGrowDuration = 1.5f;
     [SerializeField] private float wormFinalLength = 8f;
-    [SerializeField] private GameObject phase1Map;
-    [SerializeField] private GameObject phase2Map;
-
+    
     [SerializeField] private GameObject aoeWarningPrefab;
     [SerializeField] private GameObject aoeProjectilePrefab;
 
@@ -138,8 +136,6 @@ public class BossVain : Boss
         maxHp = phase2Hp;
         hp = maxHp;
         anim.runtimeAnimatorController = phase2Anim;
-        phase1Map.SetActive(false);
-        phase2Map.SetActive(true);
         transform.localScale = Vector3.one;
         rigid.gravityScale = 1;
         GetComponent<BoxCollider2D>().size = new Vector2(3.64f, 4.73f);
@@ -334,7 +330,7 @@ public class BossVain : Boss
             float t = Mathf.Clamp01(elapsed / wormGrowDuration);
             float currentLength = Mathf.Lerp(0f, wormFinalLength, t);
 
-            currentWormBody.transform.localScale = new Vector3(currentLength, 1.5f, 1.5f);
+            currentWormBody.transform.localScale = new Vector3(currentLength, 0.7f, 0.7f);
             currentWormBody.transform.position = startPos + direction * (currentLength / 2f);
             currentWormHead.transform.position = startPos + direction * currentLength;
 
