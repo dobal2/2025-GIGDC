@@ -9,6 +9,8 @@ public class LowMonster_Common_regret : Monster
     [SerializeField] private float attackRadius;
     [SerializeField] private float stopDistance;
     [SerializeField] private ParticleSystem inkTrail;
+
+    private AudioSource attackSound;
     
     private int nextMove;
     public bool canMove = true;
@@ -17,6 +19,7 @@ public class LowMonster_Common_regret : Monster
     protected override void Start()
     {
         base.Start();
+        attackSound = GetComponent<AudioSource>();
         SetRandomMoveDirection();
     }
 
@@ -116,6 +119,7 @@ public class LowMonster_Common_regret : Monster
 
         rigid.linearVelocity = Vector2.zero;
         anim.SetTrigger("Attack");
+        attackSound.Play();
 
         attackCoroutine = StartCoroutine(AttackRoutine());
     }

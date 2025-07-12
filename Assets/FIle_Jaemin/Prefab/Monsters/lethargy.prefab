@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8809391231578958112}
   - component: {fileID: 7981838903269932403}
   - component: {fileID: 9198527005168546567}
+  - component: {fileID: 2632183155388733895}
   m_Layer: 9
   m_Name: lethargy
   m_TagString: Untagged
@@ -142,6 +143,7 @@ MonoBehaviour:
   facingRight: 1
   attackRadius: 1
   explosionTransform: {fileID: 8143411789341769804}
+  isExplosioned: 0
 --- !u!95 &7981838903269932403
 Animator:
   serializedVersion: 7
@@ -210,6 +212,103 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.3277855, y: 0.8199494}
   m_EdgeRadius: 0
+--- !u!82 &2632183155388733895
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2142208152570343838}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: -172879087188338664, guid: 8674d68d9010cd84f9fbaa64bfdeacd9, type: 2}
+  m_audioClip: {fileID: 8300000, guid: b0109256d4549a64d825c3bb62c0a604, type: 3}
+  m_Resource: {fileID: 8300000, guid: b0109256d4549a64d825c3bb62c0a604, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &5632289414839958311
 GameObject:
   m_ObjectHideFlags: 0
@@ -220,6 +319,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8143411789341769804}
   - component: {fileID: 1523522249831042248}
+  - component: {fileID: 1653689372719358129}
   m_Layer: 0
   m_Name: ExplosionTransform
   m_TagString: Untagged
@@ -288,3 +388,15 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.309238, y: 0.803658}
   m_EdgeRadius: 0
+--- !u!114 &1653689372719358129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5632289414839958311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb8a97c544b5dd0418cce9eff68a2a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

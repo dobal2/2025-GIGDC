@@ -346,10 +346,12 @@ public class BossVain : Boss
 
     public override void TakeDamage(float amount)
     {
-        if (isVulnerable)
-            base.TakeDamage(amount);
-        else
-            Debug.Log("Boss is invulnerable right now.");
+        // if (isVulnerable)
+        //     base.TakeDamage(amount);
+        // else
+        //     Debug.Log("Boss is invulnerable right now.");
+        
+        base.TakeDamage(amount);
     }
 
     protected override void Die()
@@ -359,7 +361,7 @@ public class BossVain : Boss
             Phase2();
         else
         {
-            StageManager.Objects--;
+            StageManager.Objects = 0;
             gameObject.SetActive(false);
         }
         
