@@ -6666,7 +6666,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upButton: {fileID: 8783692744015210072}
-  downButton: {fileID: 1949123877479182555}
+  downButton: {fileID: 0}
   leftButton: {fileID: 428822391638454521}
   rightButton: {fileID: 6913897272310043411}
   nextOnClick: {fileID: 4069667653392428589}
@@ -13793,7 +13793,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   keyData: {fileID: 11400000, guid: eef92708e559636479c30d47676bef1e, type: 2}
   keyType: 1
-  fieldName: UpKey
+  fieldName: DownKey
   keyText: {fileID: 4287885848298522119}
   rebindButton: {fileID: 4233776127435414960}
 --- !u!114 &2748683719994465255

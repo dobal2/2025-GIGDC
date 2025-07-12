@@ -77,6 +77,7 @@ public class AttackController : MonoBehaviour
     public void SetWeapon(WeaponType weapon)
     {
         CurrentWeapon = weapon;
+        PlayerController.CurrentWeapon = weapon;
 
         switch (weapon)
         {

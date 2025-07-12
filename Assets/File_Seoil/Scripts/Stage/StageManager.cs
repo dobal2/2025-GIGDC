@@ -136,11 +136,16 @@ public class StageManager : MonoBehaviour
 #if DEVELOPMENT_BUILD || UNITY_EDITOR
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q) && Boss.Instance != null)
             Boss.Instance.TakeDamage(200);
+
+        if (Input.GetKeyDown(KeyCode.W) && PlayerHealth.Instance != null)
+            PlayerHealth.Instance.TakeHeal(5);
+
+        if (Input.GetKeyDown(KeyCode.E))
+            Objects = 0;
     }
 #endif
-
 
     [SerializeField]
     private void MoveScene()
