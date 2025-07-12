@@ -5227,8 +5227,8 @@ MonoBehaviour:
   ceilingLayer:
     serializedVersion: 2
     m_Bits: 64
-  boxHeight: 0.1
-  boxLowAirHeight: 3
+  boxHeight: 0.03
+  boxLowAirHeight: 1.5
   attackBufferTime: 0.1
   weaponChangeCooldown: 0.6
   knockbackDuration: 0.1
