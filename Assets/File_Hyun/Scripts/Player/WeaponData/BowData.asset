@@ -17,12 +17,12 @@ MonoBehaviour:
   laserSkillDamage: 45
   laserThickness: 2
   bowSkillcooldown: 4
-  fireOffset: {x: 0.73, y: 1.35}
+  fireOffset: {x: 0.365, y: 0.675}
   animatorController: {fileID: 9100000, guid: c2649cd78942c0e478cdb525a0297988, type: 2}
   normalArrowPrefab: {fileID: 7523045259425540334, guid: 342d4ae33c36d2a4892d12e3043635a7, type: 3}
   skillArrowPrefab: {fileID: 7523045259425540334, guid: 34ded610cd80a994da0e6e78263d4324, type: 3}
   speed: 20
-  maxDistance: 30
+  maxDistance: 15
   bowComboInfos:
   - damage: 9
     pushDistance: -0.5
@@ -30,7 +30,7 @@ MonoBehaviour:
     Combodelay: 0.413
     ComboKeep: 0.6
     arrows:
-    - localOffset: {x: 0.67, y: 1.4}
+    - localOffset: {x: 0.335, y: 0.7}
       ShootDelay: 0.235
   - damage: 9
     pushDistance: 1
@@ -38,7 +38,7 @@ MonoBehaviour:
     Combodelay: 0.413
     ComboKeep: 0.6
     arrows:
-    - localOffset: {x: 0.8, y: 1.22}
+    - localOffset: {x: 0.4, y: 0.61}
       ShootDelay: 0.24
   - damage: 5
     pushDistance: -0.5
@@ -46,9 +46,9 @@ MonoBehaviour:
     Combodelay: 0.1
     ComboKeep: 0.6
     arrows:
-    - localOffset: {x: 0.68, y: 1.4}
+    - localOffset: {x: 0.34, y: 0.7}
       ShootDelay: 0.2
-    - localOffset: {x: 0.63, y: 1.28}
+    - localOffset: {x: 0.315, y: 0.64}
       ShootDelay: 0.41
   - damage: 30
     pushDistance: -2.5
@@ -56,5 +56,5 @@ MonoBehaviour:
     Combodelay: 1.01
     ComboKeep: 0
     arrows:
-    - localOffset: {x: 0.7, y: 1}
+    - localOffset: {x: 0.35, y: 0.5}
       ShootDelay: 0.9

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   normalBombPrefab: {fileID: 2813914100002012482, guid: 0d13301f235dc03459872cd96907ee0f, type: 3}
   skillBombPrefab: {fileID: 2813914100002012482, guid: e514315bb49db8b428857ca833e2f4ed, type: 3}
-  localOffset: {x: 0, y: 1.9}
+  localOffset: {x: 0, y: 0.95}
   bombExplosionRadius: 2
   bombSkillDamage: 20
   bombSkillMaxNumber: 6

@@ -119,6 +119,68 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &418627662
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 418627663}
+  m_Layer: 0
+  m_Name: TentaclePos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &418627663
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 418627662}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.65, y: -4.42, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1658404001}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &481191280
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 481191281}
+  m_Layer: 0
+  m_Name: TentaclePos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &481191281
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 481191280}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.91, y: -4.42, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1658404001}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1126199377
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -191,6 +253,42 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 6008192533026303914, guid: b5950281217e18446860e2bf359d78af, type: 3}
   m_PrefabInstance: {fileID: 1126199377}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1235489552
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1235489553}
+  m_Layer: 0
+  m_Name: TentaclePos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1235489553
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1235489552}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -6.33, y: -4.42, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1658404001}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1658404001 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6503056488553181897, guid: 1ca83e73789255b438a946af2cf4aa12, type: 3}
+  m_PrefabInstance: {fileID: 3239225613248771046}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1800738200
 PrefabInstance:
@@ -377,6 +475,38 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3650468198276634565, guid: ecbba4eb7b2247b4b8426cd46396a8f9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 7894383744022953280, guid: ecbba4eb7b2247b4b8426cd46396a8f9, type: 3}
+      propertyPath: tentacleSpawnPoints.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7894383744022953280, guid: ecbba4eb7b2247b4b8426cd46396a8f9, type: 3}
+      propertyPath: 'tentacleSpawnPoints.Array.data[0]'
+      value: 
+      objectReference: {fileID: 481191281}
+    - target: {fileID: 7894383744022953280, guid: ecbba4eb7b2247b4b8426cd46396a8f9, type: 3}
+      propertyPath: 'tentacleSpawnPoints.Array.data[1]'
+      value: 
+      objectReference: {fileID: 418627663}
+    - target: {fileID: 7894383744022953280, guid: ecbba4eb7b2247b4b8426cd46396a8f9, type: 3}
+      propertyPath: 'tentacleSpawnPoints.Array.data[2]'
+      value: 
+      objectReference: {fileID: 1235489553}
+    - target: {fileID: 7894383744022953280, guid: ecbba4eb7b2247b4b8426cd46396a8f9, type: 3}
+      propertyPath: 'tentacleSpawnPoints.Array.data[3]'
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7894383744022953280, guid: ecbba4eb7b2247b4b8426cd46396a8f9, type: 3}
+      propertyPath: 'tentacleSpawnPoints.Array.data[4]'
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7894383744022953280, guid: ecbba4eb7b2247b4b8426cd46396a8f9, type: 3}
+      propertyPath: 'tentacleSpawnPoints.Array.data[5]'
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -478,6 +608,15 @@ PrefabInstance:
     m_RemovedGameObjects:
     - {fileID: 1767103290822239606, guid: 1ca83e73789255b438a946af2cf4aa12, type: 3}
     m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 6503056488553181897, guid: 1ca83e73789255b438a946af2cf4aa12, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 481191281}
+    - targetCorrespondingSourceObject: {fileID: 6503056488553181897, guid: 1ca83e73789255b438a946af2cf4aa12, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 418627663}
+    - targetCorrespondingSourceObject: {fileID: 6503056488553181897, guid: 1ca83e73789255b438a946af2cf4aa12, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1235489553}
     - targetCorrespondingSourceObject: {fileID: 4033486368517463993, guid: 1ca83e73789255b438a946af2cf4aa12, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1126199378}

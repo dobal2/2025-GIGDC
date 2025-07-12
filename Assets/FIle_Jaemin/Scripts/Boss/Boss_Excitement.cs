@@ -51,7 +51,7 @@ public class Boss_Excitement : Boss
         else
         {
             gameObject.SetActive(false);
-            StageManager.Objects--;
+            StageManager.Objects = 0;
         }
     }
 

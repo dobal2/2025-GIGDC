@@ -5180,7 +5180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abd58cc7ee0517c47a5d391bd21f8779, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
+  moveSpeed: 6
   fastFallGravityScale: 20
   jumpForceCurve:
     serializedVersion: 2
@@ -5212,12 +5212,12 @@ MonoBehaviour:
   jumpBufferTime: 0.1
   coyoteTime: 0.1
   dropPlatformDuration: 0.3
-  dashSpeed: 50
+  dashSpeed: 40
   dashDuration: 0.1
-  dashCooldown: 0.8
+  dashCooldown: 1
   dashStop:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 1088
   groundLayer:
     serializedVersion: 2
     m_Bits: 192
@@ -5227,8 +5227,8 @@ MonoBehaviour:
   ceilingLayer:
     serializedVersion: 2
     m_Bits: 64
-  boxHeight: 0.1
-  boxLowAirHeight: 3
+  boxHeight: 0.03
+  boxLowAirHeight: 1.3
   attackBufferTime: 0.1
   weaponChangeCooldown: 0.6
   knockbackDuration: 0.1
@@ -20881,7 +20881,11 @@ PrefabInstance:
       objectReference: {fileID: 400136276575616118}
     - target: {fileID: 1966043951227975983, guid: 807e8a1bc484e264491bf2537faa6573, type: 3}
       propertyPath: verticalOffset
-      value: 1.4
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1966043951227975983, guid: 807e8a1bc484e264491bf2537faa6573, type: 3}
+      propertyPath: horizontalOffset
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 7518913219925585886, guid: 807e8a1bc484e264491bf2537faa6573, type: 3}
       propertyPath: m_Name
@@ -20892,16 +20896,28 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9027384045653940569, guid: 807e8a1bc484e264491bf2537faa6573, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 9027384045653940569, guid: 807e8a1bc484e264491bf2537faa6573, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 9027384045653940569, guid: 807e8a1bc484e264491bf2537faa6573, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 9027384045653940569, guid: 807e8a1bc484e264491bf2537faa6573, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.22695845
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9027384045653940569, guid: 807e8a1bc484e264491bf2537faa6573, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.6232884
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9027384045653940569, guid: 807e8a1bc484e264491bf2537faa6573, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.04081182
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9027384045653940569, guid: 807e8a1bc484e264491bf2537faa6573, type: 3}
       propertyPath: m_LocalRotation.w
@@ -20930,6 +20946,10 @@ PrefabInstance:
     - target: {fileID: 9027384045653940569, guid: 807e8a1bc484e264491bf2537faa6573, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9027384045653940569, guid: 807e8a1bc484e264491bf2537faa6573, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -20950,6 +20970,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 6008192533026303914}
     m_Modifications:
     - target: {fileID: 6534796796891509302, guid: edb197553d1ad1f4280c0a5bbbc9eb36, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6534796796891509302, guid: edb197553d1ad1f4280c0a5bbbc9eb36, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6534796796891509302, guid: edb197553d1ad1f4280c0a5bbbc9eb36, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6534796796891509302, guid: edb197553d1ad1f4280c0a5bbbc9eb36, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -20989,6 +21021,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6534796796891509302, guid: edb197553d1ad1f4280c0a5bbbc9eb36, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7379441040585030454, guid: edb197553d1ad1f4280c0a5bbbc9eb36, type: 3}
       propertyPath: m_Name
       value: PlayerHealthBar
@@ -21001,6 +21037,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 400136276575616118}
+    - target: {fileID: 8108509309757175980, guid: edb197553d1ad1f4280c0a5bbbc9eb36, type: 3}
+      propertyPath: verticalOffset
+      value: 1.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

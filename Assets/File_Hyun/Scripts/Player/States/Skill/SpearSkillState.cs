@@ -34,7 +34,7 @@ public class SpearSkillState : PlayerState
             player.Animator.Play("Spear_Ground_Jump");
             mode = SkillMode.Ground;
             phase = SkillPhase.Moving;
-            dashSpeed = 20f;
+            dashSpeed = 14f;
             Vector2 vel = new(player.facingDirection * dashSpeed, spearData.jumpSpeed);
             player.Rigidbody.linearVelocity = vel;
         }
@@ -43,7 +43,7 @@ public class SpearSkillState : PlayerState
             player.Animator.Play("Spear_GroundAir_Jump");
             mode = SkillMode.LowAir;
             phase = SkillPhase.Moving;
-            dashSpeed = 30f;
+            dashSpeed = 18f;
             Vector2 vel = new(player.facingDirection * dashSpeed, spearData.jumpSpeed * 0.5f);
             player.Rigidbody.linearVelocity = vel;
         }

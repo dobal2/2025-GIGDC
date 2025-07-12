@@ -136,6 +136,8 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public float normalGravityScale;
     [HideInInspector] public bool isTouchingCeiling;
 
+    public static WeaponType CurrentWeapon = WeaponType.Spear;
+
     private Vector2 originalColliderSize;
     private Vector2 originalColliderOffset;
     private PlayerStateMachine stateMachine;
@@ -168,7 +170,7 @@ public class PlayerController : MonoBehaviour
     {
         SetPlayer();
 
-        AttackController.Initialize(WeaponType.Spear);
+        AttackController.Initialize(CurrentWeapon);
         stateMachine = new PlayerStateMachine();
         stateMachine.Initialize(new LocomotionState(this, stateMachine));
         SetEffectState(PlayerEffectState.None);
