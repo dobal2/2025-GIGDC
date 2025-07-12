@@ -12,7 +12,7 @@ public class AttackController : MonoBehaviour
     [HideInInspector] public BowData bowData;
     [HideInInspector] public BombData bombData;
 
-    public static WeaponType CurrentWeapon { get; private set; }
+    public WeaponType CurrentWeapon { get; private set; }
 
     private int comboStep = 0;
     private float pushTimer = 0f;
@@ -77,6 +77,7 @@ public class AttackController : MonoBehaviour
     public void SetWeapon(WeaponType weapon)
     {
         CurrentWeapon = weapon;
+        PlayerController.CurrentWeapon = weapon;
 
         switch (weapon)
         {

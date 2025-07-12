@@ -72,7 +72,7 @@ public abstract class PlayerState
             (player.isGrounded || player.AttackController.CanStartAirborneCombo) &&
             player.AttackController.ComboStep > 0)
         {
-            if (AttackController.CurrentWeapon == WeaponType.Bomb &&
+            if (player.AttackController.CurrentWeapon == WeaponType.Bomb &&
                 !player.AttackController.CanThrowBomb())
                 return false;
 
@@ -90,7 +90,7 @@ public abstract class PlayerState
             (player.isGrounded || player.AttackController.CanStartAirborneCombo) &&
             player.AttackController.ComboStep == 0)
         {
-            if (AttackController.CurrentWeapon == WeaponType.Bomb &&
+            if (player.AttackController.CurrentWeapon == WeaponType.Bomb &&
                 !player.AttackController.CanThrowBomb())
                 return false;
 
