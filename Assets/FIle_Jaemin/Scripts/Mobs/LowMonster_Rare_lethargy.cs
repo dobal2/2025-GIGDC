@@ -1,18 +1,22 @@
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.UIElements;
 
 public class LowMonster_Rare_lethargy : Monster
 {
     [SerializeField] private float attackRadius;
     [SerializeField] private Transform explosionTransform;
+    private AudioSource explosionSound;
+    public bool isExplosioned = false;
     
 
 
     protected override void Start()
     {
         base.Start();
+        explosionSound = GetComponent<AudioSource>();
     }
 
     protected override void Attack()
@@ -22,9 +26,14 @@ public class LowMonster_Rare_lethargy : Monster
 
     public IEnumerator Explosion(float delayTime)
     {
+        if(isExplosioned)
+            yield break;
+        isExplosioned = true;
         anim.SetBool("IsCharging",true);
         
         yield return new WaitForSeconds(delayTime);
+        
+        explosionSound.Play();
         
         anim.SetTrigger("Explode");
         GameObject newInkExplosion = Instantiate(inkDeathEffect, transform.position, Quaternion.identity);
@@ -50,8 +59,8 @@ public class LowMonster_Rare_lethargy : Monster
 
     public void DestroyObject()
     {
-        StageManager.Objects--;
         gameObject.SetActive(false);
+        StageManager.Objects--;
     }
 
     public override void TakeDamage(float amount)

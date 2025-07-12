@@ -12,7 +12,7 @@ public class LethargyTriggerExplosion : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && monster.isExplosioned == false)
         {
             StartCoroutine(monster.Explosion(2));   
         }
