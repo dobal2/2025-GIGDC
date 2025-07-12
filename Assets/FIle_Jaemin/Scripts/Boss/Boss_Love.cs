@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Transactions;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class Boss_Love : Boss
 {
@@ -9,8 +10,7 @@ public class Boss_Love : Boss
     [SerializeField] private GameObject bossInkPrefab;
     [SerializeField] private GameObject bubblePrefab;
     [SerializeField] private GameObject heartBubblePrefab;
-    [SerializeField] private GameObject bressPrefab;
-    [SerializeField] private GameObject bressEffectPrefab;
+    [SerializeField] private GameObject bress;
 
     [Header("Values")] 
     [SerializeField] private int phase = 1;
@@ -196,6 +196,7 @@ public class Boss_Love : Boss
     IEnumerator BressPattern()
     {
         anim.SetTrigger("Bress");
+        bress.GetComponent<VisualEffect>().Play();
         
         yield return new WaitForSeconds(4f);
     }

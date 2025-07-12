@@ -33,6 +33,11 @@ public class TargetBoard : Monster
         boss.TakeDamage(amount,true);
     }
 
+    public override void KnockBack(Transform attacker, float knockBackForce, float knockBackAngle, float duration)
+    {
+        
+    }
+
     protected override void Attack()
     {
         
