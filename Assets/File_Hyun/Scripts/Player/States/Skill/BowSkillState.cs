@@ -34,7 +34,7 @@ public class BowSkillState : PlayerState
         player.SetEffectState(PlayerEffectState.None);
         player.Rigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
         player.AttackController.MarkSkillUsed();
-        Debug.Log("[Skill] ½ºÅ³ »ç¿ëµÊ - ÄğÅ¸ÀÓ ½ÃÀÛ");
+        Debug.Log("[Skill] ìŠ¤í‚¬ ì‚¬ìš©ë¨ - ì¿¨íƒ€ì„ ì‹œì‘");
     }
 
     public override void Update()
