@@ -20,6 +20,7 @@ public class DialogView : MonoBehaviour
 
     [Header("Fixed Data")]
     [SerializeField] private KeyData keyData;
+    [SerializeField] private KeySoundPlayer keySound;
 
     [Space]
     [SerializeField] private TextMeshProUGUI dialogText;
@@ -153,6 +154,7 @@ public class DialogView : MonoBehaviour
                 stringBuilder.Append("</size>");
 
             dialogText.text = stringBuilder.ToString();
+            if(index % 2 == 0) Instantiate(keySound);
 
             UpdateBackGround();
 

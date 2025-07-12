@@ -382,6 +382,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SkipProcessingText: 0
   keyData: {fileID: 11400000, guid: eef92708e559636479c30d47676bef1e, type: 2}
+  keySound: {fileID: 558805762485126303, guid: 3283f7c0ba6b44240a9d26d4ba48a4fb, type: 3}
   dialogText: {fileID: 7621202938501843780}
   backGroundRect: {fileID: 5679425411909795242}
   leftArrow: {fileID: 1622694128379023895}
