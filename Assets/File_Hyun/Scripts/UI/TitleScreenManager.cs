@@ -6,7 +6,7 @@ public class TitleScreenManager : MonoBehaviour
     void Start()
     {
         SaveKey.Instance.LoadKeyBindings();
-        InputManager.Instance.currentContext = InputManager.InputContext.UI;
+        InputManager.Instance.CurrentContext = InputManager.InputContext.UI;
     }
 
     public void Continue()

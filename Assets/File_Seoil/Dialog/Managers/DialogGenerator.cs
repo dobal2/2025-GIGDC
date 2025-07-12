@@ -38,8 +38,8 @@ public class DialogGenerator : MonoBehaviour, IDialogGenerator
     public void SetDialog()
     {
         InputManager.Instance.RegisterDialog(this);
-        pastInputContext = InputManager.Instance.currentContext;
-        InputManager.Instance.currentContext = InputManager.InputContext.Dialog;
+        pastInputContext = InputManager.Instance.CurrentContext;
+        InputManager.Instance.CurrentContext = InputManager.InputContext.Dialog;
     }
 
     public void ProcessDialog()
@@ -49,7 +49,7 @@ public class DialogGenerator : MonoBehaviour, IDialogGenerator
         if (currentDialogIndex + 1 >= Chapter.Dialogs.Length && currentDialogView.IsCompleted)
         {
             if(currentDialogView != null) Destroy(currentDialogView.gameObject);
-            if(InputManager.Instance.currentContext == InputManager.InputContext.Dialog) InputManager.Instance.currentContext = pastInputContext;
+            if(InputManager.Instance.CurrentContext == InputManager.InputContext.Dialog) InputManager.Instance.CurrentContext = pastInputContext;
             return;
         }
 

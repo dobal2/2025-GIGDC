@@ -29,7 +29,7 @@ public class SettingWindow : MonoBehaviour
     {
         Initialize();
         settingPanel.SetActive(false);
-        originalContext = InputManager.Instance.currentContext;
+        originalContext = InputManager.Instance.CurrentContext;
     }
 
     void OnEnable()
@@ -52,7 +52,7 @@ public class SettingWindow : MonoBehaviour
 
     void OnActiveSceneChanged(Scene oldScene, Scene newScene)
     {
-        originalContext = InputManager.Instance.currentContext;
+        originalContext = InputManager.Instance.CurrentContext;
         settingPanel.SetActive(false);
     }
 
@@ -61,8 +61,8 @@ public class SettingWindow : MonoBehaviour
         settingPanel.SetActive(true);
         Initialize();
         if (SceneManager.GetActiveScene().name != "TitleScene") Time.timeScale = 0;
-        originalContext = InputManager.Instance.currentContext;
-        InputManager.Instance.currentContext = InputContext.UI;
+        originalContext = InputManager.Instance.CurrentContext;
+        InputManager.Instance.CurrentContext = InputContext.UI;
         EventSystem.current.SetSelectedGameObject(FirstButton);
         FirstButton.GetComponent<UIButtonEffect>().StartHoverEffect();
         Debug.Log("설정창을 엽니다.");
@@ -72,7 +72,7 @@ public class SettingWindow : MonoBehaviour
     {
         settingPanel.SetActive(false);
         Time.timeScale = 1;
-        InputManager.Instance.currentContext = originalContext;
+        InputManager.Instance.CurrentContext = originalContext;
         if (SceneManager.GetActiveScene().name == "TitleScene") EventSystem.current.SetSelectedGameObject(NextOnClick);
         Debug.Log("설정창을 닫습니다.");
     }

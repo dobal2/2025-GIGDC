@@ -96,7 +96,6 @@ public class PlayerController : MonoBehaviour
     private float knockbackTimer = 0f;
 
     [Header("Sound Settings")]
-    public AudioSource Walk;
     public AudioClip Jump;
     public AudioClip Dash;
     public AudioClip Damage;
@@ -207,7 +206,7 @@ public class PlayerController : MonoBehaviour
     public void SetPlayer()
     {
         InputManager.Instance.RegisterPlayer(this);
-        InputManager.Instance.currentContext = InputManager.InputContext.Gameplay;
+        InputManager.Instance.CurrentContext = InputManager.InputContext.Gameplay;
     }
 
     public void SetEffectState(PlayerEffectState newState)

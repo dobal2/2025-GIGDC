@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28eb5b9b0d4dc4f4da421d246d415bce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healAmount: 2
+  healAmount: 5
   floatAmplitude: 0.3
   floatSpeed: 3
 --- !u!61 &7781378341634253939

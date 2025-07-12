@@ -686,6 +686,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyData: {fileID: 11400000, guid: eef92708e559636479c30d47676bef1e, type: 2}
+  Click: {fileID: 0}
   lastSelectedButton: {fileID: 0}
   IsCapturingKey: 0
   ClickCooldown: 0.3
@@ -1098,6 +1099,76 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1001 &2139028181
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1102423485555883876, guid: f939ddf3a5180af4391d29494f67c22a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1102423485555883876, guid: f939ddf3a5180af4391d29494f67c22a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1102423485555883876, guid: f939ddf3a5180af4391d29494f67c22a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1102423485555883876, guid: f939ddf3a5180af4391d29494f67c22a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1102423485555883876, guid: f939ddf3a5180af4391d29494f67c22a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1102423485555883876, guid: f939ddf3a5180af4391d29494f67c22a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1102423485555883876, guid: f939ddf3a5180af4391d29494f67c22a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1102423485555883876, guid: f939ddf3a5180af4391d29494f67c22a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1102423485555883876, guid: f939ddf3a5180af4391d29494f67c22a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1102423485555883876, guid: f939ddf3a5180af4391d29494f67c22a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1470396350788236075, guid: f939ddf3a5180af4391d29494f67c22a, type: 3}
+      propertyPath: m_Volume
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1470396350788236075, guid: f939ddf3a5180af4391d29494f67c22a, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 8300000, guid: 45406a204bb857e4396586734b0ffc71, type: 3}
+    - target: {fileID: 1470396350788236075, guid: f939ddf3a5180af4391d29494f67c22a, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 45406a204bb857e4396586734b0ffc71, type: 3}
+    - target: {fileID: 9095667448810062836, guid: f939ddf3a5180af4391d29494f67c22a, type: 3}
+      propertyPath: m_Name
+      value: BGMPlayer
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 3181500197639790445, guid: f939ddf3a5180af4391d29494f67c22a, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f939ddf3a5180af4391d29494f67c22a, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -1109,3 +1180,4 @@ SceneRoots:
   - {fileID: 696377624}
   - {fileID: 1197028330}
   - {fileID: 1651965674}
+  - {fileID: 2139028181}

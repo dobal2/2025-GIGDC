@@ -12,7 +12,7 @@ public class InputManager : MonoBehaviour
     public enum InputContext { None, UI, Gameplay, Lobby, Dialog }
 
     private InputContext _context = InputContext.UI;
-    public InputContext currentContext
+    public InputContext CurrentContext
     {
         get => _context;
         set
@@ -26,6 +26,7 @@ public class InputManager : MonoBehaviour
     }
 
     public KeyData keyData;
+    public AudioSource Click;
 
     public static event Action OnUILeftKey;
     public static event Action OnUIRightKey;
@@ -57,7 +58,7 @@ public class InputManager : MonoBehaviour
 
     void Update()
     {
-        switch (currentContext)
+        switch (CurrentContext)
         {
             case InputContext.UI:
                 HandleUIInput();
@@ -82,7 +83,7 @@ public class InputManager : MonoBehaviour
     {
         if (Input.GetKeyDown(keyData.Ui.PauseKey))
         {
-            if (currentContext == InputContext.UI)
+            if (CurrentContext == InputContext.UI)
                 SettingWindow.Instance.CloseSetting();
             else if (SceneManager.GetActiveScene().name != "TitleScene")
                 SettingWindow.Instance.OpenSetting();
@@ -132,6 +133,7 @@ public class InputManager : MonoBehaviour
                 return;
 
             _lastClickTime = Time.unscaledTime;
+            Click.Play();
 
             if (selected.TryGetComponent(out Button button))
                 button.onClick.Invoke();
