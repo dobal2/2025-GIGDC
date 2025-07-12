@@ -1644,6 +1644,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ExcitementClone
       objectReference: {fileID: 0}
+    - target: {fileID: 2182791751747868419, guid: 43b4cda4bbde6ff4dad59163f8e08788, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
