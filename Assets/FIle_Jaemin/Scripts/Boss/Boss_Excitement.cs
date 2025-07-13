@@ -29,9 +29,11 @@ public class Boss_Excitement : Boss
     [SerializeField] private float maxBombThrowForce;
 
     private bool isAttacking;
+    private AudioSource normalAttack;
 
     protected override void Start()
     {
+        normalAttack = GetComponent<AudioSource>();
         clone.gameObject.SetActive(false);
         base.Start();
     }
@@ -114,6 +116,7 @@ public class Boss_Excitement : Boss
 
     private IEnumerator ThrowBombAtPlayerRoutine()
     {
+        normalAttack.Play();
         anim.SetTrigger("HomingMissile");
         
         int bombCount = Random.Range(4, 7);
