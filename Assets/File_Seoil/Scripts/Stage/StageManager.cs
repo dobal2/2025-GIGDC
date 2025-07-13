@@ -59,6 +59,8 @@ public class StageManager : MonoBehaviour
 
     [SerializeField] private SceneController.SceneType moveSceneType;
 
+    [SerializeField] private SoundPlayer shutterSoundPrefab;
+
     [Header("Progress")]
     [SerializeField] private bool isProgress;
     [SerializeField] private StageDataType stageType;
@@ -156,6 +158,7 @@ public class StageManager : MonoBehaviour
     [SerializeField]
     private void ShowMap()
     {
+        Instantiate(shutterSoundPrefab);
         map.SetActive(true);
         Instantiate(boomEffectPrefab);
     }
