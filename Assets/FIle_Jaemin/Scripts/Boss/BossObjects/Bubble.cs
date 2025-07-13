@@ -10,6 +10,7 @@ public class Bubble : Monster
     [SerializeField] protected GameObject bubblePopEffect;
     [SerializeField] protected float bossTakeDamage;
     private bool isSecondPhase;
+    private AudioSource popSound;
     
     protected override void Awake()
     {
@@ -25,6 +26,7 @@ public class Bubble : Monster
 
     protected override void Start()
     {
+        popSound = GetComponent<AudioSource>();
         StartCoroutine(Explosion(5));
     }
 
@@ -55,12 +57,25 @@ public class Bubble : Monster
 
     protected void PlayBubblePopEffect()
     {
+        // VFX 처리
         VisualEffect newPop = Instantiate(bubblePopEffect, transform.position, Quaternion.identity).GetComponent<VisualEffect>();
-        
         newPop.Play();
-        
-        Destroy(newPop,2);
+        Destroy(newPop.gameObject, 2f);
+
+        // SFX 처리 - 별도 오브젝트 생성해서 소리만 재생
+        GameObject audioObj = new GameObject("TempAudio");
+        audioObj.transform.position = transform.position;
+
+        AudioSource tempAudio = audioObj.AddComponent<AudioSource>();
+        tempAudio.clip = popSound.clip;
+        tempAudio.volume = popSound.volume;
+        tempAudio.pitch = popSound.pitch;
+        tempAudio.spatialBlend = popSound.spatialBlend;
+        tempAudio.Play();
+
+        Destroy(audioObj, tempAudio.clip.length);
     }
+
 
     public override void TakeDamage(float amount)
     {

@@ -10,8 +10,8 @@ public class HeartBubble : Bubble
     [SerializeField] private float invincibleTime;
     protected override void Start()
     {
+        base.Start();
         player = GameObject.FindGameObjectWithTag("Player")?.transform;
-        StartCoroutine(Explosion(5));
     }
     
     protected override void Die()
