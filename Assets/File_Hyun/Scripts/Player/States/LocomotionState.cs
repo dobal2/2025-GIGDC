@@ -95,13 +95,11 @@ public class LocomotionState : PlayerState
         {
             player.Animator.Play("Walk");
             player.SetEffectState(PlayerEffectState.GroundWalkDust);
-            player.Walk.Play();
         }
         else
         {
             player.Animator.Play("Idle");
             player.SetEffectState(PlayerEffectState.None);
-            player.Walk.Stop();
         }
     }
 }

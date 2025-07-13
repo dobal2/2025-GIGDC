@@ -36,6 +36,20 @@ public class LobbyPlayerController : MonoBehaviour
     private void Start()
     {
         SetLobby();
+        CurrentLobbyPlayer = LobbyplayerState.one;
+
+        switch (Stage.Data)
+        {
+            case StageDataType.Stage1:
+                CurrentLobbyPlayer = LobbyplayerState.two;
+                break;
+            case StageDataType.Stage2:
+                CurrentLobbyPlayer = LobbyplayerState.three;
+                break;
+            case StageDataType.Stage3:
+                CurrentLobbyPlayer = LobbyplayerState.four;
+                break;
+        }
     }
 
     private void FixedUpdate()
@@ -56,7 +70,7 @@ public class LobbyPlayerController : MonoBehaviour
     public void SetLobby()
     {
         InputManager.Instance.RegisterLobby(this);
-        InputManager.Instance.currentContext = InputManager.InputContext.Lobby;
+        InputManager.Instance.CurrentContext = InputManager.InputContext.Lobby;
     }
 
     private void PlayAnim()

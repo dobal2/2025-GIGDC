@@ -127,6 +127,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5359385325685136313, guid: 1ca83e73789255b438a946af2cf4aa12, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: -172879087188338664, guid: 8674d68d9010cd84f9fbaa64bfdeacd9, type: 2}
     - target: {fileID: 6503056488553181897, guid: 1ca83e73789255b438a946af2cf4aa12, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.8549722
@@ -167,6 +171,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7568916332718848944, guid: 1ca83e73789255b438a946af2cf4aa12, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7568916332718848944, guid: 1ca83e73789255b438a946af2cf4aa12, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7568916332718848944, guid: 1ca83e73789255b438a946af2cf4aa12, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8223938700418201599, guid: 1ca83e73789255b438a946af2cf4aa12, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8223938700418201599, guid: 1ca83e73789255b438a946af2cf4aa12, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 8300000, guid: ae1d6b1f2316af24fb85ee6babf31af4, type: 3}
+    - target: {fileID: 8223938700418201599, guid: 1ca83e73789255b438a946af2cf4aa12, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: ae1d6b1f2316af24fb85ee6babf31af4, type: 3}
+    - target: {fileID: 8223938700418201599, guid: 1ca83e73789255b438a946af2cf4aa12, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: -172879087188338664, guid: 8674d68d9010cd84f9fbaa64bfdeacd9, type: 2}
     - target: {fileID: 8410269963215146875, guid: 1ca83e73789255b438a946af2cf4aa12, type: 3}
       propertyPath: m_Name
       value: Stage Template
