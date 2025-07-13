@@ -1360,6 +1360,7 @@ MonoBehaviour:
   map: {fileID: 9115465081366414370}
   boomEffectPrefab: {fileID: 8528467781771333873, guid: a51b475a7366f4841b655326893dbdc6, type: 3}
   moveSceneType: 1
+  shutterSoundPrefab: {fileID: 5525173039298197063, guid: f95e67dfe75ba2e4490766139c824f2e, type: 3}
   isProgress: 0
   stageType: 0
   sceneChangeAnimation: 0

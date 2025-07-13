@@ -20,7 +20,7 @@ public class DialogView : MonoBehaviour
 
     [Header("Fixed Data")]
     [SerializeField] private KeyData keyData;
-    [SerializeField] private KeySoundPlayer keySound;
+    [SerializeField] private SoundPlayer keySound;
 
     [Space]
     [SerializeField] private TextMeshProUGUI dialogText;
