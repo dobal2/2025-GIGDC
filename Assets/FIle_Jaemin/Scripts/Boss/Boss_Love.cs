@@ -40,6 +40,12 @@ public class Boss_Love : Boss
     private Collider2D collider;
     private bool isAttacking;
 
+    [Header("Sounds")] 
+    [SerializeField] private AudioSource bressSound;
+    [SerializeField] private AudioSource showUpSound;
+    [SerializeField] private AudioSource transformSound;
+    
+
     protected override void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -70,6 +76,7 @@ public class Boss_Love : Boss
     {
         StopAllCoroutines();
         anim.SetTrigger("Transform");
+        transformSound.Play();
         
         if(newDangerObject != null)
             Destroy(newDangerObject);
@@ -129,6 +136,8 @@ public class Boss_Love : Boss
         float moveSpeed = 13f; // 초당 y축 이동 속도
         while (transform.position.y < normalY)
         {
+            if (phase != 1) yield break;
+            
             float step = moveSpeed * Time.deltaTime;
             transform.position += new Vector3(0, step, 0);
             yield return null;
@@ -197,8 +206,13 @@ public class Boss_Love : Boss
     {
         anim.SetTrigger("Bress");
         bress.GetComponent<VisualEffect>().Play();
+        bressSound.Play();
         
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(3f);
+        
+        bressSound.Stop();
+        
+        yield return new WaitForSeconds(1f);
     }
     
 
