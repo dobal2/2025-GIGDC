@@ -60,8 +60,8 @@ public abstract class Boss : Monster
     
     public override void TakeDamage(float amount)
     {
-        GameObject newInkExplosion = Instantiate(inkHitEffect, transform.position, Quaternion.identity);
-        Destroy(newInkExplosion,2);
+        // GameObject newInkExplosion = Instantiate(inkHitEffect, transform.position, Quaternion.identity);
+        // Destroy(newInkExplosion,2);
         hp -= amount;
         if (hp <= 0) Die();
     }

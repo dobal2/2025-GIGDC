@@ -45,8 +45,11 @@ public class BossVain : Boss
     [SerializeField] private float attackRange = 1.5f;
     [SerializeField] private Transform attackCheck;
 
+    private AudioSource teethSound;
+
     protected override void Start()
     {
+        teethSound = GetComponent<AudioSource>();
         base.Start();
         StartCoroutine(VulnerableCycle());
     }
@@ -303,9 +306,10 @@ public class BossVain : Boss
         isPerformingSkill = true;
         yield return new WaitForSeconds(0.5f);
         anim.SetTrigger("Throw");
+        teethSound.Play();
 
         GameObject tooth = Instantiate(goldToothPrefab, goldToothSpawnPoint.position, Quaternion.identity);
-        Vector2[] arcForces = { new Vector2(-12f, 6f), new Vector2(-6f, 7f), new Vector2(-20f, 5f) };
+        Vector2[] arcForces = { new Vector2(-4f, 6f), new Vector2(-3f, 7f), new Vector2(-5f, 5f) };
         tooth.GetComponent<Rigidbody2D>().AddForce(arcForces[Random.Range(0, arcForces.Length)], ForceMode2D.Impulse);
 
         yield return new WaitForSeconds(0.5f);

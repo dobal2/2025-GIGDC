@@ -6,6 +6,7 @@ public class Clone : Monster
     [SerializeField] private float attackRange = 1.5f;
     [SerializeField] private float attackDistance = 1.8f;
     [SerializeField] private Transform attackCheck;
+    private AudioSource attackSound;
     private bool isBorn;
 
     private float lastAttackTime;
@@ -18,6 +19,7 @@ public class Clone : Monster
 
     protected override void Start()
     {
+        attackSound = GetComponent<AudioSource>();
         base.Start();
         anim.SetTrigger("Born");
         StartCoroutine(WaitToBorn());
@@ -82,6 +84,7 @@ public class Clone : Monster
         isAttacking = true;
         canAttack = false;
         anim.SetTrigger("Attack");
+        attackSound.Play();
     }
     
     
