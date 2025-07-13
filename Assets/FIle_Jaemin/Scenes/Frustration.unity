@@ -356,8 +356,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d827af8ff51193a4da4210943612ce73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentContext: 1
   keyData: {fileID: 11400000, guid: eef92708e559636479c30d47676bef1e, type: 2}
+  Click: {fileID: 0}
   lastSelectedButton: {fileID: 0}
   IsCapturingKey: 0
   ClickCooldown: 0.3
@@ -1750,18 +1750,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7098125762300320575, guid: 6ca68f41012ad0249afd569087766338, type: 3}
-      propertyPath: phase1Map
-      value: 
-      objectReference: {fileID: 777946011}
-    - target: {fileID: 7098125762300320575, guid: 6ca68f41012ad0249afd569087766338, type: 3}
-      propertyPath: phase2Map
-      value: 
-      objectReference: {fileID: 1993555470}
-    - target: {fileID: 7098125762300320575, guid: 6ca68f41012ad0249afd569087766338, type: 3}
-      propertyPath: phase2Pos
-      value: 
-      objectReference: {fileID: 1195404564}
     - target: {fileID: 7098125762300320575, guid: 6ca68f41012ad0249afd569087766338, type: 3}
       propertyPath: 'bossPositions.Array.data[0]'
       value: 

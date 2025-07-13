@@ -42,11 +42,14 @@ public class Boss_Frustration : Boss
     private bool isDashing;
     private bool lightAttacking;
 
+    private AudioSource windSound;
+
     // [Header("Maps")] [SerializeField] private GameObject phase1Map;
     // [SerializeField] private GameObject phase2Map;
 
     protected override void Start()
     {
+        windSound = GetComponent<AudioSource>();
         lightObject.SetActive(false);
         base.Start();
         //phase2Map.SetActive(false);
@@ -162,6 +165,7 @@ public class Boss_Frustration : Boss
 
     public void WindAttack()
     {
+        windSound.Play();
         Vector3 dir = (player.position - transform.position).normalized;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
 

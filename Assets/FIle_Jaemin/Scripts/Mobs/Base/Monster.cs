@@ -103,9 +103,9 @@ public abstract class Monster : MonoBehaviour
     {
         isStunned = true;
         canAttack = false;
-        if (anim.GetBool("IsWalking"))
+        if (anim != null && anim.GetBool("IsWalking"))
         {
-            anim.SetBool("isWalking", false);
+            anim.SetBool("IsWalking", false);
         }
 
         yield return new WaitForSeconds(duration);
