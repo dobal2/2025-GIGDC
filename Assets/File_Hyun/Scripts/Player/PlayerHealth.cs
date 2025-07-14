@@ -9,6 +9,8 @@ public class PlayerHealth : MonoBehaviour
     public static float CurrentHealth = 5;
     [SerializeField] private float invincibleTime = 1f;
 
+    [SerializeField] private bool DeveloperMode = false;
+
     [HideInInspector] public bool isInvincible;
 
     private Coroutine resetInvincibleCoroutine;
@@ -33,7 +35,7 @@ public class PlayerHealth : MonoBehaviour
             return;
         }
 
-        CurrentHealth -= amount;
+        if (!DeveloperMode) CurrentHealth -= amount;
         Debug.Log("Now Player Health: "+CurrentHealth);
 
         if (CurrentHealth <= 0)
