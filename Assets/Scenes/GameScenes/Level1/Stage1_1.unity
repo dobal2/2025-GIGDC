@@ -419,9 +419,13 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: b7a0c60b1af6a614ab8e512508c4d041, type: 3}
+    - target: {fileID: 4296592071410760418, guid: 1ca83e73789255b438a946af2cf4aa12, type: 3}
+      propertyPath: m_VertexColorAlwaysGammaSpace
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4465080666872081409, guid: 1ca83e73789255b438a946af2cf4aa12, type: 3}
       propertyPath: moveSceneType
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5282981378436887005, guid: 1ca83e73789255b438a946af2cf4aa12, type: 3}
       propertyPath: m_Name

@@ -22,7 +22,7 @@ public class KeyBindingResetter : MonoBehaviour
         }
 
         CopyAllFields(currentKeyData.Player, defaultKeyData.Player);
-        CopyAllFields(currentKeyData.Ui, defaultKeyData.Ui);
+        CopyAllFields(currentKeyData.UI, defaultKeyData.UI);
 
         OnReset?.Invoke();
         Debug.Log("키 설정이 기본값으로 초기화되었습니다.");

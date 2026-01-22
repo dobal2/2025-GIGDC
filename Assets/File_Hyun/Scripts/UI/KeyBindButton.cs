@@ -49,7 +49,7 @@ public class KeyBindButton : MonoBehaviour
     {
         StopCoroutine(WaitForKey());
 
-        object container = keyType == KeyType.Player ? (object)keyData.Player : keyData.Ui;
+        object container = keyType == KeyType.Player ? (object)keyData.Player : keyData.UI;
         var field = container.GetType().GetField(fieldName);
         if (field == null || field.FieldType != typeof(KeyCode))
         {

@@ -1,5 +1,4 @@
 using System;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public static class Stage
@@ -57,7 +56,7 @@ public class StageManager : MonoBehaviour
 
     [SerializeField] private Effect boomEffectPrefab;
 
-    [SerializeField] private SceneController.SceneType moveSceneType;
+    [SerializeField] private SceneType moveSceneType;
 
     [SerializeField] private SoundPlayer shutterSoundPrefab;
 
@@ -66,7 +65,7 @@ public class StageManager : MonoBehaviour
     [SerializeField] private StageDataType stageType;
 
     [Header("Move Type")]
-    [SerializeField] private SceneController.SceneChangeAnimation sceneChangeAnimation;
+    [SerializeField] private SceneLoader.SceneChangeAnimation sceneChangeAnimation;
 
     private static StageManager Instance { get; set; }
 
@@ -116,21 +115,21 @@ public class StageManager : MonoBehaviour
         switch (Stage.Data)
         {
             case StageDataType.Tutorial:
-                SceneController.Instance.LoadScene(SceneController.SceneType.Stage1_1);
+                SceneLoader.Instance.LoadScene(SceneType.Stage1_1);
                 break;
             case StageDataType.Stage1:
-                SceneController.Instance.LoadScene(SceneController.SceneType.Stage2_1);
+                SceneLoader.Instance.LoadScene(SceneType.Stage2_1);
                 break;
             case StageDataType.Stage2:
-                SceneController.Instance.LoadScene(SceneController.SceneType.Stage3_1);
+                SceneLoader.Instance.LoadScene(SceneType.Stage3_1);
                 break;
             case StageDataType.Stage3:
-                SceneController.Instance.LoadScene(SceneController.SceneType.Stage4_1);
+                SceneLoader.Instance.LoadScene(SceneType.Stage4_1);
                 break;
             case StageDataType.Stage4:
                 break;
             default:
-                SceneController.Instance.LoadScene(SceneController.SceneType.Lobby_Over);
+                SceneLoader.Instance.LoadScene(SceneType.Lobby_Over);
                 break;
         }
     }
@@ -149,14 +148,12 @@ public class StageManager : MonoBehaviour
     }
 #endif
 
-    [SerializeField]
-    private void MoveScene()
+    public void MoveScene()
     {
-        SceneController.Instance.LoadScene(moveSceneType, sceneChangeAnimation);
+        SceneLoader.Instance.LoadScene(moveSceneType, sceneChangeAnimation);
     }
 
-    [SerializeField]
-    private void ShowMap()
+    public void ShowMap()
     {
         Instantiate(shutterSoundPrefab);
         map.SetActive(true);

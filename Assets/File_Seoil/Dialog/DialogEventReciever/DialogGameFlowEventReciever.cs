@@ -19,7 +19,7 @@ public class DialogGameFlowEventReciever : DialogEventRecieverBase
 
     private void ChangeScene(string line)
     {
-        SceneController.Instance.LoadScene(line);
+        SceneLoader.Instance.LoadScene(line);
     }
 
     private void GiveItem(string line)

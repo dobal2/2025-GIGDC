@@ -597,7 +597,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: c0ab688d2f40ccd4791e5f3f1754d33d, type: 3}
     - target: {fileID: 4465080666872081409, guid: 1ca83e73789255b438a946af2cf4aa12, type: 3}
       propertyPath: moveSceneType
-      value: 44
+      value: 46
       objectReference: {fileID: 0}
     - target: {fileID: 6503056488553181897, guid: 1ca83e73789255b438a946af2cf4aa12, type: 3}
       propertyPath: m_LocalPosition.x

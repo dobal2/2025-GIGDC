@@ -35,7 +35,7 @@ public class PlayerHealth : MonoBehaviour
             return;
         }
 
-        if (!DeveloperMode) CurrentHealth -= amount;
+        //if (!DeveloperMode) CurrentHealth -= amount;
         Debug.Log("Now Player Health: "+CurrentHealth);
 
         if (CurrentHealth <= 0)

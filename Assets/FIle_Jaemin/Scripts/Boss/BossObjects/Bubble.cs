@@ -63,7 +63,7 @@ public class Bubble : Monster
         Destroy(newPop.gameObject, 2f);
 
         // SFX 처리 - 별도 오브젝트 생성해서 소리만 재생
-        GameObject audioObj = new GameObject("TempAudio");
+        GameObject audioObj = new("TempAudio");
         audioObj.transform.position = transform.position;
 
         AudioSource tempAudio = audioObj.AddComponent<AudioSource>();

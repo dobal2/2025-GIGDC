@@ -37,7 +37,7 @@ public class Boss_Love : Boss
     
     
     private SpriteRenderer spriteRenderer;
-    private Collider2D collider;
+    private new Collider2D collider;
     private bool isAttacking;
 
     [Header("Sounds")] 

@@ -2,8 +2,7 @@ using UnityEngine;
 
 public class Effect : MonoBehaviour
 {
-    [SerializeField]
-    private void Destroy()
+    public void Destroy()
     {
         Destroy(gameObject);
     }

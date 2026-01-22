@@ -12,8 +12,9 @@ public abstract class Boss : Monster
 
     public static Boss Instance { get; private set; }
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         Instance = this;
     }
 
@@ -37,7 +38,7 @@ public abstract class Boss : Monster
         }
 
         if (player == null)
-            player = GameObject.FindGameObjectWithTag("Player")?.transform;
+            player = GameObject.FindGameObjectWithTag("Player").transform;
 
         if (player == null)
         {

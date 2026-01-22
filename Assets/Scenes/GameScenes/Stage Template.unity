@@ -127,6 +127,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4465080666872081409, guid: 1ca83e73789255b438a946af2cf4aa12, type: 3}
+      propertyPath: moveSceneType
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5359385325685136313, guid: 1ca83e73789255b438a946af2cf4aa12, type: 3}
       propertyPath: OutputAudioMixerGroup
       value: 

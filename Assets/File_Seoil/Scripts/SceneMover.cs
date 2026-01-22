@@ -8,7 +8,7 @@ public class SceneMover : MonoBehaviour
     [SerializeField] private KeyData keyData;
 
     [Space]
-    [SerializeField] private SceneController.SceneType sceneType;
+    [SerializeField] private SceneType sceneType;
     [SerializeField] private bool isProgress;
     [SerializeField] private bool isImmediatelyMove;
 
@@ -55,6 +55,6 @@ public class SceneMover : MonoBehaviour
     {
         if (isProgress)
             Stage.Progress();
-        SceneController.Instance.LoadScene(sceneType);
+        SceneLoader.Instance.LoadScene(sceneType);
     }
 }

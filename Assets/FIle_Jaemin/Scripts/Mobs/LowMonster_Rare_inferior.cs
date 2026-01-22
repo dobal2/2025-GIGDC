@@ -7,8 +7,6 @@ public class LowMonster_Rare_inferior : Monster
 {
     [SerializeField] private GameObject inferiorAttackLineStartPrefab;
     [SerializeField] private GameObject inferiorAttackLineEndPrefab;
-    [SerializeField] private float attackScaleTime = 0.2f;
-    [SerializeField] private float maxScale = 2f;
     [SerializeField] private float lineSpacing = 0.5f;
     [SerializeField] private int lineCount = 5;
     [SerializeField] private float lineDuration = 0.5f;

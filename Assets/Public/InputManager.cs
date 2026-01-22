@@ -1,5 +1,4 @@
 using System;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
@@ -81,7 +80,7 @@ public class InputManager : MonoBehaviour
 
     void HandlePause()
     {
-        if (Input.GetKeyDown(keyData.Ui.PauseKey))
+        if (Input.GetKeyDown(keyData.UI.PauseKey))
         {
             if (CurrentContext == InputContext.UI)
                 SettingWindow.Instance.CloseSetting();
@@ -114,20 +113,20 @@ public class InputManager : MonoBehaviour
             return;
         }
 
-        if (Input.GetKeyDown(keyData.Ui.UpKey)) TryMove(controller.upButton);
-        else if (Input.GetKeyDown(keyData.Ui.DownKey)) TryMove(controller.downButton);
-        else if (Input.GetKeyDown(keyData.Ui.LeftKey))
+        if (Input.GetKeyDown(keyData.UI.UpKey)) TryMove(controller.upButton);
+        else if (Input.GetKeyDown(keyData.UI.DownKey)) TryMove(controller.downButton);
+        else if (Input.GetKeyDown(keyData.UI.LeftKey))
         {
             TryMove(controller.leftButton);
             OnUILeftKey?.Invoke();
         }
-        else if (Input.GetKeyDown(keyData.Ui.RightKey))
+        else if (Input.GetKeyDown(keyData.UI.RightKey))
         {
             TryMove(controller.rightButton);
             OnUIRightKey?.Invoke();
         }
 
-        if (Input.GetKeyDown(keyData.Ui.SelectKey))
+        if (Input.GetKeyDown(keyData.UI.SelectKey))
         {
             if (Time.unscaledTime - _lastClickTime < ClickCooldown)
                 return;

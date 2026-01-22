@@ -138,7 +138,7 @@ public class TutorialManager : MonoBehaviour
         Fade(tutorial9);
         yield return new WaitForSeconds(3f);
         Stage.Progress();
-        SceneController.Instance.LoadScene(SceneController.SceneType.Lobby_Over);
+        SceneLoader.Instance.LoadScene(SceneType.Lobby_Over);
     }
 
     private IEnumerator ProgressIndex()

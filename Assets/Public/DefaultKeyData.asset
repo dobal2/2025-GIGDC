@@ -23,7 +23,7 @@ MonoBehaviour:
     InteractionKey: 273
     WeaponchangeKey: 306
     ProcessKey: 32
-  Ui:
+  UI:
     UpKey: 273
     DownKey: 274
     LeftKey: 276

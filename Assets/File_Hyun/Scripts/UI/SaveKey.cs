@@ -26,7 +26,7 @@ public class SaveKey : MonoBehaviour
     public void SaveKeyBindings()
     {
         SaveFields(keyData.Player, PlayerPrefix);
-        SaveFields(keyData.Ui, UiPrefix);
+        SaveFields(keyData.UI, UiPrefix);
         PlayerPrefs.Save();
         Debug.Log("키 설정 저장 완료");
     }
@@ -35,7 +35,7 @@ public class SaveKey : MonoBehaviour
     public void LoadKeyBindings()
     {
         LoadFields(keyData.Player, PlayerPrefix);
-        LoadFields(keyData.Ui, UiPrefix);
+        LoadFields(keyData.UI, UiPrefix);
         Debug.Log("키 설정 불러오기 완료");
     }
 

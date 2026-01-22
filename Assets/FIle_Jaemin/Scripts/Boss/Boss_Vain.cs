@@ -29,7 +29,6 @@ public class BossVain : Boss
 
     private float skillCooldown = 3f;
     private float lastSkillTime;
-    private bool isVulnerable = false;
     private bool isPerformingSkill = false;
     private int lastUsedSkill = -1;
 
@@ -51,7 +50,6 @@ public class BossVain : Boss
     {
         teethSound = GetComponent<AudioSource>();
         base.Start();
-        StartCoroutine(VulnerableCycle());
     }
 
     protected override void Attack()
@@ -107,19 +105,6 @@ public class BossVain : Boss
             skill = Random.Range(minInclusive, maxExclusive);
         } while (skill == lastSkill && maxExclusive - minInclusive > 1);
         return skill;
-    }
-
-    private IEnumerator VulnerableCycle()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(5f);
-            isVulnerable = true;
-            Debug.Log("Boss is now vulnerable!");
-            yield return new WaitForSeconds(4f);
-            isVulnerable = false;
-            Debug.Log("Boss is no longer vulnerable.");
-        }
     }
 
     private void Phase2()

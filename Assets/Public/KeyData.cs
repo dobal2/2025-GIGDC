@@ -3,11 +3,11 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "KeyData", menuName = "Scriptable Objects/KeyData")]
 public class KeyData : ScriptableObject
 {
-    public PlayerData Player;
-    public UI Ui;
+    public PlayerKey Player;
+    public UIKey UI;
 
     [System.Serializable]
-    public class PlayerData
+    public class PlayerKey
     {
         [Header("Moves")]
         public KeyCode LeftMoveKey;
@@ -27,7 +27,7 @@ public class KeyData : ScriptableObject
     }
 
     [System.Serializable]
-    public class UI
+    public class UIKey
     {
         [Header("UI")]
         public KeyCode UpKey;

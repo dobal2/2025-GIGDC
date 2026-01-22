@@ -67,7 +67,7 @@ public class DialogView : MonoBehaviour
     {
         if (selectionDatas.Count == 0) return;
 
-        if (Input.GetKeyDown(keyData.Ui.LeftKey))
+        if (Input.GetKeyDown(keyData.UI.LeftKey))
         {
             if (selectionIndex <= 0)
                 selectionIndex = selectionDatas.Count - 1;
@@ -75,7 +75,7 @@ public class DialogView : MonoBehaviour
 
             PrintSelection();
         }
-        else if (Input.GetKeyDown(keyData.Ui.RightKey))
+        else if (Input.GetKeyDown(keyData.UI.RightKey))
         {
             selectionIndex++;
             if (selectionIndex >= selectionDatas.Count)
@@ -83,7 +83,7 @@ public class DialogView : MonoBehaviour
 
             PrintSelection();
         }
-        else if(Input.GetKeyDown(keyData.Ui.SelectKey))
+        else if(Input.GetKeyDown(keyData.UI.SelectKey))
         {
             IsCompleted = true;
             OnSelect?.Invoke(selectionDatas, selectionIndex);

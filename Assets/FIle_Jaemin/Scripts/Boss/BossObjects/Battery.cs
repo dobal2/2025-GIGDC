@@ -7,7 +7,6 @@ public class Battery : Monster
     [SerializeField] private float health;
     [SerializeField] private float attackRadius;
     [SerializeField] private Transform explosionTransform;
-    [SerializeField] private float damage;
     [SerializeField] private GameObject explosionEffectPrefab;
 
     private AudioSource explosionSound;
@@ -38,7 +37,7 @@ public class Battery : Monster
         // SFX - 분리된 오디오 재생용 오브젝트
         if (explosionSound != null && explosionSound.clip != null)
         {
-            GameObject tempAudioObj = new GameObject("TempBatteryExplosionSound");
+            GameObject tempAudioObj = new("TempBatteryExplosionSound");
             tempAudioObj.transform.position = transform.position;
 
             AudioSource tempAudio = tempAudioObj.AddComponent<AudioSource>();
