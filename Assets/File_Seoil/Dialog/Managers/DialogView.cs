@@ -29,41 +29,40 @@ public class DialogView : MonoBehaviour
     [SerializeField] private Image leftArrow;
     [SerializeField] private Image rightArrow;
 
+    public Action<List<SelectionData>, int> OnSelect;
+
     private RectTransform rectTransform;
     private static readonly Vector2 baseDialogPosition = new Vector2(0, 2);
     private static readonly float dialogWritingDelay = 0.05f;
 
-    private Dialog allocatedDialog = null;
-    private Coroutine currentDialogCoroutine = null;
+    private Dialog dialog = null;
+    private DialogEventReciever dialogEventReciever;
+    private Coroutine dialogCoroutine = null;
 
     private float additionalDelay = 0;
 
     private List<SelectionData> selectionDatas = new();
     private int selectionIndex = 0;
 
-    private IDialogGenerator dialogGenerator = null;
+    private Dictionary<string, Action<string>> commandDatas = new();
 
-    private static Dictionary<string, MethodInfo> commandDatas = new();
-
-    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
-    private static void InitializeCommandDatas()
-    {
-        MethodInfo[] methods = typeof(DialogView).GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
-        foreach(MethodInfo method in methods)
-        {
-            DialogCommandAttribute attribute = method.GetCustomAttribute<DialogCommandAttribute>();
-
-            if (attribute != null)
-            {
-                commandDatas.Add(attribute.CommandName, method);
-            }
-        }
-    }
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
         IsCompleted = false;
+
+        commandDatas.Add("Selection", Selection);
+        commandDatas.Add("DelayWriting", DelayWriting);
     }
+
+    public void Dialog(Dialog dialog, Canvas dialogCanvas, DialogEventReciever dialogEventReciever)
+    {
+        this.dialog = dialog;
+        SetPosition(this.dialog, dialogCanvas);
+        this.dialogEventReciever = dialogEventReciever;
+        dialogCoroutine = StartCoroutine(ProcessText());
+    }
+
     private void Update()
     {
         if (selectionDatas.Count == 0) return;
@@ -87,21 +86,16 @@ public class DialogView : MonoBehaviour
         else if(Input.GetKeyDown(keyData.Ui.SelectKey))
         {
             IsCompleted = true;
-            dialogGenerator.SyncSelection(selectionDatas, selectionIndex);
+            OnSelect?.Invoke(selectionDatas, selectionIndex);
         }
     }
-    public void Dialog(Dialog dialog, Canvas dialogCanvas, IDialogGenerator dialogGenerator)
-    {
-        allocatedDialog = dialog;
-        SetPosition(allocatedDialog, dialogCanvas);
-        this.dialogGenerator = dialogGenerator;
-        currentDialogCoroutine = StartCoroutine(ProcessText());
-    }
+
     private void PrintSelection()
     {
         dialogText.text = selectionDatas[selectionIndex].Line;
         UpdateBackGround();
     }
+
     public void CompleteDialog()
     {
         if (selectionDatas.Count > 0)
@@ -109,9 +103,10 @@ public class DialogView : MonoBehaviour
 
         SkipProcessingText = true;
     }
+
     private IEnumerator ProcessText()
     {
-        string line = allocatedDialog.Line;
+        string line = dialog.Line;
 
         dialogText.text = "";        
         UpdateBackGround();
@@ -130,7 +125,10 @@ public class DialogView : MonoBehaviour
                     index--;
                     continue;
                 }
-                else index += commandTag.Length + 1;
+                else
+                {
+                    index += commandTag.Length + 1;
+                }
             }
 
             if (additionalDelay != 0)
@@ -163,6 +161,7 @@ public class DialogView : MonoBehaviour
 
         if(selectionDatas.Count == 0) IsCompleted = true;
     }
+
     private void UpdateBackGround()
     {
         dialogText.ForceMeshUpdate();
@@ -206,7 +205,6 @@ public class DialogView : MonoBehaviour
         uiRect.anchoredPosition = pos;
     }
 
-
     private void SetPosition(Dialog dialog, Canvas dialogCanvas)
     {
         Vector3 worldPos = dialog.Target.Transform.position + baseDialogPosition.ToVector3();
@@ -224,6 +222,7 @@ public class DialogView : MonoBehaviour
 
         rectTransform.anchoredPosition = localPoint;
     }
+
     private string InspectCommandTag(string line, int index)
     {
         if(line[index] != '<') return null;
@@ -236,6 +235,7 @@ public class DialogView : MonoBehaviour
         
         return commandTag;
     }
+
     private bool ProcessCommandTag(string commandTag)
     {
         int paramStartIndex = commandTag.IndexOf('(');
@@ -247,10 +247,14 @@ public class DialogView : MonoBehaviour
         string commandName = commandTag.Substring(0, paramStartIndex);
         string commandParams = commandTag.Substring(paramStartIndex + 1, paramEndIndex - paramStartIndex - 1);
 
-        if (commandDatas.ContainsKey(commandName))
+        if(commandDatas.ContainsKey(commandName))
         {
-            commandDatas[commandName].Invoke(this, new object[] { commandParams } );
-
+            commandDatas[commandName].Invoke(commandParams);
+            return true;
+        }
+        else if (dialogEventReciever.DialogEvent.ContainsKey(commandName))
+        {
+            dialogEventReciever.DialogEvent[commandName].Invoke(commandParams);
             return true;
         }
         else return false;
@@ -262,9 +266,6 @@ public class DialogView : MonoBehaviour
         public int Count;
     }
 
-    //============================================================== Commands
-
-    [DialogCommand("Selection")]
     private void Selection(string line)
     {
          string[] lines = line.Split('}');
@@ -287,35 +288,12 @@ public class DialogView : MonoBehaviour
         leftArrow.color = Color.white;
         rightArrow.color = Color.white;
 
-        if (currentDialogCoroutine != null) StopCoroutine(currentDialogCoroutine);
+        if (dialogCoroutine != null) StopCoroutine(dialogCoroutine);
         PrintSelection();
     }
 
-    [DialogCommand("StartBoss")]
-    private void StartBoss(string line)
-    {
-        Boss.Instance.StartBattle();
-    }
-
-    [DialogCommand("MoveCharactor")]
-    private void MoveCharactor(string line)
-    {
-        
-    }
-
-    [DialogCommand("AnimateCharactor")]
-    private void AnimateCharactor(string line)
-    {
-        if(line == "Captain_Transform")
-        {
-            allocatedDialog.Target.Transform.GetComponentInParent<Animator>().SetBool("IsReaper", true);
-        }
-    }
-
-    [DialogCommand("DelayWriting")]
     private void DelayWriting(string line)
     {
-
         try
         {
             float delayTime = Convert.ToSingle(line);
@@ -326,89 +304,5 @@ public class DialogView : MonoBehaviour
             Debug.LogWarning("Invalid DelayWriting Parameters: " + line);
             return;
         }
-    }
-
-    [DialogCommand("ShakeCamera")]
-    private void ShakeCamera(string line)
-    {
-        float duration = 0;
-
-        try
-        {
-            duration = Convert.ToSingle(line);
-        }
-        catch (FormatException)
-        {
-            Debug.LogWarning("Invalid ShakeCamera Parameters: " + line);
-            return;
-        }
-
-        CameraUtility.TopCamera.transform
-            .DOShakePosition(
-                duration: duration, 
-                strength: 0.5f
-                );
-    }
-
-    [DialogCommand("ScaleCamera")]
-    private void ScaleCamera(string line)
-    {
-        
-    }
-
-    [DialogCommand("FadeCameraToDark")]
-    private void FadeCameraToDark(string line)
-    {
-
-    }
-
-    [DialogCommand("FadeCameraToBright")]
-    private void FadeCameraToBright(string line)
-    {
-
-    }
-
-    [DialogCommand("ChangeScene")]
-    private void ChangeScene(string line)
-    {
-        SceneController.Instance.LoadScene(line);
-    }
-
-    [DialogCommand("GiveItem")]
-    private void GiveItem(string line)
-    {
-        switch(line)
-        {
-            case "Bow":
-                WeaponDatabase.Instance.unlockedWeapons.Bow = true;
-                break;
-            case "Bomb":
-                WeaponDatabase.Instance.unlockedWeapons.Bomb = true;
-                break;
-        }
-    }
-
-    [DialogCommand("PlaySound")]
-    private void PlaySound(string line)
-    {
-
-    }
-
-    [DialogCommand("MoveCamera")]
-    private void MoveCamera(string line)
-    {
-
-    }
-
-    [DialogCommand("SetTimeScale")]
-    private void SetTimeScale(string line)
-    {
-
-    }
-
-    [DialogCommand("Progress")]
-    private void Progess()
-    {
-        Stage.Progress();
     }
 }

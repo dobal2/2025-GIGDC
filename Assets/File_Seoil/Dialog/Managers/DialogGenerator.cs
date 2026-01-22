@@ -2,22 +2,19 @@ using System.Collections.Generic;
 using NUnit.Framework;
 using UnityEngine;
 
-public interface IDialogGenerator
-{
-    public void SyncSelection(List<DialogView.SelectionData> selectionDatas, int selectedIndex);
-}
-
-public class DialogGenerator : MonoBehaviour, IDialogGenerator
+public class DialogGenerator : MonoBehaviour
 {
     [field: SerializeField] public Chapter Chapter { get; set; }
 
     [SerializeField] private Canvas dialogCanvasPrefab;
     [SerializeField] private DialogView dialogViewPrefab;
+    [SerializeField] private DialogEventReciever dialogEventRecieverPrefab;
     [SerializeField] private KeyData keyData;
 
-    private int currentDialogIndex;
-    private Dialog currentDialog;
-    private DialogView currentDialogView;
+    private int dialogIndex;
+    private Dialog dialog;
+    private DialogView dialogView;
+    private DialogEventReciever dialogEventReciever;
     private Canvas dialogCanvas;
 
     private int processingSelectionIndex = 0;
@@ -27,10 +24,14 @@ public class DialogGenerator : MonoBehaviour, IDialogGenerator
 
     public void GenerateDialog()
     {
-        currentDialog = null;
-        currentDialogIndex = -1;
+        dialog = null;
+        dialogIndex = -1;
+
         dialogCanvas = Instantiate(dialogCanvasPrefab);
         
+        dialogEventReciever = Instantiate(dialogEventRecieverPrefab);
+        dialogEventReciever.Initialize(dialog);
+
         SetDialog();
         ProcessDialog();
     }
@@ -44,37 +45,36 @@ public class DialogGenerator : MonoBehaviour, IDialogGenerator
 
     public void ProcessDialog()
     {
-        Debug.Log("ProcessDialog");
-
-        if (currentDialogIndex + 1 >= Chapter.Dialogs.Length && currentDialogView.IsCompleted)
+        if (dialogIndex + 1 >= Chapter.Dialogs.Length && dialogView.IsCompleted)
         {
-            if(currentDialogView != null) Destroy(currentDialogView.gameObject);
+            if(dialogView != null) Destroy(dialogView.gameObject);
             if(InputManager.Instance.CurrentContext == InputManager.InputContext.Dialog) InputManager.Instance.CurrentContext = pastInputContext;
             return;
         }
 
-        if(currentDialogView != null && !currentDialogView.IsCompleted)
+        if(dialogView != null && !dialogView.IsCompleted)
         {
-            currentDialogView.CompleteDialog();
+            dialogView.CompleteDialog();
         }
         else
         {
-            if (currentDialogView != null)
+            if (dialogView != null)
             {
                 if (processingSelectionIndex <= 0)
                 {
-                    currentDialogIndex += selectionSkipIndex;
+                    dialogIndex += selectionSkipIndex;
                     selectionSkipIndex = 0;
                 }
                 else processingSelectionIndex--;
 
-                Destroy(currentDialogView.gameObject);
+                Destroy(dialogView.gameObject);
             }
 
-            currentDialog = Chapter.Dialogs[++currentDialogIndex];
-            currentDialogView = Instantiate(dialogViewPrefab, dialogCanvas.transform);
+            dialog = Chapter.Dialogs[++dialogIndex];
+            dialogView = Instantiate(dialogViewPrefab, dialogCanvas.transform);
 
-            currentDialogView.Dialog(currentDialog, dialogCanvas, this);
+            dialogView.Dialog(dialog, dialogCanvas, dialogEventReciever);
+            dialogView.OnSelect += SyncSelection;
         }
     }
 
@@ -86,7 +86,7 @@ public class DialogGenerator : MonoBehaviour, IDialogGenerator
             skipIndex += selectionDatas[index].Count;
         }
 
-        currentDialogIndex += skipIndex;
+        dialogIndex += skipIndex;
 
         processingSelectionIndex += selectionDatas[selectedIndex].Count;
 
@@ -96,5 +96,11 @@ public class DialogGenerator : MonoBehaviour, IDialogGenerator
         }
 
         ProcessDialog();
+    }
+
+    private void OnDestroy()
+    {
+        if(dialogEventReciever != null)
+            Destroy(dialogEventReciever.gameObject);
     }
 }
