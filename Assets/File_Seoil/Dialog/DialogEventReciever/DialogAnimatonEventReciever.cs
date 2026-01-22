@@ -2,21 +2,27 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DialogAnimatonEventReciever : MonoBehaviour
+public class DialogAnimatonEventReciever : DialogEventRecieverBase
 {
-    public Dictionary<string, Action> OnAnimationEvent;
+    private Dictionary<string, Action> animationDictionaries;
 
-    private Dialog dialog;
-
-    public void Initialize(Dialog dialog)
+    protected override void RegisterCommands()
     {
-        this.dialog = dialog;
-
-        RegisterCommands();
+        OnEvent.Add("AnimateCharacter", AnimateCharacter);
+        RegisterAnimations();
     }
 
-    private void RegisterCommands()
+    private void RegisterAnimations()
     {
 
+    }
+
+    private void AnimateCharacter(string line)
+    {
+        if(animationDictionaries.ContainsKey(line))
+        {
+            animationDictionaries[line].Invoke();
+        }
+        else throw new KeyNotFoundException(line);
     }
 }

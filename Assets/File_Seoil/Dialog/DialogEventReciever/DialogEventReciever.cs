@@ -3,118 +3,34 @@ using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 
-public class DialogEventReciever : MonoBehaviour
+public class DialogEventReciever : DialogEventRecieverBase
 {
-    [SerializeField] private DialogAnimatonEventReciever dialogAnimatonEventReciever;
+    [SerializeField] private DialogAnimatonEventReciever animatonEventReciever;
+    [SerializeField] private DialogAudioEventReciever audioEventReciever;
+    [SerializeField] private DialogCameraEventReciever cameraEventReciever;
+    [SerializeField] private DialogCharacterEventReciever characterEventReciever;
+    [SerializeField] private DialogGameFlowEventReciever gameFlowEventReciever;
 
-    private Dialog dialog;
-
-    public Dictionary<string, Action<string>> DialogEvent { get; private set; }
-
-    public void Initialize(Dialog dialog)
+    protected override void RegisterCommands()
     {
-        this.dialog = dialog;
+        animatonEventReciever.Initialize(dialog);
+        audioEventReciever.Initialize(dialog);
+        cameraEventReciever.Initialize(dialog);
+        characterEventReciever.Initialize(dialog);
+        gameFlowEventReciever.Initialize(dialog);
 
-        RegisterCommands();
-
-        dialogAnimatonEventReciever.Initialize(dialog);
+        RegisterSubEventCommands(animatonEventReciever.OnEvent);
+        RegisterSubEventCommands(audioEventReciever.OnEvent);
+        RegisterSubEventCommands(cameraEventReciever.OnEvent);
+        RegisterSubEventCommands(characterEventReciever.OnEvent);
+        RegisterSubEventCommands(gameFlowEventReciever.OnEvent);
     }
 
-    private void RegisterCommands()
+    private void RegisterSubEventCommands(Dictionary<string, Action<string>> eventDictionary)
     {
-
-    }
-
-    private void StartBoss(string line)
-    {
-        Boss.Instance.StartBattle();
-    }
-
-    private void MoveCharactor(string line)
-    {
-
-    }
-
-    private void ShakeCamera(string line)
-    {
-        float duration = 0;
-
-        try
+        foreach (var pair in eventDictionary)
         {
-            duration = Convert.ToSingle(line);
+            OnEvent[pair.Key] = pair.Value;
         }
-        catch (FormatException)
-        {
-            Debug.LogWarning("Invalid ShakeCamera Parameters: " + line);
-            return;
-        }
-
-        CameraUtility.TopCamera.transform
-            .DOShakePosition(
-                duration: duration,
-                strength: 0.5f
-                );
-    }
-
-    private void ScaleCamera(string line)
-    {
-
-    }
-
-    private void FadeCameraToDark(string line)
-    {
-
-    }
-
-    private void FadeCameraToBright(string line)
-    {
-
-    }
-
-    private void ChangeScene(string line)
-    {
-        SceneController.Instance.LoadScene(line);
-    }
-
-    private void GiveItem(string line)
-    {
-        switch (line)
-        {
-            case "Bow":
-                WeaponDatabase.Instance.unlockedWeapons.Bow = true;
-                break;
-            case "Bomb":
-                WeaponDatabase.Instance.unlockedWeapons.Bomb = true;
-                break;
-        }
-    }
-
-    private void PlaySound(string line)
-    {
-
-    }
-
-    private void MoveCamera(string line)
-    {
-
-    }
-
-    private void SetTimeScale(string line)
-    {
-
-    }
-
-    private void Progess()
-    {
-        Stage.Progress();
-    }
-
-    private void AnimateCharactor(string line)
-    {
-        if(dialogAnimatonEventReciever.OnAnimationEvent.ContainsKey(line))
-        {
-            dialogAnimatonEventReciever.OnAnimationEvent[line].Invoke();
-        }
-        else throw new KeyNotFoundException($"{line}");
     }
 }

@@ -252,9 +252,9 @@ public class DialogView : MonoBehaviour
             commandDatas[commandName].Invoke(commandParams);
             return true;
         }
-        else if (dialogEventReciever.DialogEvent.ContainsKey(commandName))
+        else if (dialogEventReciever.OnEvent.ContainsKey(commandName))
         {
-            dialogEventReciever.DialogEvent[commandName].Invoke(commandParams);
+            dialogEventReciever.OnEvent[commandName].Invoke(commandParams);
             return true;
         }
         else return false;
