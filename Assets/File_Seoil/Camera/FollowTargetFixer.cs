@@ -1,3 +1,4 @@
+using DG.Tweening;
 using Unity.Cinemachine;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -16,5 +17,4 @@ public class FollowTargetFixer : MonoBehaviour
             GetComponent<CinemachineCamera>().Target.TrackingTarget = LobbyPlayerController.Instance.transform;
         }
     }
-        
 }
