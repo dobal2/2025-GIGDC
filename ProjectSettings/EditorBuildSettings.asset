@@ -15,7 +15,7 @@ EditorBuildSettings:
     path: Assets/Scenes/GameScenes/LobbyScenes/Lobby_Under.unity
     guid: c2ed7d43663e24f4ca737bdd0b3e99a8
   - enabled: 1
-    path: Assets/Scenes/GameScenes/TutorialScene.unity
+    path: Assets/Scenes/GameScenes/TutorialScenes/TutorialScene_1.unity
     guid: 01e9e4529d187674bbb60c485ec487aa
   - enabled: 1
     path: Assets/Scenes/GameScenes/Level1/Stage1_1.unity
@@ -164,6 +164,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameScenes/EndingScene_2.unity
     guid: 6975108cb4267af4b9b24826b0b1173f
+  - enabled: 1
+    path: Assets/Scenes/GameScenes/TutorialScenes/TutorialScene_2.unity
+    guid: 86105ec66aebb6d49ae1422a8f055f99
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 8d1f4c713f5d6b74c9f75ea8d5932855, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}

@@ -4,7 +4,7 @@ public enum SceneType
     TitleScene = 1,
     Lobby_Over = 2,
     Lobby_Under = 3,
-    TutorialScene = 4,
+    TutorialScene_1 = 4,
     Stage1_1 = 5,
     Stage1_2 = 6,
     Stage1_3 = 7,
@@ -54,4 +54,5 @@ public enum SceneType
     Stage4_11 = 51,
     EndingScene_1 = 52,
     EndingScene_2 = 53,
+    TutorialScene_2 = 54,
 }
