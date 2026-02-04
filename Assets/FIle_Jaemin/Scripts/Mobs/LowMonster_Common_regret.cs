@@ -35,7 +35,7 @@ public class LowMonster_Common_regret : Monster
         {
             canMove = false;
 
-            if (canAttack && !isStunned)
+            if (canAttack && !isStunned && !isCountering && !isCounterStunned)
             {
                 if (isGrounded)
                 {
@@ -51,7 +51,11 @@ public class LowMonster_Common_regret : Monster
                     }
                 }
 
-                Attack();
+                // 카운터 시도, 실패하면 공격
+                if (!TryCounter())
+                {
+                    Attack();
+                }
             }
         }
         else
@@ -74,7 +78,7 @@ public class LowMonster_Common_regret : Monster
 
     private void Move()
     {
-        if (canMove && isGrounded && !isStunned)
+        if (canMove && isGrounded && !isStunned && !isCountering && !isCounterStunned)
         {
             rigid.linearVelocity = new Vector2(speed * nextMove, rigid.linearVelocity.y);
             anim.SetBool("isWalking", true);
