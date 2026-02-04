@@ -72,7 +72,7 @@ public abstract class Monster : MonoBehaviour
 
     protected virtual void Die()
     {
-        //StageManager.Objects--;
+        StageManager.Objects--;
         GameObject newInkExplosion = Instantiate(inkDeathEffect, transform.position, Quaternion.identity);
         gameObject.SetActive(false);
         Destroy(newInkExplosion,2);
