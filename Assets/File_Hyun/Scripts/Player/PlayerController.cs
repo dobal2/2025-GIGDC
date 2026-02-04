@@ -25,6 +25,10 @@ public class PlayerController : MonoBehaviour
 
     public event Action<PlayerEffectState> OnEffectStateChanged;
 
+    public event Action<WeaponType> OnChangeWeapon;
+    public event Action OnChainAttackFinished;
+    public event Action<bool> OnCounterTry;
+
     public PlayerEffectState CurrentEffectState { get; private set; }
     public float MoveInput { get; set; }
     public bool DownHeld { get; set; }
