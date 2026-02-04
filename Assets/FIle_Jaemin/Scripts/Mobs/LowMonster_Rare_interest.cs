@@ -85,14 +85,18 @@ public class LowMonster_Rare_interest : Monster
         {
             FacePlayer();
 
-            if (canAttack && !isStunned)
+            if (canAttack && !isStunned && !isCountering && !isCounterStunned)
             {
-                Attack();
+                // 카운터 시도, 실패하면 공격
+                if (!TryCounter())
+                {
+                    Attack();
+                }
             }
 
         }
 
-        if (!isDashing && canFlip && isGrounded && absDistanceX > stopDistance && !isStunned)
+        if (!isDashing && canFlip && isGrounded && absDistanceX > stopDistance && !isStunned && !isCountering && !isCounterStunned)
         {
             Move();
         }
@@ -156,6 +160,57 @@ public class LowMonster_Rare_interest : Monster
 
     public override void TakeDamage(float amount)
     {
+        GameObject newInkExplosion;
+        
+        // 카운터 중이라면 카운터 중단하고 즉시 기절 상태로 전환
+        if (isCountering)
+        {
+            if (counterCoroutine != null)
+            {
+                StopCoroutine(counterCoroutine);
+                counterCoroutine = null;
+            }
+            
+            isCountering = false;
+            
+            // Dash 상태일 경우 중단
+            if (dashCoroutine != null)
+            {
+                StopCoroutine(dashCoroutine);
+                dashCoroutine = null;
+            }
+            
+            isDashing = false;
+            anim.SetBool("Dashing", false);
+            rigid.linearVelocity = Vector2.zero;
+            canFlip = true;
+            
+            // 데미지 적용
+            hp -= amount;
+            newInkExplosion = Instantiate(inkHitEffect, transform.position, Quaternion.identity);
+            Destroy(newInkExplosion,2);
+            
+            if (hp <= 0)
+            {
+                Die();
+                return;
+            }
+            
+            // 기절 코루틴 시작하고 바로 종료 (일반 피격 처리 건너뜀)
+            if (counterStunCoroutine != null)
+            {
+                StopCoroutine(counterStunCoroutine);
+            }
+            counterStunCoroutine = StartCoroutine(CounterStunRoutine());
+            return;  // 카운터 피격은 여기서 종료
+        }
+        
+        // 카운터 기절 중이면 대미지 50% 증가 (1.5배)
+        if (isCounterStunned)
+        {
+            amount *= 1.5f;
+        }
+        
         // Dash 상태일 경우 중단
         if (dashCoroutine != null)
         {
@@ -171,7 +226,7 @@ public class LowMonster_Rare_interest : Monster
         hp -= amount;
         isStunned = true;
         
-        GameObject newInkExplosion = Instantiate(inkHitEffect, transform.position, Quaternion.identity);
+        newInkExplosion = Instantiate(inkHitEffect, transform.position, Quaternion.identity);
         Destroy(newInkExplosion,2);
 
         // 공격 중이라면 끊기

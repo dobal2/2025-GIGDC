@@ -21,16 +21,20 @@ public class LowMonster_Rare_hate : Monster
 
     protected void Update()
     {
-        if (!isAttacking)
+        if (!isAttacking && !isCountering && !isCounterStunned)
         {
             float distance = Vector3.Distance(transform.position, player.position);
             if (distance < playerNoticeDistance)
             {
-                Attack();   
+                // 카운터 시도, 실패하면 공격
+                if (!TryCounter())
+                {
+                    Attack();
+                }
             }
         }
 
-        if (canFlip)
+        if (canFlip && !isCountering && !isCounterStunned)
         {
             bool shouldFlip = (player.position.x > transform.position.x) != facingRight;
             if (shouldFlip)
