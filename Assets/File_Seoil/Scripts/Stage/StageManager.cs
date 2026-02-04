@@ -68,6 +68,7 @@ public class StageManager : MonoBehaviour
     [SerializeField] private SceneLoader.SceneChangeAnimation sceneChangeAnimation;
 
     private static StageManager Instance { get; set; }
+    public static event Action<int> OnObjectKilled;
 
     private static int objects = 0;
 
@@ -76,6 +77,9 @@ public class StageManager : MonoBehaviour
         get => objects;
         set
         {
+            if(value - objects < 0)
+                OnObjectKilled?.Invoke(value - objects);
+
             objects = value;
             Debug.Log("Left Objects : " + objects);
             if (objects <= 0)
@@ -83,6 +87,7 @@ public class StageManager : MonoBehaviour
                 objects = 0;
                 Instance.Clear();
             }
+
         }
     }
 
