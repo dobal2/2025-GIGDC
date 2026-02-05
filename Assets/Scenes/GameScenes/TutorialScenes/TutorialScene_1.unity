@@ -258,6 +258,52 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6008192533026303914, guid: b5950281217e18446860e2bf359d78af, type: 3}
   m_PrefabInstance: {fileID: 671935330}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1739307255
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1739307257}
+  - component: {fileID: 1739307256}
+  m_Layer: 0
+  m_Name: SceneLoader
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1739307256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1739307255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 084e0414d11408c4794bfffaca78153d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SceneLoader
+  fadeView: {fileID: 1043787974054221839, guid: 3ad1c00916f68a8428db4dbad8631d41, type: 3}
+  inkView: {fileID: 0}
+--- !u!4 &1739307257
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1739307255}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1966681420
 GameObject:
   m_ObjectHideFlags: 0
@@ -287,16 +333,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5b4fc67332abdb48a64a02030a85ba2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TutorialManager
-  tutorial1: {fileID: 0}
-  tutorial2: {fileID: 0}
-  tutorial3: {fileID: 0}
-  tutorial4: {fileID: 0}
-  tutorial5: {fileID: 0}
-  tutorial6: {fileID: 0}
-  tutorial7: {fileID: 0}
-  tutorial8: {fileID: 0}
-  tutorial9: {fileID: 0}
-  tutorial10: {fileID: 0}
+  visualData: {fileID: 11400000, guid: a3d9708a4e549364a8613bd72bfd7c7a, type: 2}
 --- !u!4 &1966681422
 Transform:
   m_ObjectHideFlags: 0
@@ -318,3 +355,4 @@ SceneRoots:
   m_Roots:
   - {fileID: 74787534}
   - {fileID: 1966681422}
+  - {fileID: 1739307257}

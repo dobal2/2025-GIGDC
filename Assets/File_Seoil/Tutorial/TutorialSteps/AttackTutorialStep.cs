@@ -1,17 +1,25 @@
+using UnityEngine;
+
 public class AttackTutorialStep : TutorialStepBase
 {
+    private TutorialDescriptionView tutorialDescriptionView;
+
     public override void Enter()
     {
-        throw new System.NotImplementedException();
+        tutorialDescriptionView = UIManager.Instance.Show<TutorialDescriptionView>();
+        tutorialDescriptionView.Initialize(TutorialManager.VisualData.AttackTutorial.ProgessSprites[0]);
     }
 
     public override void Exit()
     {
-        throw new System.NotImplementedException();
+        Object.Destroy(tutorialDescriptionView.gameObject);
     }
 
     public override void Update()
     {
-        throw new System.NotImplementedException();
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            TutorialManager.Instance.SkipTutorial();
+        }
     }
 }

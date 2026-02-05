@@ -67,7 +67,7 @@ public class StageManager : MonoBehaviour
     [Header("Move Type")]
     [SerializeField] private SceneLoader.SceneChangeAnimation sceneChangeAnimation;
 
-    private static StageManager Instance { get; set; }
+    public static StageManager Instance { get; private set; }
     public static event Action<int> OnObjectKilled;
 
     private static int objects = 0;

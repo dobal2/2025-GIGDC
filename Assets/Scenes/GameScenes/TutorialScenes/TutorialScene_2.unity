@@ -128,10 +128,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4465080666872081409, guid: 1ca83e73789255b438a946af2cf4aa12, type: 3}
-      propertyPath: stageType
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4465080666872081409, guid: 1ca83e73789255b438a946af2cf4aa12, type: 3}
       propertyPath: moveSceneType
       value: 2
       objectReference: {fileID: 0}

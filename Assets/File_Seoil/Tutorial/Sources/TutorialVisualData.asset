@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50cd8e2f3e85ff3409f0cd5f420de9d1, type: 3}
+  m_Name: TutorialVisualData
+  m_EditorClassIdentifier: Assembly-CSharp::TutorialVisualData
+  moveTutorial:
+    ProgessSprites:
+    - {fileID: 21300000, guid: 1d3745b5573f9654c9e74a4a22db0842, type: 3}
+    SuccesSprite: {fileID: 0}
+    FailSprite: {fileID: 0}
+  dashTutorial:
+    ProgessSprites:
+    - {fileID: 21300000, guid: 1f578399639279f4c86ab02957b32137, type: 3}
+    SuccesSprite: {fileID: 0}
+    FailSprite: {fileID: 0}
+  jumpTutorial:
+    ProgessSprites:
+    - {fileID: 21300000, guid: 0cf6485561cdc724a96b4ac63e61febb, type: 3}
+    SuccesSprite: {fileID: 0}
+    FailSprite: {fileID: 0}
+  changeWeaponTutorial:
+    ProgessSprites:
+    - {fileID: 21300000, guid: 4a0110b091c2cb640a3bd1e817087206, type: 3}
+    - {fileID: 21300000, guid: 34b04fc7fa8cc3f48be4aca94c3f3979, type: 3}
+    SuccesSprite: {fileID: 0}
+    FailSprite: {fileID: 0}
+  attackTutorial:
+    ProgessSprites:
+    - {fileID: 21300000, guid: 26d519f6b6c9088409bd6ac0b17906d7, type: 3}
+    SuccesSprite: {fileID: 0}
+    FailSprite: {fileID: 0}
+  chainAttackTutorial:
+    ProgessSprites:
+    - {fileID: 21300000, guid: 7101b47acc1b73a4dadaba0872fc7e84, type: 3}
+    SuccesSprite: {fileID: 0}
+    FailSprite: {fileID: 0}
+  skllAttackTutorial:
+    ProgessSprites:
+    - {fileID: 21300000, guid: 28ae1bc9eefd6624c94a74af56bf0f67, type: 3}
+    - {fileID: 21300000, guid: adc6fad637d29cb43bb7d7550c18f995, type: 3}
+    - {fileID: 21300000, guid: 18e76e2154054f148a4bdf18f998ee79, type: 3}
+    - {fileID: 21300000, guid: 29f49afce5b820947b3e0548e5d7e56b, type: 3}
+    SuccesSprite: {fileID: 0}
+    FailSprite: {fileID: 0}
+  counterTutorial:
+    ProgessSprites:
+    - {fileID: 21300000, guid: 217afaba2b8d8394da60e3581badb162, type: 3}
+    - {fileID: 21300000, guid: 808c669c1b451ea43a0553f407e8d817, type: 3}
+    - {fileID: 21300000, guid: d6ed4c127bee1c9479f12094ed5c4397, type: 3}
+    SuccesSprite: {fileID: 21300000, guid: c146dada103f9184d9bfa97c3e351249, type: 3}
+    FailSprite: {fileID: 21300000, guid: 6cc958140b5259f49b1bcc198a955704, type: 3}
+  combatTutorial:
+    ProgessSprites:
+    - {fileID: 21300000, guid: 4a42cc1d7c6119045a47ac1da23fdc28, type: 3}
+    - {fileID: 21300000, guid: 808c669c1b451ea43a0553f407e8d817, type: 3}
+    - {fileID: 21300000, guid: 789359ff9cf53454990dfeb4299b4c49, type: 3}
+    SuccesSprite: {fileID: 0}
+    FailSprite: {fileID: 0}

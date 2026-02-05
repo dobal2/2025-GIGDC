@@ -1,11 +1,10 @@
 fileFormatVersion: 2
-guid: 084e0414d11408c4794bfffaca78153d
+guid: 47ffe3ab436f5614cac0252c5303adb0
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - fadeView: {fileID: 1043787974054221839, guid: 3ad1c00916f68a8428db4dbad8631d41, type: 3}
-  - inkView: {instanceID: 0}
+  - uiRegistry: {fileID: 11400000, guid: 5596463abf77911459371146de2e4730, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
