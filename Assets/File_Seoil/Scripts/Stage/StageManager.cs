@@ -69,6 +69,7 @@ public class StageManager : MonoBehaviour
 
     public static StageManager Instance { get; private set; }
     public static event Action<int> OnObjectKilled;
+    public static event Action OnAllObjectKilled;
 
     private static int objects = 0;
 
@@ -85,6 +86,7 @@ public class StageManager : MonoBehaviour
             if (objects <= 0)
             {
                 objects = 0;
+                OnAllObjectKilled?.Invoke();
                 Instance.Clear();
             }
 

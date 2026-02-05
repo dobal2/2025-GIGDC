@@ -17,6 +17,7 @@ public class TutorialManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        DontDestroyOnLoad(gameObject);
 
         tutorialSteps = new()
         {
@@ -60,5 +61,6 @@ public class TutorialManager : MonoBehaviour
     {
         Stage.Progress();
         SceneLoader.Instance.LoadScene(SceneType.Lobby_Over, SceneLoader.SceneChangeAnimation.Fade);
+        Destroy(gameObject);
     }
 }
