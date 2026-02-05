@@ -26,7 +26,6 @@ public class LowMonster_Rare_hate : Monster
             float distance = Vector3.Distance(transform.position, player.position);
             if (distance < playerNoticeDistance)
             {
-                // 카운터 시도, 실패하면 공격
                 if (!TryCounter())
                 {
                     Attack();
