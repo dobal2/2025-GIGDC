@@ -69,8 +69,7 @@ public class LowMonster_Rare_lethargy : Monster
             return;
         
         GameObject newInkExplosion;
-            
-        // 카운터 중이라면 카운터 중단하고 즉시 기절 상태로 전환
+
         if (isCountering)
         {
             if (counterCoroutine != null)
@@ -80,8 +79,7 @@ public class LowMonster_Rare_lethargy : Monster
             }
             
             isCountering = false;
-            
-            // 데미지 적용
+
             hp -= amount;
             newInkExplosion = Instantiate(inkHitEffect, transform.position, Quaternion.identity);
             Destroy(newInkExplosion,2);
@@ -91,17 +89,15 @@ public class LowMonster_Rare_lethargy : Monster
                 Die();
                 return;
             }
-            
-            // 기절 코루틴 시작하고 바로 종료 (일반 피격 처리 건너뜀)
+
             if (counterStunCoroutine != null)
             {
                 StopCoroutine(counterStunCoroutine);
             }
             counterStunCoroutine = StartCoroutine(CounterStunRoutine());
-            return;  // 카운터 피격은 여기서 종료
+            return;
         }
-        
-        // 카운터 기절 중이면 대미지 50% 증가 (1.5배)
+
         if (isCounterStunned)
         {
             amount *= 1.5f;
@@ -110,7 +106,6 @@ public class LowMonster_Rare_lethargy : Monster
         newInkExplosion = Instantiate(inkHitEffect, transform.position, Quaternion.identity);
         Destroy(newInkExplosion,2);
         hp -= amount;
-        //TakeDamageAnimation();
         if (hp <= 0) Die();
     }
 

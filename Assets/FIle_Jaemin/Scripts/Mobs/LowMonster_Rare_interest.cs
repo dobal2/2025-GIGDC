@@ -72,7 +72,6 @@ public class LowMonster_Rare_interest : Monster
 
     private void FixedUpdate()
     {
-        // 바닥 체크
         isGrounded = Physics2D.Raycast(transform.position, Vector2.down, 1.1f, groundLayer);
 
         float distanceX = player.position.x - transform.position.x;
@@ -80,14 +79,12 @@ public class LowMonster_Rare_interest : Monster
         float distanceY = player.position.y - transform.position.y;
         float absDistanceY = Mathf.Abs(distanceY);
 
-        // 플레이어 감지 및 방향 전환
         if (absDistanceX <= playerNoticeDistance && absDistanceY < 2f)
         {
             FacePlayer();
 
             if (canAttack && !isStunned && !isCountering && !isCounterStunned)
             {
-                // 카운터 시도, 실패하면 공격
                 if (!TryCounter())
                 {
                     Attack();
@@ -105,7 +102,6 @@ public class LowMonster_Rare_interest : Monster
             anim.SetBool("Walking", false);
         }
 
-        // 대시 중 히트박스 체크
         if (isDashing)
         {
             CheckDashHitbox();
@@ -161,8 +157,7 @@ public class LowMonster_Rare_interest : Monster
     public override void TakeDamage(float amount)
     {
         GameObject newInkExplosion;
-        
-        // 카운터 중이라면 카운터 중단하고 즉시 기절 상태로 전환
+
         if (isCountering)
         {
             if (counterCoroutine != null)
@@ -170,10 +165,9 @@ public class LowMonster_Rare_interest : Monster
                 StopCoroutine(counterCoroutine);
                 counterCoroutine = null;
             }
-            
+
             isCountering = false;
-            
-            // Dash 상태일 경우 중단
+
             if (dashCoroutine != null)
             {
                 StopCoroutine(dashCoroutine);
@@ -184,8 +178,7 @@ public class LowMonster_Rare_interest : Monster
             anim.SetBool("Dashing", false);
             rigid.linearVelocity = Vector2.zero;
             canFlip = true;
-            
-            // 데미지 적용
+
             hp -= amount;
             newInkExplosion = Instantiate(inkHitEffect, transform.position, Quaternion.identity);
             Destroy(newInkExplosion,2);
@@ -195,23 +188,20 @@ public class LowMonster_Rare_interest : Monster
                 Die();
                 return;
             }
-            
-            // 기절 코루틴 시작하고 바로 종료 (일반 피격 처리 건너뜀)
+
             if (counterStunCoroutine != null)
             {
                 StopCoroutine(counterStunCoroutine);
             }
             counterStunCoroutine = StartCoroutine(CounterStunRoutine());
-            return;  // 카운터 피격은 여기서 종료
+            return;
         }
-        
-        // 카운터 기절 중이면 대미지 50% 증가 (1.5배)
+
         if (isCounterStunned)
         {
             amount *= 1.5f;
         }
-        
-        // Dash 상태일 경우 중단
+
         if (dashCoroutine != null)
         {
             StopCoroutine(dashCoroutine);
@@ -229,7 +219,6 @@ public class LowMonster_Rare_interest : Monster
         newInkExplosion = Instantiate(inkHitEffect, transform.position, Quaternion.identity);
         Destroy(newInkExplosion,2);
 
-        // 공격 중이라면 끊기
         if (attackCoroutine != null)
         {
             StopCoroutine(attackCoroutine);
@@ -289,11 +278,6 @@ public class LowMonster_Rare_interest : Monster
     {
         base.Die();
     }
-
-    // public override void TakeDamage(float amount, Vector2 knockBackDir)
-    // {
-    //     base.TakeDamage(amount, knockBackDir);
-    // }
 
     private void OnDrawGizmosSelected()
     {

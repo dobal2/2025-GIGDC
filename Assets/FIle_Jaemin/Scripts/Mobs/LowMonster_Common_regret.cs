@@ -51,7 +51,6 @@ public class LowMonster_Common_regret : Monster
                     }
                 }
 
-                // 카운터 시도, 실패하면 공격
                 if (!TryCounter())
                 {
                     Attack();
