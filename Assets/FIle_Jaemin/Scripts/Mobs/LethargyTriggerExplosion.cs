@@ -10,11 +10,11 @@ public class LethargyTriggerExplosion : MonoBehaviour
         monster = GetComponentInParent<LowMonster_Rare_lethargy>();
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerStay2D(Collider2D other)
     {
-        if (other.CompareTag("Player") && monster.isExplosioned == false)
+        if (other.CompareTag("Player") && !monster.isExplosioned)
         {
-            StartCoroutine(monster.Explosion(2));   
+            monster.StartCounter();
         }
     }
 }

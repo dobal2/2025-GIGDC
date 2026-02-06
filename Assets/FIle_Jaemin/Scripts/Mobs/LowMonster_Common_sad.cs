@@ -25,10 +25,7 @@ public class LowMonster_Common_sad : Monster
         
         if (canAttack && !isCountering)
         {
-            if (!TryCounter())
-            {
-                Attack();
-            }
+            TryCounter();
         }
     }
     
@@ -53,54 +50,14 @@ public class LowMonster_Common_sad : Monster
 
     public override void TakeDamage(float amount)
     {
-        GameObject newInkExplosion;
-        
-        if (isCountering)
-        {
-            if (counterCoroutine != null)
-            {
-                StopCoroutine(counterCoroutine);
-                counterCoroutine = null;
-            }
-            
-            isCountering = false;
-
-            hp -= amount;
-            newInkExplosion = Instantiate(inkHitEffect, transform.position, Quaternion.identity);
-            Destroy(newInkExplosion,2);
-            
-            if (hp <= 0)
-            {
-                Die();
-                return;
-            }
-            
-            if (attackCoroutine != null)
-            {
-                StopCoroutine(attackCoroutine);
-                attackCoroutine = null;
-                isAttacking = false;
-
-                anim.ResetTrigger("Attack");
-                anim.Play("Idle");
-            }
-
-            if (counterStunCoroutine != null)
-            {
-                StopCoroutine(counterStunCoroutine);
-            }
-            counterStunCoroutine = StartCoroutine(CounterStunRoutine());
-            return;
-        }
-
         if (isCounterStunned)
         {
             amount *= 1.5f;
         }
-        
+
         hp -= amount;
-        newInkExplosion = Instantiate(inkHitEffect, transform.position, Quaternion.identity);
-        Destroy(newInkExplosion,2);
+        GameObject newInkExplosion = Instantiate(inkHitEffect, transform.position, Quaternion.identity);
+        Destroy(newInkExplosion, 2);
 
         if (attackCoroutine != null)
         {

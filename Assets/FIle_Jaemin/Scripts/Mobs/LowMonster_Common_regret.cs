@@ -51,10 +51,7 @@ public class LowMonster_Common_regret : Monster
                     }
                 }
 
-                if (!TryCounter())
-                {
-                    Attack();
-                }
+                TryCounter();
             }
         }
         else

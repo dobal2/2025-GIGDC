@@ -46,8 +46,11 @@ public class LowMonster_Rare_interest : Monster
             yield break;
         }
         canFlip = false;
-        yield return new WaitForSeconds(1f);
-        
+
+        if (!isCounterAttack)
+            yield return new WaitForSeconds(1f);
+        isCounterAttack = false;
+
         anim.SetBool("Dashing", true);
         isDashing = true;
         canFlip = false;
@@ -55,7 +58,7 @@ public class LowMonster_Rare_interest : Monster
         float dashDirection = facingRight ? 1f : -1f;
         rigid.linearVelocity = new Vector2(skilledSpeed * dashDirection, rigid.linearVelocity.y);
 
-        yield return new WaitForSeconds(0.5f); // 대시 유지 시간
+        yield return new WaitForSeconds(0.5f);
 
         rigid.linearVelocity = new Vector2(0, rigid.linearVelocity.y);
         anim.SetBool("Dashing", false);
@@ -83,12 +86,9 @@ public class LowMonster_Rare_interest : Monster
         {
             FacePlayer();
 
-            if (canAttack && !isStunned && !isCountering && !isCounterStunned)
+            if (canAttack && !isStunned && !isCountering && !isCounterStunned && dashCoroutine == null)
             {
-                if (!TryCounter())
-                {
-                    Attack();
-                }
+                TryCounter();
             }
 
         }
@@ -156,47 +156,6 @@ public class LowMonster_Rare_interest : Monster
 
     public override void TakeDamage(float amount)
     {
-        GameObject newInkExplosion;
-
-        if (isCountering)
-        {
-            if (counterCoroutine != null)
-            {
-                StopCoroutine(counterCoroutine);
-                counterCoroutine = null;
-            }
-
-            isCountering = false;
-
-            if (dashCoroutine != null)
-            {
-                StopCoroutine(dashCoroutine);
-                dashCoroutine = null;
-            }
-            
-            isDashing = false;
-            anim.SetBool("Dashing", false);
-            rigid.linearVelocity = Vector2.zero;
-            canFlip = true;
-
-            hp -= amount;
-            newInkExplosion = Instantiate(inkHitEffect, transform.position, Quaternion.identity);
-            Destroy(newInkExplosion,2);
-            
-            if (hp <= 0)
-            {
-                Die();
-                return;
-            }
-
-            if (counterStunCoroutine != null)
-            {
-                StopCoroutine(counterStunCoroutine);
-            }
-            counterStunCoroutine = StartCoroutine(CounterStunRoutine());
-            return;
-        }
-
         if (isCounterStunned)
         {
             amount *= 1.5f;
@@ -212,12 +171,12 @@ public class LowMonster_Rare_interest : Monster
         anim.SetBool("Dashing", false);
         rigid.linearVelocity = Vector2.zero;
         canFlip = true;
-        
+
         hp -= amount;
         isStunned = true;
-        
-        newInkExplosion = Instantiate(inkHitEffect, transform.position, Quaternion.identity);
-        Destroy(newInkExplosion,2);
+
+        GameObject newInkExplosion = Instantiate(inkHitEffect, transform.position, Quaternion.identity);
+        Destroy(newInkExplosion, 2);
 
         if (attackCoroutine != null)
         {
