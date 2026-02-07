@@ -388,36 +388,6 @@ MonoBehaviour:
   leftButton: {fileID: 0}
   rightButton: {fileID: 6311785789735562599}
   nextOnClick: {fileID: 8165488404419039700}
-  onSelect:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6282667266567376805}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StartHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onDeselect:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6282667266567376805}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StopHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &6282667266567376805
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -434,6 +404,8 @@ MonoBehaviour:
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   hoverColer: {r: 1, g: 0.9647059, b: 0, a: 1}
   clickFlashInterval: 0.05
+  button: {fileID: 0}
+  click: {fileID: 0}
 --- !u!1 &528795125096712102
 GameObject:
   m_ObjectHideFlags: 0
@@ -737,36 +709,6 @@ MonoBehaviour:
   leftButton: {fileID: 0}
   rightButton: {fileID: 0}
   nextOnClick: {fileID: 2203928181972789267}
-  onSelect:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2428767348745003710}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StartHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onDeselect:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2428767348745003710}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StopHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &2428767348745003710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -783,6 +725,8 @@ MonoBehaviour:
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   hoverColer: {r: 1, g: 0.9647059, b: 0, a: 1}
   clickFlashInterval: 0.05
+  button: {fileID: 0}
+  click: {fileID: 0}
 --- !u!1 &577703257406024741
 GameObject:
   m_ObjectHideFlags: 0
@@ -1435,36 +1379,6 @@ MonoBehaviour:
   leftButton: {fileID: 8165488404419039700}
   rightButton: {fileID: 0}
   nextOnClick: {fileID: 3017901363672637046}
-  onSelect:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8995062779429061308}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StartHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onDeselect:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8995062779429061308}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StopHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &8995062779429061308
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1481,6 +1395,8 @@ MonoBehaviour:
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   hoverColer: {r: 1, g: 0.9647059, b: 0, a: 1}
   clickFlashInterval: 0.05
+  button: {fileID: 0}
+  click: {fileID: 0}
 --- !u!1 &1160802305073959301
 GameObject:
   m_ObjectHideFlags: 0
@@ -1761,60 +1677,6 @@ MonoBehaviour:
   leftButton: {fileID: 428822391638454521}
   rightButton: {fileID: 1949123877479182555}
   nextOnClick: {fileID: 1206414811920922067}
-  onSelect:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 596463436162334203}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StartHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2825039973743235161}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StartHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onDeselect:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 596463436162334203}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StopHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2825039973743235161}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StopHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &2170461694504105988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1848,6 +1710,8 @@ MonoBehaviour:
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   hoverColer: {r: 1, g: 0.9647059, b: 0, a: 1}
   clickFlashInterval: 0.05
+  button: {fileID: 0}
+  click: {fileID: 0}
 --- !u!114 &2825039973743235161
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1864,6 +1728,8 @@ MonoBehaviour:
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   hoverColer: {r: 1, g: 0.9647059, b: 0, a: 1}
   clickFlashInterval: 0.05
+  button: {fileID: 0}
+  click: {fileID: 0}
 --- !u!1 &1213167173298931700
 GameObject:
   m_ObjectHideFlags: 0
@@ -2805,60 +2671,6 @@ MonoBehaviour:
   leftButton: {fileID: 428822391638454521}
   rightButton: {fileID: 4834726202852276963}
   nextOnClick: {fileID: 1565195056010468105}
-  onSelect:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8159637199313579607}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StartHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1963113345013217893}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StartHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onDeselect:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8159637199313579607}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StopHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1963113345013217893}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StopHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &5920551300704142824
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2892,6 +2704,8 @@ MonoBehaviour:
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   hoverColer: {r: 1, g: 0.9647059, b: 0, a: 1}
   clickFlashInterval: 0.05
+  button: {fileID: 0}
+  click: {fileID: 0}
 --- !u!114 &1963113345013217893
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2908,6 +2722,8 @@ MonoBehaviour:
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   hoverColer: {r: 1, g: 0.9647059, b: 0, a: 1}
   clickFlashInterval: 0.05
+  button: {fileID: 0}
+  click: {fileID: 0}
 --- !u!1 &1582531224739526999
 GameObject:
   m_ObjectHideFlags: 0
@@ -3674,60 +3490,6 @@ MonoBehaviour:
   leftButton: {fileID: 1206414811920922067}
   rightButton: {fileID: 0}
   nextOnClick: {fileID: 1949123877479182555}
-  onSelect:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6003248458497652659}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StartHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 7873400651048153737}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StartHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onDeselect:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6003248458497652659}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StopHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 7873400651048153737}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StopHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &3070206945403128036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3761,6 +3523,8 @@ MonoBehaviour:
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   hoverColer: {r: 1, g: 0.9647059, b: 0, a: 1}
   clickFlashInterval: 0.05
+  button: {fileID: 0}
+  click: {fileID: 0}
 --- !u!114 &7873400651048153737
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3777,6 +3541,8 @@ MonoBehaviour:
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   hoverColer: {r: 1, g: 0.9647059, b: 0, a: 1}
   clickFlashInterval: 0.05
+  button: {fileID: 0}
+  click: {fileID: 0}
 --- !u!1 &2127668473602424203
 GameObject:
   m_ObjectHideFlags: 0
@@ -4215,36 +3981,6 @@ MonoBehaviour:
   leftButton: {fileID: 0}
   rightButton: {fileID: 2820726189881931641}
   nextOnClick: {fileID: 8462394245074024184}
-  onSelect:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8289063332975717100}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StartHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onDeselect:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8289063332975717100}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StopHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &8289063332975717100
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4261,6 +3997,8 @@ MonoBehaviour:
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   hoverColer: {r: 1, g: 0.9647059, b: 0, a: 1}
   clickFlashInterval: 0.05
+  button: {fileID: 0}
+  click: {fileID: 0}
 --- !u!1 &2324928481685731674
 GameObject:
   m_ObjectHideFlags: 0
@@ -5196,36 +4934,6 @@ MonoBehaviour:
   leftButton: {fileID: 2203928181972789267}
   rightButton: {fileID: 0}
   nextOnClick: {fileID: 3017901363672637046}
-  onSelect:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4144862943232182019}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StartHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onDeselect:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4144862943232182019}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StopHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &4144862943232182019
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5242,6 +4950,8 @@ MonoBehaviour:
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   hoverColer: {r: 1, g: 0.9647059, b: 0, a: 1}
   clickFlashInterval: 0.05
+  button: {fileID: 0}
+  click: {fileID: 0}
 --- !u!1 &2857394607910221856
 GameObject:
   m_ObjectHideFlags: 0
@@ -5543,36 +5253,6 @@ MonoBehaviour:
   leftButton: {fileID: 0}
   rightButton: {fileID: 0}
   nextOnClick: {fileID: 8904011836962935208}
-  onSelect:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4571143274435607677}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StartHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onDeselect:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4571143274435607677}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StopHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &4571143274435607677
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5589,6 +5269,8 @@ MonoBehaviour:
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   hoverColer: {r: 1, g: 0.9647059, b: 0, a: 1}
   clickFlashInterval: 0.05
+  button: {fileID: 0}
+  click: {fileID: 0}
 --- !u!1 &3079029481413317683
 GameObject:
   m_ObjectHideFlags: 0
@@ -6143,60 +5825,6 @@ MonoBehaviour:
   leftButton: {fileID: 6064796852291247797}
   rightButton: {fileID: 0}
   nextOnClick: {fileID: 3262313645254728900}
-  onSelect:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 558100746251524632}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StartHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2982342365786530114}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StartHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onDeselect:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 558100746251524632}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StopHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2982342365786530114}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StopHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &3471173083664966894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6230,6 +5858,8 @@ MonoBehaviour:
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   hoverColer: {r: 1, g: 0.9647059, b: 0, a: 1}
   clickFlashInterval: 0.05
+  button: {fileID: 0}
+  click: {fileID: 0}
 --- !u!114 &2982342365786530114
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6246,6 +5876,8 @@ MonoBehaviour:
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   hoverColer: {r: 1, g: 0.9647059, b: 0, a: 1}
   clickFlashInterval: 0.05
+  button: {fileID: 0}
+  click: {fileID: 0}
 --- !u!1 &3694875625002306608
 GameObject:
   m_ObjectHideFlags: 0
@@ -6389,60 +6021,6 @@ MonoBehaviour:
   leftButton: {fileID: 428822391638454521}
   rightButton: {fileID: 7666821431005059391}
   nextOnClick: {fileID: 3694875625002306608}
-  onSelect:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6311339863427137446}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StartHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 5359105009034532312}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StartHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onDeselect:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6311339863427137446}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StopHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 5359105009034532312}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StopHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &76137599113805943
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6476,6 +6054,8 @@ MonoBehaviour:
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   hoverColer: {r: 1, g: 0.9647059, b: 0, a: 1}
   clickFlashInterval: 0.05
+  button: {fileID: 0}
+  click: {fileID: 0}
 --- !u!114 &5359105009034532312
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6492,6 +6072,8 @@ MonoBehaviour:
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   hoverColer: {r: 1, g: 0.9647059, b: 0, a: 1}
   clickFlashInterval: 0.05
+  button: {fileID: 0}
+  click: {fileID: 0}
 --- !u!1 &3932711693203939244
 GameObject:
   m_ObjectHideFlags: 0
@@ -6543,7 +6125,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settingPanel: {fileID: 9141454406762875100}
-  FirstButton: {fileID: 2203928181972789267}
   Buttons: {fileID: 6766556164242113918}
   Windows:
   - {fileID: 2644421601025543502}
@@ -6693,60 +6274,6 @@ MonoBehaviour:
   leftButton: {fileID: 428822391638454521}
   rightButton: {fileID: 6913897272310043411}
   nextOnClick: {fileID: 4069667653392428589}
-  onSelect:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6888548502076954595}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StartHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 6793901310314164344}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StartHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onDeselect:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6888548502076954595}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StopHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 6793901310314164344}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StopHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &767897002948510380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6780,6 +6307,8 @@ MonoBehaviour:
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   hoverColer: {r: 1, g: 0.9647059, b: 0, a: 1}
   clickFlashInterval: 0.05
+  button: {fileID: 0}
+  click: {fileID: 0}
 --- !u!114 &6793901310314164344
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6796,6 +6325,8 @@ MonoBehaviour:
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   hoverColer: {r: 1, g: 0.9647059, b: 0, a: 1}
   clickFlashInterval: 0.05
+  button: {fileID: 0}
+  click: {fileID: 0}
 --- !u!1 &4083137518526456356
 GameObject:
   m_ObjectHideFlags: 0
@@ -7414,60 +6945,6 @@ MonoBehaviour:
   leftButton: {fileID: 428822391638454521}
   rightButton: {fileID: 8811228153751708022}
   nextOnClick: {fileID: 4747306748352206916}
-  onSelect:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6067502662567367697}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StartHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 3085179225629995686}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StartHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onDeselect:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6067502662567367697}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StopHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 3085179225629995686}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StopHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &138742160566041640
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7501,6 +6978,8 @@ MonoBehaviour:
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   hoverColer: {r: 1, g: 0.9647059, b: 0, a: 1}
   clickFlashInterval: 0.05
+  button: {fileID: 0}
+  click: {fileID: 0}
 --- !u!114 &3085179225629995686
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7517,6 +6996,8 @@ MonoBehaviour:
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   hoverColer: {r: 1, g: 0.9647059, b: 0, a: 1}
   clickFlashInterval: 0.05
+  button: {fileID: 0}
+  click: {fileID: 0}
 --- !u!1 &4834726202852276963
 GameObject:
   m_ObjectHideFlags: 0
@@ -7660,60 +7141,6 @@ MonoBehaviour:
   leftButton: {fileID: 1565195056010468105}
   rightButton: {fileID: 0}
   nextOnClick: {fileID: 4834726202852276963}
-  onSelect:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3790362678588988428}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StartHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 415624883603935611}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StartHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onDeselect:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3790362678588988428}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StopHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 415624883603935611}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StopHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &5246082067904908567
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7747,6 +7174,8 @@ MonoBehaviour:
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   hoverColer: {r: 1, g: 0.9647059, b: 0, a: 1}
   clickFlashInterval: 0.05
+  button: {fileID: 0}
+  click: {fileID: 0}
 --- !u!114 &415624883603935611
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7763,6 +7192,8 @@ MonoBehaviour:
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   hoverColer: {r: 1, g: 0.9647059, b: 0, a: 1}
   clickFlashInterval: 0.05
+  button: {fileID: 0}
+  click: {fileID: 0}
 --- !u!1 &5111298963705165572
 GameObject:
   m_ObjectHideFlags: 0
@@ -8676,60 +8107,6 @@ MonoBehaviour:
   leftButton: {fileID: 428822391638454521}
   rightButton: {fileID: 6913897272310043411}
   nextOnClick: {fileID: 5984835733618215133}
-  onSelect:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1039491574297396765}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StartHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 3595684557782646386}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StartHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onDeselect:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1039491574297396765}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StopHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 3595684557782646386}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StopHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &8449519020582693911
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8763,6 +8140,8 @@ MonoBehaviour:
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   hoverColer: {r: 1, g: 0.9647059, b: 0, a: 1}
   clickFlashInterval: 0.05
+  button: {fileID: 0}
+  click: {fileID: 0}
 --- !u!114 &3595684557782646386
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8779,6 +8158,8 @@ MonoBehaviour:
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   hoverColer: {r: 1, g: 0.9647059, b: 0, a: 1}
   clickFlashInterval: 0.05
+  button: {fileID: 0}
+  click: {fileID: 0}
 --- !u!1 &6001763283005111147
 GameObject:
   m_ObjectHideFlags: 0
@@ -9059,60 +8440,6 @@ MonoBehaviour:
   leftButton: {fileID: 428822391638454521}
   rightButton: {fileID: 3262313645254728900}
   nextOnClick: {fileID: 6064796852291247797}
-  onSelect:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5754919495249817124}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StartHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 5907059297934785268}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StartHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onDeselect:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5754919495249817124}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StopHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 5907059297934785268}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StopHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &6253493146659407383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9146,6 +8473,8 @@ MonoBehaviour:
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   hoverColer: {r: 1, g: 0.9647059, b: 0, a: 1}
   clickFlashInterval: 0.05
+  button: {fileID: 0}
+  click: {fileID: 0}
 --- !u!114 &5907059297934785268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9162,6 +8491,8 @@ MonoBehaviour:
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   hoverColer: {r: 1, g: 0.9647059, b: 0, a: 1}
   clickFlashInterval: 0.05
+  button: {fileID: 0}
+  click: {fileID: 0}
 --- !u!1 &6202559775795767963
 GameObject:
   m_ObjectHideFlags: 0
@@ -9464,36 +8795,6 @@ MonoBehaviour:
   leftButton: {fileID: 428822391638454521}
   rightButton: {fileID: 1949123877479182555}
   nextOnClick: {fileID: 6311785789735562599}
-  onSelect:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4112720382301878853}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StartHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onDeselect:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4112720382301878853}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StopHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &4112720382301878853
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9510,6 +8811,8 @@ MonoBehaviour:
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   hoverColer: {r: 1, g: 0.9647059, b: 0, a: 1}
   clickFlashInterval: 0.05
+  button: {fileID: 0}
+  click: {fileID: 0}
 --- !u!114 &8776204838599455942
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10018,60 +9321,6 @@ MonoBehaviour:
   leftButton: {fileID: 428822391638454521}
   rightButton: {fileID: 6913897272310043411}
   nextOnClick: {fileID: 6716965842331959711}
-  onSelect:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2883146446256738809}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StartHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 8046796036687392677}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StartHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onDeselect:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2883146446256738809}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StopHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 8046796036687392677}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StopHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &5651645666085818139
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10105,6 +9354,8 @@ MonoBehaviour:
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   hoverColer: {r: 1, g: 0.9647059, b: 0, a: 1}
   clickFlashInterval: 0.05
+  button: {fileID: 0}
+  click: {fileID: 0}
 --- !u!114 &8046796036687392677
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10121,6 +9372,8 @@ MonoBehaviour:
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   hoverColer: {r: 1, g: 0.9647059, b: 0, a: 1}
   clickFlashInterval: 0.05
+  button: {fileID: 0}
+  click: {fileID: 0}
 --- !u!1 &6766556164242113918
 GameObject:
   m_ObjectHideFlags: 0
@@ -10667,60 +9920,6 @@ MonoBehaviour:
   leftButton: {fileID: 8587906550100630548}
   rightButton: {fileID: 0}
   nextOnClick: {fileID: 6913897272310043411}
-  onSelect:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6228507737044076757}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StartHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2195286285565475580}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StartHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onDeselect:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6228507737044076757}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StopHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2195286285565475580}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StopHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &3313266364382108752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10754,6 +9953,8 @@ MonoBehaviour:
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   hoverColer: {r: 1, g: 0.9647059, b: 0, a: 1}
   clickFlashInterval: 0.05
+  button: {fileID: 0}
+  click: {fileID: 0}
 --- !u!114 &2195286285565475580
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10770,6 +9971,8 @@ MonoBehaviour:
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   hoverColer: {r: 1, g: 0.9647059, b: 0, a: 1}
   clickFlashInterval: 0.05
+  button: {fileID: 0}
+  click: {fileID: 0}
 --- !u!1 &7037832189313348620
 GameObject:
   m_ObjectHideFlags: 0
@@ -10880,36 +10083,6 @@ MonoBehaviour:
   leftButton: {fileID: 0}
   rightButton: {fileID: 0}
   nextOnClick: {fileID: 0}
-  onSelect:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6844631907091676619}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StartHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onDeselect:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6844631907091676619}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StopHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &6844631907091676619
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10926,6 +10099,8 @@ MonoBehaviour:
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   hoverColer: {r: 1, g: 0.9647059, b: 0, a: 1}
   clickFlashInterval: 0.05
+  button: {fileID: 0}
+  click: {fileID: 0}
 --- !u!1 &7128792256027958378
 GameObject:
   m_ObjectHideFlags: 0
@@ -11689,60 +10864,6 @@ MonoBehaviour:
   leftButton: {fileID: 3694875625002306608}
   rightButton: {fileID: 0}
   nextOnClick: {fileID: 7666821431005059391}
-  onSelect:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5364983177714182588}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StartHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 3291495229888127888}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StartHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onDeselect:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5364983177714182588}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StopHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 3291495229888127888}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StopHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &2240820646242615740
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11776,6 +10897,8 @@ MonoBehaviour:
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   hoverColer: {r: 1, g: 0.9647059, b: 0, a: 1}
   clickFlashInterval: 0.05
+  button: {fileID: 0}
+  click: {fileID: 0}
 --- !u!114 &3291495229888127888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11792,6 +10915,8 @@ MonoBehaviour:
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   hoverColer: {r: 1, g: 0.9647059, b: 0, a: 1}
   clickFlashInterval: 0.05
+  button: {fileID: 0}
+  click: {fileID: 0}
 --- !u!1 &7817597971473516540
 GameObject:
   m_ObjectHideFlags: 0
@@ -12442,36 +11567,6 @@ MonoBehaviour:
   leftButton: {fileID: 0}
   rightButton: {fileID: 1118260912747316373}
   nextOnClick: {fileID: 6311785789735562599}
-  onSelect:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1346519913677003280}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StartHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onDeselect:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1346519913677003280}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StopHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &1346519913677003280
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12488,6 +11583,8 @@ MonoBehaviour:
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   hoverColer: {r: 1, g: 0.9647059, b: 0, a: 1}
   clickFlashInterval: 0.05
+  button: {fileID: 0}
+  click: {fileID: 0}
 --- !u!1 &8462394245074024184
 GameObject:
   m_ObjectHideFlags: 0
@@ -12598,36 +11695,6 @@ MonoBehaviour:
   leftButton: {fileID: 0}
   rightButton: {fileID: 0}
   nextOnClick: {fileID: 0}
-  onSelect:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 984798702914491777}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StartHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onDeselect:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 984798702914491777}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StopHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &984798702914491777
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12644,6 +11711,8 @@ MonoBehaviour:
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   hoverColer: {r: 1, g: 0.9647059, b: 0, a: 1}
   clickFlashInterval: 0.05
+  button: {fileID: 0}
+  click: {fileID: 0}
 --- !u!1 &8485260860743083639
 GameObject:
   m_ObjectHideFlags: 0
@@ -12924,60 +11993,6 @@ MonoBehaviour:
   leftButton: {fileID: 428822391638454521}
   rightButton: {fileID: 6913897272310043411}
   nextOnClick: {fileID: 8587906550100630548}
-  onSelect:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3540092261220344583}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StartHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1328668787829651717}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StartHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onDeselect:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3540092261220344583}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StopHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1328668787829651717}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StopHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &2602539495471167204
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13011,6 +12026,8 @@ MonoBehaviour:
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   hoverColer: {r: 1, g: 0.9647059, b: 0, a: 1}
   clickFlashInterval: 0.05
+  button: {fileID: 0}
+  click: {fileID: 0}
 --- !u!114 &1328668787829651717
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13027,6 +12044,8 @@ MonoBehaviour:
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   hoverColer: {r: 1, g: 0.9647059, b: 0, a: 1}
   clickFlashInterval: 0.05
+  button: {fileID: 0}
+  click: {fileID: 0}
 --- !u!1 &8749819345635971839
 GameObject:
   m_ObjectHideFlags: 0
@@ -13444,60 +12463,6 @@ MonoBehaviour:
   leftButton: {fileID: 428822391638454521}
   rightButton: {fileID: 6913897272310043411}
   nextOnClick: {fileID: 8783692744015210072}
-  onSelect:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5183236139111003127}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StartHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2349145401443994311}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StartHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onDeselect:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5183236139111003127}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StopHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2349145401443994311}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StopHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &8486441326840247738
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13531,6 +12496,8 @@ MonoBehaviour:
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   hoverColer: {r: 1, g: 0.9647059, b: 0, a: 1}
   clickFlashInterval: 0.05
+  button: {fileID: 0}
+  click: {fileID: 0}
 --- !u!114 &2349145401443994311
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13547,6 +12514,8 @@ MonoBehaviour:
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   hoverColer: {r: 1, g: 0.9647059, b: 0, a: 1}
   clickFlashInterval: 0.05
+  button: {fileID: 0}
+  click: {fileID: 0}
 --- !u!1 &8811228153751708022
 GameObject:
   m_ObjectHideFlags: 0
@@ -13690,60 +12659,6 @@ MonoBehaviour:
   leftButton: {fileID: 4747306748352206916}
   rightButton: {fileID: 0}
   nextOnClick: {fileID: 8811228153751708022}
-  onSelect:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2748683719994465255}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StartHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 3340326173359905473}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StartHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onDeselect:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2748683719994465255}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StopHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 3340326173359905473}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StopHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &135847714779861463
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13777,6 +12692,8 @@ MonoBehaviour:
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   hoverColer: {r: 1, g: 0.9647059, b: 0, a: 1}
   clickFlashInterval: 0.05
+  button: {fileID: 0}
+  click: {fileID: 0}
 --- !u!114 &3340326173359905473
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13793,6 +12710,8 @@ MonoBehaviour:
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   hoverColer: {r: 1, g: 0.9647059, b: 0, a: 1}
   clickFlashInterval: 0.05
+  button: {fileID: 0}
+  click: {fileID: 0}
 --- !u!1 &8904011836962935208
 GameObject:
   m_ObjectHideFlags: 0
@@ -13957,36 +12876,6 @@ MonoBehaviour:
   leftButton: {fileID: 0}
   rightButton: {fileID: 1118260912747316373}
   nextOnClick: {fileID: 3017901363672637046}
-  onSelect:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3690089409818564145}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StartHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onDeselect:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3690089409818564145}
-        m_TargetAssemblyTypeName: UIButtonEffect, Assembly-CSharp
-        m_MethodName: StopHoverEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &3690089409818564145
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14003,6 +12892,8 @@ MonoBehaviour:
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   hoverColer: {r: 1, g: 0.9647059, b: 0, a: 1}
   clickFlashInterval: 0.05
+  button: {fileID: 0}
+  click: {fileID: 0}
 --- !u!1 &9040133987694976375
 GameObject:
   m_ObjectHideFlags: 0

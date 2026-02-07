@@ -8,7 +8,6 @@ public class SettingWindow : MonoBehaviour
     public static SettingWindow Instance { get; private set; }
 
     [SerializeField] private GameObject settingPanel;
-    [SerializeField] private GameObject FirstButton;
     [SerializeField] private GameObject Buttons;
     [SerializeField] private GameObject[] Windows;
     [SerializeField] private GameObject NextOnClick;
@@ -63,8 +62,6 @@ public class SettingWindow : MonoBehaviour
         if (SceneManager.GetActiveScene().name != "TitleScene") Time.timeScale = 0;
         originalContext = InputManager.Instance.CurrentContext;
         InputManager.Instance.CurrentContext = InputContext.UI;
-        EventSystem.current.SetSelectedGameObject(FirstButton);
-        FirstButton.GetComponent<UIButtonEffect>().StartHoverEffect();
         Debug.Log("설정창을 엽니다.");
     }
 

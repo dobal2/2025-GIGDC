@@ -74,6 +74,8 @@ public class InputManager : MonoBehaviour
             case InputContext.Dialog:
                 HandleDialogInput();
                 break;
+            case InputContext.None:
+                break;
         }
         HandlePause();
     }

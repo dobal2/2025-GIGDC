@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 using UnityEditor;
 #endif
 
-public class UIButtonController : MonoBehaviour, ISelectHandler, IDeselectHandler
+public class UIButtonController : MonoBehaviour, ISelectHandler
 {
     [Header("이웃 버튼 지정")]
     public GameObject upButton;
@@ -16,10 +16,6 @@ public class UIButtonController : MonoBehaviour, ISelectHandler, IDeselectHandle
     [Header("클릭 후 선택될 버튼")]
     public GameObject nextOnClick;
 
-    [Header("이펙트")]
-    public UnityEvent onSelect;
-    public UnityEvent onDeselect;
-
     public GameObject GetNeighbor(Vector2 direction)
     {
         if (direction == Vector2.up) return upButton;
@@ -29,16 +25,7 @@ public class UIButtonController : MonoBehaviour, ISelectHandler, IDeselectHandle
         return null;
     }
 
-    public void OnSelect(BaseEventData eventData)
-    {
-        InputManager.Instance.lastSelectedButton = this.gameObject;
-        onSelect?.Invoke();
-    }
-
-    public void OnDeselect(BaseEventData eventData)
-    {
-        onDeselect?.Invoke();
-    }
+    public void OnSelect(BaseEventData eventData) => InputManager.Instance.lastSelectedButton = gameObject;
 
 #if UNITY_EDITOR
     void OnDrawGizmosSelected()
