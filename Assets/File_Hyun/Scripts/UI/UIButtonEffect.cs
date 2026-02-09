@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class UIButtonEffect : MonoBehaviour, ISelectHandler, IDeselectHandler
+public class UIButtonEffect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private TMP_Text targetText;
     [SerializeField] private Color normalColor;
@@ -12,6 +12,7 @@ public class UIButtonEffect : MonoBehaviour, ISelectHandler, IDeselectHandler
     [SerializeField] private float clickFlashInterval = 0.05f;
     [SerializeField] private Button button;
     [SerializeField] private AudioSource click;
+    [SerializeField] private bool playClickEffect = true;
 
     private bool isHovering = false;
     private bool isClickEffectPlaying = false;
@@ -36,10 +37,7 @@ public class UIButtonEffect : MonoBehaviour, ISelectHandler, IDeselectHandler
         button.onClick.RemoveListener(PlayClickEffect);
 
         if (clickEffectCoroutine != null)
-        {
             StopCoroutine(clickEffectCoroutine);
-            clickEffectCoroutine = null;
-        }
 
         isClickEffectPlaying = false;
         isHovering = false;
@@ -47,14 +45,16 @@ public class UIButtonEffect : MonoBehaviour, ISelectHandler, IDeselectHandler
         targetText.faceColor = normalColor;
     }
 
-    public void OnSelect(BaseEventData eventData) => StartHoverEffect();
-    public void OnDeselect(BaseEventData eventData) => StopHoverEffect();
+    public void OnPointerEnter(PointerEventData eventData) => StartHoverEffect();
+    public void OnPointerExit(PointerEventData eventData) => StopHoverEffect();
     
 
     public void StartHoverEffect() => isHovering = true; // 호버이펙트 시작
     public void StopHoverEffect() => isHovering = false; // 호버이펙트 종료
     public void PlayClickEffect() // 클릭 이펙트 (자동종료)
     {
+        if (!playClickEffect) return;
+
         click.Play();
 
         if (clickEffectCoroutine != null)

@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -25,19 +24,18 @@ public class InputManager : MonoBehaviour
     }
 
     public KeyData keyData;
-    public AudioSource Click;
 
-    public static event Action OnUILeftKey;
-    public static event Action OnUIRightKey;
+    public event Action OnSelectKeyDown;
+    public event Action OnUILeftKeyDown;
+    public event Action OnUIRightKeyDown;
+    public event Action OnUIUpKeyDown;
+    public event Action OnUIDownKeyDown;
 
     [HideInInspector] public GameObject lastSelectedButton;
     [HideInInspector] public bool IsCapturingKey = false;
     private PlayerController _player;
     private LobbyPlayerController _LobbyPlayer;
     private DialogGenerator _dialogGenerator;
-
-    private float _lastClickTime = -999f;
-    [SerializeField] private float ClickCooldown = 0.3f;
 
     void Awake()
     {
@@ -80,83 +78,34 @@ public class InputManager : MonoBehaviour
         HandlePause();
     }
 
+    #region UI 입력 처리
     void HandlePause()
     {
         if (Input.GetKeyDown(keyData.UI.PauseKey))
         {
             if (CurrentContext == InputContext.UI)
-                SettingWindow.Instance.CloseSetting();
+                SettingWindowManager.Instance.CloseSetting();
             else if (SceneManager.GetActiveScene().name != "TitleScene")
-                SettingWindow.Instance.OpenSetting();
+                SettingWindowManager.Instance.OpenSetting();
         }
     }
 
-    #region UI 입력 처리
     void HandleUIInput()
     {
-        GameObject selected = EventSystem.current.currentSelectedGameObject;
+        if (Input.GetKeyDown(keyData.UI.LeftKey))
+            OnUILeftKeyDown?.Invoke();
 
-        if (selected == null)
-        {
-            if (lastSelectedButton != null && lastSelectedButton.activeInHierarchy)
-            {
-                Debug.Log("UI 포커스 복구");
-                EventSystem.current.SetSelectedGameObject(lastSelectedButton);
-                selected = lastSelectedButton;
-            }
-        }
+        if (Input.GetKeyDown(keyData.UI.RightKey))
+            OnUIRightKeyDown?.Invoke();
 
-        if (selected == null) return;
-        if (IsCapturingKey) return;
+        if (Input.GetKeyDown(keyData.UI.UpKey))
+            OnUIUpKeyDown?.Invoke();
 
-        if (!selected.TryGetComponent(out UIButtonController controller))
-        {
-            Debug.LogWarning("선택된 GameObject가 UIButtonController를 포함하지 않습니다: " + selected.name);
-            return;
-        }
-
-        if (Input.GetKeyDown(keyData.UI.UpKey)) TryMove(controller.upButton);
-        else if (Input.GetKeyDown(keyData.UI.DownKey)) TryMove(controller.downButton);
-        else if (Input.GetKeyDown(keyData.UI.LeftKey))
-        {
-            TryMove(controller.leftButton);
-            OnUILeftKey?.Invoke();
-        }
-        else if (Input.GetKeyDown(keyData.UI.RightKey))
-        {
-            TryMove(controller.rightButton);
-            OnUIRightKey?.Invoke();
-        }
+        if (Input.GetKeyDown(keyData.UI.DownKey))
+            OnUIDownKeyDown?.Invoke();
 
         if (Input.GetKeyDown(keyData.UI.SelectKey))
-        {
-            if (Time.unscaledTime - _lastClickTime < ClickCooldown)
-                return;
-
-            _lastClickTime = Time.unscaledTime;
-            Click.Play();
-
-            if (selected.TryGetComponent(out Button button))
-                button.onClick.Invoke();
-
-            if (controller.nextOnClick != null && controller.nextOnClick.activeInHierarchy)
-            {
-                EventSystem.current.SetSelectedGameObject(controller.nextOnClick);
-                lastSelectedButton = controller.nextOnClick;
-            }
-        }
-
-        if (selected != lastSelectedButton)
-            lastSelectedButton = selected;
-    }
-
-    void TryMove(GameObject target)
-    {
-        if (target != null && target.activeInHierarchy)
-        {
-            EventSystem.current.SetSelectedGameObject(target);
-            lastSelectedButton = target;
-        }
+            OnSelectKeyDown?.Invoke();
     }
     #endregion
 
