@@ -273,6 +273,7 @@ GameObject:
   - component: {fileID: 204893717}
   - component: {fileID: 204893716}
   - component: {fileID: 204893718}
+  - component: {fileID: 204893719}
   m_Layer: 0
   m_Name: Death Captain
   m_TagString: Untagged
@@ -377,6 +378,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &204893719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 204893715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 455fb160b8f9c624b88a4c98ba0c261c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CaptainController
 --- !u!1 &227949578
 GameObject:
   m_ObjectHideFlags: 0
