@@ -65,46 +65,16 @@ public class LowMonster_Rare_lethargy : Monster
 
     public override void TakeDamage(float amount)
     {
-        if(hp <= 0)
+        if (hp <= 0)
             return;
-        
-        GameObject newInkExplosion;
-
-        if (isCountering)
-        {
-            if (counterCoroutine != null)
-            {
-                StopCoroutine(counterCoroutine);
-                counterCoroutine = null;
-            }
-            
-            isCountering = false;
-
-            hp -= amount;
-            newInkExplosion = Instantiate(inkHitEffect, transform.position, Quaternion.identity);
-            Destroy(newInkExplosion,2);
-            
-            if (hp <= 0)
-            {
-                Die();
-                return;
-            }
-
-            if (counterStunCoroutine != null)
-            {
-                StopCoroutine(counterStunCoroutine);
-            }
-            counterStunCoroutine = StartCoroutine(CounterStunRoutine());
-            return;
-        }
 
         if (isCounterStunned)
         {
             amount *= 1.5f;
         }
-        
-        newInkExplosion = Instantiate(inkHitEffect, transform.position, Quaternion.identity);
-        Destroy(newInkExplosion,2);
+
+        GameObject newInkExplosion = Instantiate(inkHitEffect, transform.position, Quaternion.identity);
+        Destroy(newInkExplosion, 2);
         hp -= amount;
         if (hp <= 0) Die();
     }

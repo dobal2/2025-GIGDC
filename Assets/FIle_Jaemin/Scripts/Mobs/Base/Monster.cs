@@ -18,10 +18,9 @@ public abstract class Monster : MonoBehaviour
     protected bool isDead = false;
     
     [Header("Counter System")]
-    [SerializeField] protected float counterChance = 0.3f;
-    [SerializeField] protected float counterCooldown = 5f;
     protected bool isCountering = false;
     protected bool isCounterStunned = false;
+    protected bool isCounterAttack = false;
     protected bool canCounter = true;
     protected Coroutine counterCoroutine;
     protected Coroutine counterStunCoroutine;
@@ -84,42 +83,12 @@ public abstract class Monster : MonoBehaviour
     public virtual void TakeDamage(float amount)
     {
         if (isDead) return;
-        
-        GameObject newInkExplosion;
-        
-        if (isCountering)
-        {
-            if (counterCoroutine != null)
-            {
-                StopCoroutine(counterCoroutine);
-                counterCoroutine = null;
-            }
-            
-            isCountering = false;
-            hp -= amount;
-            
-            newInkExplosion = Instantiate(inkHitEffect, transform.position, Quaternion.identity);
-            Destroy(newInkExplosion, 2);
-            
-            if (hp <= 0)
-            {
-                Die();
-                return;
-            }
-            
-            if (counterStunCoroutine != null)
-            {
-                StopCoroutine(counterStunCoroutine);
-            }
-            counterStunCoroutine = StartCoroutine(CounterStunRoutine());
-            return;
-        }
-        
+
         if (isCounterStunned)
         {
             amount *= 1.5f;
         }
-        
+
         if (attackCoroutine != null)
         {
             StopCoroutine(attackCoroutine);
@@ -127,11 +96,11 @@ public abstract class Monster : MonoBehaviour
             anim.ResetTrigger("Attack");
             anim.Play("Idle");
         }
-        
+
         hp -= amount;
-        newInkExplosion = Instantiate(inkHitEffect, transform.position, Quaternion.identity);
+        GameObject newInkExplosion = Instantiate(inkHitEffect, transform.position, Quaternion.identity);
         Destroy(newInkExplosion, 2);
-        
+
         if (hp <= 0)
         {
             Die();
@@ -139,6 +108,38 @@ public abstract class Monster : MonoBehaviour
         }
 
         TakeDamageAnimation();
+    }
+
+    public virtual void OnCounterHit()
+    {
+        if (!isCountering) return;
+
+        if (counterCoroutine != null)
+        {
+            StopCoroutine(counterCoroutine);
+            counterCoroutine = null;
+        }
+
+        isCountering = false;
+
+        if (anim != null)
+            anim.SetBool("IsCountering", false);
+
+        if (spriteRenderer != null)
+            spriteRenderer.color = originalColor;
+
+        if (counterStunCoroutine != null)
+            StopCoroutine(counterStunCoroutine);
+
+        counterStunCoroutine = StartCoroutine(CounterStunRoutine());
+    }
+
+    protected virtual void LateUpdate()
+    {
+        // if (Input.GetKeyDown(KeyCode.T) && isCountering)
+        // {
+        //     OnCounterHit();
+        // }
     }
 
     public virtual void KnockBack(Transform attacker, float knockBackForce, float knockBackAngle, float duration)
@@ -196,14 +197,9 @@ public abstract class Monster : MonoBehaviour
     {
         if (!canCounter || attackCoroutine != null || isCountering || isCounterStunned || isStunned)
             return false;
-        
-        if (UnityEngine.Random.value <= counterChance)
-        {
-            StartCounter();
-            return true;
-        }
-        
-        return false;
+
+        StartCounter();
+        return true;
     }
     
     public void StartCounter()
@@ -221,25 +217,32 @@ public abstract class Monster : MonoBehaviour
     {
         isCountering = true;
         canCounter = false;
-        
+
+        if (anim != null)
+            anim.SetBool("IsCountering", true);
+
         if (spriteRenderer != null)
         {
             spriteRenderer.color = Color.red;
         }
-        
+
         yield return new WaitForSeconds(1.5f);
-        
+
         isCountering = false;
-        
+
+        if (anim != null)
+            anim.SetBool("IsCountering", false);
+
         if (spriteRenderer != null)
         {
             spriteRenderer.color = originalColor;
         }
-        
+
         counterCoroutine = null;
-        
-        yield return new WaitForSeconds(counterCooldown);
         canCounter = true;
+
+        isCounterAttack = true;
+        Attack();
     }
     
     protected IEnumerator CounterStunRoutine()
@@ -268,12 +271,13 @@ public abstract class Monster : MonoBehaviour
         
         isCounterStunned = false;
         canAttack = true;
-        
+        canCounter = true;
+
         if (spriteRenderer != null)
         {
             spriteRenderer.color = originalColor;
         }
-        
+
         counterStunCoroutine = null;
     }
 }

@@ -42,9 +42,4 @@ public class KeyBindingResetter : MonoBehaviour
             }
         }
     }
-
-    public void SaveKeyBindings()
-    {
-        SaveKey.Instance.SaveKeyBindings();
-    }
 }

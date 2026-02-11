@@ -34,10 +34,7 @@ public class Boss_Love : Boss
     [SerializeField] private float bressDamage;
 
     private GameObject newDangerObject;
-    
-    
-    private SpriteRenderer spriteRenderer;
-    private new Collider2D collider;
+    private Collider2D col;
     private bool isAttacking;
 
     [Header("Sounds")] 
@@ -49,7 +46,7 @@ public class Boss_Love : Boss
     protected override void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        collider = GetComponent<Collider2D>();
+        col = GetComponent<Collider2D>();
         base.Start();
     }
 
@@ -93,7 +90,7 @@ public class Boss_Love : Boss
         transform.position = new Vector2(0, phase2YPos);
 
         isAttacking = false;
-        collider.isTrigger = false;
+        col.isTrigger = false;
 
         StartCoroutine(DelayEnableTransform());
     }
@@ -122,7 +119,7 @@ public class Boss_Love : Boss
 
     private IEnumerator MoveUpPattern()
     {
-        collider.isTrigger = true;
+        col.isTrigger = true;
         rigid.gravityScale = 0;
 
         transform.position = new Vector2(Random.Range(fieldXRangeMin, fieldXRangeMax), digY);
@@ -143,7 +140,7 @@ public class Boss_Love : Boss
             yield return null;
         }
 
-        collider.isTrigger = false;
+        col.isTrigger = false;
         rigid.gravityScale = 1;
 
         yield return new WaitForSeconds(0.3f);
@@ -154,13 +151,13 @@ public class Boss_Love : Boss
     IEnumerator BubblePattern()
     {
         float bubbleCount = Random.Range(8, 14);
-        
+
         for (int i = 0; i < bubbleCount; i++)
         {
-            Vector2 randomPos = new Vector2(Random.Range(fieldXRangeMin, fieldXRangeMax),
+            Vector2 randomPos = new(Random.Range(fieldXRangeMin, fieldXRangeMax),
                 Random.Range(fieldYRangeMin, fieldYRangeMax));
             GameObject newBubble = Instantiate(bubblePrefab, randomPos, Quaternion.identity);
-            newBubble.GetComponent<Bubble>().SetBoss(this,false);
+            newBubble.GetComponent<Bubble>().SetBoss(this, false);
 
         }
         
@@ -190,7 +187,7 @@ public class Boss_Love : Boss
     IEnumerator SpawnHeartBubblePattern()
     {
         // 하트버블을 화면 아래쪽 랜덤 위치에 소환
-        Vector2 randomPos = new Vector2(
+        Vector2 randomPos = new(
             Random.Range(fieldXRangeMin, fieldXRangeMax),
             heartBubbleY // 아래쪽 Y 위치 (예: -3f)
         );

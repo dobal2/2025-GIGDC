@@ -11,7 +11,7 @@ public class TutorialManager : MonoBehaviour
 
     [SerializeField] private TutorialVisualData visualData;
 
-    private List<ITutorialStep> tutorialSteps = new List<ITutorialStep>();
+    private List<ITutorialStep> tutorialSteps = new();
     private int tutorialStepIndex = 0;
 
     private void Awake()

@@ -1,8 +1,10 @@
+using System;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class TitleScreenManager : MonoBehaviour
 {
+    [SerializeField] private WeaponDatabase weaponData;
+
     void Start()
     {
         SaveKey.Instance.LoadKeyBindings();
@@ -20,6 +22,7 @@ public class TitleScreenManager : MonoBehaviour
     {
         Debug.Log("처음부터");
         Stage.Data = StageDataType.Start;
+        weaponData.unlockedWeapons = new UnlockedWeapons { Spear = true, Bow = false, Bomb = false };
         SceneLoader.Instance.LoadScene(SceneType.Lobby_Over);
     }
 

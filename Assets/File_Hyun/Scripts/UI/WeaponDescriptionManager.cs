@@ -19,7 +19,7 @@ public class WeaponDescriptionManager : MonoBehaviour
     [SerializeField] float slotYPosition;
 
     Dictionary<WeaponType, GameObject> weaponUIs;
-    List<WeaponType> unlockedWeapons = new();
+    readonly List<WeaponType> unlockedWeapons = new();
     int currentIndex = 0;
 
     void Awake()
@@ -35,14 +35,14 @@ public class WeaponDescriptionManager : MonoBehaviour
     void OnEnable()
     {
         SetupDisplay();
-        InputManager.OnUILeftKey += () => TryMove(-1);
-        InputManager.OnUIRightKey += () => TryMove(1);
+        InputManager.Instance.OnUILeftKeyDown += () => TryMove(-1);
+        InputManager.Instance.OnUIRightKeyDown += () => TryMove(1);
     }
 
     void OnDisable()
     {
-        InputManager.OnUILeftKey -= () => TryMove(-1);
-        InputManager.OnUIRightKey -= () => TryMove(1);
+        InputManager.Instance.OnUILeftKeyDown -= () => TryMove(-1);
+        InputManager.Instance.OnUIRightKeyDown -= () => TryMove(1);
     }
 
     void SetupDisplay()

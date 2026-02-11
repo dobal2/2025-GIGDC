@@ -25,6 +25,7 @@ public class LowMonster_Rare_inferior : Monster
     protected override void Attack()
     {
         anim.SetTrigger("Attack");
+        StartCoroutine(WaitToAttack(attackCoolDown));
 
         if (didVerticalAttack)
         {
@@ -53,11 +54,7 @@ public class LowMonster_Rare_inferior : Monster
     {
         if (canAttack && !isCountering && !isCounterStunned)
         {
-            if (!TryCounter())
-            {
-                Attack();
-                StartCoroutine(WaitToAttack(attackCoolDown));
-            }
+            TryCounter();
         }
     }
 
@@ -130,45 +127,15 @@ public class LowMonster_Rare_inferior : Monster
 
     public override void TakeDamage(float amount)
     {
-        GameObject newInkExplosion;
-
-        if (isCountering)
-        {
-            if (counterCoroutine != null)
-            {
-                StopCoroutine(counterCoroutine);
-                counterCoroutine = null;
-            }
-            
-            isCountering = false;
-
-            hp -= amount;
-            newInkExplosion = Instantiate(inkHitEffect, transform.position, Quaternion.identity);
-            Destroy(newInkExplosion,2);
-            
-            if (hp <= 0)
-            {
-                Die();
-                return;
-            }
-
-            if (counterStunCoroutine != null)
-            {
-                StopCoroutine(counterStunCoroutine);
-            }
-            counterStunCoroutine = StartCoroutine(CounterStunRoutine());
-            return;
-        }
-
         if (isCounterStunned)
         {
             amount *= 1.5f;
         }
-        
+
         hp -= amount;
-        newInkExplosion = Instantiate(inkHitEffect, transform.position, Quaternion.identity);
-        Destroy(newInkExplosion,2);
-        
+        GameObject newInkExplosion = Instantiate(inkHitEffect, transform.position, Quaternion.identity);
+        Destroy(newInkExplosion, 2);
+
         if (hp <= 0) Die();
     }
 

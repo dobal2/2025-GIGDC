@@ -35,21 +35,15 @@ public class KeyBindButton : MonoBehaviour
         });
     }
 
-    void OnEnable()
-    {
-        KeyBindingResetter.OnReset += UpdateKeyText;
-    }
+    void OnEnable() => KeyBindingResetter.OnReset += UpdateKeyText;
 
-    void OnDisable()
-    {
-        KeyBindingResetter.OnReset -= UpdateKeyText;
-    }
+    void OnDisable() => KeyBindingResetter.OnReset -= UpdateKeyText;
 
     void SetupBinding()
     {
         StopCoroutine(WaitForKey());
 
-        object container = keyType == KeyType.Player ? (object)keyData.Player : keyData.UI;
+        object container = keyType == KeyType.Player ? keyData.Player : keyData.UI;
         var field = container.GetType().GetField(fieldName);
         if (field == null || field.FieldType != typeof(KeyCode))
         {
@@ -106,5 +100,6 @@ public class KeyBindButton : MonoBehaviour
         InputManager.Instance.IsCapturingKey = false;
         rebindButton.interactable = true;
         Debug.Log("입력 종료");
+        SaveKey.Instance.SaveKeyBindings();
     }
 }

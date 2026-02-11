@@ -821,6 +821,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Stage Template
       objectReference: {fileID: 0}
+    - target: {fileID: 8664341399240222017, guid: 1ca83e73789255b438a946af2cf4aa12, type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 1767103290822239606, guid: 1ca83e73789255b438a946af2cf4aa12, type: 3}
