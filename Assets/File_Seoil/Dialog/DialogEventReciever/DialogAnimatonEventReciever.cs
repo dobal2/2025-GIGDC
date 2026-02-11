@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 public class DialogAnimatonEventReciever : DialogEventRecieverBase
 {
@@ -14,6 +13,11 @@ public class DialogAnimatonEventReciever : DialogEventRecieverBase
 
     private void RegisterAnimations()
     {
+        animationDictionaries.Add("Byeongtae1_AwakeUp", Byeongtae1_AwakeUp);
+        animationDictionaries.Add("Byeongtae1_Lay", Byeongtae1_Lay);
+        animationDictionaries.Add("Byeongtae1_TurnHead", Byeongtae1_TurnHead);
+        animationDictionaries.Add("Byeongtae2_Shrink", Byeongtae2_Shrink);
+        animationDictionaries.Add("Byeongtae4_Walk", Byeongtae4_Walk);
         animationDictionaries.Add("Captain_Walk", Captain_Walk);
         animationDictionaries.Add("Captain_Sitdown", Captain_Sitdown);
         animationDictionaries.Add("Captain_Transform", Captain_Transform);
@@ -28,6 +32,36 @@ public class DialogAnimatonEventReciever : DialogEventRecieverBase
             animationDictionaries[line].Invoke();
         }
         else throw new KeyNotFoundException(line);
+    }
+
+    private void Byeongtae1_AwakeUp()
+    {
+        var lobbyPlayerController = FindAnyObjectByType<LobbyPlayerController>();
+        lobbyPlayerController.Byeongtae1_AwakeUp();
+    }
+
+    private void Byeongtae1_Lay()
+    {
+        var lobbyPlayerController = FindAnyObjectByType<LobbyPlayerController>();
+        lobbyPlayerController.Byeongtae1_Lay();
+    }
+
+    private void Byeongtae1_TurnHead()
+    {
+        var lobbyPlayerController = FindAnyObjectByType<LobbyPlayerController>();
+        lobbyPlayerController.Byeongtae1_TurnHead();
+    }
+
+    private void Byeongtae2_Shrink()
+    {
+        var lobbyPlayerController = FindAnyObjectByType<LobbyPlayerController>();
+        lobbyPlayerController.Byeongtae2_Shrink();
+    }
+
+    private void Byeongtae4_Walk()
+    {
+        var lobbyPlayerController = FindAnyObjectByType<LobbyPlayerController>();
+        lobbyPlayerController.Byeongtae4_Walk();
     }
 
     private void Captain_Walk()
