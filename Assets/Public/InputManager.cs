@@ -81,7 +81,7 @@ public class InputManager : MonoBehaviour
     #region UI 입력 처리
     void HandlePause()
     {
-        if (Input.GetKeyDown(keyData.UI.PauseKey))
+        if (Input.GetKeyDown(keyData.UI.EscapeKey))
         {
             if (CurrentContext == InputContext.UI)
                 SettingWindowManager.Instance.CloseSetting();
