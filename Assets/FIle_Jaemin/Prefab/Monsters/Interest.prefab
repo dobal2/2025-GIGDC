@@ -5069,8 +5069,7 @@ MonoBehaviour:
   attackCoolDown: 2.5
   inkHitEffect: {fileID: 7578627341079123367, guid: a952605a410321645abbff3391d7a9ac, type: 3}
   inkDeathEffect: {fileID: 2311691554231423823, guid: 45dfe390eabaa2a4c8766a637185fcd1, type: 3}
-  counterChance: 0.3
-  counterCooldown: 5
+  counterTextPrefab: {fileID: 5979894358426497325, guid: 10b0ef5730cdfa14d9a609aae2f4ed72, type: 3}
   player: {fileID: 0}
   facingRight: 1
   groundLayer:

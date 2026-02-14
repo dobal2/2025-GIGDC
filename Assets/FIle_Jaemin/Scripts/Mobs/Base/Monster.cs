@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using TMPro;
 
 public abstract class Monster : MonoBehaviour
 {
@@ -26,6 +27,8 @@ public abstract class Monster : MonoBehaviour
     protected Coroutine counterStunCoroutine;
     protected SpriteRenderer spriteRenderer;
     protected Color originalColor;
+    [SerializeField] protected GameObject counterTextPrefab;
+    protected TextMeshPro counterText;
 
     [SerializeField] protected Transform player;
     protected Rigidbody2D rigid;
@@ -43,12 +46,12 @@ public abstract class Monster : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        
+
         if (spriteRenderer != null)
         {
             originalColor = spriteRenderer.color;
         }
-        
+
         if (anim != null)
         {
             Debug.Log("Anim not null");
@@ -64,6 +67,22 @@ public abstract class Monster : MonoBehaviour
         if (player == null)
         {
             Debug.LogError("No Player");
+        }
+
+        // Counter Text Prefab 생성
+        if (counterTextPrefab != null && counterText == null)
+        {
+            GameObject textObj = Instantiate(counterTextPrefab, transform);
+            textObj.transform.localPosition = Vector3.zero; // 몹과 같은 위치
+            textObj.transform.localRotation = Quaternion.identity; // 회전 고정
+
+            counterText = textObj.GetComponent<TextMeshPro>();
+
+            if (counterText != null)
+            {
+                counterText.sortingOrder = 100; // 몬스터보다 앞에 표시
+                counterText.gameObject.SetActive(false);
+            }
         }
     }
 
@@ -128,6 +147,11 @@ public abstract class Monster : MonoBehaviour
         if (spriteRenderer != null)
             spriteRenderer.color = originalColor;
 
+        if (counterText != null)
+        {
+            counterText.gameObject.SetActive(false);
+        }
+
         if (counterStunCoroutine != null)
             StopCoroutine(counterStunCoroutine);
 
@@ -136,6 +160,12 @@ public abstract class Monster : MonoBehaviour
 
     protected virtual void LateUpdate()
     {
+        // Counter Text 회전 고정 (Flip에도 영향받지 않도록)
+        if (counterText != null)
+        {
+            counterText.transform.rotation = Quaternion.identity;
+        }
+
         // if (Input.GetKeyDown(KeyCode.T) && isCountering)
         // {
         //     OnCounterHit();
@@ -226,6 +256,11 @@ public abstract class Monster : MonoBehaviour
             spriteRenderer.color = Color.red;
         }
 
+        if (counterText != null)
+        {
+            counterText.gameObject.SetActive(true);
+        }
+
         yield return new WaitForSeconds(1.5f);
 
         isCountering = false;
@@ -236,6 +271,11 @@ public abstract class Monster : MonoBehaviour
         if (spriteRenderer != null)
         {
             spriteRenderer.color = originalColor;
+        }
+
+        if (counterText != null)
+        {
+            counterText.gameObject.SetActive(false);
         }
 
         counterCoroutine = null;

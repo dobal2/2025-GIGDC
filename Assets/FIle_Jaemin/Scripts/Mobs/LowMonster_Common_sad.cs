@@ -15,6 +15,13 @@ public class LowMonster_Common_sad : Monster
         base.Start();
         if(projectilePrefab == null)
             Debug.LogError("No projectile prefab assigned");
+
+        // Counter Text Y 위치 조정 (몹 높이의 절반보다 더 아래)
+        if (counterText != null && spriteRenderer != null)
+        {
+            float yOffset = spriteRenderer.bounds.size.y / 2f - 1.2f;
+            counterText.transform.localPosition = new Vector3(0, yOffset, 0);
+        }
     }
 
     private void FixedUpdate()

@@ -40,6 +40,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5988689328078006410
 SpriteRenderer:
+  serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -58,6 +59,8 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -79,9 +82,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_Sprite: {fileID: 6123878837954132857, guid: c569c0af6ed0c184db7da3dfe59b5e6f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -91,7 +96,6 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!50 &8429666745488216764
 Rigidbody2D:
@@ -139,6 +143,7 @@ MonoBehaviour:
   attackCoolDown: 2
   inkHitEffect: {fileID: 7578627341079123367, guid: a952605a410321645abbff3391d7a9ac, type: 3}
   inkDeathEffect: {fileID: 2311691554231423823, guid: 45dfe390eabaa2a4c8766a637185fcd1, type: 3}
+  counterTextPrefab: {fileID: 5979894358426497325, guid: 10b0ef5730cdfa14d9a609aae2f4ed72, type: 3}
   player: {fileID: 0}
   facingRight: 1
   attackRadius: 1
@@ -222,7 +227,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 6740317592920553870, guid: 8674d68d9010cd84f9fbaa64bfdeacd9, type: 2}
-  m_audioClip: {fileID: 8300000, guid: b0109256d4549a64d825c3bb62c0a604, type: 3}
+  m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: b0109256d4549a64d825c3bb62c0a604, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1

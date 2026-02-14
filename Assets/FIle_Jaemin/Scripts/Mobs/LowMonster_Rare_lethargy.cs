@@ -17,6 +17,13 @@ public class LowMonster_Rare_lethargy : Monster
     {
         base.Start();
         explosionSound = GetComponent<AudioSource>();
+
+        // Counter Text Y 위치 조정 (몹 높이의 절반)
+        if (counterText != null && spriteRenderer != null)
+        {
+            float yOffset = spriteRenderer.bounds.size.y / 2f;
+            counterText.transform.localPosition = new Vector3(0, yOffset, 0);
+        }
     }
 
     protected override void Attack()
