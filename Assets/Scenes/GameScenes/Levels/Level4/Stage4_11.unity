@@ -556,6 +556,10 @@ PrefabInstance:
       value: -1.05
       objectReference: {fileID: 0}
     - target: {fileID: 7894383744022953280, guid: ecbba4eb7b2247b4b8426cd46396a8f9, type: 3}
+      propertyPath: hpBarPrefab
+      value: 
+      objectReference: {fileID: 793090243096776201, guid: 8869e9249724dba418cd5913838793ce, type: 3}
+    - target: {fileID: 7894383744022953280, guid: ecbba4eb7b2247b4b8426cd46396a8f9, type: 3}
       propertyPath: tentacleSpawnPoints.Array.size
       value: 3
       objectReference: {fileID: 0}

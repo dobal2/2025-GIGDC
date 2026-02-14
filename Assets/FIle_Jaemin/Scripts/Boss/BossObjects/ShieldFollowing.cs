@@ -25,12 +25,10 @@ public class ShieldFollowing : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
 
-        // VFX 처리
         VisualEffect newShieldBroke = Instantiate(shieldBrokeEffect, transform.position, Quaternion.identity).GetComponent<VisualEffect>();
         newShieldBroke.Play();
         Destroy(newShieldBroke.gameObject, 2f);
 
-        // SFX 처리 - AudioSource가 유효할 때만 실행
         if (shieldBrokeSound != null)
         {
             GameObject audioObj = new GameObject("TempShieldBreakSound");
@@ -51,7 +49,6 @@ public class ShieldFollowing : MonoBehaviour
             Debug.LogWarning("Shield break sound is missing!");
         }
 
-        // 본체 제거
         Destroy(gameObject);
     }
 

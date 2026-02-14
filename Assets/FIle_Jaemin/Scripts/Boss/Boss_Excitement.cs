@@ -16,7 +16,6 @@ public class Boss_Excitement : Boss
     [Header("Transforms")]
     [SerializeField] private Transform missileSpawnPoint;
     [SerializeField] private Transform[] teleportPositions;
-    //[SerializeField] private Transform phase2Transform;
     [SerializeField] private Transform bombPos;
     [SerializeField] private Transform targetBoardPoint;
 
@@ -61,28 +60,29 @@ public class Boss_Excitement : Boss
     {
         if (currentPhase == 1)
         {
-            hp -= amount;
+            base.TakeDamage(amount);
             if(!battleStarted)
                 return;
-            
-            TeleportRoutine();   
+
+            TeleportRoutine();
         }
     }
-    
+
     public void TakeDamage(float amount,bool isTargetBoard)
     {
-        hp -= amount;
+        base.TakeDamage(amount);
     }
 
     private void Phase2()
     {
         anim.runtimeAnimatorController = phase2Anim;
-        //transform.position = phase2Transform.position + new Vector3(0, transform.localScale.y / 2, 0);
         currentPhase = 2;
         maxHp = phase2Hp;
         hp = maxHp;
         isAttacking = false;
         clone.gameObject.SetActive(true);
+
+        UpdateHPBar();
 
         StartCoroutine(SpawnTargetBoardLoop());
     }

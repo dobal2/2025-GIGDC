@@ -44,15 +44,11 @@ public class Boss_Frustration : Boss
 
     private AudioSource windSound;
 
-    // [Header("Maps")] [SerializeField] private GameObject phase1Map;
-    // [SerializeField] private GameObject phase2Map;
-
     protected override void Start()
     {
         windSound = GetComponent<AudioSource>();
         lightObject.SetActive(false);
         base.Start();
-        //phase2Map.SetActive(false);
     }
 
     protected override void Attack()
@@ -149,8 +145,6 @@ public class Boss_Frustration : Boss
     }
 
 
-
-    //Phase1 pattern
     IEnumerator CastWindAttack()
     {
         for (int i = 0; i < 2; i++)
@@ -201,8 +195,7 @@ IEnumerator CastFingerAttack()
         currentPosIndex = (currentPosIndex + 1) % bossPositions.Length;
         transform.position = bossPositions[currentPosIndex].position;
     }
-    
-    //Phase2 Pattern
+
     IEnumerator DashAttack()
     {
         if(lightAttacking)
@@ -251,18 +244,17 @@ IEnumerator CastFingerAttack()
 
     private void SummonBattery()
     {
-        int count = Random.Range(2, 4); // 2 또는 3
+        int count = Random.Range(2, 4);
 
-        HashSet<int> usedOffsets = new HashSet<int>(); // 중복 위치 방지
+        HashSet<int> usedOffsets = new HashSet<int>();
 
         for (int i = 0; i < count; i++)
         {
             int randomXOffset;
 
-            // 중복되지 않는 X 위치를 고를 때까지 반복
             do
             {
-                randomXOffset = Random.Range(-4, 5); // -7 ~ 7
+                randomXOffset = Random.Range(-4, 5);
             }
             while (usedOffsets.Contains(randomXOffset) || (randomXOffset > -1 && randomXOffset < 1));
 
@@ -271,9 +263,6 @@ IEnumerator CastFingerAttack()
 
             Vector2 spawnPosition = new Vector2(transform.position.x + randomXOffset, transform.position.y);
             GameObject newBattery = Instantiate(batteryPrefab, spawnPosition, Quaternion.identity);
-
-            // 필요시 이후에 관리하도록 리스트에 추가하거나 태그 설정 가능
-            // spawnedBatteries.Add(newBattery);
         }
     }
 
@@ -328,15 +317,11 @@ IEnumerator CastFingerAttack()
     {
         anim.runtimeAnimatorController = phase2Anim;
         takeDamageCount = 0;
-        //phase1Map.SetActive(false);
-        //phase2Map.SetActive(true);
         currentPhase = 2;
         maxHp = phase2Hp;
         hp = maxHp;
-        //transform.position = phase2Pos.position;
-        //anim.runtimeAnimatorController = phase2Anim;
 
-        //transform.position = new Vector2(0, 7);
+        UpdateHPBar();
     }
 
     private void FlipToPlayerDirection()

@@ -69,18 +69,17 @@ public abstract class Monster : MonoBehaviour
             Debug.LogError("No Player");
         }
 
-        // Counter Text Prefab 생성
         if (counterTextPrefab != null && counterText == null)
         {
             GameObject textObj = Instantiate(counterTextPrefab, transform);
-            textObj.transform.localPosition = Vector3.zero; // 몹과 같은 위치
-            textObj.transform.localRotation = Quaternion.identity; // 회전 고정
+            textObj.transform.localPosition = Vector3.zero;
+            textObj.transform.localRotation = Quaternion.identity;
 
             counterText = textObj.GetComponent<TextMeshPro>();
 
             if (counterText != null)
             {
-                counterText.sortingOrder = 100; // 몬스터보다 앞에 표시
+                counterText.sortingOrder = 100;
                 counterText.gameObject.SetActive(false);
             }
         }
@@ -160,16 +159,11 @@ public abstract class Monster : MonoBehaviour
 
     protected virtual void LateUpdate()
     {
-        // Counter Text 회전 고정 (Flip에도 영향받지 않도록)
         if (counterText != null)
         {
             counterText.transform.rotation = Quaternion.identity;
         }
 
-        // if (Input.GetKeyDown(KeyCode.T) && isCountering)
-        // {
-        //     OnCounterHit();
-        // }
     }
 
     public virtual void KnockBack(Transform attacker, float knockBackForce, float knockBackAngle, float duration)

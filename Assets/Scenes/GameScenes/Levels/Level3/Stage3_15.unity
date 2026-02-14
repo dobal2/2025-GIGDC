@@ -5470,6 +5470,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3239225613248771047}
     m_Modifications:
+    - target: {fileID: 7098125762300320575, guid: 6ca68f41012ad0249afd569087766338, type: 3}
+      propertyPath: hpBarPrefab
+      value: 
+      objectReference: {fileID: 793090243096776201, guid: 8869e9249724dba418cd5913838793ce, type: 3}
     - target: {fileID: 7295583143279271198, guid: 6ca68f41012ad0249afd569087766338, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.31

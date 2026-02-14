@@ -23,7 +23,7 @@ public class VainProjectile : MonoBehaviour
         if (isFollowing && target != null)
         {
             Vector3 dir = (target.position - transform.position).normalized;
-            rb.linearVelocity = dir * 10f; // 따라가는 속도
+            rb.linearVelocity = dir * 10f;
         }
     }
 
@@ -49,14 +49,12 @@ public class VainProjectile : MonoBehaviour
 
     private IEnumerator FollowThenHit(PlayerHealth playerHealth)
     {
-        // 0.2초 동안 따라가기
         yield return new WaitForSeconds(0.2f);
         isFollowing = false;
         rb.linearVelocity = Vector2.zero;
 
         anim.SetTrigger("Hit");
 
-        // 애니메이션 중 데미지 (Hit 애니메이션 시작 0.1초 후)
         yield return new WaitForSeconds(0.1f);
         if (playerHealth != null)
         {
@@ -64,7 +62,6 @@ public class VainProjectile : MonoBehaviour
         }
     }
 
-    // Animator에서 이벤트로 호출
     public void DestroyObject()
     {
         Destroy(gameObject);
