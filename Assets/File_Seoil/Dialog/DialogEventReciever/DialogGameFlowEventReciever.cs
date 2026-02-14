@@ -42,6 +42,6 @@ public class DialogGameFlowEventReciever : DialogEventRecieverBase
 
     private void SetTimeScale(string line)
     {
-        throw new NotImplementedException();
+        Time.timeScale = int.Parse(line);
     }
 }

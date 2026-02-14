@@ -35,6 +35,6 @@ public class KeyData : ScriptableObject
         public KeyCode LeftKey;
         public KeyCode RightKey;
         public KeyCode SelectKey;
-        public KeyCode PauseKey;
+        public KeyCode EscapeKey;
     }
 }

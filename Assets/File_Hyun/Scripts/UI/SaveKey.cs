@@ -56,7 +56,7 @@ public class SaveKey : MonoBehaviour
     void LoadFields(object target, string prefix)
     {
         var fields = target.GetType().GetFields(BindingFlags.Public | BindingFlags.Instance);
-        foreach (var field in fields)
+        foreach (FieldInfo field in fields)
         {
             if (field.FieldType == typeof(KeyCode))
             {

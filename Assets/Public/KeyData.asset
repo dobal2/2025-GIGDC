@@ -29,4 +29,4 @@ MonoBehaviour:
     LeftKey: 276
     RightKey: 275
     SelectKey: 13
-    PauseKey: 27
+    EscapeKey: 27

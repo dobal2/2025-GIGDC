@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class LobbyPlayerController : MonoBehaviour
@@ -21,14 +22,17 @@ public class LobbyPlayerController : MonoBehaviour
     [HideInInspector] public int facingDirection = 1;
     public float MoveInput { get; set; }
 
-    void Awake()
+    private bool autoAnimLocked;
+    private int overrideToken;
+    private int lastAutoStateHash;
+
+    private void Awake()
     {
         if (Instance != null && Instance != this)
-        {
             Destroy(gameObject);
-            return;
-        }
-        Instance = this;
+        else
+            Instance = this;
+
         Animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
     }
@@ -55,6 +59,7 @@ public class LobbyPlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         rb.linearVelocity = new Vector2(MoveInput * speed, rb.linearVelocity.y);
+
         if (MoveInput != 0)
         {
             facingDirection = MoveInput > 0 ? 1 : -1;
@@ -64,7 +69,8 @@ public class LobbyPlayerController : MonoBehaviour
 
     private void Update()
     {
-        PlayAnim();
+        if (!autoAnimLocked)
+            PlayAnim();
     }
 
     public void SetLobby()
@@ -80,6 +86,56 @@ public class LobbyPlayerController : MonoBehaviour
         string animType = MoveInput == 0 ? "Idle" : "Walk";
         string animName = $"{animPrefix}{animType}_{stateNumber}";
 
-        Animator.Play(animName);
+        int hash = Animator.StringToHash(animName);
+
+        if (hash == lastAutoStateHash)
+            return;
+
+        lastAutoStateHash = hash;
+        Animator.Play(hash);
     }
+
+    private void PlayOverrideAnim(string stateName)
+    {
+        autoAnimLocked = true;
+        overrideToken++;
+
+        int token = overrideToken;
+        Animator.Play(stateName);
+
+        StartCoroutine(WaitOverrideEnd(stateName, token));
+    }
+
+    private IEnumerator WaitOverrideEnd(string stateName, int token)
+    {
+        while (token == overrideToken && !Animator.GetCurrentAnimatorStateInfo(0).IsName(stateName))
+            yield return null;
+
+        while (token == overrideToken)
+        {
+            if (!Animator.IsInTransition(0))
+            {
+                AnimatorStateInfo info = Animator.GetCurrentAnimatorStateInfo(0);
+
+                if (info.IsName(stateName) && info.normalizedTime >= 1f)
+                    break;
+            }
+
+            yield return null;
+        }
+
+        if (token != overrideToken)
+            yield break;
+
+        autoAnimLocked = false;
+        lastAutoStateHash = 0;
+    }
+
+    #region PlayerDialogEvent
+    public void Byeongtae1_AwakeUp() => PlayOverrideAnim("Byeongtae1_AwakeUp");
+    public void Byeongtae1_Lay() => PlayOverrideAnim("Byeongtae1_Lay");
+    public void Byeongtae1_TurnHead() => PlayOverrideAnim("Byeongtae1_TurnHead");
+    public void Byeongtae2_Shrink() => PlayOverrideAnim("Byeongtae2_Shrink");
+    public void Byeongtae4_Walk() => PlayOverrideAnim("Byeongtae4_Walk");
+    #endregion
 }
