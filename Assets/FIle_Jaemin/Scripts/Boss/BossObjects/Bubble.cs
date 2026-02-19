@@ -57,12 +57,10 @@ public class Bubble : Monster
 
     protected void PlayBubblePopEffect()
     {
-        // VFX 처리
         VisualEffect newPop = Instantiate(bubblePopEffect, transform.position, Quaternion.identity).GetComponent<VisualEffect>();
         newPop.Play();
         Destroy(newPop.gameObject, 2f);
 
-        // SFX 처리 - 별도 오브젝트 생성해서 소리만 재생
         GameObject audioObj = new("TempAudio");
         audioObj.transform.position = transform.position;
 

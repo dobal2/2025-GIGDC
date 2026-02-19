@@ -21,6 +21,12 @@ public class LowMonster_Common_regret : Monster
         base.Start();
         attackSound = GetComponent<AudioSource>();
         SetRandomMoveDirection();
+
+        if (counterText != null && spriteRenderer != null)
+        {
+            float yOffset = spriteRenderer.bounds.size.y / 2f - 0.3f;
+            counterText.transform.localPosition = new Vector3(0, yOffset, 0);
+        }
     }
 
     private void FixedUpdate()

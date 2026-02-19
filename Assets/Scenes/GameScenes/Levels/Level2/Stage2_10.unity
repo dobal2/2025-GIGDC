@@ -235,6 +235,14 @@ PrefabInstance:
       propertyPath: facingRight
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6935485140375142924, guid: b122d1993d0c0814eb02d819a9f1e433, type: 3}
+      propertyPath: hpBarPrefab
+      value: 
+      objectReference: {fileID: 793090243096776201, guid: 8869e9249724dba418cd5913838793ce, type: 3}
+    - target: {fileID: 6935485140375142924, guid: b122d1993d0c0814eb02d819a9f1e433, type: 3}
+      propertyPath: counterTextPrefab
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8455761180339418277, guid: b122d1993d0c0814eb02d819a9f1e433, type: 3}
       propertyPath: m_FlipX
       value: 1

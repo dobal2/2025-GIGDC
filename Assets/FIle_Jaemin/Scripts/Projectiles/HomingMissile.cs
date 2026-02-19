@@ -27,8 +27,6 @@ public class HomingMissile : MonoBehaviour
         Vector2 direction = (Vector2)target.position - rb.position;
         direction.Normalize();
 
-        //transform.rotation = Quaternion.Euler(0,0,Mathf.Atan2(direction.y,direction.x));
-
         float rotateAmount = Vector3.Cross(direction, transform.right).z;
         rb.angularVelocity = -rotateAmount * rotateSpeed;
         rb.linearVelocity = transform.right * speed;
@@ -41,10 +39,6 @@ public class HomingMissile : MonoBehaviour
             other.GetComponent<PlayerHealth>().TakeDamage(damage);
             Destroy(gameObject);
         }
-        // else if (other.CompareTag("Ground") || other.CompareTag("Wall"))
-        // {
-        //     Destroy(gameObject);
-        // }
-        
+
     }
 }

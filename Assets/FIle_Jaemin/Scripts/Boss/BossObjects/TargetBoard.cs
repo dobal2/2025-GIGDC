@@ -6,14 +6,6 @@ public class TargetBoard : Monster
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //화살 태그나 레이어
-        // if (collision.CompareTag("Arrow"))
-        // {
-        //     if (boss != null)
-        //     {
-        //         boss.TakeDamage(damage);
-        //     }
-        // }
     }
     
     

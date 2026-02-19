@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public abstract class Boss : Monster
 {
@@ -7,8 +8,12 @@ public abstract class Boss : Monster
     [SerializeField] protected float phase2Hp;
     protected int currentPhase = 1;
     protected bool battleStarted = false;
-    
+
     [SerializeField] protected RuntimeAnimatorController phase2Anim;
+
+    [Header("HP Bar")]
+    [SerializeField] protected GameObject hpBarPrefab;
+    protected Slider hpSlider;
 
     public static Boss Instance { get; private set; }
 
@@ -25,25 +30,37 @@ public abstract class Boss : Monster
     
     protected override void Start()
     {
-        
-        rigid = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>();
-        if (anim != null)
+        counterTextPrefab = null;
+        base.Start();
+
+        if (hpBarPrefab != null)
         {
-            Debug.Log("Anim not null");
-        }
-        else
-        {
-            Debug.Log("Anim null");
+            Canvas[] canvases = FindObjectsByType<Canvas>(FindObjectsSortMode.None);
+            Canvas overlayCanvas = null;
+
+            foreach (var canvas in canvases)
+            {
+                if (canvas.renderMode == RenderMode.ScreenSpaceOverlay)
+                {
+                    overlayCanvas = canvas;
+                    break;
+                }
+            }
+
+            if (overlayCanvas != null)
+            {
+                GameObject hpBarObj = Instantiate(hpBarPrefab, overlayCanvas.transform);
+                hpSlider = hpBarObj.GetComponentInChildren<Slider>();
+
+                if (hpSlider != null)
+                {
+                    hpSlider.maxValue = maxHp;
+                    hpSlider.value = hp;
+                }
+            }
         }
 
-        if (player == null)
-            player = GameObject.FindGameObjectWithTag("Player").transform;
-
-        if (player == null)
-        {
-            Debug.LogError("No Player");
-        }
+        StartBattle();
     }
 
     public override void KnockBack(Transform attacker, float knockBackForce, float knockBackAngle, float duration)
@@ -61,10 +78,23 @@ public abstract class Boss : Monster
     
     public override void TakeDamage(float amount)
     {
-        // GameObject newInkExplosion = Instantiate(inkHitEffect, transform.position, Quaternion.identity);
-        // Destroy(newInkExplosion,2);
         hp -= amount;
+
+        if (hpSlider != null)
+        {
+            hpSlider.value = hp;
+        }
+
         if (hp <= 0) Die();
+    }
+
+    public void UpdateHPBar()
+    {
+        if (hpSlider != null)
+        {
+            hpSlider.maxValue = maxHp;
+            hpSlider.value = hp;
+        }
     }
     
 

@@ -30,6 +30,12 @@ public class LowMonster_Rare_interest : Monster
     {
         base.Start();
         rigid = GetComponent<Rigidbody2D>();
+
+        if (counterText != null && spriteRenderer != null)
+        {
+            float yOffset = spriteRenderer.bounds.size.y / 2f;
+            counterText.transform.localPosition = new Vector3(0, yOffset, 0);
+        }
     }
 
     protected override void Attack()

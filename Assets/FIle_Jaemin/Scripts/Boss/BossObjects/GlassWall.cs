@@ -8,7 +8,6 @@ public class GlassWall : Monster
 
     protected override void Start()
     {
-        //base.Start();
         Destroy(gameObject,20);
     }
 
@@ -34,12 +33,10 @@ public class GlassWall : Monster
 
     protected override void Die()
     {
-        // VFX 생성 및 재생
         ParticleSystem newGlassEffect = Instantiate(glassEffectPrefab, transform.position, Quaternion.Euler(-180f, 90f, 0f)).GetComponent<ParticleSystem>();
         newGlassEffect.Play();
         Destroy(newGlassEffect.gameObject, 3f);
 
-        // SFX 분리 재생 (AudioSource 따로 분리)
         if (glassSound == null)
             glassSound = GetComponent<AudioSource>();
 
@@ -64,7 +61,6 @@ public class GlassWall : Monster
             Debug.LogWarning("GlassWall: AudioSource or clip is missing.");
         }
 
-        // 본체 파괴
         Destroy(gameObject);
     }
     

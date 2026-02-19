@@ -130,6 +130,8 @@ public class BossVain : Boss
         GetComponent<BoxCollider2D>().offset = new Vector2(-0.03f, -0.05f);
         GetComponent<SpriteRenderer>().flipX = false;
 
+        UpdateHPBar();
+
         StartCoroutine(DelayAttackEnable());
     }
 
@@ -335,11 +337,6 @@ public class BossVain : Boss
 
     public override void TakeDamage(float amount)
     {
-        // if (isVulnerable)
-        //     base.TakeDamage(amount);
-        // else
-        //     Debug.Log("Boss is invulnerable right now.");
-        
         base.TakeDamage(amount);
     }
 

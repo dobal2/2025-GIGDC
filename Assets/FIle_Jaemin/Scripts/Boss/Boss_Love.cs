@@ -74,12 +74,12 @@ public class Boss_Love : Boss
         StopAllCoroutines();
         anim.SetTrigger("Transform");
         transformSound.Play();
-        
+
         if(newDangerObject != null)
             Destroy(newDangerObject);
 
         isTransforming = true;
-        
+
         phase = 2;
         maxHp = phase2Hp;
         hp = maxHp;
@@ -91,6 +91,8 @@ public class Boss_Love : Boss
 
         isAttacking = false;
         col.isTrigger = false;
+
+        UpdateHPBar();
 
         StartCoroutine(DelayEnableTransform());
     }
@@ -186,14 +188,13 @@ public class Boss_Love : Boss
     
     IEnumerator SpawnHeartBubblePattern()
     {
-        // 하트버블을 화면 아래쪽 랜덤 위치에 소환
         Vector2 randomPos = new(
             Random.Range(fieldXRangeMin, fieldXRangeMax),
-            heartBubbleY // 아래쪽 Y 위치 (예: -3f)
+            heartBubbleY
         );
-    
+
         GameObject newHeartBubble = Instantiate(heartBubblePrefab, randomPos, Quaternion.identity);
-    
+
         yield return new WaitForSeconds(1f);
     }
 
@@ -211,38 +212,6 @@ public class Boss_Love : Boss
         
         yield return new WaitForSeconds(1f);
     }
-    
-
-    // public void TriggerBress()
-    // {
-    //     StartCoroutine(Bress());
-    // }
-    //
-    // IEnumerator Bress()
-    // {
-    //     GameObject newBress = Instantiate(bressPrefab, bressTransform.position, Quaternion.identity);
-    //     newBress.transform.parent = bressTransform;
-    //     newBress.GetComponent<Bress>().damage = bressDamage;
-    //     newBress.transform.rotation *= Quaternion.Euler(new Vector3(0, 0, -60f));
-    //
-    //     while (Mathf.DeltaAngle(0, newBress.transform.eulerAngles.z) < 60)
-    //     {
-    //         newBress.transform.rotation *= Quaternion.Euler(new Vector3(0, 0, 0.4f));
-    //         yield return new WaitForSeconds(0.01f);
-    //     }
-    //     
-    //     yield return new WaitForSeconds(0.5f);
-    //     
-    //     while (Mathf.DeltaAngle(0, newBress.transform.eulerAngles.z) > -60f)
-    //     {
-    //         newBress.transform.rotation *= Quaternion.Euler(new Vector3(0, 0, -0.4f));
-    //         yield return new WaitForSeconds(0.01f);
-    //     }
-    //     
-    //     yield return new WaitForSeconds(0.5f);
-    //     
-    //     Destroy(newBress);
-    // }
 
     IEnumerator PatternRoutine()
     {

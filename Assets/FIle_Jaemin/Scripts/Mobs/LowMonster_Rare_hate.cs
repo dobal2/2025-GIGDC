@@ -17,6 +17,12 @@ public class LowMonster_Rare_hate : Monster
     protected override void Start()
     {
         base.Start();
+
+        if (counterText != null && spriteRenderer != null)
+        {
+            float yOffset = spriteRenderer.bounds.size.y / 2f;
+            counterText.transform.localPosition = new Vector3(0, yOffset, 0);
+        }
     }
 
     protected void Update()

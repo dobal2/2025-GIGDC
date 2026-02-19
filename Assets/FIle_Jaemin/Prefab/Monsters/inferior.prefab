@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 6445134588560510209}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.16, y: -1.96, z: 0}
+  m_LocalPosition: {x: 6.31, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -38,6 +38,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1187522218503289249
 SpriteRenderer:
+  serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -56,6 +57,8 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -77,9 +80,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
+  m_MaskInteraction: 0
   m_Sprite: {fileID: 1970634796713067981, guid: 5fbeb001ece858b43891e47848553c3b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -89,7 +94,6 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!50 &8608079839895818153
 Rigidbody2D:
@@ -137,12 +141,11 @@ MonoBehaviour:
   attackCoolDown: 1.5
   inkHitEffect: {fileID: 7578627341079123367, guid: a952605a410321645abbff3391d7a9ac, type: 3}
   inkDeathEffect: {fileID: 2311691554231423823, guid: 45dfe390eabaa2a4c8766a637185fcd1, type: 3}
+  counterTextPrefab: {fileID: 5979894358426497325, guid: 10b0ef5730cdfa14d9a609aae2f4ed72, type: 3}
   player: {fileID: 0}
   facingRight: 0
   inferiorAttackLineStartPrefab: {fileID: 8902335906651818609, guid: 2ddce6d5a75013249adfcc34c8fdd089, type: 3}
   inferiorAttackLineEndPrefab: {fileID: 4297727438806564325, guid: 125f69b0a03d32041adda73befc2b475, type: 3}
-  attackScaleTime: 0.5
-  maxScale: 20
   lineSpacing: 0.8
   lineCount: 10
   lineDuration: 0.4
