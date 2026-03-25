@@ -93,9 +93,9 @@ public class PlayerController : MonoBehaviour
 
     [Header("Counter Settings")]
     [SerializeField] private float counterCooldown = 0.1f;
-    [SerializeField] private Vector2 counterGroundOffset = new Vector2(1.2f, 0f);
-    [SerializeField] private Vector2 counterAirOffset = new Vector2(1.2f, 0f);
-    [SerializeField] private Vector2 counterBoxSize = new Vector2(1.6f, 1.2f);
+    [SerializeField] private Vector2 counterGroundOffset = new(1.2f, 0f);
+    [SerializeField] private Vector2 counterAirOffset = new(1.2f, 0f);
+    [SerializeField] private Vector2 counterBoxSize = new(1.6f, 1.2f);
     [SerializeField] private float counterHitDelay = 0.05f;
     [SerializeField] private LayerMask counterTargetLayer;
     private float lastWeaponChangeTime = -999f;

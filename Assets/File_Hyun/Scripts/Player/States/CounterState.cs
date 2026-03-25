@@ -77,7 +77,7 @@ public class CounterState : PlayerState
         );
 
         bool hasHitMonster = false;
-        HashSet<Monster> hitMonsters = new HashSet<Monster>();
+        HashSet<Monster> hitMonsters = new();
 
         foreach (RaycastHit2D hit in hits)
         {
@@ -85,8 +85,7 @@ public class CounterState : PlayerState
             if (monster == null || !hitMonsters.Add(monster))
                 continue;
 
-            monster.OnCounterHit();
-            hasHitMonster = true;
+            hasHitMonster = monster.OnCounterHit();
         }
 
         player.NotifyCounterTry(hasHitMonster);
