@@ -23,7 +23,6 @@ public class BowAttackState : PlayerState
         if (!player.isGrounded)
             player.Rigidbody.constraints |= RigidbodyConstraints2D.FreezePositionY;
 
-        // 화살 발사 스케줄 준비
         var arrowInfos = bowData.GetArrowInfos(player.AttackController.ComboStep);
         scheduledArrows = arrowInfos?.Select(a => (a.localOffset, a.ShootDelay)).ToList() ?? new();
         currentArrowIndex = 0;
@@ -43,7 +42,6 @@ public class BowAttackState : PlayerState
         if (pushTimer > 0f)
             pushTimer -= Time.deltaTime;
 
-        // 화살 발사 조건 체크
         while (currentArrowIndex < scheduledArrows.Count &&
                timer >= scheduledArrows[currentArrowIndex].delay)
         {
@@ -64,6 +62,9 @@ public class BowAttackState : PlayerState
 
         if (player.AttackController.CanMove)
         {
+            if (player.AttackController.IsFinalComboStep)
+                player.NotifyChainAttackFinished();
+
             stateMachine.ChangeState(new LocomotionState(player, stateMachine));
         }
     }
@@ -86,7 +87,7 @@ public class BowAttackState : PlayerState
             return;
         }
 
-        if(player.AttackController.ComboStep == 4)
+        if (player.AttackController.ComboStep == 4)
         {
             CameraUtility.ShakeCamera(
                 duration: 0.3f,

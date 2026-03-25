@@ -40,7 +40,12 @@ public class BombAttackState : PlayerState
         {
             ThrowBomb();
             if (animInfo.normalizedTime >= 1f)
+            {
+                if (player.AttackController.IsFinalComboStep)
+                    player.NotifyChainAttackFinished();
+
                 stateMachine.ChangeState(new LocomotionState(player, stateMachine));
+            }
         }
     }
 

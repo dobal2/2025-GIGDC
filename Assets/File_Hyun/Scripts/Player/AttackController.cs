@@ -40,6 +40,8 @@ public class AttackController : MonoBehaviour
     public int ComboStep => comboStep;
     public float SkillCooldownProgress => Mathf.Clamp01((Time.time - lastSkillTime) / GetSkillCooldown());
     public bool CanUseSkill => SkillCooldownProgress >= 1f;
+    public int MaxCombo => GetMaxCombo();
+    public bool IsFinalComboStep => comboStep > 0 && comboStep >= GetMaxCombo();
 
     void Awake()
     {
@@ -58,20 +60,29 @@ public class AttackController : MonoBehaviour
 
         WeaponType[] weaponCycle = { WeaponType.Spear, WeaponType.Bow, WeaponType.Bomb };
         int currentIndex = Array.IndexOf(weaponCycle, CurrentWeapon);
+        WeaponType resultWeapon = CurrentWeapon;
 
         for (int i = 1; i <= weaponCycle.Length; i++)
         {
             int nextIndex = (currentIndex + i) % weaponCycle.Length;
             WeaponType candidate = weaponCycle[nextIndex];
 
-            if (player.AttackController.weaponDatabase.IsWeaponUnlocked(candidate))
+            if (!weaponDatabase.IsWeaponUnlocked(candidate))
+                continue;
+
+            resultWeapon = candidate;
+
+            if (candidate != CurrentWeapon)
             {
                 SetWeapon(candidate);
-                player.MarkWeaponChanged();
                 Debug.Log($"[Weapon] 무기 변경: {CurrentWeapon}");
-                return;
             }
+
+            break;
         }
+
+        player.MarkWeaponChanged();
+        player.NotifyWeaponChanged(resultWeapon);
     }
 
     public void SetWeapon(WeaponType weapon)

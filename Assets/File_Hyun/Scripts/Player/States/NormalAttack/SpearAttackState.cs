@@ -62,6 +62,9 @@ public class SpearAttackState : PlayerState
 
         if (player.AttackController.CanMove)
         {
+            if (player.AttackController.IsFinalComboStep)
+                player.NotifyChainAttackFinished();
+
             stateMachine.ChangeState(new LocomotionState(player, stateMachine));
         }
     }

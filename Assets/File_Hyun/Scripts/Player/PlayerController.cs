@@ -24,7 +24,6 @@ public class PlayerController : MonoBehaviour
     }
 
     public event Action<PlayerEffectState> OnEffectStateChanged;
-
     public event Action<WeaponType> OnChangeWeapon;
     public event Action OnChainAttackFinished;
     public event Action<bool> OnCounterTry;
@@ -359,6 +358,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             SetEffectState(PlayerEffectState.None);
+
             rb.gravityScale = normalGravityScale;
         }
     }
@@ -409,6 +409,8 @@ public class PlayerController : MonoBehaviour
 
     public void MarkCounterUsed() => lastCounterTime = Time.time;
     public Vector2 GetCounterOffset(bool groundedVariant) => groundedVariant ? counterGroundOffset : counterAirOffset;
+    public void NotifyWeaponChanged(WeaponType weapon) => OnChangeWeapon?.Invoke(weapon);
+    public void NotifyChainAttackFinished() => OnChainAttackFinished?.Invoke();
     public void NotifyCounterTry(bool hasHitMonster) => OnCounterTry?.Invoke(hasHitMonster);
     public void ConsumeAttackBuffer() => attackBufferTimer = 0f;
     public Rigidbody2D Rigidbody => rb;

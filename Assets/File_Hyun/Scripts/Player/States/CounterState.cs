@@ -85,7 +85,7 @@ public class CounterState : PlayerState
             if (monster == null || !hitMonsters.Add(monster))
                 continue;
 
-            hasHitMonster = monster.OnCounterHit();
+            hasHitMonster |= monster.OnCounterHit();
         }
 
         player.NotifyCounterTry(hasHitMonster);
