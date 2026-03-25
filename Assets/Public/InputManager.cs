@@ -7,7 +7,14 @@ public class InputManager : MonoBehaviour
 {
     public static InputManager Instance { get; private set; }
 
-    public enum InputContext { None, UI, Gameplay, Lobby, Dialog }
+    public enum InputContext
+    {
+        None,
+        UI,
+        Gameplay,
+        Lobby,
+        Dialog
+    }
 
     private InputContext _context = InputContext.UI;
     public InputContext CurrentContext
@@ -44,6 +51,7 @@ public class InputManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
@@ -72,13 +80,14 @@ public class InputManager : MonoBehaviour
             case InputContext.Dialog:
                 HandleDialogInput();
                 break;
+
             case InputContext.None:
                 break;
         }
+
         HandlePause();
     }
 
-    #region UI 입력 처리
     void HandlePause()
     {
         if (Input.GetKeyDown(keyData.UI.EscapeKey))
@@ -107,21 +116,23 @@ public class InputManager : MonoBehaviour
         if (Input.GetKeyDown(keyData.UI.SelectKey))
             OnSelectKeyDown?.Invoke();
     }
-    #endregion
 
-    #region 인게임 입력 처리
     void HandlePlayerInput()
     {
-        if (_player == null) return;
+        if (_player == null)
+            return;
 
         float horizontal = 0f;
-        if (Input.GetKey(keyData.Player.LeftMoveKey)) horizontal -= 1f;
-        if (Input.GetKey(keyData.Player.RightMoveKey)) horizontal += 1f;
+        if (Input.GetKey(keyData.Player.LeftMoveKey))
+            horizontal -= 1f;
+        if (Input.GetKey(keyData.Player.RightMoveKey))
+            horizontal += 1f;
         _player.MoveInput = horizontal;
 
         _player.JumpPressed = Input.GetKeyDown(keyData.Player.JumpKey);
         _player.JumpHeld = Input.GetKey(keyData.Player.JumpKey);
-        if (Input.GetKeyUp(keyData.Player.JumpKey)) PlayerController.Instance.StopRising();
+        if (Input.GetKeyUp(keyData.Player.JumpKey))
+            PlayerController.Instance.StopRising();
         _player.DashPressed = Input.GetKeyDown(keyData.Player.DashKey);
         _player.DownHeld = Input.GetKey(keyData.Player.DownMoveKey);
 
@@ -129,36 +140,36 @@ public class InputManager : MonoBehaviour
         _player.SkillPressed = Input.GetKeyDown(keyData.Player.SkillKey);
         _player.SkillHeld = Input.GetKey(keyData.Player.SkillKey);
         _player.ChangePressed = Input.GetKeyDown(keyData.Player.WeaponchangeKey);
+        _player.CounterPressed = Input.GetKeyDown(keyData.Player.CounterKey);
     }
 
     public void RegisterPlayer(PlayerController player) => _player = player;
-    #endregion
 
-    #region 로비 입력 처리
     void HandleLobbyInput()
     {
-        if (_LobbyPlayer == null) return;
+        if (_LobbyPlayer == null)
+            return;
 
         float horizontal = 0f;
-        if (Input.GetKey(keyData.Player.LeftMoveKey)) horizontal -= 1f;
-        if (Input.GetKey(keyData.Player.RightMoveKey)) horizontal += 1f;
+        if (Input.GetKey(keyData.Player.LeftMoveKey))
+            horizontal -= 1f;
+        if (Input.GetKey(keyData.Player.RightMoveKey))
+            horizontal += 1f;
         _LobbyPlayer.MoveInput = horizontal;
     }
 
     public void RegisterLobby(LobbyPlayerController lobbyplayer) => _LobbyPlayer = lobbyplayer;
-    #endregion
 
-    #region 대사 입력 처리
     void HandleDialogInput()
     {
-        if (_dialogGenerator == null) return;
+        if (_dialogGenerator == null)
+            return;
 
         if (Input.GetKeyDown(keyData.Player.ProcessKey))
             _dialogGenerator.ProcessDialog();
     }
 
     public void RegisterDialog(DialogGenerator dialog) => _dialogGenerator = dialog;
-    #endregion
 
     void ResetInput()
     {
@@ -172,12 +183,11 @@ public class InputManager : MonoBehaviour
             _player.SkillPressed = false;
             _player.SkillHeld = false;
             _player.ChangePressed = false;
+            _player.CounterPressed = false;
             _player.DownHeld = false;
         }
 
         if (_LobbyPlayer != null)
-        {
             _LobbyPlayer.MoveInput = 0f;
-        }
     }
 }

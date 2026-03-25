@@ -2,7 +2,7 @@ using UnityEngine;
 
 public enum PlayerStateType
 {
-    Missing, // isfucked = true;
+    Missing,
     Locomotion,
     Dash,
     SpearAttack,
@@ -11,8 +11,8 @@ public enum PlayerStateType
     BowSkill,
     BombAttack,
     BombSkill,
-    Death,
-    // 필요 시 추가
+    Counter,
+    Death
 }
 
 public abstract class PlayerState
@@ -47,6 +47,19 @@ public abstract class PlayerState
                 return true;
             }
         }
+
+        return false;
+    }
+
+    protected bool TryHandleCounterInput()
+    {
+        if (player.CounterPressed && player.CanUseCounter)
+        {
+            player.CounterPressed = false;
+            stateMachine.ChangeState(new CounterState(player, stateMachine));
+            return true;
+        }
+
         return false;
     }
 
@@ -55,13 +68,14 @@ public abstract class PlayerState
         if (player.SkillPressed && player.AttackController.CanUseSkill)
         {
             player.SkillPressed = false;
-            var skillState = player.AttackController.GetSkillState(stateMachine);
+            PlayerState skillState = player.AttackController.GetSkillState(stateMachine);
             if (skillState != null)
             {
                 stateMachine.ChangeState(skillState);
                 return true;
             }
         }
+
         return false;
     }
 
@@ -81,6 +95,7 @@ public abstract class PlayerState
             stateMachine.ChangeState(player.AttackController.GetAttackState(stateMachine));
             return true;
         }
+
         return false;
     }
 
@@ -99,6 +114,7 @@ public abstract class PlayerState
             stateMachine.ChangeState(player.AttackController.GetAttackState(stateMachine));
             return true;
         }
+
         return false;
     }
 }

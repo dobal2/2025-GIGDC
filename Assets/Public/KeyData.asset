@@ -20,6 +20,7 @@ MonoBehaviour:
     JumpKey: 122
     AttackKey: 120
     SkillKey: 99
+    CounterKey: 32
     InteractionKey: 273
     WeaponchangeKey: 306
     ProcessKey: 32

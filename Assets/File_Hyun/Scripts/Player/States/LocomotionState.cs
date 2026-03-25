@@ -26,12 +26,19 @@ public class LocomotionState : PlayerState
     {
         player.AttackController.UpdateComboTimer();
 
-        if (TryHandleSkillInput()) return;
-        if (TryHandleComboContinue()) return;
-        if (TryHandleComboStart()) return;
-        if (TryHandleDash()) return;
+        if (TryHandleCounterInput())
+            return;
+        if (TryHandleSkillInput())
+            return;
+        if (TryHandleComboContinue())
+            return;
+        if (TryHandleComboStart())
+            return;
+        if (TryHandleDash())
+            return;
 
-        if (player.ChangePressed && !player.isJumping) player.AttackController.TrySwitchWeapon();
+        if (player.ChangePressed && !player.isJumping)
+            player.AttackController.TrySwitchWeapon();
 
         if (!player.isJumping && player.jumpBufferTimer > 0f && (player.isGrounded || player.coyoteTimer > 0f))
         {

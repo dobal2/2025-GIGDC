@@ -37,6 +37,7 @@ public class PlayerController : MonoBehaviour
     public bool SkillPressed { get; set; }
     public bool SkillHeld { get; set; }
     public bool ChangePressed { get; set; }
+    public bool CounterPressed { get; set; }
 
     public bool JumpPressed
     {
@@ -89,10 +90,19 @@ public class PlayerController : MonoBehaviour
     [Header("Attack Settings")]
     [SerializeField] private float attackBufferTime = 0.1f;
     [SerializeField] private float weaponChangeCooldown = 0.6f;
+
+    [Header("Counter Settings")]
+    [SerializeField] private float counterCooldown = 0.1f;
+    [SerializeField] private Vector2 counterGroundOffset = new Vector2(1.2f, 0f);
+    [SerializeField] private Vector2 counterAirOffset = new Vector2(1.2f, 0f);
+    [SerializeField] private Vector2 counterBoxSize = new Vector2(1.6f, 1.2f);
+    [SerializeField] private float counterHitDelay = 0.05f;
+    [SerializeField] private LayerMask counterTargetLayer;
     private float lastWeaponChangeTime = -999f;
     public bool CanChangeWeapon => Time.time >= lastWeaponChangeTime + weaponChangeCooldown;
     public void MarkWeaponChanged() => lastWeaponChangeTime = Time.time;
     public bool AttackBuffered => attackBufferTimer > 0f;
+    public bool CanUseCounter => Time.time >= lastCounterTime + counterCooldown;
 
     [Header("Knockback Settings")]
     [SerializeField] private float knockbackDuration = 0.1f;
@@ -147,6 +157,7 @@ public class PlayerController : MonoBehaviour
     private bool prevSkillAvailable = false;
     private bool isDroppingPlatform = false;
     private bool wasDownKeyHeldLastFrame = false;
+    private float lastCounterTime = -999f;
 
     void Awake()
     {
@@ -396,12 +407,18 @@ public class PlayerController : MonoBehaviour
         rb.AddForce(direction.normalized * force, ForceMode2D.Impulse);
     }
 
+    public void MarkCounterUsed() => lastCounterTime = Time.time;
+    public Vector2 GetCounterOffset(bool groundedVariant) => groundedVariant ? counterGroundOffset : counterAirOffset;
+    public void NotifyCounterTry(bool hasHitMonster) => OnCounterTry?.Invoke(hasHitMonster);
     public void ConsumeAttackBuffer() => attackBufferTimer = 0f;
     public Rigidbody2D Rigidbody => rb;
     public BoxCollider2D BoxCollider => boxCol;
     public SpriteRenderer SpriteRenderer => spriteRenderer;
     public Vector2 OriginalColliderSize => originalColliderSize;
     public Vector2 OriginalColliderOffset => originalColliderOffset;
+    public Vector2 CounterBoxSize => counterBoxSize;
+    public float CounterHitDelay => counterHitDelay;
+    public LayerMask CounterTargetLayer => counterTargetLayer.value == 0 ? LayerMask.GetMask("Enemy") : counterTargetLayer;
 
     public bool IsKnockbackActive => isKnockback;
 }

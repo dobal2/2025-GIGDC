@@ -19,6 +19,7 @@ public class KeyData : ScriptableObject
         [Header("Combats")]
         public KeyCode AttackKey;
         public KeyCode SkillKey;
+        public KeyCode CounterKey;
 
         [Header("Interactions")]
         public KeyCode InteractionKey;
