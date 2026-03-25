@@ -128,9 +128,9 @@ public abstract class Monster : MonoBehaviour
         TakeDamageAnimation();
     }
 
-    public virtual void OnCounterHit()
+    public virtual bool OnCounterHit()
     {
-        if (!isCountering) return;
+        if (!isCountering) return false;
 
         if (counterCoroutine != null)
         {
@@ -143,18 +143,16 @@ public abstract class Monster : MonoBehaviour
         if (anim != null)
             anim.SetBool("IsCountering", false);
 
-        if (spriteRenderer != null)
-            spriteRenderer.color = originalColor;
-
-        if (counterText != null)
-        {
-            counterText.gameObject.SetActive(false);
-        }
+        // if (counterText != null)
+        // {
+        //     counterText.gameObject.SetActive(false);
+        // }
 
         if (counterStunCoroutine != null)
             StopCoroutine(counterStunCoroutine);
 
         counterStunCoroutine = StartCoroutine(CounterStunRoutine());
+        return true;
     }
 
     protected virtual void LateUpdate()
@@ -245,15 +243,10 @@ public abstract class Monster : MonoBehaviour
         if (anim != null)
             anim.SetBool("IsCountering", true);
 
-        if (spriteRenderer != null)
-        {
-            spriteRenderer.color = Color.red;
-        }
-
-        if (counterText != null)
-        {
-            counterText.gameObject.SetActive(true);
-        }
+        // if (counterText != null)
+        // {
+        //     counterText.gameObject.SetActive(true);
+        // }
 
         yield return new WaitForSeconds(1.5f);
 
@@ -262,15 +255,10 @@ public abstract class Monster : MonoBehaviour
         if (anim != null)
             anim.SetBool("IsCountering", false);
 
-        if (spriteRenderer != null)
-        {
-            spriteRenderer.color = originalColor;
-        }
-
-        if (counterText != null)
-        {
-            counterText.gameObject.SetActive(false);
-        }
+        // if (counterText != null)
+        // {
+        //     counterText.gameObject.SetActive(false);
+        // }
 
         counterCoroutine = null;
         canCounter = true;
