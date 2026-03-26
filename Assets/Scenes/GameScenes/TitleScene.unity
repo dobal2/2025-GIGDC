@@ -2914,7 +2914,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3850396026687394418, guid: f197cc4a2193a6b478420e0e01f65e67, type: 3}
       propertyPath: m_Name
-      value: "\uD300\uBA85"
+      value: TeamNane
       objectReference: {fileID: 0}
     - target: {fileID: 3850396026687394418, guid: f197cc4a2193a6b478420e0e01f65e67, type: 3}
       propertyPath: m_IsActive
@@ -2998,15 +2998,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5014501765353685426, guid: f197cc4a2193a6b478420e0e01f65e67, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.4
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 5014501765353685426, guid: f197cc4a2193a6b478420e0e01f65e67, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.4
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 5014501765353685426, guid: f197cc4a2193a6b478420e0e01f65e67, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.4
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 5014501765353685426, guid: f197cc4a2193a6b478420e0e01f65e67, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3038,7 +3038,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5014501765353685426, guid: f197cc4a2193a6b478420e0e01f65e67, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 1000
+      value: 1200
       objectReference: {fileID: 0}
     - target: {fileID: 5014501765353685426, guid: f197cc4a2193a6b478420e0e01f65e67, type: 3}
       propertyPath: m_AnchoredPosition.y
