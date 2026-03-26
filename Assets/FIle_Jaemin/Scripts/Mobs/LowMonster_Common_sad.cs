@@ -8,11 +8,13 @@ public class LowMonster_Common_sad : Monster
     [SerializeField] private float bulletSpeed;
     [SerializeField] private GameObject firePos;
     
+    private AudioSource attackSound;
     private bool isAttacking = false;
 
     protected override void Start()
     {
         base.Start();
+        attackSound = GetComponent<AudioSource>();
         if(projectilePrefab == null)
             Debug.LogError("No projectile prefab assigned");
 
@@ -49,7 +51,7 @@ public class LowMonster_Common_sad : Monster
             return;
         isAttacking = true;
         anim.SetTrigger("Attack");
-        
+
         StartCoroutine(WaitToAttack(attackCoolDown));    
         attackCoroutine = StartCoroutine(AttackRoutine());
     }
@@ -87,6 +89,7 @@ public class LowMonster_Common_sad : Monster
 
     public void Fire()
     {
+        attackSound.Play();
         Debug.Log("Sad Fire");
         Vector2 dir = (player.position - transform.position).normalized;
         GameObject projectile = Instantiate(projectilePrefab, firePos.transform.position, Quaternion.identity);
