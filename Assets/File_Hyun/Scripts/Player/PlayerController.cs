@@ -24,7 +24,6 @@ public class PlayerController : MonoBehaviour
     }
 
     public event Action<PlayerEffectState> OnEffectStateChanged;
-
     public event Action<WeaponType> OnChangeWeapon;
     public event Action OnChainAttackFinished;
     public event Action<bool> OnCounterTry;
@@ -93,9 +92,9 @@ public class PlayerController : MonoBehaviour
 
     [Header("Counter Settings")]
     [SerializeField] private float counterCooldown = 0.1f;
-    [SerializeField] private Vector2 counterGroundOffset = new Vector2(1.2f, 0f);
-    [SerializeField] private Vector2 counterAirOffset = new Vector2(1.2f, 0f);
-    [SerializeField] private Vector2 counterBoxSize = new Vector2(1.6f, 1.2f);
+    [SerializeField] private Vector2 counterGroundOffset = new(1.2f, 0f);
+    [SerializeField] private Vector2 counterAirOffset = new(1.2f, 0f);
+    [SerializeField] private Vector2 counterBoxSize = new(1.6f, 1.2f);
     [SerializeField] private float counterHitDelay = 0.05f;
     [SerializeField] private LayerMask counterTargetLayer;
     private float lastWeaponChangeTime = -999f;
@@ -359,6 +358,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             SetEffectState(PlayerEffectState.None);
+
             rb.gravityScale = normalGravityScale;
         }
     }
@@ -409,6 +409,8 @@ public class PlayerController : MonoBehaviour
 
     public void MarkCounterUsed() => lastCounterTime = Time.time;
     public Vector2 GetCounterOffset(bool groundedVariant) => groundedVariant ? counterGroundOffset : counterAirOffset;
+    public void NotifyWeaponChanged(WeaponType weapon) => OnChangeWeapon?.Invoke(weapon);
+    public void NotifyChainAttackFinished() => OnChainAttackFinished?.Invoke();
     public void NotifyCounterTry(bool hasHitMonster) => OnCounterTry?.Invoke(hasHitMonster);
     public void ConsumeAttackBuffer() => attackBufferTimer = 0f;
     public Rigidbody2D Rigidbody => rb;

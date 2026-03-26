@@ -72,9 +72,7 @@ public abstract class Monster : MonoBehaviour
         if (counterTextPrefab != null && counterText == null)
         {
             GameObject textObj = Instantiate(counterTextPrefab, transform);
-            textObj.transform.localPosition = Vector3.zero;
-            textObj.transform.localRotation = Quaternion.identity;
-
+            textObj.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
             counterText = textObj.GetComponent<TextMeshPro>();
 
             if (counterText != null)
