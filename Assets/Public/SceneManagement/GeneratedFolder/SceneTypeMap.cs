@@ -9,7 +9,6 @@ public static class SceneTypeMap
         "TitleScene",
         "Lobby_Over",
         "Lobby_Under",
-        "TutorialScene_1",
         "Stage1_1",
         "Stage1_2",
         "Stage1_3",
@@ -60,6 +59,7 @@ public static class SceneTypeMap
         "EndingScene_1",
         "EndingScene_2",
         "TutorialScene_2",
+        "TutorialScene_1",
     };
 
     private static readonly string[] ScenePaths =
@@ -68,7 +68,6 @@ public static class SceneTypeMap
         "Assets/Scenes/GameScenes/TitleScene.unity",
         "Assets/Scenes/GameScenes/LobbyScenes/Lobby_Over.unity",
         "Assets/Scenes/GameScenes/LobbyScenes/Lobby_Under.unity",
-        "Assets/Scenes/GameScenes/TutorialScenes/TutorialScene_1.unity",
         "Assets/Scenes/GameScenes/Levels/Level1/Stage1_1.unity",
         "Assets/Scenes/GameScenes/Levels/Level1/Stage1_2.unity",
         "Assets/Scenes/GameScenes/Levels/Level1/Stage1_3.unity",
@@ -119,6 +118,7 @@ public static class SceneTypeMap
         "Assets/Scenes/GameScenes/EndingScene_1.unity",
         "Assets/Scenes/GameScenes/EndingScene_2.unity",
         "Assets/Scenes/GameScenes/TutorialScenes/TutorialScene_2.unity",
+        "Assets/Scenes/GameScenes/TutorialScenes/TutorialScene_1.unity",
     };
 
     private static readonly bool[] EnabledInBuildSettings =
@@ -185,7 +185,6 @@ public static class SceneTypeMap
         { "TitleScene", SceneType.TitleScene },
         { "Lobby_Over", SceneType.Lobby_Over },
         { "Lobby_Under", SceneType.Lobby_Under },
-        { "TutorialScene_1", SceneType.TutorialScene_1 },
         { "Stage1_1", SceneType.Stage1_1 },
         { "Stage1_2", SceneType.Stage1_2 },
         { "Stage1_3", SceneType.Stage1_3 },
@@ -236,6 +235,7 @@ public static class SceneTypeMap
         { "EndingScene_1", SceneType.EndingScene_1 },
         { "EndingScene_2", SceneType.EndingScene_2 },
         { "TutorialScene_2", SceneType.TutorialScene_2 },
+        { "TutorialScene_1", SceneType.TutorialScene_1 },
     };
 
     public static int TotalCount => SceneNames.Length;

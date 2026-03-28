@@ -56,6 +56,7 @@ public class StageManager : MonoBehaviour
 
     [SerializeField] private Effect boomEffectPrefab;
 
+    [SerializeField] private bool enableLoadScene = true;
     [SerializeField] private SceneType moveSceneType;
 
     [SerializeField] private SoundPlayer shutterSoundPrefab;
