@@ -24,6 +24,7 @@ public class SceneLoader : Singleton<SceneLoader, GlobalScope>
     public void LoadScene(SceneType sceneType, SceneChangeAnimation changeAnimation = SceneChangeAnimation.Fade)
     {
         Debug.Log("LoadScene =" + changeAnimation);
+        Debug.Log(sceneType.ToString());
         LoadScene(GetSceneName(sceneType), changeAnimation);
     }
 

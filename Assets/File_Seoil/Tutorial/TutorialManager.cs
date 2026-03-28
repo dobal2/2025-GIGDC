@@ -41,9 +41,6 @@ public class TutorialManager : MonoBehaviour
     private void Update()
     {
         tutorialSteps[tutorialStepIndex].Update();
-
-        if (Input.GetKeyDown(KeyCode.Space))
-            SkipTutorial();
     }
 
     public void SkipTutorial()

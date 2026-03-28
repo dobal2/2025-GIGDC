@@ -55,6 +55,8 @@ public class SceneMover : MonoBehaviour
     {
         if (isProgress)
             Stage.Progress();
+
+        AudioPlayer.Instance.PlaySFX(AudioPlayer.Instance.AudioRegistry.Interaction);
         SceneLoader.Instance.LoadScene(sceneType);
     }
 }

@@ -220,6 +220,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e35af56f08e2996468c5292884e00879, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeToDarkViewPrefab: {fileID: 2829245205148023844, guid: a39ced1d56806754cae38b24e283bb35, type: 3}
+  fadeToBrightViewPrefab: {fileID: 4969823275649929280, guid: 91b9fa4cec214ac4c8dbdcc1a0f7418a, type: 3}
 --- !u!1 &7997382645066900869
 GameObject:
   m_ObjectHideFlags: 0

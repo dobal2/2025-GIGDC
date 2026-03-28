@@ -1,10 +1,14 @@
 using System;
 using System.Collections.Generic;
 using DG.Tweening;
+using Unity.Cinemachine;
 using UnityEngine;
 
 public class DialogCameraEventReciever : DialogEventRecieverBase
 {
+    [SerializeField] private FadeToDarkView fadeToDarkViewPrefab;
+    [SerializeField] private FadeToBrightView fadeToBrightViewPrefab;
+
     protected override void RegisterCommands()
     {
         OnEvent.Add("ShakeCamera", ShakeCamera);
@@ -37,21 +41,49 @@ public class DialogCameraEventReciever : DialogEventRecieverBase
 
     private void ScaleCamera(string line)
     {
-        throw new NotImplementedException();
+        try
+        {
+            if(line == "true")
+            {
+                FindAnyObjectByType<CinemachineCamera>().Lens.OrthographicSize = 4f;
+            }
+            else if(line == "false")
+            {
+                FindAnyObjectByType<CinemachineCamera>().Lens.OrthographicSize = 4.74f;
+            }
+        }
+        catch (Exception)
+        {
+            return;
+        }
     }
 
     private void FadeCameraToDark(string line)
     {
-        throw new NotImplementedException();
+        try
+        {
+            Instantiate(fadeToDarkViewPrefab).SetDarkView(float.Parse(line));
+        }
+        catch (Exception)
+        {
+            return;
+        }
     }
 
     private void FadeCameraToBright(string line)
     {
-        throw new NotImplementedException();
+        try
+        {
+            Instantiate(fadeToBrightViewPrefab).SetBrightView(float.Parse(line));
+        }
+        catch (Exception)
+        {
+            return;
+        }
     }
 
     private void MoveCamera(string line)
     {
-        throw new NotImplementedException();
+        //throw new NotImplementedException();
     }
 }

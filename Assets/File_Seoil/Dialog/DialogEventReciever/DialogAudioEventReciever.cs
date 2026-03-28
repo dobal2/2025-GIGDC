@@ -10,6 +10,6 @@ public class DialogAudioEventReciever : DialogEventRecieverBase
 
     private void PlaySound(string line)
     {
-        throw new NotImplementedException();
+        //throw new NotImplementedException();
     }
 }

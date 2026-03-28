@@ -110,4 +110,4 @@ MonoBehaviour:
   - Target: {fileID: 11400000, guid: 2dc7fb09e09f74e4fa2e6f299dc1edd3, type: 2}
     <Line>k__BackingField: "\uC798\uD558\uACE0 \uC624\uAC8C\uB098~"
   - Target: {fileID: 11400000, guid: 2dc7fb09e09f74e4fa2e6f299dc1edd3, type: 2}
-    <Line>k__BackingField: <ChangeScene(TutorialScene)>
+    <Line>k__BackingField: <ChangeScene(TutorialScene_1)>

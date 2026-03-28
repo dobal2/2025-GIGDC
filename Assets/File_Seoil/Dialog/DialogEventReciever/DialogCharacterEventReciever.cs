@@ -10,6 +10,6 @@ public class DialogCharacterEventReciever : DialogEventRecieverBase
 
     private void MoveCharactor(string line)
     {
-        throw new NotImplementedException();
+        //throw new NotImplementedException();
     }
 }
