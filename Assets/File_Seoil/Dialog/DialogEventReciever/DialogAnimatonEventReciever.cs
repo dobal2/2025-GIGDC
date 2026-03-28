@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class DialogAnimatonEventReciever : DialogEventRecieverBase
 {
-    private Dictionary<string, Action> animationDictionaries;
+    private Dictionary<string, Action> animationDictionaries = new();
 
     protected override void RegisterCommands()
     {

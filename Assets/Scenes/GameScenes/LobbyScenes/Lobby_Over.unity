@@ -661,10 +661,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyData: {fileID: 11400000, guid: eef92708e559636479c30d47676bef1e, type: 2}
-  Click: {fileID: 463144762}
   lastSelectedButton: {fileID: 0}
   IsCapturingKey: 0
-  ClickCooldown: 0.3
 --- !u!4 &463144765
 Transform:
   m_ObjectHideFlags: 0
