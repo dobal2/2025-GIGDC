@@ -54,11 +54,6 @@ public class InputManager : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
-
-#if !UNITY_EDITOR
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Confined;
-#endif
     }
 
     void Update()
