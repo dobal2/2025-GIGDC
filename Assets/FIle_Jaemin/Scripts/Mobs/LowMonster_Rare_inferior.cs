@@ -11,12 +11,14 @@ public class LowMonster_Rare_inferior : Monster
     [SerializeField] private int lineCount = 5;
     [SerializeField] private float lineDuration = 0.5f;
 
+    private AudioSource attackSound;
     private bool didVerticalAttack;
-    
+
 
     protected override void Start()
     {
         base.Start();
+        attackSound = GetComponent<AudioSource>();
         if(inferiorAttackLineStartPrefab == null || inferiorAttackLineEndPrefab == null)
             Debug.LogError("No inferiorAttackLineStartPrefab or inferiorAttackLineEndPrefab assigned");
             
@@ -25,6 +27,7 @@ public class LowMonster_Rare_inferior : Monster
     protected override void Attack()
     {
         anim.SetTrigger("Attack");
+        attackSound.Play();
         StartCoroutine(WaitToAttack(attackCoolDown));
 
         if (didVerticalAttack)

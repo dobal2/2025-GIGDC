@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find /c/Unity/2025-GIGDC/Assets -type d -name *Mob* -o -type d -name *mob* -o -type d -name *Monster*)"
+    ]
+  }
+}

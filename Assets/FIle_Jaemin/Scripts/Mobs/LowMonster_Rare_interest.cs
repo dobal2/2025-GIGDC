@@ -17,6 +17,7 @@ public class LowMonster_Rare_interest : Monster
     [SerializeField] private Vector2 attackSize;
     [SerializeField] private ParticleSystem inkTrail;
     
+    private AudioSource attackSound;
     private Coroutine dashCoroutine;
 
 
@@ -30,6 +31,7 @@ public class LowMonster_Rare_interest : Monster
     {
         base.Start();
         rigid = GetComponent<Rigidbody2D>();
+        attackSound = GetComponent<AudioSource>();
 
         if (counterText != null && spriteRenderer != null)
         {
@@ -41,6 +43,7 @@ public class LowMonster_Rare_interest : Monster
     protected override void Attack()
     {
         if (dashCoroutine != null || isStunned) return;
+        attackSound.Play();
         dashCoroutine = StartCoroutine(Dash());
     }
 

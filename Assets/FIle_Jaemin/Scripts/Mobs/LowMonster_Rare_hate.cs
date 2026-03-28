@@ -12,11 +12,13 @@ public class LowMonster_Rare_hate : Monster
     
     private Coroutine delayCoroutine;
 
+    private AudioSource attackSound;
     private bool isAttacking;
 
     protected override void Start()
     {
         base.Start();
+        attackSound = GetComponent<AudioSource>();
 
         if (counterText != null && spriteRenderer != null)
         {
@@ -71,7 +73,7 @@ public class LowMonster_Rare_hate : Monster
 
         canFlip = false;
         anim.SetBool("IsAttacking",true);
-        
+
         attackCoroutine = StartCoroutine(AttackRoutine());
         
         delayCoroutine =  StartCoroutine(DelayToDisableIsAttacking());
@@ -86,6 +88,7 @@ public class LowMonster_Rare_hate : Monster
     public void ActiveAttacking()
     {
         isAttacking = true;
+        attackSound.Play();
         ParticleSystem particle = windParticle.GetComponent<ParticleSystem>();
         particle.Play();
     }
