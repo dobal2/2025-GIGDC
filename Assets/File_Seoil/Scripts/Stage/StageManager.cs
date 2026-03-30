@@ -88,7 +88,7 @@ public class StageManager : MonoBehaviour
             {
                 objects = 0;
                 OnAllObjectKilled?.Invoke();
-                Instance.Clear();
+                if(PlayerController.Instance.CurrentStateType != PlayerStateType.Death) Instance.Clear();
             }
 
         }
