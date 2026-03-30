@@ -9,8 +9,6 @@ public class CounterTutorialStep : TutorialStepBase
     public override void Enter()
     {
         TutorialManager.Instance.StartCoroutine(DelayedSkipTutorial1());
-
-        PlayerController.Instance.OnCounterTry += OnCounterTry;
     }
 
     public override void Exit()
@@ -21,6 +19,8 @@ public class CounterTutorialStep : TutorialStepBase
 
     private void OnCounterTry(bool isSuccesful)
     {
+        Debug.Log("OnCounterTry: " + isSuccesful);
+
         if (!isStarted)
             return;
 
@@ -43,6 +43,8 @@ public class CounterTutorialStep : TutorialStepBase
     private IEnumerator DelayedSkipTutorial1()
     {
         yield return new WaitForSecondsRealtime(3f);
+
+        PlayerController.Instance.OnCounterTry += OnCounterTry;
 
         Time.timeScale = 0;
         tutorialDescriptionView = UIManager.Instance.Show<TutorialDescriptionView>();
