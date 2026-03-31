@@ -1,2 +1,13 @@
 fileFormatVersion: 2
 guid: 765dbf69de9a50143bd5d32804fe8f09
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - <AudioRegistry>k__BackingField: {fileID: 11400000, guid: 5bf8fbf8f47504748a7bcb3f4dcdd91d, type: 2}
+  - sfxPrefab: {fileID: 1470396350788236075, guid: 909aa4ac8e71ef847a38569f2edd8015, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
