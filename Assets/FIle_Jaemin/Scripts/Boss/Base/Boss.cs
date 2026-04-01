@@ -60,7 +60,6 @@ public abstract class Boss : Monster
             }
         }
 
-        StartBattle();
     }
 
     public override void KnockBack(Transform attacker, float knockBackForce, float knockBackAngle, float duration)

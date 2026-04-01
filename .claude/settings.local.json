@@ -3,7 +3,11 @@
     "allow": [
       "Bash(find /c/Unity/2025-GIGDC/Assets -type d -name *Mob* -o -type d -name *mob* -o -type d -name *Monster*)",
       "Bash(xargs grep:*)",
-      "Bash(grep -n \"public override void TakeDamage\" Assets/FIle_Jaemin/Scripts/Mobs/*.cs)"
+      "Bash(grep -n \"public override void TakeDamage\" Assets/FIle_Jaemin/Scripts/Mobs/*.cs)",
+      "Bash(grep -E \"\\\\.cs$\")",
+      "Bash(grep -l \"Boss_Frustration\\\\|Boss_Excitement\" /c/Unity/2025-GIGDC/Assets/Scenes/GameScenes/Levels/**/*.unity)",
+      "Bash(xargs wc:*)",
+      "Bash(xargs ls:*)"
     ]
   }
 }
