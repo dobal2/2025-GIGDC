@@ -484,13 +484,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8223938700418201599, guid: 1ca83e73789255b438a946af2cf4aa12, type: 3}
-      propertyPath: m_Resource
-      value: 
-      objectReference: {fileID: 8300000, guid: ae1d6b1f2316af24fb85ee6babf31af4, type: 3}
-    - target: {fileID: 8223938700418201599, guid: 1ca83e73789255b438a946af2cf4aa12, type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: ae1d6b1f2316af24fb85ee6babf31af4, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 8410269963215146875, guid: 1ca83e73789255b438a946af2cf4aa12, type: 3}
       propertyPath: m_Name
       value: Stage Template

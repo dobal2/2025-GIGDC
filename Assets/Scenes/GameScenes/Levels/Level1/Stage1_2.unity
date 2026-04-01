@@ -170,11 +170,11 @@ PrefabInstance:
     - target: {fileID: 1470396350788236075, guid: f939ddf3a5180af4391d29494f67c22a, type: 3}
       propertyPath: m_Resource
       value: 
-      objectReference: {fileID: 8300000, guid: ae1d6b1f2316af24fb85ee6babf31af4, type: 3}
+      objectReference: {fileID: 8300000, guid: 1bb3d90097ad7e64eb0b9aed5c38440c, type: 3}
     - target: {fileID: 1470396350788236075, guid: f939ddf3a5180af4391d29494f67c22a, type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: ae1d6b1f2316af24fb85ee6babf31af4, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 9095667448810062836, guid: f939ddf3a5180af4391d29494f67c22a, type: 3}
       propertyPath: m_Name
       value: BGMPlayer
