@@ -118,7 +118,7 @@ public class StageManager : MonoBehaviour
     public void FailByInstance()
     {
         SetObjects(0);
-        PlayerHealth.Instance.TakeHeal(5);
+        PlayerHealth.CurrentHealth = PlayerHealth.Instance.MaxHealth;
 
         switch (Stage.Data)
         {
@@ -149,7 +149,7 @@ public class StageManager : MonoBehaviour
             Boss.Instance.TakeDamage(200);
 
         if (Input.GetKeyDown(KeyCode.W) && PlayerHealth.Instance != null)
-            PlayerHealth.Instance.TakeHeal(5);
+            PlayerHealth.CurrentHealth = PlayerHealth.Instance.MaxHealth;
 
         if (Input.GetKeyDown(KeyCode.E))
             Objects = 0;

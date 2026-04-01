@@ -31,6 +31,8 @@ public class CounterState : PlayerState
         if (!enteredGrounded)
             player.Rigidbody.constraints |= RigidbodyConstraints2D.FreezePositionY;
 
+        player.PlayClip(player.Counter);
+
         player.Animator.Play(enteredGrounded ? "Player_Attack_Counter" : "Player_Attack_Counter_Flying");
         player.StartCoroutine(DelayedCounterHit());
     }

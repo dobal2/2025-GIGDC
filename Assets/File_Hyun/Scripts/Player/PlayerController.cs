@@ -69,7 +69,7 @@ public class PlayerController : MonoBehaviour
     [Header("Jump Settings")]
     [SerializeField] private AnimationCurve jumpForceCurve;
     [SerializeField] private float maxJumpTime = 0.4f;
-    [SerializeField] private float maxJumpForce = 20f;
+    [SerializeField] private float maxJumpForce = 15f;
     [SerializeField] private float jumpHeightMultiplier = 1f;
     [SerializeField] private float jumpBufferTime = 0.1f;
     [SerializeField] private float coyoteTime = 0.1f;
@@ -137,6 +137,8 @@ public class PlayerController : MonoBehaviour
     public AudioClip BowSkillCharging;
     public AudioClip BowSkillRelease;
     public AudioClip BombBoom;
+    public AudioClip Counter;
+    public AudioClip Heal;
 
     private Rigidbody2D rb;
     private BoxCollider2D boxCol;

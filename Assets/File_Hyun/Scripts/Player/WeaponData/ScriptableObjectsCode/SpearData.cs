@@ -17,11 +17,13 @@ public struct SpearComboInfo
 [CreateAssetMenu(fileName = "SpearData", menuName = "Scriptable Objects/SpearData")]
 public class SpearData : ScriptableObject
 {
-    [Header("특수공격 정보")]
+    [Header("특수 공격 정보")]
     public float spearSkillDamage;
     public float spearSkillRange;
     public float jumpSpeed;
     public float spearSkillCooldown;
+    public float spearSkillAutoTargetRange;
+    public float spearSkillAutoTargetArcHeight;
 
     [Header("Animator")]
     public RuntimeAnimatorController animatorController;
@@ -30,6 +32,7 @@ public class SpearData : ScriptableObject
     public SpearComboInfo[] spearComboInfos;
 
     public int MaxCombo => spearComboInfos?.Length ?? 0;
+
     private bool InBounds(int step) => step >= 1 && step <= MaxCombo;
 
     public float GetDamage(int step) => InBounds(step) ? spearComboInfos[step - 1].damage : 0f;

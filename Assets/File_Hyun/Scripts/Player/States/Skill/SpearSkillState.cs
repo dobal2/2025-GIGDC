@@ -20,10 +20,16 @@ public class SpearSkillState : PlayerState
 
     private SkillMode mode;
     private SkillPhase phase;
+
     private float dashSpeed;
-    private bool landingTriggered = false;
-    private bool forceGroundedIgnore = false;
+
+    private bool landingTriggered;
+    private bool forceGroundedIgnore;
     private bool skillStarted;
+    private bool useAutoTargetTrajectory;
+    private bool hasAutoTargetLandingPoint;
+    private Vector2 autoTargetLandingPoint;
+
     private readonly SpearData spearData;
 
     public SpearSkillState(PlayerController player, PlayerStateMachine stateMachine)
@@ -44,8 +50,16 @@ public class SpearSkillState : PlayerState
         }
 
         skillStarted = true;
+        landingTriggered = false;
+        forceGroundedIgnore = true;
+        useAutoTargetTrajectory = false;
+
         player.Rigidbody.linearVelocity = Vector2.zero;
         player.isNoClip = true;
+
+        hasAutoTargetLandingPoint = TryResolveAutoTargetLandingPoint(out autoTargetLandingPoint);
+        if (hasAutoTargetLandingPoint)
+            FaceTarget(autoTargetLandingPoint.x);
 
         if (player.isGrounded)
         {
@@ -53,8 +67,13 @@ public class SpearSkillState : PlayerState
             mode = SkillMode.Ground;
             phase = SkillPhase.Moving;
             dashSpeed = 14f;
-            Vector2 vel = new(player.facingDirection * dashSpeed, spearData.jumpSpeed);
-            player.Rigidbody.linearVelocity = vel;
+
+            useAutoTargetTrajectory = hasAutoTargetLandingPoint && TryLaunchToTarget(autoTargetLandingPoint);
+            if (!useAutoTargetTrajectory)
+            {
+                Vector2 velocity = new(player.facingDirection * dashSpeed, spearData.jumpSpeed);
+                player.Rigidbody.linearVelocity = velocity;
+            }
         }
         else if (player.isLowAir)
         {
@@ -62,8 +81,13 @@ public class SpearSkillState : PlayerState
             mode = SkillMode.LowAir;
             phase = SkillPhase.Moving;
             dashSpeed = 18f;
-            Vector2 vel = new(player.facingDirection * dashSpeed, spearData.jumpSpeed * 0.5f);
-            player.Rigidbody.linearVelocity = vel;
+
+            useAutoTargetTrajectory = hasAutoTargetLandingPoint && TryLaunchToTarget(autoTargetLandingPoint);
+            if (!useAutoTargetTrajectory)
+            {
+                Vector2 velocity = new(player.facingDirection * dashSpeed, spearData.jumpSpeed * 0.5f);
+                player.Rigidbody.linearVelocity = velocity;
+            }
         }
         else
         {
@@ -74,8 +98,6 @@ public class SpearSkillState : PlayerState
                                            RigidbodyConstraints2D.FreezePositionY;
         }
 
-        forceGroundedIgnore = true;
-        landingTriggered = false;
         player.StartCoroutine(ResetForceGroundedIgnore());
     }
 
@@ -97,12 +119,23 @@ public class SpearSkillState : PlayerState
             AnimatorStateInfo animInfo = player.Animator.GetCurrentAnimatorStateInfo(0);
             if (animInfo.IsName("Spear_Flying_Charge") && animInfo.normalizedTime >= 1f)
             {
-                Vector2 boxSize = new(player.BoxCollider.bounds.size.x * 0.99f, 0.1f);
-                Vector2 origin = (Vector2)player.BoxCollider.bounds.center + Vector2.down * player.BoxCollider.bounds.extents.y;
-                RaycastHit2D hit = Physics2D.BoxCast(origin, boxSize, 0f, Vector2.down, Mathf.Infinity, player.GroundLayer);
+                if (hasAutoTargetLandingPoint)
+                {
+                    player.transform.position = new Vector3(
+                        autoTargetLandingPoint.x,
+                        autoTargetLandingPoint.y,
+                        player.transform.position.z
+                    );
+                }
+                else
+                {
+                    Vector2 boxSize = new(player.BoxCollider.bounds.size.x * 0.99f, 0.1f);
+                    Vector2 origin = (Vector2)player.BoxCollider.bounds.center + Vector2.down * player.BoxCollider.bounds.extents.y;
+                    RaycastHit2D hit = Physics2D.BoxCast(origin, boxSize, 0f, Vector2.down, Mathf.Infinity, player.GroundLayer);
 
-                if (hit.collider)
-                    player.transform.position = hit.point;
+                    if (hit.collider)
+                        player.transform.position = hit.point;
+                }
 
                 player.Rigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
                 player.Rigidbody.linearVelocity = Vector2.zero;
@@ -123,7 +156,7 @@ public class SpearSkillState : PlayerState
             player.SetEffectState(PlayerEffectState.SpearAirSkill);
             if (phase == SkillPhase.Moving)
                 player.Animator.Play("Spear_Ground_Land");
-            else if (phase == SkillPhase.WaitingForLanding)
+            else
                 player.Animator.Play("Spear_Flying_Land");
 
             ApplyLandingDamage();
@@ -148,11 +181,14 @@ public class SpearSkillState : PlayerState
 
     public override void FixedUpdate()
     {
-        if (phase == SkillPhase.Moving && (mode == SkillMode.Ground || mode == SkillMode.LowAir))
+        if (phase != SkillPhase.Moving || useAutoTargetTrajectory)
+            return;
+
+        if (mode == SkillMode.Ground || mode == SkillMode.LowAir)
         {
-            Vector2 vel = player.Rigidbody.linearVelocity;
-            vel.x = player.facingDirection * dashSpeed;
-            player.Rigidbody.linearVelocity = vel;
+            Vector2 velocity = player.Rigidbody.linearVelocity;
+            velocity.x = player.facingDirection * dashSpeed;
+            player.Rigidbody.linearVelocity = velocity;
         }
     }
 
@@ -160,6 +196,56 @@ public class SpearSkillState : PlayerState
     {
         yield return new WaitForSeconds(0.1f);
         forceGroundedIgnore = false;
+    }
+
+    private bool TryResolveAutoTargetLandingPoint(out Vector2 landingPoint)
+    {
+        landingPoint = default;
+        if (spearData.spearSkillAutoTargetRange <= 0f)
+            return false;
+
+        if (!CombatTargetingUtility.TryFindNearestEnemyPoint(
+                player.transform.position,
+                spearData.spearSkillAutoTargetRange,
+                LayerMask.GetMask("Enemy"),
+                out Vector2 enemyPoint))
+        {
+            return false;
+        }
+
+        Vector2 boxSize = new(player.BoxCollider.bounds.size.x * 0.99f, 0.1f);
+        if (CombatTargetingUtility.TryProjectPointToGround(enemyPoint, boxSize, player.GroundLayer, 5f, 30f, out landingPoint))
+            return true;
+
+        landingPoint = enemyPoint;
+        return true;
+    }
+
+    private bool TryLaunchToTarget(Vector2 targetPoint)
+    {
+        float gravityMagnitude = Mathf.Abs(Physics2D.gravity.y * player.Rigidbody.gravityScale);
+        if (!CombatTargetingUtility.TryGetBallisticVelocity(
+                player.transform.position,
+                targetPoint,
+                gravityMagnitude,
+                spearData.spearSkillAutoTargetArcHeight,
+                out Vector2 velocity))
+        {
+            return false;
+        }
+
+        player.Rigidbody.linearVelocity = velocity;
+        return true;
+    }
+
+    private void FaceTarget(float targetX)
+    {
+        float deltaX = targetX - player.transform.position.x;
+        if (Mathf.Abs(deltaX) <= 0.01f)
+            return;
+
+        player.facingDirection = deltaX > 0f ? 1 : -1;
+        player.transform.rotation = Quaternion.Euler(0f, player.facingDirection == -1 ? 180f : 0f, 0f);
     }
 
     private void ApplyLandingDamage()
@@ -172,16 +258,16 @@ public class SpearSkillState : PlayerState
         Collider2D[] hits = Physics2D.OverlapCircleAll(center, radius, LayerMask.GetMask("Enemy"));
         foreach (Collider2D hit in hits)
         {
-            if (hit.TryGetComponent<Monster>(out Monster monster))
-            {
-                monster.TakeDamage(spearData.spearSkillDamage);
-                monster.KnockBack(
-                    attacker: player.transform,
-                    knockBackForce: 20,
-                    knockBackAngle: 45,
-                    duration: 0.6f
-                );
-            }
+            if (!hit.TryGetComponent<Monster>(out Monster monster))
+                continue;
+
+            monster.TakeDamage(spearData.spearSkillDamage);
+            monster.KnockBack(
+                attacker: player.transform,
+                knockBackForce: 20f,
+                knockBackAngle: 45f,
+                duration: 0.6f
+            );
         }
 
         DebugDrawCrossX(center, radius, 0.3f);
@@ -191,8 +277,8 @@ public class SpearSkillState : PlayerState
     {
 #if UNITY_EDITOR
         Color color = Color.red;
-        Debug.DrawLine(center + new Vector2(-radius, 0), center + new Vector2(radius, 0), color, duration);
-        Debug.DrawLine(center + new Vector2(0, -radius), center + new Vector2(0, radius), color, duration);
+        Debug.DrawLine(center + new Vector2(-radius, 0f), center + new Vector2(radius, 0f), color, duration);
+        Debug.DrawLine(center + new Vector2(0f, -radius), center + new Vector2(0f, radius), color, duration);
 #endif
     }
 }

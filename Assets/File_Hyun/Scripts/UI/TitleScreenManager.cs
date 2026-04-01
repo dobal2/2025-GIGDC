@@ -15,6 +15,7 @@ public class TitleScreenManager : MonoBehaviour
     {
         Debug.Log("이어하기");
         Stage.LoadData();
+        weaponData.unlockedWeapons = new UnlockedWeapons { Spear = true, Bow = true, Bomb = true };
         SceneLoader.Instance.LoadScene(SceneType.Lobby_Over);
     }
 
@@ -22,7 +23,7 @@ public class TitleScreenManager : MonoBehaviour
     {
         Debug.Log("처음부터");
         Stage.Data = StageDataType.Start;
-        weaponData.unlockedWeapons = new UnlockedWeapons { Spear = true, Bow = false, Bomb = false };
+        weaponData.unlockedWeapons = new UnlockedWeapons { Spear = true, Bow = true, Bomb = true };
         SceneLoader.Instance.LoadScene(SceneType.Lobby_Over);
     }
 

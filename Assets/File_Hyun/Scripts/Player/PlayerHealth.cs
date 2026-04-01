@@ -62,6 +62,7 @@ public class PlayerHealth : MonoBehaviour
     public void TakeHeal(float amount)
     {
         CurrentHealth = Mathf.Clamp(CurrentHealth + amount, 0f, MaxHealth);
+        PlayerController.Instance.PlayClip(PlayerController.Instance.Heal);
         NotifyHealthChanged();
         Debug.Log("Now Player Health: " + CurrentHealth);
     }

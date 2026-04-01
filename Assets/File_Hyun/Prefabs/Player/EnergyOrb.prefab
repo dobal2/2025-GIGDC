@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28d6a2092024cc2439a178a2ace05614, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnergyOrb
+  collectSound: {fileID: 0}
   moveDurationMin: 0.35
   moveDurationMax: 0.7
   arcHeightMin: 0.4
