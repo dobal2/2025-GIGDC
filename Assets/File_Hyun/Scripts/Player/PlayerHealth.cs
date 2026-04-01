@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -5,29 +6,34 @@ public class PlayerHealth : MonoBehaviour
 {
     public static PlayerHealth Instance { get; private set; }
 
+    public event Action<float, float> OnHealthChanged;
+
     [HideInInspector] public float MaxHealth = 5;
     public static float CurrentHealth = 5;
     [SerializeField] private float invincibleTime = 1f;
-
     [SerializeField] private bool DeveloperMode = false;
 
     [HideInInspector] public bool isInvincible;
 
     private Coroutine resetInvincibleCoroutine;
 
-    void Awake()
+    public void Awake()
     {
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
             return;
         }
+
         Instance = this;
+        CurrentHealth = Mathf.Clamp(CurrentHealth, 0f, MaxHealth);
+        NotifyHealthChanged();
     }
-    
+
     public void TakeDamage(float amount)
     {
-        if (CurrentHealth <= 0) return;
+        if (CurrentHealth <= 0)
+            return;
 
         if (!PlayerController.Instance.CanTakeDamage)
         {
@@ -35,8 +41,12 @@ public class PlayerHealth : MonoBehaviour
             return;
         }
 
-        if (!DeveloperMode) CurrentHealth -= amount;
-        Debug.Log("Now Player Health: "+CurrentHealth);
+        if (!DeveloperMode)
+            CurrentHealth -= amount;
+
+        CurrentHealth = Mathf.Clamp(CurrentHealth, 0f, MaxHealth);
+        NotifyHealthChanged();
+        Debug.Log("Now Player Health: " + CurrentHealth);
 
         if (CurrentHealth <= 0)
         {
@@ -51,14 +61,12 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeHeal(float amount)
     {
-        if (CurrentHealth + amount > MaxHealth)
-            CurrentHealth = MaxHealth;
-        else
-            CurrentHealth += amount;
-
+        CurrentHealth = Mathf.Clamp(CurrentHealth + amount, 0f, MaxHealth);
+        PlayerController.Instance.PlayClip(PlayerController.Instance.Heal);
+        NotifyHealthChanged();
         Debug.Log("Now Player Health: " + CurrentHealth);
     }
-    
+
     public void SetInvincibleFor(float duration)
     {
         if (resetInvincibleCoroutine != null)
@@ -66,9 +74,10 @@ public class PlayerHealth : MonoBehaviour
             StopCoroutine(resetInvincibleCoroutine);
             resetInvincibleCoroutine = null;
         }
+
         StartCoroutine(SetInvincibleCoroutine(duration));
     }
-    
+
     private IEnumerator SetInvincibleCoroutine(float duration)
     {
         isInvincible = true;
@@ -76,10 +85,14 @@ public class PlayerHealth : MonoBehaviour
         isInvincible = false;
     }
 
-
     private IEnumerator ResetInvincible()
     {
         yield return new WaitForSeconds(invincibleTime);
         isInvincible = false;
+    }
+
+    private void NotifyHealthChanged()
+    {
+        OnHealthChanged?.Invoke(CurrentHealth, MaxHealth);
     }
 }

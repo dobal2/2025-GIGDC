@@ -21,7 +21,6 @@ public abstract class PlayerState
     protected PlayerStateMachine stateMachine;
 
     public abstract PlayerStateType StateType { get; }
-
     public virtual bool IsCombatState => false;
 
     public PlayerState(PlayerController player, PlayerStateMachine stateMachine)

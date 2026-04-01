@@ -16,6 +16,8 @@ MonoBehaviour:
   spearSkillRange: 2
   jumpSpeed: 12
   spearSkillCooldown: 3
+  spearSkillAutoTargetRange: 9
+  spearSkillAutoTargetArcHeight: 2
   animatorController: {fileID: 9100000, guid: f793756eaf78bb04f9def9b2860a6fa2, type: 2}
   spearComboInfos:
   - damage: 15

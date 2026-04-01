@@ -31,6 +31,8 @@ public class CounterState : PlayerState
         if (!enteredGrounded)
             player.Rigidbody.constraints |= RigidbodyConstraints2D.FreezePositionY;
 
+        player.PlayClip(player.Counter);
+
         player.Animator.Play(enteredGrounded ? "Player_Attack_Counter" : "Player_Attack_Counter_Flying");
         player.StartCoroutine(DelayedCounterHit());
     }
@@ -78,6 +80,7 @@ public class CounterState : PlayerState
 
         bool hasHitMonster = false;
         HashSet<Monster> hitMonsters = new();
+        List<Vector3> orbSpawnPositions = new();
 
         foreach (RaycastHit2D hit in hits)
         {
@@ -85,7 +88,17 @@ public class CounterState : PlayerState
             if (monster == null || !hitMonsters.Add(monster))
                 continue;
 
-            hasHitMonster |= monster.OnCounterHit();
+            if (!monster.OnCounterHit())
+                continue;
+
+            hasHitMonster = true;
+            orbSpawnPositions.Add(hit.collider.bounds.center);
+        }
+
+        if (hasHitMonster)
+        {
+            foreach (Vector3 spawnPosition in orbSpawnPositions)
+                player.SpawnCounterEnergyOrbs(spawnPosition);
         }
 
         player.NotifyCounterTry(hasHitMonster);

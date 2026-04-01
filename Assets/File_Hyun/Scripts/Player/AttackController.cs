@@ -6,6 +6,15 @@ public class AttackController : MonoBehaviour
 {
     [SerializeField] private WeaponDatabase weaponDatabase;
 
+    [Header("Skill Settings")]
+    [SerializeField] private float skillCooldown = 0.1f;
+    [SerializeField] private int spearSkillEnergyCost = 40;
+    [SerializeField] private int bombSkillEnergyCost = 40;
+    [SerializeField] private int bowMinSkillEnergyCost = 20;
+    [SerializeField] private int bowMaxSkillEnergyCost = 40;
+    [SerializeField] private float bowFullChargeTime = 1.5f;
+    [SerializeField] private float bowAutoFireTime = 2f;
+
     private PlayerController player;
 
     [HideInInspector] public SpearData spearData;
@@ -26,24 +35,30 @@ public class AttackController : MonoBehaviour
 
     public bool HasReachedMaxCombo => comboStep >= GetMaxCombo();
     public bool IsPushing =>
-    pushTimer > 0f &&
-    pushSpeedPerSecond != 0f &&
-    (
-        !player.isEdge ||
-        (pushSpeedPerSecond * player.facingDirection < 0 && player.isGroundedLeft) ||
-        (pushSpeedPerSecond * player.facingDirection > 0 && player.isGroundedRight)
-    );
+        pushTimer > 0f &&
+        pushSpeedPerSecond != 0f &&
+        (
+            !player.isEdge ||
+            (pushSpeedPerSecond * player.facingDirection < 0 && player.isGroundedLeft) ||
+            (pushSpeedPerSecond * player.facingDirection > 0 && player.isGroundedRight)
+        );
     public bool IsInComboDelay => comboDelayTimer > 0f;
     public bool CanMove => !IsPushing && !IsInComboDelay;
     public bool CanComboInput => !IsPushing && !IsInComboDelay;
     public bool CanStartAirborneCombo => !player.isGrounded && !airborneComboUsed;
     public int ComboStep => comboStep;
-    public float SkillCooldownProgress => Mathf.Clamp01((Time.time - lastSkillTime) / GetSkillCooldown());
-    public bool CanUseSkill => SkillCooldownProgress >= 1f;
+    public float SkillCooldownProgress => Mathf.Clamp01((Time.time - lastSkillTime) / skillCooldown);
+    public bool CanUseSkill => SkillCooldownProgress >= 1f && HasEnoughEnergyToStartSkill();
     public int MaxCombo => GetMaxCombo();
     public bool IsFinalComboStep => comboStep > 0 && comboStep >= GetMaxCombo();
+    public int SpearSkillEnergyCost => spearSkillEnergyCost;
+    public int BombSkillEnergyCost => bombSkillEnergyCost;
+    public int BowMinSkillEnergyCost => bowMinSkillEnergyCost;
+    public int BowMaxSkillEnergyCost => bowMaxSkillEnergyCost;
+    public float BowFullChargeTime => bowFullChargeTime;
+    public float BowAutoFireTime => bowAutoFireTime;
 
-    void Awake()
+    public void Awake()
     {
         player = GetComponent<PlayerController>();
     }
@@ -121,9 +136,47 @@ public class AttackController : MonoBehaviour
         lastBombThrowTime = Time.time;
     }
 
-    public bool CanThrowBomb()
+    public bool CanThrowBomb() => Time.time >= lastBombThrowTime + bombData.throwDelay;
+
+    public bool HasEnoughEnergyToStartSkill() => player.CurrentEnergy >= GetMinimumSkillEnergyCost();
+
+    public int GetMinimumSkillEnergyCost()
     {
-        return Time.time >= lastBombThrowTime + bombData.throwDelay;
+        return CurrentWeapon switch
+        {
+            WeaponType.Spear => spearSkillEnergyCost,
+            WeaponType.Bow => bowMinSkillEnergyCost,
+            WeaponType.Bomb => bombSkillEnergyCost,
+            _ => 0
+        };
+    }
+
+    public int GetFixedSkillEnergyCost()
+    {
+        return CurrentWeapon switch
+        {
+            WeaponType.Spear => spearSkillEnergyCost,
+            WeaponType.Bomb => bombSkillEnergyCost,
+            _ => 0
+        };
+    }
+
+    public int GetBowSkillEnergyCost(float chargeTime)
+    {
+        float t = Mathf.Clamp01(chargeTime / bowFullChargeTime);
+        return Mathf.RoundToInt(Mathf.Lerp(bowMinSkillEnergyCost, bowMaxSkillEnergyCost, t));
+    }
+
+    public float GetMaxAffordableBowChargeTime(int currentEnergy)
+    {
+        if (currentEnergy <= bowMinSkillEnergyCost)
+            return 0f;
+
+        if (currentEnergy >= bowMaxSkillEnergyCost)
+            return bowFullChargeTime;
+
+        float t = (currentEnergy - bowMinSkillEnergyCost) / (float)(bowMaxSkillEnergyCost - bowMinSkillEnergyCost);
+        return bowFullChargeTime * Mathf.Clamp01(t);
     }
 
     public void ResetCombo()
@@ -140,7 +193,6 @@ public class AttackController : MonoBehaviour
     public void StartCombo()
     {
         comboStep = 1;
-
         PlayCombo(comboStep);
     }
 
@@ -163,7 +215,6 @@ public class AttackController : MonoBehaviour
             return;
 
         comboStep++;
-
         PlayCombo(comboStep);
     }
 
@@ -205,10 +256,7 @@ public class AttackController : MonoBehaviour
         }
     }
 
-    public float GetPushDelta(float deltaTime)
-    {
-        return pushSpeedPerSecond * deltaTime;
-    }
+    public float GetPushDelta(float deltaTime) => pushSpeedPerSecond * deltaTime;
 
     private void PlayCombo(int step)
     {
@@ -239,7 +287,6 @@ public class AttackController : MonoBehaviour
                 if (!player.isGrounded)
                     airborneComboUsed = true;
                 break;
-
         }
 
         pushSpeedPerSecond = pushTimer > 0f ? currentPushDistance / pushTimer : 0f;
@@ -283,17 +330,6 @@ public class AttackController : MonoBehaviour
             WeaponType.Bow => bowData.MaxCombo,
             WeaponType.Bomb => 1,
             _ => 0
-        };
-    }
-
-    private float GetSkillCooldown()
-    {
-        return CurrentWeapon switch
-        {
-            WeaponType.Spear => spearData.spearSkillCooldown,
-            WeaponType.Bow => bowData.bowSkillcooldown,
-            WeaponType.Bomb => bombData.Bombskillcooldown,
-            _ => 1f
         };
     }
 
