@@ -25,7 +25,9 @@ public class CombatTutorialStep : TutorialStepBase
 
     private void OnAllObjectKilled()
     {
-        Object.Destroy(tutorialDescriptionView.gameObject);
+        StageManager.OnAllObjectKilled -= OnAllObjectKilled;
+        if (tutorialDescriptionView != null)
+            Object.Destroy(tutorialDescriptionView.gameObject);
         tutorialDescriptionView = UIManager.Instance.Show<TutorialDescriptionView>();
         tutorialDescriptionView.Initialize(TutorialManager.VisualData.CombatTutorial.ProgessSprites[2]);
 
@@ -40,7 +42,7 @@ public class CombatTutorialStep : TutorialStepBase
 
     public override void Exit()
     {
-
+        StageManager.OnAllObjectKilled -= OnAllObjectKilled;
     }
 
     public override void Update()

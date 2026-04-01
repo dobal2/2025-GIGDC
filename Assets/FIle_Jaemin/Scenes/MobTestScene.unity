@@ -509,71 +509,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fca5e8c2bcbc60c4d849c1fca55c6f57, type: 3}
---- !u!1001 &869734166
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1966043951227975983, guid: 807e8a1bc484e264491bf2537faa6573, type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 1064009184}
-    - target: {fileID: 1966043951227975983, guid: 807e8a1bc484e264491bf2537faa6573, type: 3}
-      propertyPath: verticalOffset
-      value: 1.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7518913219925585886, guid: 807e8a1bc484e264491bf2537faa6573, type: 3}
-      propertyPath: m_Name
-      value: SkillCooldownGauge
-      objectReference: {fileID: 0}
-    - target: {fileID: 9027384045653940569, guid: 807e8a1bc484e264491bf2537faa6573, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.22695845
-      objectReference: {fileID: 0}
-    - target: {fileID: 9027384045653940569, guid: 807e8a1bc484e264491bf2537faa6573, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.6232884
-      objectReference: {fileID: 0}
-    - target: {fileID: 9027384045653940569, guid: 807e8a1bc484e264491bf2537faa6573, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.04081182
-      objectReference: {fileID: 0}
-    - target: {fileID: 9027384045653940569, guid: 807e8a1bc484e264491bf2537faa6573, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9027384045653940569, guid: 807e8a1bc484e264491bf2537faa6573, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9027384045653940569, guid: 807e8a1bc484e264491bf2537faa6573, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9027384045653940569, guid: 807e8a1bc484e264491bf2537faa6573, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9027384045653940569, guid: 807e8a1bc484e264491bf2537faa6573, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9027384045653940569, guid: 807e8a1bc484e264491bf2537faa6573, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9027384045653940569, guid: 807e8a1bc484e264491bf2537faa6573, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 807e8a1bc484e264491bf2537faa6573, type: 3}
 --- !u!1 &881832959
 GameObject:
   m_ObjectHideFlags: 0
@@ -900,6 +835,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponDatabase: {fileID: 11400000, guid: 54120d3f0c20a2c4cadbc83558eb4b46, type: 2}
+  skillCooldown: 0.1
+  spearSkillEnergyCost: 40
+  bombSkillEnergyCost: 40
+  bowMinSkillEnergyCost: 20
+  bowMaxSkillEnergyCost: 40
+  bowFullChargeTime: 1.5
+  bowAutoFireTime: 2
   spearData: {fileID: 0}
   bowData: {fileID: 0}
   bombData: {fileID: 0}
@@ -974,6 +916,12 @@ MonoBehaviour:
   counterTargetLayer:
     serializedVersion: 2
     m_Bits: 0
+  maxEnergy: 100
+  startEnergy: 100
+  energyOrbPrefab: {fileID: 0}
+  counterEnergyOrbCount: 20
+  energyOrbSpawnRandomX: {x: 0.3, y: 1.2}
+  energyOrbSpawnRandomY: {x: 0.2, y: 1}
   knockbackDuration: 0.1
   Jump: {fileID: 0}
   Dash: {fileID: 0}
@@ -985,6 +933,8 @@ MonoBehaviour:
   BowSkillCharging: {fileID: 0}
   BowSkillRelease: {fileID: 0}
   BombBoom: {fileID: 0}
+  Counter: {fileID: 0}
+  Heal: {fileID: 0}
   isNoClip: 0
   facingDirection: 1
   isGrounded: 0
@@ -1386,70 +1336,6 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
---- !u!1001 &1809234690
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 6534796796891509302, guid: edb197553d1ad1f4280c0a5bbbc9eb36, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6534796796891509302, guid: edb197553d1ad1f4280c0a5bbbc9eb36, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6534796796891509302, guid: edb197553d1ad1f4280c0a5bbbc9eb36, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6534796796891509302, guid: edb197553d1ad1f4280c0a5bbbc9eb36, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6534796796891509302, guid: edb197553d1ad1f4280c0a5bbbc9eb36, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6534796796891509302, guid: edb197553d1ad1f4280c0a5bbbc9eb36, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6534796796891509302, guid: edb197553d1ad1f4280c0a5bbbc9eb36, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6534796796891509302, guid: edb197553d1ad1f4280c0a5bbbc9eb36, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6534796796891509302, guid: edb197553d1ad1f4280c0a5bbbc9eb36, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6534796796891509302, guid: edb197553d1ad1f4280c0a5bbbc9eb36, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7379441040585030454, guid: edb197553d1ad1f4280c0a5bbbc9eb36, type: 3}
-      propertyPath: m_Name
-      value: PlayerHealthBar
-      objectReference: {fileID: 0}
-    - target: {fileID: 8108509309757175980, guid: edb197553d1ad1f4280c0a5bbbc9eb36, type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 1064009184}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3903628370917603880, guid: edb197553d1ad1f4280c0a5bbbc9eb36, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-  m_SourcePrefab: {fileID: 100100000, guid: edb197553d1ad1f4280c0a5bbbc9eb36, type: 3}
 --- !u!1001 &1809252179
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1578,8 +1464,6 @@ SceneRoots:
   - {fileID: 1064009184}
   - {fileID: 881832962}
   - {fileID: 1820677424}
-  - {fileID: 1809234690}
-  - {fileID: 869734166}
   - {fileID: 934083221}
   - {fileID: 585493383}
   - {fileID: 1467972729}

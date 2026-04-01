@@ -237,6 +237,7 @@ public class Boss_Love : Boss
         yield return new WaitForSeconds(0.5f);
         isAttacking = false;
     }
+        
 
     protected override void Update()
     {
