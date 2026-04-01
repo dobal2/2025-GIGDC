@@ -3,31 +3,49 @@ using static PlayerController;
 
 public class SpearSkillState : PlayerState
 {
-    private enum SkillPhase { Charging, Moving, WaitingForLanding, Landing }
-    private enum SkillMode { Ground, LowAir, HighAir }
+    private enum SkillPhase
+    {
+        Charging,
+        Moving,
+        WaitingForLanding,
+        Landing
+    }
+
+    private enum SkillMode
+    {
+        Ground,
+        LowAir,
+        HighAir
+    }
 
     private SkillMode mode;
     private SkillPhase phase;
-
     private float dashSpeed;
-
     private bool landingTriggered = false;
     private bool forceGroundedIgnore = false;
-
+    private bool skillStarted;
     private readonly SpearData spearData;
 
     public SpearSkillState(PlayerController player, PlayerStateMachine stateMachine)
-        : base(player, stateMachine) { spearData = player.AttackController.spearData; }
+        : base(player, stateMachine)
+    {
+        spearData = player.AttackController.spearData;
+    }
 
     public override PlayerStateType StateType => PlayerStateType.SpearSkill;
     public override bool IsCombatState => true;
 
     public override void Enter()
     {
+        if (!player.TryConsumeEnergy(player.AttackController.SpearSkillEnergyCost))
+        {
+            stateMachine.ChangeState(new LocomotionState(player, stateMachine));
+            return;
+        }
+
+        skillStarted = true;
         player.Rigidbody.linearVelocity = Vector2.zero;
         player.isNoClip = true;
-        player.AttackController.MarkSkillUsed();
-        Debug.Log("[Skill] 스킬 사용됨 - 쿨타임 시작");
 
         if (player.isGrounded)
         {
@@ -67,6 +85,9 @@ public class SpearSkillState : PlayerState
         player.SetEffectState(PlayerEffectState.None);
         player.Rigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
         player.Rigidbody.linearVelocity = Vector2.zero;
+
+        if (skillStarted)
+            player.AttackController.MarkSkillUsed();
     }
 
     public override void Update()
@@ -78,11 +99,10 @@ public class SpearSkillState : PlayerState
             {
                 Vector2 boxSize = new(player.BoxCollider.bounds.size.x * 0.99f, 0.1f);
                 Vector2 origin = (Vector2)player.BoxCollider.bounds.center + Vector2.down * player.BoxCollider.bounds.extents.y;
-
-
                 RaycastHit2D hit = Physics2D.BoxCast(origin, boxSize, 0f, Vector2.down, Mathf.Infinity, player.GroundLayer);
 
-                if (hit.collider) player.transform.position = hit.point;
+                if (hit.collider)
+                    player.transform.position = hit.point;
 
                 player.Rigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
                 player.Rigidbody.linearVelocity = Vector2.zero;
@@ -92,8 +112,10 @@ public class SpearSkillState : PlayerState
             return;
         }
 
-        if ((phase == SkillPhase.Moving || phase == SkillPhase.WaitingForLanding)
-            && !forceGroundedIgnore && player.isGrounded && !landingTriggered)
+        if ((phase == SkillPhase.Moving || phase == SkillPhase.WaitingForLanding) &&
+            !forceGroundedIgnore &&
+            player.isGrounded &&
+            !landingTriggered)
         {
             player.Rigidbody.linearVelocity = Vector2.zero;
             landingTriggered = true;
@@ -119,11 +141,8 @@ public class SpearSkillState : PlayerState
         if (phase == SkillPhase.Landing)
         {
             AnimatorStateInfo animInfo = player.Animator.GetCurrentAnimatorStateInfo(0);
-            if (animInfo.IsName("Spear_Ground_Land") || animInfo.IsName("Spear_Flying_Land"))
-            {
-                if (animInfo.normalizedTime >= 1f)
-                    stateMachine.ChangeState(new LocomotionState(player, stateMachine));
-            }
+            if ((animInfo.IsName("Spear_Ground_Land") || animInfo.IsName("Spear_Flying_Land")) && animInfo.normalizedTime >= 1f)
+                stateMachine.ChangeState(new LocomotionState(player, stateMachine));
         }
     }
 
@@ -145,14 +164,15 @@ public class SpearSkillState : PlayerState
 
     private void ApplyLandingDamage()
     {
-        Vector2 center = (Vector2)player.transform.position;
-        if (phase == SkillPhase.Moving) center += new Vector2(player.facingDirection * 0.5f, 0f);
-        float radius = spearData.spearSkillRange;
+        Vector2 center = player.transform.position;
+        if (phase == SkillPhase.Moving)
+            center += new Vector2(player.facingDirection * 0.5f, 0f);
 
+        float radius = spearData.spearSkillRange;
         Collider2D[] hits = Physics2D.OverlapCircleAll(center, radius, LayerMask.GetMask("Enemy"));
-        foreach (var hit in hits)
+        foreach (Collider2D hit in hits)
         {
-            if (hit.TryGetComponent<Monster>(out var monster))
+            if (hit.TryGetComponent<Monster>(out Monster monster))
             {
                 monster.TakeDamage(spearData.spearSkillDamage);
                 monster.KnockBack(

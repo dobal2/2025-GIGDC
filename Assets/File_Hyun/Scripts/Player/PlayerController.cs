@@ -11,22 +11,22 @@ public class PlayerController : MonoBehaviour
 
     public enum PlayerEffectState
     {
-        None, // 이펙트 없음
-        GroundWalkDust, // 먼지
-        Dash, // 대시 중
-        FastFall, // 빠른 낙하
-        SpearAirSkill, // 창 내려찍기
-        BowSkillCharging, // 활 스킬 차징중
-        BowSkillRelease, // 활 스킬 발사
-        BowSkillFullChargeRelease, // 활 스킬 풀차징 발사
-        Dying, // 죽는 중
-        // 필요 시 추가
+        None,
+        GroundWalkDust,
+        Dash,
+        FastFall,
+        SpearAirSkill,
+        BowSkillCharging,
+        BowSkillRelease,
+        BowSkillFullChargeRelease,
+        Dying,
     }
 
     public event Action<PlayerEffectState> OnEffectStateChanged;
     public event Action<WeaponType> OnChangeWeapon;
     public event Action OnChainAttackFinished;
     public event Action<bool> OnCounterTry;
+    public event Action<int, int> OnEnergyChanged;
 
     public PlayerEffectState CurrentEffectState { get; private set; }
     public float MoveInput { get; set; }
@@ -37,19 +37,27 @@ public class PlayerController : MonoBehaviour
     public bool SkillHeld { get; set; }
     public bool ChangePressed { get; set; }
     public bool CounterPressed { get; set; }
+    public int CurrentEnergy { get; private set; }
 
     public bool JumpPressed
     {
-        set { if (value) jumpBufferTimer = jumpBufferTime; }
+        set
+        {
+            if (value)
+                jumpBufferTimer = jumpBufferTime;
+        }
     }
 
     public bool AttackPressed
     {
-        set { if (value) attackBufferTimer = attackBufferTime; }
+        set
+        {
+            if (value)
+                attackBufferTimer = attackBufferTime;
+        }
     }
 
     public PlayerStateType CurrentStateType => stateMachine.CurrentStateType;
-
     public bool CanTakeDamage => !isNoClip && !PlayerHealth.Instance.isInvincible;
 
     [Header("Movement Settings")]
@@ -103,6 +111,16 @@ public class PlayerController : MonoBehaviour
     public bool AttackBuffered => attackBufferTimer > 0f;
     public bool CanUseCounter => Time.time >= lastCounterTime + counterCooldown;
 
+    [Header("Energy Settings")]
+    [SerializeField] private int maxEnergy = 100;
+    [SerializeField] private int startEnergy = 100;
+    [SerializeField] private GameObject energyOrbPrefab;
+    [SerializeField] private int counterEnergyOrbCount = 20;
+    [SerializeField] private Vector2 energyOrbSpawnRandomX = new(0.3f, 1.2f);
+    [SerializeField] private Vector2 energyOrbSpawnRandomY = new(0.2f, 1f);
+    public int MaxEnergy => maxEnergy;
+    public int CounterEnergyOrbCount => counterEnergyOrbCount;
+
     [Header("Knockback Settings")]
     [SerializeField] private float knockbackDuration = 0.1f;
     private bool isKnockback = false;
@@ -125,7 +143,7 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private AudioSource audioSource;
 
-    [HideInInspector] public bool isNoClip = false; // 무적상태
+    [HideInInspector] public bool isNoClip = false;
     [HideInInspector] public int facingDirection = 1;
 
     [HideInInspector] public bool isGrounded;
@@ -158,7 +176,7 @@ public class PlayerController : MonoBehaviour
     private bool wasDownKeyHeldLastFrame = false;
     private float lastCounterTime = -999f;
 
-    void Awake()
+    public void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         boxCol = GetComponent<BoxCollider2D>();
@@ -169,6 +187,7 @@ public class PlayerController : MonoBehaviour
         originalColliderSize = boxCol.size;
         originalColliderOffset = boxCol.offset;
         normalGravityScale = rb.gravityScale;
+        CurrentEnergy = Mathf.Clamp(startEnergy, 0, maxEnergy);
 
         if (Instance != null && Instance != this)
         {
@@ -176,28 +195,33 @@ public class PlayerController : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+
         Instance = this;
     }
 
-    void Start()
+    public void Start()
     {
         SetPlayer();
-
         AttackController.Initialize(CurrentWeapon);
         stateMachine = new PlayerStateMachine();
         stateMachine.Initialize(new LocomotionState(this, stateMachine));
         SetEffectState(PlayerEffectState.None);
+        NotifyWeaponChanged(AttackController.CurrentWeapon);
+        NotifyEnergyChanged();
     }
 
-    void Update()
+    public void Update()
     {
         UpdateGrounded();
         UpdateCeiling();
-        if (jumpBufferTimer > 0f) jumpBufferTimer -= Time.deltaTime;
-        if (attackBufferTimer > 0f) attackBufferTimer -= Time.deltaTime;
+        if (jumpBufferTimer > 0f)
+            jumpBufferTimer -= Time.deltaTime;
+        if (attackBufferTimer > 0f)
+            attackBufferTimer -= Time.deltaTime;
+
         bool nowAvailable = AttackController.CanUseSkill;
         if (!prevSkillAvailable && nowAvailable)
-            Debug.Log("[Skill] 스킬 쿨타임 완료 - 사용 가능");
+            Debug.Log("[Skill] 스킬 재사용 가능");
         prevSkillAvailable = nowAvailable;
 
         if (isGrounded && !wasDownKeyHeldLastFrame && DownHeld && !isDroppingPlatform)
@@ -215,7 +239,7 @@ public class PlayerController : MonoBehaviour
         stateMachine.Update();
     }
 
-    void FixedUpdate() => stateMachine.FixedUpdate();
+    public void FixedUpdate() => stateMachine.FixedUpdate();
 
     public void SetPlayer()
     {
@@ -225,7 +249,9 @@ public class PlayerController : MonoBehaviour
 
     public void SetEffectState(PlayerEffectState newState)
     {
-        if (CurrentEffectState == newState) return;
+        if (CurrentEffectState == newState)
+            return;
+
         CurrentEffectState = newState;
         OnEffectStateChanged?.Invoke(newState);
     }
@@ -238,7 +264,79 @@ public class PlayerController : MonoBehaviour
         audioSource.PlayOneShot(clip);
     }
 
-    void UpdateGrounded()
+    public bool HasEnoughEnergy(int amount) => CurrentEnergy >= amount;
+
+    public bool TryConsumeEnergy(int amount)
+    {
+        if (amount <= 0)
+            return true;
+
+        if (CurrentEnergy < amount)
+            return false;
+
+        CurrentEnergy -= amount;
+        NotifyEnergyChanged();
+        return true;
+    }
+
+    public void RestoreEnergy(int amount)
+    {
+        if (amount <= 0)
+            return;
+
+        int nextEnergy = Mathf.Clamp(CurrentEnergy + amount, 0, maxEnergy);
+        if (nextEnergy == CurrentEnergy)
+            return;
+
+        CurrentEnergy = nextEnergy;
+        NotifyEnergyChanged();
+    }
+
+    public void SpawnCounterEnergyOrbs(Vector3 origin)
+    {
+        SpawnEnergyOrbs(counterEnergyOrbCount, origin);
+    }
+
+    public void SpawnEnergyOrbs(int amount, Vector3 origin)
+    {
+        if (amount <= 0)
+            return;
+
+        if (energyOrbPrefab == null)
+        {
+            Debug.LogWarning("[EnergyOrb] 에너지 오브 프리팹이 비어있습니다.");
+            return;
+        }
+
+        for (int i = 0; i < amount; i++)
+        {
+            Vector3 spawnPosition = origin + GetRandomEnergyOrbSpawnOffset();
+            GameObject orbObject = Instantiate(energyOrbPrefab, spawnPosition, Quaternion.identity);
+            if (!orbObject.TryGetComponent<EnergyOrb>(out EnergyOrb orb))
+            {
+                Debug.LogWarning("[EnergyOrb] EnergyOrb 컴포넌트가 프리팹에 없습니다.");
+                Destroy(orbObject);
+                continue;
+            }
+
+            orb.Initialize(this);
+        }
+    }
+
+    private Vector3 GetRandomEnergyOrbSpawnOffset()
+    {
+        float xDistance = UnityEngine.Random.Range(energyOrbSpawnRandomX.x, energyOrbSpawnRandomX.y);
+        float x = xDistance * (UnityEngine.Random.value < 0.5f ? -1f : 1f);
+        float y = UnityEngine.Random.Range(energyOrbSpawnRandomY.x, energyOrbSpawnRandomY.y);
+        return new Vector3(x, y, 0f);
+    }
+
+    private void NotifyEnergyChanged()
+    {
+        OnEnergyChanged?.Invoke(CurrentEnergy, maxEnergy);
+    }
+
+    private void UpdateGrounded()
     {
         bool wasGrounded = isGrounded;
         Vector2 bottom = (Vector2)boxCol.bounds.center + Vector2.down * boxCol.bounds.extents.y;
@@ -263,8 +361,10 @@ public class PlayerController : MonoBehaviour
         Vector2 lowAirOrigin = bottom - Vector2.up * (boxLowAirHeight * 0.5f);
         isLowAir = Physics2D.BoxCast(lowAirOrigin, lowAirSize, 0f, Vector2.down, 0f, groundLayer).collider != null;
 
-        if (isGrounded) coyoteTimer = coyoteTime;
-        else coyoteTimer -= Time.deltaTime;
+        if (isGrounded)
+            coyoteTimer = coyoteTime;
+        else
+            coyoteTimer -= Time.deltaTime;
 
         if (!wasGrounded && isGrounded)
         {
@@ -273,10 +373,11 @@ public class PlayerController : MonoBehaviour
             AttackController.ResetAirborneCombo();
         }
 
-        if (wasGrounded && !isGrounded) AttackController.ResetCombo();
+        if (wasGrounded && !isGrounded)
+            AttackController.ResetCombo();
     }
 
-    void UpdateCeiling()
+    private void UpdateCeiling()
     {
         Vector2 boxSize = new(boxCol.bounds.size.x, boxHeight);
         Vector2 origin = (Vector2)boxCol.bounds.center + Vector2.up * boxCol.bounds.extents.y;
@@ -287,7 +388,8 @@ public class PlayerController : MonoBehaviour
     [ContextMenu("박스캐스트 시각화")]
     private void DebugDrawBoxCastGizmos()
     {
-        if (boxCol == null) boxCol = GetComponent<BoxCollider2D>();
+        if (boxCol == null)
+            boxCol = GetComponent<BoxCollider2D>();
 
         Vector2 bottom = (Vector2)boxCol.bounds.center + Vector2.down * boxCol.bounds.extents.y;
         Vector2 topAlignedY = bottom - Vector2.up * (boxHeight * 0.5f);
@@ -358,7 +460,6 @@ public class PlayerController : MonoBehaviour
         else
         {
             SetEffectState(PlayerEffectState.None);
-
             rb.gravityScale = normalGravityScale;
         }
     }
@@ -399,7 +500,8 @@ public class PlayerController : MonoBehaviour
 
     public void ApplyKnockback(Vector2 direction, float force)
     {
-        if (!CanTakeDamage) return;
+        if (!CanTakeDamage)
+            return;
 
         isKnockback = true;
         knockbackTimer = knockbackDuration;
@@ -421,6 +523,5 @@ public class PlayerController : MonoBehaviour
     public Vector2 CounterBoxSize => counterBoxSize;
     public float CounterHitDelay => counterHitDelay;
     public LayerMask CounterTargetLayer => counterTargetLayer.value == 0 ? LayerMask.GetMask("Enemy") : counterTargetLayer;
-
     public bool IsKnockbackActive => isKnockback;
 }

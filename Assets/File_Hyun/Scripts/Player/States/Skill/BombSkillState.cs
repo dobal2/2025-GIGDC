@@ -3,7 +3,8 @@ using UnityEngine;
 public class BombSkillState : PlayerState
 {
     private readonly BombData bombData;
-    private bool bombsThrown = false;
+    private bool bombsThrown;
+    private bool skillStarted;
     private string endAnimName;
 
     public BombSkillState(PlayerController player, PlayerStateMachine stateMachine)
@@ -17,6 +18,14 @@ public class BombSkillState : PlayerState
 
     public override void Enter()
     {
+        if (!player.TryConsumeEnergy(player.AttackController.BombSkillEnergyCost))
+        {
+            stateMachine.ChangeState(new LocomotionState(player, stateMachine));
+            return;
+        }
+
+        skillStarted = true;
+        bombsThrown = false;
         player.Rigidbody.linearVelocity = Vector2.zero;
         player.Rigidbody.constraints = RigidbodyConstraints2D.FreezeRotation |
                                        RigidbodyConstraints2D.FreezePositionX |
@@ -25,13 +34,14 @@ public class BombSkillState : PlayerState
         string prefix = player.isGrounded ? "Ground" : "Flying";
         endAnimName = $"Bomb_{prefix}_End";
         player.Animator.Play($"Bomb_{prefix}_Throwing");
-
-        player.AttackController.MarkSkillUsed();
     }
 
     public override void Exit()
     {
         player.Rigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
+
+        if (skillStarted && bombsThrown)
+            player.AttackController.MarkSkillUsed();
     }
 
     public override void Update()
@@ -39,14 +49,10 @@ public class BombSkillState : PlayerState
         AnimatorStateInfo animInfo = player.Animator.GetCurrentAnimatorStateInfo(0);
 
         if (!bombsThrown && animInfo.IsName(endAnimName) && animInfo.normalizedTime < 0.1f)
-        {
             ThrowBombs();
-        }
 
         if (bombsThrown && animInfo.IsName(endAnimName) && animInfo.normalizedTime >= 1f)
-        {
             stateMachine.ChangeState(new LocomotionState(player, stateMachine));
-        }
     }
 
     private void ThrowBombs()
@@ -64,7 +70,7 @@ public class BombSkillState : PlayerState
             float speed = Random.Range(bombData.bombSkillMinThrowSpeed, bombData.bombSkillMaxThrowSpeed);
 
             GameObject bomb = Object.Instantiate(bombData.skillBombPrefab, origin, Quaternion.identity);
-            if (bomb.TryGetComponent<SkillBomb>(out var skillBomb))
+            if (bomb.TryGetComponent<SkillBomb>(out SkillBomb skillBomb))
             {
                 skillBomb.Initialize(
                     new Vector2(player.facingDirection, 0),
