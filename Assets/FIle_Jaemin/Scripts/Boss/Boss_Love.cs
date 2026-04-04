@@ -152,7 +152,7 @@ public class Boss_Love : Boss
     
     IEnumerator BubblePattern()
     {
-        float bubbleCount = Random.Range(8, 14);
+        float bubbleCount = 3;
 
         for (int i = 0; i < bubbleCount; i++)
         {
@@ -168,7 +168,7 @@ public class Boss_Love : Boss
     
     IEnumerator SpawnAroundBubblePattern()
     {
-        int bubbleCount = Random.Range(3, 6);
+        int bubbleCount = 3;
         float radius = 3.5f; // 버블이 퍼질 반지름
         Vector2 center = transform.position + new Vector3(0,1.5f,0); // 또는 원하는 중심 좌표
 
