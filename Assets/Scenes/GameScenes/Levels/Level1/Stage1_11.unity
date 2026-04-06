@@ -320,12 +320,24 @@ PrefabInstance:
       value: Love
       objectReference: {fileID: 0}
     - target: {fileID: 4895731126113441091, guid: ab05d3c474a046744a9071ba10f95ffc, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.6895001
+      objectReference: {fileID: 0}
+    - target: {fileID: 4895731126113441091, guid: ab05d3c474a046744a9071ba10f95ffc, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.6895001
+      objectReference: {fileID: 0}
+    - target: {fileID: 4895731126113441091, guid: ab05d3c474a046744a9071ba10f95ffc, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.6758
+      objectReference: {fileID: 0}
+    - target: {fileID: 4895731126113441091, guid: ab05d3c474a046744a9071ba10f95ffc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.48
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 4895731126113441091, guid: ab05d3c474a046744a9071ba10f95ffc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3
+      value: -3.29
       objectReference: {fileID: 0}
     - target: {fileID: 4895731126113441091, guid: ab05d3c474a046744a9071ba10f95ffc, type: 3}
       propertyPath: m_LocalPosition.z
@@ -447,10 +459,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2665475493642164825, guid: b5950281217e18446860e2bf359d78af, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b5950281217e18446860e2bf359d78af, type: 3}
 --- !u!4 &1650906122 stripped
 Transform:
