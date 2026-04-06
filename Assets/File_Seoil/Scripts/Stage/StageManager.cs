@@ -80,7 +80,7 @@ public class StageManager : MonoBehaviour
         set
         {
             if(value - objects < 0)
-                OnObjectKilled?.Invoke(value - objects);
+                OnObjectKilled?.Invoke(objects - value);
 
             objects = value;
             Debug.Log("Left Objects : " + objects);
