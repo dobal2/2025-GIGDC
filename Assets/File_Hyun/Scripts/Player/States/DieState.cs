@@ -17,6 +17,7 @@ public class DieState : PlayerState
         player.isNoClip = true;
         player.Rigidbody.linearVelocityX = 0f;
         player.PlayClip(player.Death);
+        player.Rigidbody.constraints &= ~RigidbodyConstraints2D.FreezePositionY;
 
         if (player.isGrounded)
         {
