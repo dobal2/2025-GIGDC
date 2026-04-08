@@ -475,6 +475,8 @@ public class PlayerController : MonoBehaviour
 
     public void Die()
     {
+        StageManager.ForceSetObjectCount(0);
+
         stateMachine.ChangeState(new DieState(this, stateMachine));
     }
 

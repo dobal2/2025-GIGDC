@@ -94,6 +94,11 @@ public class StageManager : MonoBehaviour
         }
     }
 
+    public static void ForceSetObjectCount(int count)
+    {
+        objects = count;
+    }
+
     private void Awake()
     {
         Instance = this;
