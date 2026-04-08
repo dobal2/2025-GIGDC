@@ -53,6 +53,24 @@ public class DialogView : MonoBehaviour
 
         commandDatas.Add("Selection", Selection);
         commandDatas.Add("DelayWriting", DelayWriting);
+        commandDatas.Add("ChangeWritingScale", ChangeWritingScale);
+        commandDatas.Add("PlaySound", PlaySound);
+        commandDatas.Add("MoveCamera", MoveCamera);
+    }
+
+    private void ChangeWritingScale(string line)
+    {
+
+    }
+
+    private void PlaySound(string line)
+    {
+        
+    }
+
+    private void MoveCamera(string line)
+    {
+
     }
 
     public void Dialog(Dialog dialog, Canvas dialogCanvas, DialogEventReciever dialogEventReciever)
@@ -60,6 +78,7 @@ public class DialogView : MonoBehaviour
         this.dialog = dialog;
         SetPosition(this.dialog, dialogCanvas);
         this.dialogEventReciever = dialogEventReciever;
+
         dialogCoroutine = StartCoroutine(ProcessText());
     }
 
@@ -119,9 +138,16 @@ public class DialogView : MonoBehaviour
 
             if (commandTag != null)
             {
-                ProcessCommandTag(commandTag);
-                line = line.Remove(index, commandTag.Length + 2);
-                index--;
+                if (ProcessCommandTag(commandTag))
+                {
+                    line = line.Remove(index, commandTag.Length + 2);
+                    index--;
+                    continue;
+                }
+                else
+                {
+                    index += commandTag.Length + 1;
+                }
             }
 
             if (additionalDelay != 0)
@@ -231,6 +257,8 @@ public class DialogView : MonoBehaviour
 
     private bool ProcessCommandTag(string commandTag)
     {
+        
+
         int paramStartIndex = commandTag.IndexOf('(');
         int paramEndIndex = commandTag.IndexOf(')');
 
@@ -240,7 +268,7 @@ public class DialogView : MonoBehaviour
         string commandName = commandTag.Substring(0, paramStartIndex);
         string commandParams = commandTag.Substring(paramStartIndex + 1, paramEndIndex - paramStartIndex - 1);
 
-        if(commandDatas.ContainsKey(commandName))
+        if (commandDatas.ContainsKey(commandName))
         {
             commandDatas[commandName].Invoke(commandParams);
             return true;
