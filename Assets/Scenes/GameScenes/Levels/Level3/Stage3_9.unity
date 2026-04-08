@@ -398,10 +398,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2665475493642164825, guid: b5950281217e18446860e2bf359d78af, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b5950281217e18446860e2bf359d78af, type: 3}
 --- !u!4 &841751217 stripped
 Transform:
@@ -5371,7 +5368,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 611f36b407a3911449ec788a476e85ea, type: 3}
     - target: {fileID: 4465080666872081409, guid: 1ca83e73789255b438a946af2cf4aa12, type: 3}
       propertyPath: moveSceneType
-      value: 35
+      value: 34
       objectReference: {fileID: 0}
     - target: {fileID: 6503056488553181897, guid: 1ca83e73789255b438a946af2cf4aa12, type: 3}
       propertyPath: m_LocalPosition.x

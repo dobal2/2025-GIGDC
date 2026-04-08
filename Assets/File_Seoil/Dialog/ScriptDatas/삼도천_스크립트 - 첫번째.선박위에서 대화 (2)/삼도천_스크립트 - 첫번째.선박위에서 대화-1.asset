@@ -20,7 +20,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2dc7fb09e09f74e4fa2e6f299dc1edd3, type: 2}
   <Dialogs>k__BackingField:
   - Target: {fileID: 11400000, guid: 2dc7fb09e09f74e4fa2e6f299dc1edd3, type: 2}
-    <Line>k__BackingField: "\uC774\uC81C \uC77C\uC5B4\uB0AC\uB290\uB0D0?"
+    <Line>k__BackingField: "\uC774\uC81C <ChangeWritingScale(200%)>\uC77C\uC5B4\uB0AC\uB290\uB0D0?"
   - Target: {fileID: 11400000, guid: 2dc7fb09e09f74e4fa2e6f299dc1edd3, type: 2}
     <Line>k__BackingField: "\uC774 \uBAB8\uC740 \uC774 \uBC30\uC758 \uC120\uC7A5\uC73C\uB85C
       \uAE38\uC744 \uC783\uC740 \uC790\uB124\uB97C \uC774 \uBC30\uB85C \uB370\uB824\uC628

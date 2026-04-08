@@ -119,16 +119,9 @@ public class DialogView : MonoBehaviour
 
             if (commandTag != null)
             {
-                if (ProcessCommandTag(commandTag))
-                {
-                    line = line.Remove(index, commandTag.Length + 2);
-                    index--;
-                    continue;
-                }
-                else
-                {
-                    index += commandTag.Length + 1;
-                }
+                ProcessCommandTag(commandTag);
+                line = line.Remove(index, commandTag.Length + 2);
+                index--;
             }
 
             if (additionalDelay != 0)

@@ -126,6 +126,11 @@ public abstract class Monster : MonoBehaviour
         TakeDamageAnimation();
     }
 
+    public void SetHealth(int health)
+    {
+        hp = health;
+    }
+
     public virtual bool OnCounterHit()
     {
         if (!isCountering) return false;

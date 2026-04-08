@@ -57,7 +57,6 @@ public class TutorialManager : MonoBehaviour
     private void OnEndTutorial()
     {
         Stage.Progress();
-        SceneLoader.Instance.LoadScene(SceneType.Lobby_Over, SceneLoader.SceneChangeAnimation.Fade);
         Destroy(gameObject);
     }
 }

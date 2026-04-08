@@ -11,6 +11,8 @@ public class SkillAttackTutorialStep : TutorialStepBase
     {
         tutorialDescriptionView = UIManager.Instance.Show<TutorialDescriptionView>();
         tutorialDescriptionView.Initialize(TutorialManager.VisualData.SkillAttackTutorial.ProgessSprites[index]);
+
+        PlayerController.Instance.RestoreEnergy(40);
     }
 
     public override void Exit()
