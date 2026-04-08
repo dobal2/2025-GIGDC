@@ -137,7 +137,8 @@ public class StageManager : MonoBehaviour
             case StageDataType.Stage4:
                 break;
             default:
-                SceneLoader.Instance.LoadScene(SceneType.Lobby_Over);
+                if (SceneLoader.Instance != null)
+                    SceneLoader.Instance.LoadScene(SceneType.Lobby_Over);
                 break;
         }
     }

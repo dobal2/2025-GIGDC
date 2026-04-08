@@ -190,9 +190,10 @@ IEnumerator CastFingerAttack()
 
     void MoveBossRandomly()
     {
-        if (bossPositions.Length < 2) return;
+        if (bossPositions == null || bossPositions.Length < 2) return;
 
         currentPosIndex = (currentPosIndex + 1) % bossPositions.Length;
+        if (bossPositions[currentPosIndex] == null) return;
         transform.position = bossPositions[currentPosIndex].position;
     }
 

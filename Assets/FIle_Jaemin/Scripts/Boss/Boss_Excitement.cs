@@ -11,8 +11,6 @@ public class Boss_Excitement : Boss
     [SerializeField] private GameObject targetBoardPrefab;
     [SerializeField] private GameObject glassWallPrefab;
     [SerializeField] private GameObject glassBowlPrefab;
-    [SerializeField] private GameObject clone;
-
     [Header("Transforms")]
     [SerializeField] private Transform missileSpawnPoint;
     [SerializeField] private Transform[] teleportPositions;
@@ -33,7 +31,6 @@ public class Boss_Excitement : Boss
     protected override void Start()
     {
         normalAttack = GetComponent<AudioSource>();
-        clone.gameObject.SetActive(false);
         base.Start();
     }
 
@@ -80,7 +77,6 @@ public class Boss_Excitement : Boss
         maxHp = phase2Hp;
         hp = maxHp;
         isAttacking = false;
-        clone.gameObject.SetActive(true);
 
         UpdateHPBar();
 
@@ -143,19 +139,26 @@ public class Boss_Excitement : Boss
     {
         teleportCoolTimer = 0;
 
+        if (teleportPositions == null || teleportPositions.Length == 0)
+            return;
+
         if (teleportPositions.Length > 1)
         {
-            GameObject randomPlatform;
+            Transform randomPos;
             do
             {
-                randomPlatform = teleportPositions[Random.Range(0, teleportPositions.Length)].gameObject;
-            } while (randomPlatform.transform.position == lastTeleportedPos);
+                randomPos = teleportPositions[Random.Range(0, teleportPositions.Length)];
+            } while (randomPos != null && randomPos.position == lastTeleportedPos);
 
-            lastTeleportedPos = randomPlatform.transform.position;
-            transform.position = randomPlatform.transform.position + new Vector3(0, randomPlatform.transform.localScale.y / 2, 0);
+            if (randomPos == null) return;
+
+            lastTeleportedPos = randomPos.position;
+            transform.position = randomPos.position + new Vector3(0, randomPos.localScale.y / 2, 0);
         }
         else if (teleportPositions.Length == 1)
         {
+            if (teleportPositions[0] == null) return;
+
             Vector3 onlyPos = teleportPositions[0].position;
             lastTeleportedPos = onlyPos;
             transform.position = onlyPos + new Vector3(0, transform.localScale.y / 2, 0);

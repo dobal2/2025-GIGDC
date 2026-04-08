@@ -26,40 +26,42 @@ public abstract class Boss : Monster
     public void StartBattle()
     {
         battleStarted = true;
+        CreateHPBar();
     }
-    
+
     protected override void Start()
     {
         counterTextPrefab = null;
         base.Start();
+    }
 
-        if (hpBarPrefab != null)
+    private void CreateHPBar()
+    {
+        if (hpBarPrefab == null) return;
+
+        Canvas[] canvases = FindObjectsByType<Canvas>(FindObjectsSortMode.None);
+        Canvas overlayCanvas = null;
+
+        foreach (var canvas in canvases)
         {
-            Canvas[] canvases = FindObjectsByType<Canvas>(FindObjectsSortMode.None);
-            Canvas overlayCanvas = null;
-
-            foreach (var canvas in canvases)
+            if (canvas.renderMode == RenderMode.ScreenSpaceOverlay && canvas.gameObject.name == "Canvas")
             {
-                if (canvas.renderMode == RenderMode.ScreenSpaceOverlay)
-                {
-                    overlayCanvas = canvas;
-                    break;
-                }
-            }
-
-            if (overlayCanvas != null)
-            {
-                GameObject hpBarObj = Instantiate(hpBarPrefab, overlayCanvas.transform);
-                hpSlider = hpBarObj.GetComponentInChildren<Slider>();
-
-                if (hpSlider != null)
-                {
-                    hpSlider.maxValue = maxHp;
-                    hpSlider.value = hp;
-                }
+                overlayCanvas = canvas;
+                break;
             }
         }
 
+        if (overlayCanvas != null)
+        {
+            GameObject hpBarObj = Instantiate(hpBarPrefab, overlayCanvas.transform);
+            hpSlider = hpBarObj.GetComponentInChildren<Slider>();
+
+            if (hpSlider != null)
+            {
+                hpSlider.maxValue = maxHp;
+                hpSlider.value = hp;
+            }
+        }
     }
 
     public override void KnockBack(Transform attacker, float knockBackForce, float knockBackAngle, float duration)
