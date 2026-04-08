@@ -18,7 +18,7 @@ public class CombatTutorialStep : TutorialStepBase
 
         yield return new WaitForSeconds(1.5f);
 
-        Object.Destroy(tutorialDescriptionView.gameObject);
+        if(tutorialDescriptionView != null) Object.Destroy(tutorialDescriptionView.gameObject);
         tutorialDescriptionView = UIManager.Instance.Show<TutorialDescriptionView>();
         tutorialDescriptionView.Initialize(TutorialManager.VisualData.CombatTutorial.ProgessSprites[1]);
     }

@@ -196,6 +196,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5014519342108036051, guid: cbbeae92a75d46f4e8b7362aff186918, type: 3}
   m_PrefabInstance: {fileID: 339493469}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &339493471 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7226347269653019146, guid: cbbeae92a75d46f4e8b7362aff186918, type: 3}
+  m_PrefabInstance: {fileID: 339493469}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acc83e177698a314e972c85d23d4d0fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UniqueTile
 --- !u!1001 &536874840
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -491,6 +502,14 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: bbdfa115ef81be04e9ca7f3af56a5698, type: 3}
+    - target: {fileID: 947763409646440035, guid: 1ca83e73789255b438a946af2cf4aa12, type: 3}
+      propertyPath: tiles.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 947763409646440035, guid: 1ca83e73789255b438a946af2cf4aa12, type: 3}
+      propertyPath: 'tiles.Array.data[0]'
+      value: 
+      objectReference: {fileID: 339493471}
     - target: {fileID: 3728202701810506898, guid: 1ca83e73789255b438a946af2cf4aa12, type: 3}
       propertyPath: m_Sprite
       value: 
