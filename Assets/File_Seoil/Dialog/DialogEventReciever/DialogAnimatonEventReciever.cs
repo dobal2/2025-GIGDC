@@ -7,7 +7,7 @@ public class DialogAnimatonEventReciever : DialogEventRecieverBase
 
     protected override void RegisterCommands()
     {
-        OnEvent.Add("AnimateCharacter", AnimateCharacter);
+        OnEvent.Add("AnimateCharactor", AnimateCharacter);
         RegisterAnimations();
     }
 
