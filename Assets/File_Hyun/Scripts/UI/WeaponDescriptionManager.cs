@@ -32,17 +32,15 @@ public class WeaponDescriptionManager : MonoBehaviour
         };
     }
 
-    void OnEnable()
-    {
-        SetupDisplay();
-        InputManager.Instance.OnUILeftKeyDown += () => TryMove(-1);
-        InputManager.Instance.OnUIRightKeyDown += () => TryMove(1);
-    }
+    void OnEnable() => SetupDisplay();
 
-    void OnDisable()
+    void Update()
     {
-        InputManager.Instance.OnUILeftKeyDown -= () => TryMove(-1);
-        InputManager.Instance.OnUIRightKeyDown -= () => TryMove(1);
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+            TryMove(-1);
+
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+            TryMove(1);
     }
 
     void SetupDisplay()
