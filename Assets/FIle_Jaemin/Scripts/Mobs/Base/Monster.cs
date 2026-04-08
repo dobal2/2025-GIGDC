@@ -169,7 +169,7 @@ public abstract class Monster : MonoBehaviour
 
     public virtual void KnockBack(Transform attacker, float knockBackForce, float knockBackAngle, float duration)
     {
-        if (isDead) return;
+        if (isDead || rigid == null) return;
         rigid.linearVelocity = Vector2.zero;
 
         bool isRight = transform.position.x > attacker.position.x;
