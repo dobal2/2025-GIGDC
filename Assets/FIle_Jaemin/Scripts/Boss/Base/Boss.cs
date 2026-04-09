@@ -54,6 +54,7 @@ public abstract class Boss : Monster
         if (overlayCanvas != null)
         {
             GameObject hpBarObj = Instantiate(hpBarPrefab, overlayCanvas.transform);
+            hpBarObj.transform.SetAsFirstSibling();
             hpSlider = hpBarObj.GetComponentInChildren<Slider>();
 
             if (hpSlider != null)
