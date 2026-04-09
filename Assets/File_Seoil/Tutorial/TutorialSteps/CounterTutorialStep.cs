@@ -30,7 +30,7 @@ public class CounterTutorialStep : TutorialStepBase
             tutorialDescriptionView = UIManager.Instance.Show<TutorialDescriptionView>();
             tutorialDescriptionView.Initialize(TutorialManager.VisualData.CounterTutorial.SuccesSprite);
 
-            Object.FindAnyObjectByType<Monster>()?.SetHealth(60);
+            Object.FindAnyObjectByType<Monster>()?.SetHealth(200);
 
             TutorialManager.Instance.StartCoroutine(DelayedSkipTutorial2());
         }
