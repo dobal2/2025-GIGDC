@@ -94,9 +94,16 @@ public class StageManager : MonoBehaviour
         }
     }
 
+    public static void ForceSetObjectCount(int count)
+    {
+        objects = count;
+    }
+
     private void Awake()
     {
         Instance = this;
+        ForceSetObjectCount(0);
+
         map.SetActive(false);
     }
 
