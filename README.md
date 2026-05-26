@@ -32,19 +32,19 @@
 `Monster → Boss → Boss_X` 3단 상속 구조로 HP 관리, KnockBack, Counter 로직을 공통화하고
 각 보스별 고유 패턴을 하위 클래스에서 구현했습니다.
 
-#### Boss_Excitement (흥분)
+#### Boss_Excitement
 - Phase 1: 피격 시마다 랜덤 위치 텔레포트, 유도 미사일 · 폭탄 투척
 - Phase 2: `Mathf.Deg2Rad` + 삼각함수로 버블을 반원 배치 후 일제히 플레이어 방향 이동, GlassWall 3연속 소환
 
-#### Boss_Frustration (좌절)
+#### Boss_Frustration
 - Phase 1: `takeDamageCount`로 피격 횟수 추적 → 5회마다 위치 이동, 손가락 낙하 패턴
 - Phase 2: 대시 중 `Physics2D.OverlapBoxAll` 히트박스 판정, Battery 소환 (플레이어가 역이용 가능한 폭발 연쇄 메커닉)
 
-#### Boss_Love (사랑)
+#### Boss_Love
 - Phase 1: `col.isTrigger = true`로 잠입 후 경고 이펙트 → 재출현 + 부채꼴 잉크 탄막
 - Phase 2: `gravityScale = 0` 부유 전환, HeartBubble 파괴 시 플레이어 무적 쉴드 부여
 
-#### Boss_Vain (허영)
+#### Boss_Vain
 - `ExecuteSkill(int)` switch 구조로 Phase별 스킬 풀 분리, `PickNewSkillAvoidingRepeat()`으로 연속 동일 패턴 방지
 - Phase 2: `player.rotation.eulerAngles.y`로 플레이어 등 방향 계산 후 기습 텔레포트, Clone 소환
 
