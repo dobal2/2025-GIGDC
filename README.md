@@ -108,9 +108,8 @@ void KnockBack(Transform attacker, float force, float angle, float duration)
 | 이름 | 담당 |
 |------|------|
 | 서재민 | 보스 AI 전체 (4종), 일반 몹 시스템 (6종) |
-| 정현 | 플레이어 시스템, 무기 (활/창/폭탄), Player State Machine |
+| 체현 | 플레이어 시스템, 무기 (활/창/폭탄), Player State Machine |
 | 서일 | 스테이지 매니저, 튜토리얼, 씬 구성, BGM |
-| 수진 | UI, 무기 설명, 다이얼로그, 카운터 시스템 |
 | 익현 | VFX 이펙트 전체 (픽셀레이션, 글리치, 파티클, 셰이더) |
 
 ---
@@ -124,7 +123,7 @@ Assets/
 │       ├── Boss/        # Boss 기반 클래스 + 4종 보스 + 패턴 오브젝트
 │       ├── Mobs/        # 일반 몹 6종
 │       └── Projectiles/ # 투사체
-├── File_Hyun/           # 플레이어 시스템 (정현 담당)
+├── File_Hyun/           # 플레이어 시스템 (체현 담당)
 ├── File_Seoil/          # 스테이지, 튜토리얼 (서일 담당)
 ├── File_Ikhyun/         # VFX 이펙트 (익현 담당)
 └── Public/              # 공용 AudioPlayer 등
